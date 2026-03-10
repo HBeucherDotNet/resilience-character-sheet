@@ -1,0 +1,147 @@
+section {
+	border: solid 2px red;
+}
+
+.option.hiver {
+  position: relative;
+}
+.hiver-desc .pictogram-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.flex-group#lignées-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.option.lignee {
+  flex: 1 1 22%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.5em;
+}
+.option.lignee label {
+  color: #222;
+  font-weight: bold;
+}
+.option.lignee .lignee-sexe {
+  font-size: 0.9em;
+  color: #555;
+  font-weight: normal;
+}
+.option.lignee label {
+  color: #222;
+}
+.don-separateur {
+  border: none;
+  border-top: 2px solid #bbb;
+  margin: 0.7em 0 0.3em 0;
+}
+.don {
+  color: #333;
+  font-size: 1em;
+  display: block;
+  margin-bottom: 0.5em;
+}
+/* Masquer les questions lors de l'impression */
+@media print {
+  .questions, #questions {
+    display: none !important;
+  }
+  #fiche {
+    display: block !important;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2em;
+}
+
+
+.flex-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.flex-group .option {
+  flex: 1 1 20%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flex-group .option input[type="checkbox"] {
+  margin-bottom: 0.5em;
+}
+
+.flex-group .option label {
+  width: 100%;
+}
+
+.desc {
+  display: block;
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 0.2em;
+}
+
+#fiche {
+  margin-top: 2em;
+}
+
+.flex-group#saison-group .option {
+  max-width: 20%;
+}
+
+.option.hiver {
+  background: #e3ecf7;
+  border-color: #b3cbe6;
+}
+.option.printemps {
+  background: #e6f7e3;
+  border-color: #b6e6b3;
+}
+.option.ete {
+  background: #f7f5e3;
+  border-color: #e6e3b3;
+}
+.option.automne {
+  background: #f7e3e3;
+  border-color: #e6b3b3;
+}
+.option.temps {
+  background: #f5f5f5;
+  border-color: #cccccc;
+}
+
+.flex-group#saison-group .option label,
+.flex-group#saison-group .option .desc {
+  color: #222;
+}
+
+.flex-group#famille-group .option label,
+.flex-group#famille-group .option .desc {
+  color: #222;
+}
