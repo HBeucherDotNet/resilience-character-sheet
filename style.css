@@ -1,8 +1,19 @@
 .selected-option {
   border-width: 3px;
-  border-color: #3a7ad2 !important;
   box-shadow: 0 0 8px rgba(58,122,210,0.12);
   z-index: 1;
+}
+.selected-option.hiver {
+  border-color: #235a8a !important;
+}
+.selected-option.printemps {
+  border-color: #2c7a4b !important;
+}
+.selected-option.ete {
+  border-color: #bfa600 !important;
+}
+.selected-option.automne {
+  border-color: #a13a3a !important;
 }
 section {
   border-radius: 12px;
