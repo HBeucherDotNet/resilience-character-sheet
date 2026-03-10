@@ -1,160 +1,45 @@
-.selected-option {
-  border-width: 3px;
-  box-shadow: 0 0 8px rgba(58,122,210,0.12);
-  z-index: 1;
+@charset "UTF-8";
+body {
+  font-family: Arial, sans-serif;
+  margin: 2em;
+  background: #e9ecf3;
 }
-.selected-option.hiver {
-  border-color: #235a8a !important;
-}
-.selected-option.printemps {
-  border-color: #2c7a4b !important;
-}
-.selected-option.ete {
-  border-color: #bfa600 !important;
-}
-.selected-option.automne {
-  border-color: #a13a3a !important;
-}
+
 section {
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  background: #f9fafb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  background: #fff;
   padding: 1.2em 1em;
   margin-bottom: 1.5em;
-  border: 1px solid #e0e4ea;
+  border: 1px solid #d3d7e3;
   transition: box-shadow 0.2s, transform 0.2s;
 }
 section:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
-section h3 {
+
+h2 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #235a8a;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.7em;
+}
+
+h3 {
   margin-top: 0;
   font-size: 1.25em;
   color: #333;
   letter-spacing: 0.02em;
 }
-section {
-	border: solid 2px red;
-}
-
-.option.hiver {
-  position: relative;
-}
-.hiver-desc .pictogram-btn {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-.flex-group#lignées-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-.option.lignee {
-  flex: 1 1 22%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 0.5em;
-}
-.option.lignee label {
-  color: #222;
-  font-weight: bold;
-}
-.option.lignee .lignee-sexe {
-  font-size: 0.9em;
-  color: #555;
-  font-weight: normal;
-}
-.option.lignee label {
-  color: #222;
-}
-.don-separateur {
-  border: none;
-  border-top: 2px solid #bbb;
-  margin: 0.7em 0 0.3em 0;
-}
-.don {
-  color: #333;
-  font-size: 1em;
-  display: block;
-  margin-bottom: 0.5em;
-}
-/* Masquer les questions lors de l'impression */
-@media print {
-  .questions, #questions {
-    display: none !important;
-  }
-  #fiche {
-    display: block !important;
-  }
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 2em;
-}
-
-
-.flex-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 0.5em;
-}
-
-.flex-group .option {
-  flex: 1 1 20%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.flex-group .option input[type="checkbox"] {
-  margin-bottom: 0.5em;
-}
-
-.flex-group .option label {
-  width: 100%;
-}
-
-.desc {
-  display: block;
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 0.2em;
-}
-
-#fiche {
-  margin-top: 2em;
-}
 
 .option {
   position: relative;
+  border-radius: 8px;
+  background: #f9f9f9;
+  padding: 0.5em;
 }
-
-.flex-group#saison-group .option {
-  max-width: 20%;
-}
-
 .option.hiver {
   background: #e3ecf7;
   border-color: #b3cbe6;
@@ -176,12 +61,116 @@ body {
   border-color: #cccccc;
 }
 
-.flex-group#saison-group .option label,
-.flex-group#saison-group .option .desc {
-  color: #222;
+.selected-option {
+  border-width: 3px;
+  box-shadow: 0 0 8px rgba(58, 122, 210, 0.12);
+  z-index: 1;
+}
+.selected-option.hiver {
+  border-color: #235a8a !important;
+}
+.selected-option.printemps {
+  border-color: #2c7a4b !important;
+}
+.selected-option.ete {
+  border-color: #bfa600 !important;
+}
+.selected-option.automne {
+  border-color: #a13a3a !important;
 }
 
-.flex-group#famille-group .option label,
-.flex-group#famille-group .option .desc {
-  color: #222;
+.flex-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5em;
 }
+.flex-group .option {
+  flex: 1 1 20%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.flex-group .option input[type=checkbox] {
+  margin-bottom: 0.5em;
+}
+
+.desc {
+  display: block;
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 0.2em;
+}
+
+.option {
+  position: relative;
+}
+
+.pictogram-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.flex-group#lignées-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.option.lignee {
+  flex: 1 1 22%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.5em;
+}
+.option.lignee label {
+  color: #222;
+  font-weight: bold;
+}
+.option.lignee .lignee-sexe {
+  font-size: 0.9em;
+  color: #555;
+  font-weight: normal;
+}
+
+.don-separateur {
+  border: none;
+  border-top: 2px solid #bbb;
+  margin: 0.7em 0 0.3em 0;
+}
+
+.don {
+  color: #333;
+  font-size: 1em;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+/* Masquer les questions lors de l'impression */
+@media print {
+  .questions, #questions {
+    display: none !important;
+  }
+  #fiche {
+    display: block !important;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
