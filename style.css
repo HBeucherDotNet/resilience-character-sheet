@@ -149,6 +149,7 @@ body {
 
 .flex-group#saison-group .option {
   max-width: 20%;
+  position: relative;
 }
 
 .option.hiver {

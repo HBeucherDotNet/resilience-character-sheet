@@ -20,48 +20,84 @@
 					<label>Saison :</label>
 					<div class="flex-group" id="saison-group">
 						<div class="option hiver">
+							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
 							<span style="display:flex;align-items:center;gap:0.5em;">
 								<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onclick="selectUnique('saison', this)">
 								<label for="saison-hiver"><strong>Hiver</strong></label>
 							</span>
 							<span class="desc hiver-desc">
 								<span class="short">Mÿelta recherche les gens humbles, discrets, qui savent se fondre dans la masse, accepter les événements pour s'y adapter et en tirer le meilleur parti au moment voulu.</span>
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="10" cy="10" r="9" stroke="#333" stroke-width="2" fill="#fff"/>
-										<path d="M7 8h6M7 12h6" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-									</svg>
-								</button>
 								<span class="long" style="display:none;"> Parfois, ils sont cyniques ou froids. Souvent, ils sont ermites, agriculteurs, explorateurs. Mÿelta ne cherche pas les gens qui se mettent en avant, s'exposent inutilement et refusent toute contrariété. Essence : Adaptation. Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. Anathème : Fierté. Qui se met en avant tombera en premier… Le personnage à tendance à se fondre dans la masse et attendre le meilleur moment pour agir efficacement et anonymement. Son attitude peut parfois le rendre cynique ou asocial.</span>
 							</span>
 						</div>
 						<div class="option printemps">
+							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+								</svg>
+							</button>
 							<span style="display:flex;align-items:center;gap:0.5em;">
 								<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onclick="selectUnique('saison', this)">
 								<label for="saison-printemps"><strong>Printemps</strong></label>
 							</span>
-							<span class="desc"><span class="short">Liana recherche des gens curieux, à l'esprit vif, inventifs et perceptifs, pacifistes.</span><span class="long" style="display:none;"> Parfois, ils sont malicieux et fourbes, farceurs voire voleurs. Souvent, ils sont médecins, érudits, sentinelles. Liana ne cherche pas les personnes belliqueuses, rigides, pliant le monde à leur volonté, par la force physique ou les contraintes psychologiques. Essence : Curiosité. Le Printemps c'est le renouveau de la vie, la découverte du monde... Anathème : Contrôle. Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte. Le personnage aime découvrir le maximum de choses, explorer, tester, tout en respectant l’intégrité des gens. Cela peut le faire passer pour inconstant, peu fiable ou exagérément pacifiste.</span> <button type="button" class="lire-plus" onclick="toggleDesc(this)">Lire plus</button></span>
+							<span class="desc printemps-desc">
+								<span class="short">Liana recherche des gens curieux, à l'esprit vif, inventifs et perceptifs, pacifistes.</span>
+								<span class="long" style="display:none;"> Parfois, ils sont malicieux et fourbes, farceurs voire voleurs. Souvent, ils sont médecins, érudits, sentinelles. Liana ne cherche pas les personnes belliqueuses, rigides, pliant le monde à leur volonté, par la force physique ou les contraintes psychologiques. Essence : Curiosité. Le Printemps c'est le renouveau de la vie, la découverte du monde... Anathème : Contrôle. Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte. Le personnage aime découvrir le maximum de choses, explorer, tester, tout en respectant l’intégrité des gens. Cela peut le faire passer pour inconstant, peu fiable ou exagérément pacifiste.</span>
+							</span>
 						</div>
 						<div class="option ete">
+							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+								</svg>
+							</button>
 							<span style="display:flex;align-items:center;gap:0.5em;">
 								<input type="checkbox" name="saison" value="ete" id="saison-ete" onclick="selectUnique('saison', this)">
 								<label for="saison-ete"><strong>Été</strong></label>
 							</span>
-							<span class="desc"><span class="short">Fyrellÿa recherche des gens sensibles, dévoués, francs, esthètes et sociaux.</span><span class="long" style="display:none;"> Parfois, ils sont envahissants ou dangereux. Souvent, ils sont artistes, officiers, négociants. Fyrellÿa ne cherche pas des personnes égocentrées, agissant sans aucune considération pour les autres ou leur environnement voire pire, les utilisant à son bénéfice. Essence : Emotion. L’Eté c’est la recherche de l’autre. L'Émotion est le vecteur du lien… Anathème : Insouciance. Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux. Le personnage est passionné, sociable et aime pousser les autres vers l’action ou l’expression de leur être. Il noue facilement des liens, mais peut le rendre envahissant ou exagérément extraverti.</span> <button type="button" class="lire-plus" onclick="toggleDesc(this)">Lire plus</button></span>
+							<span class="desc ete-desc">
+								<span class="short">Fyrellÿa recherche des gens sensibles, dévoués, francs, esthètes et sociaux.</span>
+								<span class="long" style="display:none;"> Parfois, ils sont envahissants ou dangereux. Souvent, ils sont artistes, officiers, négociants. Fyrellÿa ne cherche pas des personnes égocentrées, agissant sans aucune considération pour les autres ou leur environnement voire pire, les utilisant à son bénéfice. Essence : Emotion. L’Eté c’est la recherche de l’autre. L'Émotion est le vecteur du lien… Anathème : Insouciance. Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux. Le personnage est passionné, sociable et aime pousser les autres vers l’action ou l’expression de leur être. Il noue facilement des liens, mais peut le rendre envahissant ou exagérément extraverti.</span>
+							</span>
 						</div>
 						<div class="option automne">
+							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+								</svg>
+							</button>
 							<span style="display:flex;align-items:center;gap:0.5em;">
 								<input type="checkbox" name="saison" value="automne" id="saison-automne" onclick="selectUnique('saison', this)">
 								<label for="saison-automne"><strong>Automne</strong></label>
 							</span>
-							<span class="desc"><span class="short">Ailma recherche les gens pragmatiques, patients, méthodiques et entiers.</span><span class="long" style="display:none;"> Parfois, ils sont lents ou rigides, autoritaires. Souvent, ils sont guerriers, artisans, rebouteux. Ailma ne cherche pas les personnes indolentes, irréfléchies, impulsives, recourant à la voie de moindre résistance face à chaque difficulté. Essence : Prévoyance. En Automne, il faut se préparer à l’Hiver et à ses dangers… Anathème : Facilité. Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine. Le personnage est posé et prend le temps de la préparation avant l’action, laissant le moins de choses possible au hasard, et déteste agir sans réfléchir. Cela peut le rendre perfectionniste ou indécis.</span> <button type="button" class="lire-plus" onclick="toggleDesc(this)">Lire plus</button></span>
+							<span class="desc automne-desc">
+								<span class="short">Ailma recherche les gens pragmatiques, patients, méthodiques et entiers.</span>
+								<span class="long" style="display:none;"> Parfois, ils sont lents ou rigides, autoritaires. Souvent, ils sont guerriers, artisans, rebouteux. Ailma ne cherche pas les personnes indolentes, irréfléchies, impulsives, recourant à la voie de moindre résistance face à chaque difficulté. Essence : Prévoyance. En Automne, il faut se préparer à l’Hiver et à ses dangers… Anathème : Facilité. Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine. Le personnage est posé et prend le temps de la préparation avant l’action, laissant le moins de choses possible au hasard, et déteste agir sans réfléchir. Cela peut le rendre perfectionniste ou indécis.</span>
+							</span>
 						</div>
 						<div class="option temps">
+							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
+								</svg>
+							</button>
 							<span style="display:flex;align-items:center;gap:0.5em;">
 								<input type="checkbox" name="saison" value="temps" id="saison-temps" onclick="selectUnique('saison', this)">
 								<label for="saison-temps"><strong>Temps</strong></label>
 							</span>
-							<span class="desc"><span class="short">Les personnes bénies par le Temps voient les gens s'organiser d'eux-mêmes autour d'elles.</span><span class="long" style="display:none;"> Elles maintiennent, voire créent les groupes, par leur seule présence, capables de répartir les rôles, apaiser les égos et satisfaire les désirs de chacun, ménageant un espace pour chacun et chacune. Si elles paraissent parfois en retrait, c'est que le groupe avance dans la direction qui leur semble juste. Car elles ne relâchent jamais leur attention, veillant à ce que chacun soit justement rétribué pour ses actes. Essence : Coopération. Le Temps rassemble autour de lui et permet à chacun de s’exprimer. Anathème : Excès. Ni trop, ni trop peu, mais la juste dose de tout, pour tous. Le personnage aime voir les gens s’organiser et s’entendre. Il encourage et implique tout le monde. Le personnage a un sens aigu de la justice, de l'équité et de la mesure. Cela peut parfois le rendre trop catégorique voire autoritaire, ou à l'inverse manquant d'affirmation.</span> <button type="button" class="lire-plus" onclick="toggleDesc(this)">Lire plus</button></span>
+							<span class="desc temps-desc">
+								<span class="short">Les personnes bénies par le Temps voient les gens s'organiser d'eux-mêmes autour d'elles.</span>
+								<span class="long" style="display:none;"> Elles maintiennent, voire créent les groupes, par leur seule présence, capables de répartir les rôles, apaiser les égos et satisfaire les désirs de chacun, ménageant un espace pour chacun et chacune. Si elles paraissent parfois en retrait, c'est que le groupe avance dans la direction qui leur semble juste. Car elles ne relâchent jamais leur attention, veillant à ce que chacun soit justement rétribué pour ses actes. Essence : Coopération. Le Temps rassemble autour de lui et permet à chacun de s’exprimer. Anathème : Excès. Ni trop, ni trop peu, mais la juste dose de tout, pour tous. Le personnage aime voir les gens s’organiser et s’entendre. Il encourage et implique tout le monde. Le personnage a un sens aigu de la justice, de l'équité et de la mesure. Cela peut parfois le rendre trop catégorique voire autoritaire, ou à l'inverse manquant d'affirmation.</span>
+							</span>
 						</div>
 					</div>
 				</section>
