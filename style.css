@@ -1,3 +1,28 @@
+.selected-option {
+  border-width: 3px;
+  border-color: #3a7ad2 !important;
+  box-shadow: 0 0 8px rgba(58,122,210,0.12);
+  z-index: 1;
+}
+section {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  background: #f9fafb;
+  padding: 1.2em 1em;
+  margin-bottom: 1.5em;
+  border: 1px solid #e0e4ea;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+section:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+section h3 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #333;
+  letter-spacing: 0.02em;
+}
 section {
 	border: solid 2px red;
 }

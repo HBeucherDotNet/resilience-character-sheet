@@ -16,7 +16,11 @@ function selectUnique(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
+		const option = cb.closest('.option');
+		if (option) option.classList.remove('selected-option');
 	});
+	const selectedOption = el.closest('.option');
+	if (selectedOption && el.checked) selectedOption.classList.add('selected-option');
 }
 
 function updateLignees() {
