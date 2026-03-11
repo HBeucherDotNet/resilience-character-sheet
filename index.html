@@ -3,1003 +3,1020 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Création de personnage - Jeu de rôle</title>
+	<title>Résilience - Création de Voix</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="questions">
-		<h2>Création de personnage</h2>
-		<form id="creation-form">
-			<div class="questions">
-				<label for="nom">Nom du personnage :</label>
-				<input type="text" id="nom" name="nom" required>
-				
-				<!-------------------- SAISONS -------------------->
-				
-				<section>
-					<h2>Saison</h2>
-					<div class="flex-group" id="saison-group">
-						<div class="option hiver">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onclick="selectUnique('saison', this)">
-								<label for="saison-hiver"><strong>Hiver</strong></label>
-							</span>
-							<span class="desc hiver-desc">
-								<span class="short">Mÿelta recherche les gens humbles, discrets, qui savent se fondre dans la masse, accepter les événements pour s'y adapter et en tirer le meilleur parti au moment voulu.</span>
-								<span class="long" style="display:none;"> Parfois, ils sont cyniques ou froids. Souvent, ils sont ermites, agriculteurs, explorateurs. Mÿelta ne cherche pas les gens qui se mettent en avant, s'exposent inutilement et refusent toute contrariété. Essence : Adaptation. Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. Anathème : Fierté. Qui se met en avant tombera en premier… Le personnage à tendance à se fondre dans la masse et attendre le meilleur moment pour agir efficacement et anonymement. Son attitude peut parfois le rendre cynique ou asocial.</span>
-							</span>
-						</div>
-						<div class="option printemps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onclick="selectUnique('saison', this)">
-								<label for="saison-printemps"><strong>Printemps</strong></label>
-							</span>
-							<span class="desc printemps-desc">
-								<span class="short">Liana recherche des gens curieux, à l'esprit vif, inventifs et perceptifs, pacifistes.</span>
-								<span class="long" style="display:none;"> Parfois, ils sont malicieux et fourbes, farceurs voire voleurs. Souvent, ils sont médecins, érudits, sentinelles. Liana ne cherche pas les personnes belliqueuses, rigides, pliant le monde à leur volonté, par la force physique ou les contraintes psychologiques. Essence : Curiosité. Le Printemps c'est le renouveau de la vie, la découverte du monde... Anathème : Contrôle. Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte. Le personnage aime découvrir le maximum de choses, explorer, tester, tout en respectant l’intégrité des gens. Cela peut le faire passer pour inconstant, peu fiable ou exagérément pacifiste.</span>
-							</span>
-						</div>
-						<div class="option ete">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="saison" value="ete" id="saison-ete" onclick="selectUnique('saison', this)">
-								<label for="saison-ete"><strong>Été</strong></label>
-							</span>
-							<span class="desc ete-desc">
-								<span class="short">Fyrellÿa recherche des gens sensibles, dévoués, francs, esthètes et sociaux.</span>
-								<span class="long" style="display:none;"> Parfois, ils sont envahissants ou dangereux. Souvent, ils sont artistes, officiers, négociants. Fyrellÿa ne cherche pas des personnes égocentrées, agissant sans aucune considération pour les autres ou leur environnement voire pire, les utilisant à son bénéfice. Essence : Emotion. L’Eté c’est la recherche de l’autre. L'Émotion est le vecteur du lien… Anathème : Insouciance. Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux. Le personnage est passionné, sociable et aime pousser les autres vers l’action ou l’expression de leur être. Il noue facilement des liens, mais peut le rendre envahissant ou exagérément extraverti.</span>
-							</span>
-						</div>
-						<div class="option automne">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="saison" value="automne" id="saison-automne" onclick="selectUnique('saison', this)">
-								<label for="saison-automne"><strong>Automne</strong></label>
-							</span>
-							<span class="desc automne-desc">
-								<span class="short">Ailma recherche les gens pragmatiques, patients, méthodiques et entiers.</span>
-								<span class="long" style="display:none;"> Parfois, ils sont lents ou rigides, autoritaires. Souvent, ils sont guerriers, artisans, rebouteux. Ailma ne cherche pas les personnes indolentes, irréfléchies, impulsives, recourant à la voie de moindre résistance face à chaque difficulté. Essence : Prévoyance. En Automne, il faut se préparer à l’Hiver et à ses dangers… Anathème : Facilité. Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine. Le personnage est posé et prend le temps de la préparation avant l’action, laissant le moins de choses possible au hasard, et déteste agir sans réfléchir. Cela peut le rendre perfectionniste ou indécis.</span>
-							</span>
-						</div>
-						<div class="option temps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="saison" value="temps" id="saison-temps" onclick="selectUnique('saison', this)">
-								<label for="saison-temps"><strong>Temps</strong></label>
-							</span>
-							<span class="desc temps-desc">
-								<span class="short">Les personnes bénies par le Temps voient les gens s'organiser d'eux-mêmes autour d'elles.</span>
-								<span class="long" style="display:none;"> Elles maintiennent, voire créent les groupes, par leur seule présence, capables de répartir les rôles, apaiser les égos et satisfaire les désirs de chacun, ménageant un espace pour chacun et chacune. Si elles paraissent parfois en retrait, c'est que le groupe avance dans la direction qui leur semble juste. Car elles ne relâchent jamais leur attention, veillant à ce que chacun soit justement rétribué pour ses actes. Essence : Coopération. Le Temps rassemble autour de lui et permet à chacun de s’exprimer. Anathème : Excès. Ni trop, ni trop peu, mais la juste dose de tout, pour tous. Le personnage aime voir les gens s’organiser et s’entendre. Il encourage et implique tout le monde. Le personnage a un sens aigu de la justice, de l'équité et de la mesure. Cela peut parfois le rendre trop catégorique voire autoritaire, ou à l'inverse manquant d'affirmation.</span>
-							</span>
-						</div>
-					</div>
-				</section>
-				<!-------------------- FAMILLES -------------------->
-				
-				<section>
-					<h2>Famille</h2>
-					<div class="flex-group" id="famille-group">
-						<div class="option ete" style="position:relative;">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="famille" value="squelette" id="famille-squelette" onclick="selectUnique('famille', this); updateLignees()">
-								<label for="famille-squelette"><strong>Squelette</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">La Famille Squelette regroupe tous les personnages ayant un squelette interne, quatre membres et une tête.</span>
-								<span class="long" style="display:none;"> Ils peuvent tenir du mammifère et être couvert de poils, de l’oiseau, ou avoir plutôt une ascendance reptilienne voir un apparence directement inspirée des amphibiens, leur donnant une peau multicolore.</span>
-								<hr class="don-separateur">
-								<span class="don">Adrénaline (Été): les personnages ayant ce Don sont capables de dépasser leurs limites physiques pendant un bref laps de temps. Juste assez pour se mettre hors de danger par la fuite ou le combat. Ce Don s’utilise lors des Conflits ou lorsque le personnage est en danger immédiat.</span>
-							</span>
-						</div>
-						<div class="option printemps" style="position:relative;">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" onclick="selectUnique('famille', this); updateLignees()">
-								<label for="famille-cellulose"><strong>Cellulose</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">La Famille Cellulose contient tous les personnages issus du règne des végétaux ou des champignons.</span>
-								<span class="long" style="display:none;"> Ces individus particulièrement étranges simulent des visages pour parvenir à communiquer avec les autres Familles. Dans leur incroyable diversité, ils ont trouvé le moyen d’avoir des morphologies relativement constantes, en apparence du moins.</span>
-								<hr class="don-separateur">
-								<span class="don">Symbiose (Printemps) : les personnages ayant ce Don savent comment faire en sorte que le tout soit supérieur à la somme de parties. Ils tirent une meilleure efficacité de l’association de qualités différentes. Ce Don s’utilise quand le personnage reçoit de l’Aide, bénéficie de ou fait un Support ou une Tactique</span>
-							</span>
-						</div>
-						<div class="option automne" style="position:relative;">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="famille" value="chitine" id="famille-chitine" onclick="selectUnique('famille', this); updateLignees()">
-								<label for="famille-chitine"><strong>Chitine</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">La Famille Chitine comprend tous les personnages portant un exosquelette de chitine.</span>
-								<span class="long" style="display:none;"> Leur apparence est très variée, pouvant avoir de six à plusieurs dizaines de membres, des pinces, des antennes, ou des ailes. Ces personnages peuvent donc aussi bien tenir de la fourmi de l’araignée, du mille-patte ou de la mante.</span>
-								<hr class="don-separateur">
-								<span class="don">Exosquelette (Automne) : les personnages ayant ce Don ont un le corps couvert d’une carapace décuplant sa puissance et garnie d’excroissances utiles. Ce Don s’utilise pour les épreuves de force, d'endurance et la récolte de ressources.</span>
-							</span>
-						</div>
-						<div class="option hiver" style="position:relative;">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="famille" value="souple" id="famille-souple" onclick="selectUnique('famille', this); updateLignees()">
-								<label for="famille-souple"><strong>Souple</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">La Famille Souple englobe tous les personnages tenant du mollusque.</span>
-								<span class="long" style="display:none;"> Ils peuvent ainsi être inspirés très simplement des étoiles de mer, mais un poulpe est parfaitement envisageable. Les personnages les plus extravagants pourront avoir une coquille dans laquelle se réfugier, ou même tenir du ver de terre.</span>
-								<hr class="don-separateur">
-								<span class="don">Mimétisme (Hiver) : les personnages ayant ce Don peuvent modifier la forme et les couleurs de leurs corps et de leurs visages. Ce Don s’utilise pour les épreuves d’agilité, la discrétion, le déguisement et l’imitation.</span>
-							</span>
-						</div>
-					</div>
-				</section>
-				<!-------------------- LIGNEES -------------------->
-				
-				<section>
-					<h2>Lignée</h2>
-					<div id="lignées-container">
-						<p id="lignées-message">Veuillez choisir une famille.</p>
-						<div id="lignées-list" class="flex-group">
-							<div class="option lignee hiver squelette" style="display:none;position:relative;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose">
-									<label for="lignee-Amphiose"><strong>Amphiose</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Amphioses sont dérivées des amphibiens : grenouilles, crapauds et salamandres.</span>
-									<span class="long" style="display:none;">
-										Les lamproies, myxines et sangsues peuvent aussi être à l’origine d’Amphioses. Leurs longs membres se terminent par des pieds et mains très larges. Leur corps, petit et rond, est surmonté d’une tête large et presque sans cou. Leur peau porte de nombreuses couleurs très vives et le mucus qui la couvre protège des sautes de températures. Les Amphioses sont généralement curieuses et aiment le mouvement, l’animation, sauf quand il s’agit de veiller sur leur ponte. Elles sont généralement considérées comme de bonnes éclaireuses, guides et chanteuses.
-										<ul>
-											<li>Environnement préféré : plaines et collines</li>
-											<li>Mode de vie favori : alizé</li>
-											<li>Personnalité majoritaire : éminence</li>
-											<li>Don : Amphibie (Mobilité)</li>
-											<li>Exemples de noms (inspiration langues d’Amazonie) : ajurú, ára, katoma, kuña, michī, narki, pyhare, ruka, tuicha, warekena, yvaga, zuruahá</li>
-										</ul>
-									</span>
-									<hr class="don-separateur">
-									<span class="don">Don : Amphibie (Mobilité)</span>
-								</div>
-							</div>
-							<div class="option lignee ete squelette" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire">
-									<label for="lignee-Aviaire"><strong>Aviaire</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Aviaires peuvent tenir de n'importe quel oiseau, mais aussi des raies, requins et poissons cartilagineux.</span>
-									<span class="long" style="display:none;">
-										Ils sont souvent plutôt petits, sauf ceux tenant du condor ou de l'albatros. Leur corps est couvert de plumes, leurs jambes finissent en serres,
-										plus ou moins acérées et palmées, leur tête arbore un bec pouvant servir d'outil à l'occasion. Sous leurs bras, des plumes qu'ils
-										peuvent déployer en ailes, lorsqu'ils n'ont pas besoin de leurs mains pour autre chose. Les Aviaires aiment les climats chauds
-										et venteux et s'adaptent à toutes sortes de tailles de communauté. On les dit généralement enjoués et serviables, sauf lorsqu’ils
-										ont une couvée à élever.
-										<ul>
-											<li>Environnement préféré : îles et littoral</li>
-											<li>Mode de vie favori : nomade</li>
-											<li>Personnalité majoritaire : leader</li>
-											<li>Exemples de noms (inspiration Hindi et Tamoul) : achamba, bhaai, devi, kamala, kishore, indra, nalini, panee, priyanka, pidkkum, sari, theriyum</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Signaux (Communication)</span>
-								</div>
-							</div>
-							<div class="option lignee automne squelette" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien">
-									<label for="lignee-Mammalien"><strong>Mammalien</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Mammaliens sont la Lignée majoritaire à Kiwandoto. Ils ont une très grande diversité morphologique, pouvant tenir de n’importe quel mammifère, y compris marin comme les phoques et les cétacés.</span>
-									<span class="long" style="display:none;">
-										Ainsi, si certains sont identiques aux humains,
-										d’autres auront un faciès canin ou une allure dérivée d’un cerf. Certains portent même une trompe similaire à celle des éléphants.
-										Quoiqu’il en soit, les Mammaliens sont toujours parfaitement bipèdes, avec des mains bien découpées et agiles. Ils sont connus
-										pour vivre dans des communautés assez vastes et leurs aptitudes corporelles très diverses leur permettent d’être présents dans
-										n’importe quel environnement.
-										<ul>
-											<li>Environnement préféré : montagnes et canyons</li>
-											<li>Mode de vie favori : sédentaire</li>
-											<li>Personnalité majoritaire : sage</li>
-											<li>Exemples de noms (inspiration Japonais et Coréen) : akiko, fuyuko, gyeong, hoshi, hwan, iseul, kazuyo, noboru, oshiro, seok, takuma, yukiko</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Réserves (Fabrique)</span>
-								</div>
-							</div>
-							<div class="option lignee printemps squelette" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie">
-									<label for="lignee-Ophidie"><strong>Ophidie</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Ophidies sont des êtres de grande taille, tenant du lézard, du crocodile ou du serpent. Les tortues marines et poissons osseux sont également des sources d’inspiration pour les Ophidies.</span>
-									<span class="long" style="display:none;">
-										Elles se tiennent sur deux pattes arrières, la queue faisant balancier,
-										libérant une paire de bras puissants. Les Ophidies apprécient l'air chaud et humide, les points d'eau fiables, y compris
-										marécageux. Elles vivent généralement dans de petites communautés, dépassant rarement la famille directe, mais se mélangent
-										très volontiers avec les autres Lignées, car cela les protège pendant la ponte. Elles sont d’excellentes chasseuses et guerrières,
-										compensant leur réputation de sournoiserie ou de froides calculatrices.
-										<ul>
-											<li>Environnement préféré : rivières, lacs et marais</li>
-											<li>Mode de vie favori : troglodyte</li>
-											<li>Personnalité majoritaire : portefaix</li>
-											<li>Exemples de noms (inspiration langues Aborigènes) : alinta, allora, alkawari, bunggu, gamuru, gawuul, kareela, koa, mawukara, myaree, walo, wiltja</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Thermoception (Perception)</span>
-								</div>
-							</div>
-							<div class="option lignee hiver cellulose" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose">
-									<label for="lignee-Bryose"><strong>Bryose</strong> <span class="lignee-sexe">(asexué)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Bryoses sont des lichens, des mousses ou des fougères se construisant un habitat mobile de sable, de graviers et de pierres. Elles peuvent aussi avoir pour origine des algues, coraux ou foraminifères.</span>
-									<span class="long" style="display:none;">
-										Elles sont l’incarnation parfaite de l’idée que le corps est le véhicule terrestre de l’esprit. Cette construction minérale qu’elles animent est très solide et facile à dissimuler dans
-										l’environnement, mais long à régénérer. Les Bryoses préfèrent souvent la discrétion et la prudence à l’action directe et brutale.
-										Chaque Bryose abrite un Bryodé, un oiseau en symbiose avec elle qui s’agite et piaille pour transmettre ses émotions, facilitant
-										les échanges avec les autres Lignées.
-										<ul>
-											<li>Environnement préféré : plaines et collines</li>
-											<li>Mode de vie favori : troglodytes</li>
-											<li>Personnalité majoritaire : portefaix</li>
-											<li>Exemples de noms (inspiration Arabe et Persan) : akeem, alya, charbel, fathi, gulzar, hala, kubra, marwa, nour, raja, salman, sherazade</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Grimper (Mobilité)</span>
-								</div>
-							</div>
-							<div class="option lignee printemps cellulose" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon">
-									<label for="lignee-Mycon"><strong>Mycon</strong> <span class="lignee-sexe">(plurisexués)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Mycons sont des superorganismes, des colonies de champignons, de blob et/ou d’éponges d’espèces différentes, chacune assurant la fonction d'un organe ou d'une partie d'un membre de ce corps anthropoïde, aux deux jambes qui glissent sur le sol sans se lever.</span>
-									<span class="long" style="display:none;">
-										Les couleurs, formes et textures changeantes sculptant leur corps aux membres très longs peuvent être très
-										artistiques. Leurs mouvements sont lents mais précis, à l'image de leur réflexion. Les Mycons sont d'excellents dirigeants et
-										traitent tous les êtres avec égalité et justice. Ils n'aiment pas la solitude, ni la violence, synonyme d'incapacité à trouver une
-										solution par la réflexion.
-										<ul>
-											<li>Environnement préféré : rivières, lacs et marais</li>
-											<li>Mode de vie favori : sédentaire</li>
-											<li>Personnalité majoritaire : sage</li>
-											<li>Exemples de noms (inspiration langues Inuit et Same) : albmi, beaivi, biegga, goahti, ijirak, inushkuk, kallik, mánnu, nilak, siida, uki, yura</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Sonar (Perception)</span>
-								</div>
-							</div>
-							<div class="option lignee ete cellulose" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien">
-									<label for="lignee-Pollinien"><strong>Pollinien</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Polliniens sont pratiquement les seules fleurs restantes sur Kiwandoto. Ils sont issus des herbacées comme les pissenlits, les céréales, mais aussi des lotus et roseaux.</span>
-									<span class="long" style="display:none;">
-										Malheureusement, la corolle et les pétales cascadant autour de leur tête leur servent
-										avant tout de récepteur sensoriel, très peu pour produire du pollen, encore moins du nectar. Les Polliniens ont des yeux
-										monochromes, surplombant un corps fin, presque fragile. Des feuilles couvrent les racines leur servant de jambes, et deux tiges
-										munies de feuilles préhensiles, font office de mains. Les Polliniens se mélangent peu aux autres Lignées, mais quand ils le
-										font, ce sont des atouts inestimables pour les communautés.
-										<ul>
-											<li>Environnement préféré : îles et littoral</li>
-											<li>Mode de vie favori : alizé</li>
-											<li>Personnalité majoritaire : éminence</li>
-											<li>Exemples de noms (inspiration langues Bantoues et Malgaches) : amina, arinoa, diera, furaha, hirasoa, mosi, nuru, onja, reniala, simba, subira, zawadi</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Empathie (Communication)</span>
-								</div>
-							</div>
-							<div class="option lignee automne cellulose" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose">
-									<label for="lignee-Xylose"><strong>Xylose</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Xyloses sont originaires des arbres et arbustes, parfois des hydres et anémones. Leur apparence est anthropomorphe, avec une chevelure de feuilles ou d’aiguilles, et une écorce très variable.</span>
-									<span class="long" style="display:none;">Les Xylose ont un simili-visage avec des yeux
-										monochromes et une bouche s’ouvrant dans l’écorce de leur tronc. Leurs sens sont assurés par leur feuillage. En plus de leurs
-										bras, elles utilisent des lianes qui participent à la manipulation fine des objets. Les Xyloses voyagent souvent mais sont très
-										protectrices du territoire qu’elles occupent sur le moment. Leur parole est sacrée et elles ont la réputation de ne jamais baisser
-										les bras devant les difficultés.
-										<ul>
-											<li>Environnement préféré : montagnes et canyons</li>
-											<li>Mode de vie favori : nomade</li>
-											<li>Personnalité majoritaire : leader</li>
-											<li>Exemples de noms (inspiration langues Amérindiennes) : amarok, cheyenne, eyota, huyana, kwanita, nashoba, ozalie, poloma, sahale, tallulah, waban, yuma</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Préhenseurs (Fabrique)</span>
-								</div>
-							</div>
-							<div class="option lignee automne chitine" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen">
-									<label for="lignee-Arachéen"><strong>Arachéen</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Arachéens ont pour origine les araignées, scorpions, opilions et autres arachnides. Les limules font aussi partie des inspirations pour les Arachéens.</span>
-									<span class="long" style="display:none;">Leur corps voûté, ployant sous la chitine, est soutenu par trois paires de pattes, libérant une
-										paire de pinces leur tenant lieu de mains. Ils utilisent leurs pédipalpes, des appendices placés autour de leur bouche, pour aider
-										ces pinces lors des manipulations fines. Les Arachéens sont des êtres souvent solitaires car considérés comme inquiétants voire
-										effrayants par les autres. Toutefois, ils sont les amis les plus fidèles et dévoués possibles, si l’on fait l’effort de surmonter les
-										préjugés les entourant.
-										<ul>
-											<li>Environnement préféré : montagnes et canyons</li>
-											<li>Mode de vie favori : alizé</li>
-											<li>Personnalité majoritaire : éminence</li>
-											<li>Exemples de noms (inspiration Aymara et Quechua) : alaxpacha, allpa, aruma, hatun, kala, kuntur, nina, qari, qucha, sunqu, uraqi, uru</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Poison (Fabrique)</span>
-								</div>
-							</div>
-							<div class="option lignee ete chitine" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes">
-									<label for="lignee-Orthocètes"><strong>Orthocètes</strong> <span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Orthocètes ont pour origine les fourmis, termites, abeilles et tous les insectes sociaux ou grégaires tels que les criquets, charançons et gendarmes. Les crabes, écrevisses et autres animaux marins décapodes sont également des inspirations possibles.</span>
-									<span class="long" style="display:none;">Leur buste redressé est propulsé par leurs robustes pattes arrières, accompagné des pattes médianes. À l'arrêt, celles-ci,
-										dégagées, servent d’outils. Les Orthocètes sont petits, vifs et industrieux. Selon leur ascendance, ils peuvent préférer les tribus
-										réduites ou au contraire se perdre dans la masse et maintenir des communautés nombreuses. Dans tous les cas, leur justice est
-										à l’image de leur mentalité : sévère, rigide et peu encline au pardon.
-										<ul>
-											<li>Environnement préféré : plaines et collines</li>
-											<li>Mode de vie favori : sédentaire</li>
-											<li>Personnalité majoritaire : leader</li>
-											<li>Exemples de noms (inspiration Grec et Latin) : amphitryon, athènes, cérès, coryphée, gnomon, hécate, lares, nérée, quercus, tulli, urbs, zenais</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Présence (Communication)</span>
-								</div>
-							</div>
-							<div class="option lignee printemps chitine" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige">
-									<label for="lignee-Scutige"><strong>Scutige</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Scutiges sont une Lignée descendant les iules, mille-pattes et scolopendre, ainsi que des crevettes, puces de mer et autres décapodes et isopodes dont les cloportes.</span>
-									<span class="long" style="display:none;">Elles ont un corps excessivement long, se redressant comme un accent grave, reposant
-										ainsi sur lui-même. Une paire de pattes plus longue leur sert de bras, complété par les antennes ou les mandibules pour la
-										motricité fine. Les Scutiges sont grandes et lourdes, ce qui les oblige à se déplacer lentement, malgré leurs nombreuses pattes.
-										Sous leur aspect effrayant, les Scutiges sont en fait pacifiques, voire même peureuses. Elles favorisent les communautés mixtes,
-										dans lesquelles elles s'occupent souvent des troupeaux.
-										<ul>
-											<li>Environnement préféré : îles et littoral</li>
-											<li>Mode de vie favori : troglodyte</li>
-											<li>Personnalité majoritaire : sage</li>
-											<li>Exemples de noms (inspiration Chinois et langues d’Asie du Sud-Est) : anong, arthit, bopha, feng, guanyu, kun-lun, phirun, shufen, thaksin, veasna, xiuying, zhang</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Pistage (Perception)</span>
-								</div>
-							</div>
-							<div class="option lignee hiver chitine" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide">
-									<label for="lignee-Syrphide"><strong>Syrphide</strong> <span class="lignee-sexe">(unisexe)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Syrphides peuvent provenir de n'importe quels insectes solitaires : papillon, punaise, mouche, libellule, mante, scarabée, phasmes ou même les nèpes et dytiques pour les membres les plus aquatiques.</span>
-									<span class="long" style="display:none;">Elles se déplacent en utilisant à la fois leurs
-										robustes pattes arrières et leurs ailes. Leur membres médians, atrophiés, servent d’outils de secours. Au-delà de cela, la diversité
-										de leur apparence est phénoménale : couleurs, longueur et forme des antennes, des mandibules, du corps…chaque Syrphide est
-										une oeuvre unique. Les Syrphides sont affables, espiègles, romantiques, étourdies...d’où une réputation de personnes peu fiables,
-										volages, à cadrer.
-										<ul>
-											<li>Environnement préféré : rivières, lacs et marais</li>
-											<li>Mode de vie favori : nomade</li>
-											<li>Personnalité majoritaire : portefaix</li>
-											<li>Exemples de noms (inspiration langues Khoïsan et langues à clic) : andile, gugulethu, karo, kaisà, khoikhoi, mabasen, sifiso, tsorokwe, thandiwe, xhosa, xolani, zola</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Bond (Mobilité)</span>
-								</div>
-							</div>
-							<div class="option lignee ete souple" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope">
-									<label for="lignee-Céphope"><strong>Céphope</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Céphopes sont issus des poulpes, calamars, nautiles et autres octopus. Leurs tentacules fonctionnent généralement par paires, parfois fusionnés, équivalant concrètement à quatre membres très mobiles.</span>
-									<span class="long" style="display:none;">Les autres sont principalement des supports,
-										pour la communication ou le déplacement. Si leur posture est verticale au repos, ils se déplacent souvent à quatre pattes,
-										notamment lorsqu’ils doivent fuir ou chasser. Prudents et peureux s’ils sont isolés, les Céphopes deviennent sanguinaires
-										lorsqu’ils ont l’avantage. Malgré une mauvaise réputation due à leur facilité à manipuler les autres, les Céphopes sont sociables
-										et se mêlent facilement aux autres Lignées.
-										<ul>
-											<li>Environnement préféré : rivières, lacs et marais</li>
-											<li>Mode de vie favori : alizé</li>
-											<li>Personnalité majoritaire : leader</li>
-											<li>Exemples de noms (inspiration Mongol et Kazakh) : adilet, batu, erasyl, ganbold, gerel, nurasyl, sheker, solongo, timur, tsegsteg, uyanga, zarina</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Écran (Communication)</span>
-								</div>
-							</div>
-							<div class="option lignee automne souple" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse">
-									<label for="lignee-Nacrisse"><strong>Nacrisse</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Nacrisses descendent des mollusques, comme les escargots, limaces et coquillages. Courbées sous leur coquille pour la majorité, elles avancent sur un unique pied puissant et massif.</span>
-									<span class="long" style="display:none;">Quatre longs tentacules, deux portant des yeux et deux servant
-										de bras, sortent de leur caparaçon de calcaire. Le reste est généralement à l’abri, sauf dans les moments de repos et de confiance,
-										typiquement pour se nourrir ou se reproduire. Les Nacrisses sont en effet des êtres plutôt timides, voire craintives. Pourtant,
-										elles ont le goût de la connaissance et aiment apprendre de nouvelles choses. Elles sont ainsi souvent les gardiennes de l’histoire
-										de leurs communautés.
-										<ul>
-											<li>Environnement préféré : montagnes et canyons</li>
-											<li>Mode de vie favori : troglodyte</li>
-											<li>Personnalité majoritaire : sage</li>
-											<li>Exemples de noms (inspiration langues Celtiques, Slaves et Germaniques) : alric, balder, erik, fenrir, georg, götz, freyja, ingvar, odinson, siegfried, solveig, swanhildr</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Coquille (Fabrique)</span>
-								</div>
-							</div>
-							<div class="option lignee hiver souple" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite">
-									<label for="lignee-Saprosite"><strong>Saprosite</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Saprosites tiennent des lombrics, arénicoles, nématodes et autres annélides, mais aussi des limaces de mer, comme si cinq d'entre eux s'étaient associés pour former un genre de cheval.</span>
-									<span class="long" style="display:none;">Ils se déplacent à quatre pattes mais, à l’arrêt, ils se redressent,
-										prenant appui sur leur queue pour libérer leurs bras terminés par des sortes de ventouses. Les Saprosites sont extrêmement doux
-										et chaleureux, tout en étant facilement apeurés. Ils pardonnent aisément et n'usent que rarement de violence physique, préférant
-										l'exclusion et l'ignorance pour les fautifs. Ils se plaisent en général dans les communautés très mixtes, avec des habitations et
-										infrastructures fixes et fiables.
-										<ul>
-											<li>Environnement préféré : îles et littoral</li>
-											<li>Mode de vie favori : sédentaire</li>
-											<li>Personnalité majoritaire : éminence</li>
-											<li>Exemples de noms (inspiration Nahuatl et langues d’Amérique centrale) : anci, chicahua, coatl, eleuia, huitzilli, meztli, papan, quauhtli, tlalli, techuih, xolotl, yaotl</li>
-										</ul>
-									</span>
-									
-									<hr class="don-separateur">
-									<span class="don">Don : Terrier (Mobilité)</span>
-								</div>
-							</div>
-							<div class="option lignee printemps souple" style="display:none;">
-								<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-								<span style="display:flex;align-items:center;gap:0.5em;">
-									<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule">
-									<label for="lignee-Spicule"><strong>Spicule</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
-								</span>
-								<div class="desc">
-									<span class="short">Les Spicules sont typiquement issues des étoiles de mer, parfois de l’ophiure, du concombre de mer ou de l’oursin. Les méduses et autres cnidaires en font également partie.</span>
-									<span class="long" style="display:none;">Quoiqu’il en soit, leur morphologie comporte cinq parties égales, avec un visage
-										au point de jonction de ces cinq membres, à mi-hauteur de leur stature et au centre de leur corps. Leurs yeux sont répartis aux
-										extrémités des bras et du membre supérieur. Les Spicules rejoignent souvent des communautés se mettant au service d’autres
-										tribus. Elles ont une réputation d’être lentes par fainéantise, et de faire de l’excellent travail par perfectionnisme. Les Spicules
-										sont également frugales et se sentent à l’aise même dans des conditions très difficiles.
-										<ul>
-											<li>Environnement préféré : plaines et collines</li>
-											<li>Mode de vie favori : nomade</li>
-											<li>Personnalité majoritaire : portefaix</li>
-											<li>Exemples de noms (inspiration langues Polynésiennes et Indonésiennes) : alon, diwata, eko, harta, kidlat, ligaya, marikit, mawar, ratu, sitti, utari, wibawa</li>
-										</ul>
-									</span>
-									<hr class="don-separateur">
-									<span class="don">Don : Électroréception (Perception)</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				
-				<!-------------------- MORPHOLOGIES -------------------->
-				
-				
-				<!-------------------- ENVIRONNEMENT -------------------->
-				
-				<section>
-					<h2>Environnement</h2>
-					<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
-					<div class="flex-group" id="environnement-group">
-						<div class="option hiver">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" onclick="selectUnique('environnement', this)">
-								<label for="environnement-riviere-lacs-marais"><strong>Rivières, lacs et marais</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Ces environnements sont riches en eau potable. Ils attirent donc des proies faciles pour la chasse et permettent, s’ils sont bien gérés, la culture et l’élevage.</span>
-								<span class="long" style="display:none;">Cependant, les eaux stagnantes sont propices au développement de maladies, car elles favorisent le développement de parasites tout en affaiblissant le système immunitaire des communautés vivant à leur proximité.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Jambières (Hiver).</span>
-							</span>
-						</div>
-						<div class="option printemps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" onclick="selectUnique('environnement', this)">
-								<label for="environnement-iles-littoral"><strong>Îles et littoral</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Ces environnements bénéficient de l’influence de l’océan qui temporise les fluctuations de températures. Par ailleurs, la nourriture y est plutôt abondante et facile à récolter.</span>
-								<span class="long" style="display:none;">En revanche, ce sont des milieux souvent pauvres en eau douce, exposés à la fois aux dangers terrestres et maritimes. De plus, beaucoup d’animaux marins tendent des embuscades, se confondant avec les rochers, et beaucoup utilisent des venins mortels.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Brassards (Printemps).</span>
-							</span>
-						</div>
-						<div class="option ete">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" onclick="selectUnique('environnement', this)">
-								<label for="environnement-plaines-collines"><strong>Plaines et collines</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Ces environnements permettent de voir loin et de voyager facilement. Les échanges sont donc plus aisés, ce qui signifie que des communautés peuvent s’installer avec peu de moyens et échanger avec celles alentour.</span>
-								<span class="long" style="display:none;">En revanche, si ces lieux permettent d’anticiper les dangers, aussi bien les attaques que les intempéries, cela signifie aussi que ses habitants y sont plus exposés, ce qui pèse lourdement sur leur moral.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder un Casque (Été).</span>
-							</span>
-						</div>
-						<div class="option automne">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" onclick="selectUnique('environnement', this)">
-								<label for="environnement-montagnes-canyons"><strong>Montagnes et canyons</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Ces environnements clos, difficiles d’accès ont l’avantage d’offrir un bon isolement face aux bandits et pillards, et une protection relative aux aléas climatiques.</span>
-								<span class="long" style="display:none;">Ces lieux permettent donc de faire des abris sûrs et solides. Cependant, ils viennent avec des dangers supplémentaires : éboulements, crevasses, avalanches. Ces dangers sont impressionnants mais assez prévisibles dans l’ensemble.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder un Plastron (Automne).</span>
-							</span>
-						</div>
-					</div>
-					<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
-				</section>
-				<!-------------------- MODE DE VIE -------------------->
-				
-				<section>
-					<h2>Mode de vie</h2>
-					<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
-					<div class="flex-group" id="mode-de-vie-group">
-						<div class="option hiver">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" onclick="selectUnique('mode-de-vie', this); updateLignees()">
-								<label for="mode-de-vie-alize"><strong>Alizé</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Les Alizés n’ont aucune attache, acceptant les variations et déplacements erratiques de la météo.</span>
-								<span class="long" style="display:none;">Les troupeaux et les oracles les guident vers des alliés, des abris ou des météos favorables, répondant à leurs besoins du moment. Les Alizés errent en permanence, devant garder leur cap et faire de chaque changement une opportunité.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Outils de Survie (Hiver).</span>
-							</span>
-						</div>
-						<div class="option printemps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" onclick="selectUnique('mode-de-vie', this); updateLignees()">
-								<label for="mode-de-vie-troglodyte"><strong>Troglodyte</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Les Troglodytes vivent presque coupés du monde, dans des grottes cachées, des vallées secrètes, ou canyons inaccessibles.</span>
-								<span class="long" style="display:none;">Leurs échanges rarissimes leur apprennent à tirer le meilleur parti de leur environnement. Les Troglodytes doivent connaître et comprendre leur milieu de vie à la perfection pour ne jamais manquer de rien.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Outils de Sapience (Printemps).</span>
-							</span>
-						</div>
-						<div class="option ete">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" onclick="selectUnique('mode-de-vie', this); updateLignees()">
-								<label for="mode-de-vie-sedentaire"><strong>Sédentaire</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Les Sédentaires s’établissent dans un lieu offrant au moins une ressource pérenne, telle que l’eau, un abri ou un sol fertile.</span>
-								<span class="long" style="display:none;">Ils construisent de quoi la faire fructifier et échangent pour le reste. Les Sédentaires doivent plus que tout maintenir leur unité et la bonne entente face à l’adversité tant interne qu’externe.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Outils du Foyer (Été).</span>
-							</span>
-						</div>
-						<div class="option automne">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" onclick="selectUnique('mode-de-vie', this); updateLignees()">
-								<label for="mode-de-vie-nomade"><strong>Nomade</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Les Nomades voyagent entre les communautés sédentaires et des points habitables, exploités puis abandonnés le temps qu’ils se régénèrent.</span>
-								<span class="long" style="display:none;">Les Nomades entretiennent les échanges et voies de communication. Ils doivent souvent réparer les infrastructures et habitations, de la route où aider les communautés qu’ils visitent.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder des Outils de Confection (Automne).</span>
-							</span>
-						</div>
-					</div>
-				</section>
-				
-				<!-------------------- PHILOSOPHIE -------------------->
-				
-				<section>
-					<h2>Philosophie</h2>
-					<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
-					<div class="flex-group" id="philosophie-group">
-						<div class="option hiver">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" onclick="selectUnique('philosophie', this); updateLignees()">
-								<label for="philosophie-inne"><strong>Inné</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage considère que puisqu’aucune connaissance ne peut être complète et aucune technologie totalement fiable, le plus sage est d’apprivoiser au mieux ses qualités naturelles.</span>
-								<span class="long" style="display:none;">Connaître ses atouts permet de faire face à toutes les situations, en improvisant à partir de la confiance en soi ainsi bâtie.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder comme Vêtement une Écharpe (Hiver).</span>
-							</span>
-						</div>
-						<div class="option printemps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" onclick="selectUnique('philosophie', this); updateLignees()">
-								<label for="philosophie-appris"><strong>Appris</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage estime que dans chaque problème réside sa propre solution.</span>
-								<span class="long" style="display:none;">Aussi, étudier le monde et ses peuples permet de développer des connaissances éclectiques pour parer à toutes les situations. Cela demande d’embrasser chaque expérience et d’en tirer des leçons, afin d’apprivoiser le monde.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder comme Vêtement une Cape (Printemps).</span>
-							</span>
-						</div>
-						<div class="option ete">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" onclick="selectUnique('philosophie', this); updateLignees()">
-								<label for="philosophie-chitine"><strong>Entraide</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage sait que personne n’est parfait, qu’aucun expert ne saurait être infaillible, qu’il aura toujours besoin des autres et les autres de lui.</span>
-								<span class="long" style="display:none;">En travaillant ensemble avec sincérité et confiance, la synergie dépasse la somme des individus.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder comme Vêtement une Parure (Été).</span>
-							</span>
-						</div>
-						<div class="option automne">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" onclick="selectUnique('philosophie', this); updateLignees()">
-								<label for="philosophie-construit"><strong>Construit</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage pense que la technologie, incarnation du contrôle de la matière, est la clé qui permet de surmonter les épreuves de la vie.</span>
-								<span class="long" style="display:none;">Un bon outil compense les faiblesses naturelles, permet d’aller dans l’inconnu ou de faire progresser les savoirs.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder comme Vêtement un Tablier (Automne).</span>
-							</span>
-						</div>
-					</div>
-				</section>
-				<!-------------------- RELATION A LA RUPTURE -------------------->
-				
-				<section>
-					<h2>Relation à la Rupture</h2>
-					<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
-					<div class="flex-group" id="relation-rupture-group">
-						<div class="option hiver">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" onclick="selectUnique('relation-rupture', this); updateLignees()">
-								<label for="relation-rupture-dompter"><strong>Dompter</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage a grandi dans un environnement où la Rupture était une force à dompter, où puiser avec sagesse, ou pas.</span>
-								<span class="long" style="display:none;">Cela pouvait être pour combattre le feu par le feu, par facilité ou par recherche de puissance. En tout cas, les Rongés y étaient fréquents, peut-être même les Parjures, s’ils n’y étaient pas vu comme des faibles.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder une Arme Articulée (Hiver) : garrot, harpon, fouet ou fléau</span>
-							</span>
-						</div>
-						<div class="option printemps">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" onclick="selectUnique('relation-rupture', this); updateLignees()">
-								<label for="relation-rupture-etudier"><strong>Étudier</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mystère à percer, une énigme à résoudre.</span>
-								<span class="long" style="display:none;">La comprendre était l’objectif, pour la détruire, la forger, ou même l’asservir. La Pourprine y était présente, peut-être des Parjures volontaires ou esclaves, ou des Séides et Chimères capturés pour études.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder une Arme à Distance (Printemps) : bolas, arc, arbalète, sarbacane, javelot, chakram, boomerang ou fronde</span>
-							</span>
-						</div>
-						<div class="option ete">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-								</svg>
-							</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" onclick="selectUnique('relation-rupture', this); updateLignees()">
-								<label for="relation-rupture-purifier"><strong>Purifier</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mal à abattre.</span>
-								<span class="long" style="display:none;">Que ce soit pour ramener un ancien monde idéalisé, fantasmé, ou simplement pour débarrasser le monde de son influence et en construire un nouveau, tout ce qui portait sa marque, même les Rongés, était détruit.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder une Arme Courte (Été) : tonfa, dague, serpe, épée, hache, masse ou ceste</span>
-							</span>
-						</div>
-						<div class="option automne">
-							<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
-									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-										<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-									</svg>
-								</button>
-							<span style="display:flex;align-items:center;gap:0.5em;">
-								<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" onclick="selectUnique('relation-rupture', this); updateLignees()">
-								<label for="relation-rupture-composer"><strong>Composer</strong></label>
-							</span>
-							<span class="desc">
-								<span class="short">Le personnage a grandi dans un environnement où la Rupture était acceptée comme faisant partie du monde actuel.</span>
-								<span class="long" style="display:none;">Par résignation, fatalisme ou pragmatisme, elle n’était pas activement combattue, simplement contenue. Les gens géraient les dégâts qu’elle causait et cherchaient à s’en prémunir, sans imaginer l’éradiquer.</span>
-								<hr class="don-separateur">
-								<span class="don">Le personnage pourrait posséder une Arme Longue (Automne) : trident, sasumata, lance, pic, vouge, claymore ou bâton.</span>
-							</span>
-						</div>
-					</div>
-				</section>
-				
-				<button type="button" onclick="genererFiche()">Voir la fiche</button>
+	<h2>Résilience - Création de Voix</h2>
+	
+	<!-------------------- SAISONS -------------------->
+	
+	<section>
+		<h2>Saison</h2>
+		<div class="flex-group" id="saison-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onclick="selectUnique('saison', this)">
+					<label for="saison-hiver"><strong>Hiver</strong></label>
+				</span>
+				<span class="desc hiver-desc">
+					<span class="short">Mÿelta recherche les gens humbles, discrets, qui savent se fondre dans la masse, accepter les événements pour s'y adapter et en tirer le meilleur parti au moment voulu.</span>
+					<span class="long" style="display:none;">Parfois, ils sont cyniques ou froids. Souvent, ils sont ermites, agriculteurs, explorateurs. Mÿelta ne cherche pas les gens qui se mettent en avant, s'exposent inutilement et refusent toute contrariété. Le personnage à tendance à se fondre dans la masse et attendre le meilleur moment pour agir efficacement et anonymement. Son attitude peut parfois le rendre cynique ou asocial.</span>
+				</span>
+				<hr class="don-separateur">
+				<span class="don">
+					<strong>Essence : Adaptation.</strong> Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. <br>
+					<strong>Anathème : Fierté.</strong> Qui se met en avant tombera en premier…
+				</span>
 			</div>
-		</form>
-	</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onclick="selectUnique('saison', this)">
+					<label for="saison-printemps"><strong>Printemps</strong></label>
+				</span>
+				<span class="desc printemps-desc">
+					<span class="short">Liana recherche des gens curieux, à l'esprit vif, inventifs et perceptifs, pacifistes.</span>
+					<span class="long" style="display:none;"> Parfois, ils sont malicieux et fourbes, farceurs voire voleurs. Souvent, ils sont médecins, érudits, sentinelles. Liana ne cherche pas les personnes belliqueuses, rigides, pliant le monde à leur volonté, par la force physique ou les contraintes psychologiques. Le personnage aime découvrir le maximum de choses, explorer, tester, tout en respectant l’intégrité des gens. Cela peut le faire passer pour inconstant, peu fiable ou exagérément pacifiste.</span>
+				</span>
+				<hr class="don-separateur">
+				<span class="don">
+					<strong>Essence : Curiosité.</strong> Le Printemps c'est le renouveau de la vie, la découverte du monde... <br>
+					<strong>Anathème : Contrôle.</strong> Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte.
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="saison" value="ete" id="saison-ete" onclick="selectUnique('saison', this)">
+					<label for="saison-ete"><strong>Été</strong></label>
+				</span>
+				<span class="desc ete-desc">
+					<span class="short">Fyrellÿa recherche des gens sensibles, dévoués, francs, esthètes et sociaux.</span>
+					<span class="long" style="display:none;"> Parfois, ils sont envahissants ou dangereux. Souvent, ils sont artistes, officiers, négociants. Fyrellÿa ne cherche pas des personnes égocentrées, agissant sans aucune considération pour les autres ou leur environnement voire pire, les utilisant à son bénéfice. Le personnage est passionné, sociable et aime pousser les autres vers l’action ou l’expression de leur être. Il noue facilement des liens, mais peut le rendre envahissant ou exagérément extraverti.</span>
+				</span>
+				<hr class="don-separateur">
+				<span class="don">
+					<strong>Essence : Émotion.</strong> L’Été c’est la recherche de l’autre. L'Émotion est le vecteur du lien… <br>
+					<strong>Anathème : Insouciance.</strong> Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux.
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="saison" value="automne" id="saison-automne" onclick="selectUnique('saison', this)">
+					<label for="saison-automne"><strong>Automne</strong></label>
+				</span>
+				<span class="desc automne-desc">
+					<span class="short">Ailma recherche les gens pragmatiques, patients, méthodiques et entiers.</span>
+					<span class="long" style="display:none;"> Parfois, ils sont lents ou rigides, autoritaires. Souvent, ils sont guerriers, artisans, rebouteux. Ailma ne cherche pas les personnes indolentes, irréfléchies, impulsives, recourant à la voie de moindre résistance face à chaque difficulté. Le personnage est posé et prend le temps de la préparation avant l’action, laissant le moins de choses possible au hasard, et déteste agir sans réfléchir. Cela peut le rendre perfectionniste ou indécis.</span>
+				</span>
+				<hr class="don-separateur">
+				<span class="don">
+					<strong>Essence : Prévoyance.</strong> En Automne, il faut se préparer à l’Hiver et à ses dangers… <br>
+					<strong>Anathème : Facilité.</strong> Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine.
+				</span>
+			</div>
+			<div class="option temps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="saison" value="temps" id="saison-temps" onclick="selectUnique('saison', this)">
+					<label for="saison-temps"><strong>Temps</strong></label>
+				</span>
+				<span class="desc temps-desc">
+					<span class="short">Les personnes bénies par le Temps voient les gens s'organiser d'eux-mêmes autour d'elles.</span>
+					<span class="long" style="display:none;"> Elles maintiennent, voire créent les groupes, par leur seule présence, capables de répartir les rôles, apaiser les égos et satisfaire les désirs de chacun, ménageant un espace pour chacun et chacune. Si elles paraissent parfois en retrait, c'est que le groupe avance dans la direction qui leur semble juste. Car elles ne relâchent jamais leur attention, veillant à ce que chacun soit justement rétribué pour ses actes. Le personnage aime voir les gens s’organiser et s’entendre. Il encourage et implique tout le monde. Le personnage a un sens aigu de la justice, de l'équité et de la mesure. Cela peut parfois le rendre trop catégorique voire autoritaire, ou à l'inverse manquant d'affirmation.</span>
+				</span>
+				<hr class="don-separateur">
+				<span class="don">
+					<strong>Essence : Coopération.</strong> Le Temps rassemble autour de lui et permet à chacun de s’exprimer. <br>
+					<strong>Anathème : Excès.</strong> Ni trop, ni trop peu, mais la juste dose de tout, pour tous.
+				</span>
+			</div>
+		</div>
+	</section>
+	<!-------------------- FAMILLES -------------------->
+	
+	<section>
+		<h2>Famille</h2>
+		<div class="flex-group" id="famille-group">
+			<div class="option ete" style="position:relative;">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="famille" value="squelette" id="famille-squelette" onclick="selectUnique('famille', this); updateLignees()">
+					<label for="famille-squelette"><strong>Squelette</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">La Famille Squelette regroupe tous les personnages ayant un squelette interne, quatre membres et une tête.</span>
+					<span class="long" style="display:none;"> Ils peuvent tenir du mammifère et être couvert de poils, de l’oiseau, ou avoir plutôt une ascendance reptilienne voir un apparence directement inspirée des amphibiens, leur donnant une peau multicolore.</span>
+					<hr class="don-separateur">
+					<span class="don">Adrénaline (Été): les personnages ayant ce Don sont capables de dépasser leurs limites physiques pendant un bref laps de temps. Juste assez pour se mettre hors de danger par la fuite ou le combat. Ce Don s’utilise lors des Conflits ou lorsque le personnage est en danger immédiat.</span>
+				</span>
+			</div>
+			<div class="option printemps" style="position:relative;">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" onclick="selectUnique('famille', this); updateLignees()">
+					<label for="famille-cellulose"><strong>Cellulose</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">La Famille Cellulose contient tous les personnages issus du règne des végétaux ou des champignons.</span>
+					<span class="long" style="display:none;"> Ces individus particulièrement étranges simulent des visages pour parvenir à communiquer avec les autres Familles. Dans leur incroyable diversité, ils ont trouvé le moyen d’avoir des morphologies relativement constantes, en apparence du moins.</span>
+					<hr class="don-separateur">
+					<span class="don">Symbiose (Printemps) : les personnages ayant ce Don savent comment faire en sorte que le tout soit supérieur à la somme de parties. Ils tirent une meilleure efficacité de l’association de qualités différentes. Ce Don s’utilise quand le personnage reçoit de l’Aide, bénéficie de ou fait un Support ou une Tactique</span>
+				</span>
+			</div>
+			<div class="option automne" style="position:relative;">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="famille" value="chitine" id="famille-chitine" onclick="selectUnique('famille', this); updateLignees()">
+					<label for="famille-chitine"><strong>Chitine</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">La Famille Chitine comprend tous les personnages portant un exosquelette de chitine.</span>
+					<span class="long" style="display:none;"> Leur apparence est très variée, pouvant avoir de six à plusieurs dizaines de membres, des pinces, des antennes, ou des ailes. Ces personnages peuvent donc aussi bien tenir de la fourmi de l’araignée, du mille-patte ou de la mante.</span>
+					<hr class="don-separateur">
+					<span class="don">Exosquelette (Automne) : les personnages ayant ce Don ont un le corps couvert d’une carapace décuplant sa puissance et garnie d’excroissances utiles. Ce Don s’utilise pour les épreuves de force, d'endurance et la récolte de ressources.</span>
+				</span>
+			</div>
+			<div class="option hiver" style="position:relative;">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="famille" value="souple" id="famille-souple" onclick="selectUnique('famille', this); updateLignees()">
+					<label for="famille-souple"><strong>Souple</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">La Famille Souple englobe tous les personnages tenant du mollusque.</span>
+					<span class="long" style="display:none;"> Ils peuvent ainsi être inspirés très simplement des étoiles de mer, mais un poulpe est parfaitement envisageable. Les personnages les plus extravagants pourront avoir une coquille dans laquelle se réfugier, ou même tenir du ver de terre.</span>
+					<hr class="don-separateur">
+					<span class="don">Mimétisme (Hiver) : les personnages ayant ce Don peuvent modifier la forme et les couleurs de leurs corps et de leurs visages. Ce Don s’utilise pour les épreuves d’agilité, la discrétion, le déguisement et l’imitation.</span>
+				</span>
+			</div>
+		</div>
+	</section>
+	<!-------------------- LIGNEES -------------------->
+	
+	<section>
+		<h2>Lignée</h2>
+		<div id="lignées-container">
+			<p id="lignées-message">Veuillez choisir une famille.</p>
+			<div id="lignées-list" class="flex-group">
+				<div class="option lignee hiver squelette" style="display:none;position:relative;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose">
+						<label for="lignee-Amphiose"><strong>Amphiose</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Amphioses sont dérivées des amphibiens : grenouilles, crapauds et salamandres.</span>
+						<span class="long" style="display:none;">
+							Les lamproies, myxines et sangsues peuvent aussi être à l’origine d’Amphioses. Leurs longs membres se terminent par des pieds et mains très larges. Leur corps, petit et rond, est surmonté d’une tête large et presque sans cou. Leur peau porte de nombreuses couleurs très vives et le mucus qui la couvre protège des sautes de températures. Les Amphioses sont généralement curieuses et aiment le mouvement, l’animation, sauf quand il s’agit de veiller sur leur ponte. Elles sont généralement considérées comme de bonnes éclaireuses, guides et chanteuses.
+							<ul>
+								<li>Environnement préféré : plaines et collines</li>
+								<li>Mode de vie favori : alizé</li>
+								<li>Personnalité majoritaire : éminence</li>
+								<li>Don : Amphibie (Mobilité)</li>
+								<li>Exemples de noms (inspiration langues d’Amazonie) : ajurú, ára, katoma, kuña, michī, narki, pyhare, ruka, tuicha, warekena, yvaga, zuruahá</li>
+							</ul>
+						</span>
+						<hr class="don-separateur">
+						<span class="don">Don : Amphibie (Mobilité)</span>
+					</div>
+				</div>
+				<div class="option lignee ete squelette" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire">
+						<label for="lignee-Aviaire"><strong>Aviaire</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Aviaires peuvent tenir de n'importe quel oiseau, mais aussi des raies, requins et poissons cartilagineux.</span>
+						<span class="long" style="display:none;">
+							Ils sont souvent plutôt petits, sauf ceux tenant du condor ou de l'albatros. Leur corps est couvert de plumes, leurs jambes finissent en serres,
+							plus ou moins acérées et palmées, leur tête arbore un bec pouvant servir d'outil à l'occasion. Sous leurs bras, des plumes qu'ils
+							peuvent déployer en ailes, lorsqu'ils n'ont pas besoin de leurs mains pour autre chose. Les Aviaires aiment les climats chauds
+							et venteux et s'adaptent à toutes sortes de tailles de communauté. On les dit généralement enjoués et serviables, sauf lorsqu’ils
+							ont une couvée à élever.
+							<ul>
+								<li>Environnement préféré : îles et littoral</li>
+								<li>Mode de vie favori : nomade</li>
+								<li>Personnalité majoritaire : leader</li>
+								<li>Exemples de noms (inspiration Hindi et Tamoul) : achamba, bhaai, devi, kamala, kishore, indra, nalini, panee, priyanka, pidkkum, sari, theriyum</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Signaux (Communication)</span>
+					</div>
+				</div>
+				<div class="option lignee automne squelette" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien">
+						<label for="lignee-Mammalien"><strong>Mammalien</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Mammaliens sont la Lignée majoritaire à Kiwandoto. Ils ont une très grande diversité morphologique, pouvant tenir de n’importe quel mammifère, y compris marin comme les phoques et les cétacés.</span>
+						<span class="long" style="display:none;">
+							Ainsi, si certains sont identiques aux humains,
+							d’autres auront un faciès canin ou une allure dérivée d’un cerf. Certains portent même une trompe similaire à celle des éléphants.
+							Quoiqu’il en soit, les Mammaliens sont toujours parfaitement bipèdes, avec des mains bien découpées et agiles. Ils sont connus
+							pour vivre dans des communautés assez vastes et leurs aptitudes corporelles très diverses leur permettent d’être présents dans
+							n’importe quel environnement.
+							<ul>
+								<li>Environnement préféré : montagnes et canyons</li>
+								<li>Mode de vie favori : sédentaire</li>
+								<li>Personnalité majoritaire : sage</li>
+								<li>Exemples de noms (inspiration Japonais et Coréen) : akiko, fuyuko, gyeong, hoshi, hwan, iseul, kazuyo, noboru, oshiro, seok, takuma, yukiko</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Réserves (Fabrique)</span>
+					</div>
+				</div>
+				<div class="option lignee printemps squelette" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie">
+						<label for="lignee-Ophidie"><strong>Ophidie</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Ophidies sont des êtres de grande taille, tenant du lézard, du crocodile ou du serpent. Les tortues marines et poissons osseux sont également des sources d’inspiration pour les Ophidies.</span>
+						<span class="long" style="display:none;">
+							Elles se tiennent sur deux pattes arrières, la queue faisant balancier,
+							libérant une paire de bras puissants. Les Ophidies apprécient l'air chaud et humide, les points d'eau fiables, y compris
+							marécageux. Elles vivent généralement dans de petites communautés, dépassant rarement la famille directe, mais se mélangent
+							très volontiers avec les autres Lignées, car cela les protège pendant la ponte. Elles sont d’excellentes chasseuses et guerrières,
+							compensant leur réputation de sournoiserie ou de froides calculatrices.
+							<ul>
+								<li>Environnement préféré : rivières, lacs et marais</li>
+								<li>Mode de vie favori : troglodyte</li>
+								<li>Personnalité majoritaire : portefaix</li>
+								<li>Exemples de noms (inspiration langues Aborigènes) : alinta, allora, alkawari, bunggu, gamuru, gawuul, kareela, koa, mawukara, myaree, walo, wiltja</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Thermoception (Perception)</span>
+					</div>
+				</div>
+				<div class="option lignee hiver cellulose" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose">
+						<label for="lignee-Bryose"><strong>Bryose</strong> <span class="lignee-sexe">(asexué)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Bryoses sont des lichens, des mousses ou des fougères se construisant un habitat mobile de sable, de graviers et de pierres. Elles peuvent aussi avoir pour origine des algues, coraux ou foraminifères.</span>
+						<span class="long" style="display:none;">
+							Elles sont l’incarnation parfaite de l’idée que le corps est le véhicule terrestre de l’esprit. Cette construction minérale qu’elles animent est très solide et facile à dissimuler dans
+							l’environnement, mais long à régénérer. Les Bryoses préfèrent souvent la discrétion et la prudence à l’action directe et brutale.
+							Chaque Bryose abrite un Bryodé, un oiseau en symbiose avec elle qui s’agite et piaille pour transmettre ses émotions, facilitant
+							les échanges avec les autres Lignées.
+							<ul>
+								<li>Environnement préféré : plaines et collines</li>
+								<li>Mode de vie favori : troglodytes</li>
+								<li>Personnalité majoritaire : portefaix</li>
+								<li>Exemples de noms (inspiration Arabe et Persan) : akeem, alya, charbel, fathi, gulzar, hala, kubra, marwa, nour, raja, salman, sherazade</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Grimper (Mobilité)</span>
+					</div>
+				</div>
+				<div class="option lignee printemps cellulose" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon">
+						<label for="lignee-Mycon"><strong>Mycon</strong> <span class="lignee-sexe">(plurisexués)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Mycons sont des superorganismes, des colonies de champignons, de blob et/ou d’éponges d’espèces différentes, chacune assurant la fonction d'un organe ou d'une partie d'un membre de ce corps anthropoïde, aux deux jambes qui glissent sur le sol sans se lever.</span>
+						<span class="long" style="display:none;">
+							Les couleurs, formes et textures changeantes sculptant leur corps aux membres très longs peuvent être très
+							artistiques. Leurs mouvements sont lents mais précis, à l'image de leur réflexion. Les Mycons sont d'excellents dirigeants et
+							traitent tous les êtres avec égalité et justice. Ils n'aiment pas la solitude, ni la violence, synonyme d'incapacité à trouver une
+							solution par la réflexion.
+							<ul>
+								<li>Environnement préféré : rivières, lacs et marais</li>
+								<li>Mode de vie favori : sédentaire</li>
+								<li>Personnalité majoritaire : sage</li>
+								<li>Exemples de noms (inspiration langues Inuit et Same) : albmi, beaivi, biegga, goahti, ijirak, inushkuk, kallik, mánnu, nilak, siida, uki, yura</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Sonar (Perception)</span>
+					</div>
+				</div>
+				<div class="option lignee ete cellulose" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien">
+						<label for="lignee-Pollinien"><strong>Pollinien</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Polliniens sont pratiquement les seules fleurs restantes sur Kiwandoto. Ils sont issus des herbacées comme les pissenlits, les céréales, mais aussi des lotus et roseaux.</span>
+						<span class="long" style="display:none;">
+							Malheureusement, la corolle et les pétales cascadant autour de leur tête leur servent
+							avant tout de récepteur sensoriel, très peu pour produire du pollen, encore moins du nectar. Les Polliniens ont des yeux
+							monochromes, surplombant un corps fin, presque fragile. Des feuilles couvrent les racines leur servant de jambes, et deux tiges
+							munies de feuilles préhensiles, font office de mains. Les Polliniens se mélangent peu aux autres Lignées, mais quand ils le
+							font, ce sont des atouts inestimables pour les communautés.
+							<ul>
+								<li>Environnement préféré : îles et littoral</li>
+								<li>Mode de vie favori : alizé</li>
+								<li>Personnalité majoritaire : éminence</li>
+								<li>Exemples de noms (inspiration langues Bantoues et Malgaches) : amina, arinoa, diera, furaha, hirasoa, mosi, nuru, onja, reniala, simba, subira, zawadi</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Empathie (Communication)</span>
+					</div>
+				</div>
+				<div class="option lignee automne cellulose" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose">
+						<label for="lignee-Xylose"><strong>Xylose</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Xyloses sont originaires des arbres et arbustes, parfois des hydres et anémones. Leur apparence est anthropomorphe, avec une chevelure de feuilles ou d’aiguilles, et une écorce très variable.</span>
+						<span class="long" style="display:none;">Les Xylose ont un simili-visage avec des yeux
+							monochromes et une bouche s’ouvrant dans l’écorce de leur tronc. Leurs sens sont assurés par leur feuillage. En plus de leurs
+							bras, elles utilisent des lianes qui participent à la manipulation fine des objets. Les Xyloses voyagent souvent mais sont très
+							protectrices du territoire qu’elles occupent sur le moment. Leur parole est sacrée et elles ont la réputation de ne jamais baisser
+							les bras devant les difficultés.
+							<ul>
+								<li>Environnement préféré : montagnes et canyons</li>
+								<li>Mode de vie favori : nomade</li>
+								<li>Personnalité majoritaire : leader</li>
+								<li>Exemples de noms (inspiration langues Amérindiennes) : amarok, cheyenne, eyota, huyana, kwanita, nashoba, ozalie, poloma, sahale, tallulah, waban, yuma</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Préhenseurs (Fabrique)</span>
+					</div>
+				</div>
+				<div class="option lignee automne chitine" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen">
+						<label for="lignee-Arachéen"><strong>Arachéen</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Arachéens ont pour origine les araignées, scorpions, opilions et autres arachnides. Les limules font aussi partie des inspirations pour les Arachéens.</span>
+						<span class="long" style="display:none;">Leur corps voûté, ployant sous la chitine, est soutenu par trois paires de pattes, libérant une
+							paire de pinces leur tenant lieu de mains. Ils utilisent leurs pédipalpes, des appendices placés autour de leur bouche, pour aider
+							ces pinces lors des manipulations fines. Les Arachéens sont des êtres souvent solitaires car considérés comme inquiétants voire
+							effrayants par les autres. Toutefois, ils sont les amis les plus fidèles et dévoués possibles, si l’on fait l’effort de surmonter les
+							préjugés les entourant.
+							<ul>
+								<li>Environnement préféré : montagnes et canyons</li>
+								<li>Mode de vie favori : alizé</li>
+								<li>Personnalité majoritaire : éminence</li>
+								<li>Exemples de noms (inspiration Aymara et Quechua) : alaxpacha, allpa, aruma, hatun, kala, kuntur, nina, qari, qucha, sunqu, uraqi, uru</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Poison (Fabrique)</span>
+					</div>
+				</div>
+				<div class="option lignee ete chitine" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes">
+						<label for="lignee-Orthocètes"><strong>Orthocètes</strong> <span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Orthocètes ont pour origine les fourmis, termites, abeilles et tous les insectes sociaux ou grégaires tels que les criquets, charançons et gendarmes. Les crabes, écrevisses et autres animaux marins décapodes sont également des inspirations possibles.</span>
+						<span class="long" style="display:none;">Leur buste redressé est propulsé par leurs robustes pattes arrières, accompagné des pattes médianes. À l'arrêt, celles-ci,
+							dégagées, servent d’outils. Les Orthocètes sont petits, vifs et industrieux. Selon leur ascendance, ils peuvent préférer les tribus
+							réduites ou au contraire se perdre dans la masse et maintenir des communautés nombreuses. Dans tous les cas, leur justice est
+							à l’image de leur mentalité : sévère, rigide et peu encline au pardon.
+							<ul>
+								<li>Environnement préféré : plaines et collines</li>
+								<li>Mode de vie favori : sédentaire</li>
+								<li>Personnalité majoritaire : leader</li>
+								<li>Exemples de noms (inspiration Grec et Latin) : amphitryon, athènes, cérès, coryphée, gnomon, hécate, lares, nérée, quercus, tulli, urbs, zenais</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Présence (Communication)</span>
+					</div>
+				</div>
+				<div class="option lignee printemps chitine" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige">
+						<label for="lignee-Scutige"><strong>Scutige</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Scutiges sont une Lignée descendant les iules, mille-pattes et scolopendre, ainsi que des crevettes, puces de mer et autres décapodes et isopodes dont les cloportes.</span>
+						<span class="long" style="display:none;">Elles ont un corps excessivement long, se redressant comme un accent grave, reposant
+							ainsi sur lui-même. Une paire de pattes plus longue leur sert de bras, complété par les antennes ou les mandibules pour la
+							motricité fine. Les Scutiges sont grandes et lourdes, ce qui les oblige à se déplacer lentement, malgré leurs nombreuses pattes.
+							Sous leur aspect effrayant, les Scutiges sont en fait pacifiques, voire même peureuses. Elles favorisent les communautés mixtes,
+							dans lesquelles elles s'occupent souvent des troupeaux.
+							<ul>
+								<li>Environnement préféré : îles et littoral</li>
+								<li>Mode de vie favori : troglodyte</li>
+								<li>Personnalité majoritaire : sage</li>
+								<li>Exemples de noms (inspiration Chinois et langues d’Asie du Sud-Est) : anong, arthit, bopha, feng, guanyu, kun-lun, phirun, shufen, thaksin, veasna, xiuying, zhang</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Pistage (Perception)</span>
+					</div>
+				</div>
+				<div class="option lignee hiver chitine" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide">
+						<label for="lignee-Syrphide"><strong>Syrphide</strong> <span class="lignee-sexe">(unisexe)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Syrphides peuvent provenir de n'importe quels insectes solitaires : papillon, punaise, mouche, libellule, mante, scarabée, phasmes ou même les nèpes et dytiques pour les membres les plus aquatiques.</span>
+						<span class="long" style="display:none;">Elles se déplacent en utilisant à la fois leurs
+							robustes pattes arrières et leurs ailes. Leur membres médians, atrophiés, servent d’outils de secours. Au-delà de cela, la diversité
+							de leur apparence est phénoménale : couleurs, longueur et forme des antennes, des mandibules, du corps…chaque Syrphide est
+							une oeuvre unique. Les Syrphides sont affables, espiègles, romantiques, étourdies...d’où une réputation de personnes peu fiables,
+							volages, à cadrer.
+							<ul>
+								<li>Environnement préféré : rivières, lacs et marais</li>
+								<li>Mode de vie favori : nomade</li>
+								<li>Personnalité majoritaire : portefaix</li>
+								<li>Exemples de noms (inspiration langues Khoïsan et langues à clic) : andile, gugulethu, karo, kaisà, khoikhoi, mabasen, sifiso, tsorokwe, thandiwe, xhosa, xolani, zola</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Bond (Mobilité)</span>
+					</div>
+				</div>
+				<div class="option lignee ete souple" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope">
+						<label for="lignee-Céphope"><strong>Céphope</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Céphopes sont issus des poulpes, calamars, nautiles et autres octopus. Leurs tentacules fonctionnent généralement par paires, parfois fusionnés, équivalant concrètement à quatre membres très mobiles.</span>
+						<span class="long" style="display:none;">Les autres sont principalement des supports,
+							pour la communication ou le déplacement. Si leur posture est verticale au repos, ils se déplacent souvent à quatre pattes,
+							notamment lorsqu’ils doivent fuir ou chasser. Prudents et peureux s’ils sont isolés, les Céphopes deviennent sanguinaires
+							lorsqu’ils ont l’avantage. Malgré une mauvaise réputation due à leur facilité à manipuler les autres, les Céphopes sont sociables
+							et se mêlent facilement aux autres Lignées.
+							<ul>
+								<li>Environnement préféré : rivières, lacs et marais</li>
+								<li>Mode de vie favori : alizé</li>
+								<li>Personnalité majoritaire : leader</li>
+								<li>Exemples de noms (inspiration Mongol et Kazakh) : adilet, batu, erasyl, ganbold, gerel, nurasyl, sheker, solongo, timur, tsegsteg, uyanga, zarina</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Écran (Communication)</span>
+					</div>
+				</div>
+				<div class="option lignee automne souple" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse">
+						<label for="lignee-Nacrisse"><strong>Nacrisse</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Nacrisses descendent des mollusques, comme les escargots, limaces et coquillages. Courbées sous leur coquille pour la majorité, elles avancent sur un unique pied puissant et massif.</span>
+						<span class="long" style="display:none;">Quatre longs tentacules, deux portant des yeux et deux servant
+							de bras, sortent de leur caparaçon de calcaire. Le reste est généralement à l’abri, sauf dans les moments de repos et de confiance,
+							typiquement pour se nourrir ou se reproduire. Les Nacrisses sont en effet des êtres plutôt timides, voire craintives. Pourtant,
+							elles ont le goût de la connaissance et aiment apprendre de nouvelles choses. Elles sont ainsi souvent les gardiennes de l’histoire
+							de leurs communautés.
+							<ul>
+								<li>Environnement préféré : montagnes et canyons</li>
+								<li>Mode de vie favori : troglodyte</li>
+								<li>Personnalité majoritaire : sage</li>
+								<li>Exemples de noms (inspiration langues Celtiques, Slaves et Germaniques) : alric, balder, erik, fenrir, georg, götz, freyja, ingvar, odinson, siegfried, solveig, swanhildr</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Coquille (Fabrique)</span>
+					</div>
+				</div>
+				<div class="option lignee hiver souple" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite">
+						<label for="lignee-Saprosite"><strong>Saprosite</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Saprosites tiennent des lombrics, arénicoles, nématodes et autres annélides, mais aussi des limaces de mer, comme si cinq d'entre eux s'étaient associés pour former un genre de cheval.</span>
+						<span class="long" style="display:none;">Ils se déplacent à quatre pattes mais, à l’arrêt, ils se redressent,
+							prenant appui sur leur queue pour libérer leurs bras terminés par des sortes de ventouses. Les Saprosites sont extrêmement doux
+							et chaleureux, tout en étant facilement apeurés. Ils pardonnent aisément et n'usent que rarement de violence physique, préférant
+							l'exclusion et l'ignorance pour les fautifs. Ils se plaisent en général dans les communautés très mixtes, avec des habitations et
+							infrastructures fixes et fiables.
+							<ul>
+								<li>Environnement préféré : îles et littoral</li>
+								<li>Mode de vie favori : sédentaire</li>
+								<li>Personnalité majoritaire : éminence</li>
+								<li>Exemples de noms (inspiration Nahuatl et langues d’Amérique centrale) : anci, chicahua, coatl, eleuia, huitzilli, meztli, papan, quauhtli, tlalli, techuih, xolotl, yaotl</li>
+							</ul>
+						</span>
+						
+						<hr class="don-separateur">
+						<span class="don">Don : Terrier (Mobilité)</span>
+					</div>
+				</div>
+				<div class="option lignee printemps souple" style="display:none;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						</svg>
+					</button>
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule">
+						<label for="lignee-Spicule"><strong>Spicule</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+					</span>
+					<div class="desc">
+						<span class="short">Les Spicules sont typiquement issues des étoiles de mer, parfois de l’ophiure, du concombre de mer ou de l’oursin. Les méduses et autres cnidaires en font également partie.</span>
+						<span class="long" style="display:none;">Quoiqu’il en soit, leur morphologie comporte cinq parties égales, avec un visage
+							au point de jonction de ces cinq membres, à mi-hauteur de leur stature et au centre de leur corps. Leurs yeux sont répartis aux
+							extrémités des bras et du membre supérieur. Les Spicules rejoignent souvent des communautés se mettant au service d’autres
+							tribus. Elles ont une réputation d’être lentes par fainéantise, et de faire de l’excellent travail par perfectionnisme. Les Spicules
+							sont également frugales et se sentent à l’aise même dans des conditions très difficiles.
+							<ul>
+								<li>Environnement préféré : plaines et collines</li>
+								<li>Mode de vie favori : nomade</li>
+								<li>Personnalité majoritaire : portefaix</li>
+								<li>Exemples de noms (inspiration langues Polynésiennes et Indonésiennes) : alon, diwata, eko, harta, kidlat, ligaya, marikit, mawar, ratu, sitti, utari, wibawa</li>
+							</ul>
+						</span>
+						<hr class="don-separateur">
+						<span class="don">Don : Électroréception (Perception)</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-------------------- MORPHOLOGIES -------------------->
+	
+	
+	<!-------------------- ENVIRONNEMENT -------------------->
+	
+	<section>
+		<h2>Environnement</h2>
+		<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
+		<div class="flex-group" id="environnement-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" onclick="selectUnique('environnement', this)">
+					<label for="environnement-riviere-lacs-marais"><strong>Rivières, lacs et marais</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces environnements sont riches en eau potable. Ils attirent donc des proies faciles pour la chasse et permettent, s’ils sont bien gérés, la culture et l’élevage.</span>
+					<span class="long" style="display:none;">Cependant, les eaux stagnantes sont propices au développement de maladies, car elles favorisent le développement de parasites tout en affaiblissant le système immunitaire des communautés vivant à leur proximité.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Jambières (Hiver).</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" onclick="selectUnique('environnement', this)">
+					<label for="environnement-iles-littoral"><strong>Îles et littoral</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces environnements bénéficient de l’influence de l’océan qui temporise les fluctuations de températures. Par ailleurs, la nourriture y est plutôt abondante et facile à récolter.</span>
+					<span class="long" style="display:none;">En revanche, ce sont des milieux souvent pauvres en eau douce, exposés à la fois aux dangers terrestres et maritimes. De plus, beaucoup d’animaux marins tendent des embuscades, se confondant avec les rochers, et beaucoup utilisent des venins mortels.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Brassards (Printemps).</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" onclick="selectUnique('environnement', this)">
+					<label for="environnement-plaines-collines"><strong>Plaines et collines</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces environnements permettent de voir loin et de voyager facilement. Les échanges sont donc plus aisés, ce qui signifie que des communautés peuvent s’installer avec peu de moyens et échanger avec celles alentour.</span>
+					<span class="long" style="display:none;">En revanche, si ces lieux permettent d’anticiper les dangers, aussi bien les attaques que les intempéries, cela signifie aussi que ses habitants y sont plus exposés, ce qui pèse lourdement sur leur moral.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder un Casque (Été).</span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" onclick="selectUnique('environnement', this)">
+					<label for="environnement-montagnes-canyons"><strong>Montagnes et canyons</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces environnements clos, difficiles d’accès ont l’avantage d’offrir un bon isolement face aux bandits et pillards, et une protection relative aux aléas climatiques.</span>
+					<span class="long" style="display:none;">Ces lieux permettent donc de faire des abris sûrs et solides. Cependant, ils viennent avec des dangers supplémentaires : éboulements, crevasses, avalanches. Ces dangers sont impressionnants mais assez prévisibles dans l’ensemble.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder un Plastron (Automne).</span>
+				</span>
+			</div>
+		</div>
+		<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
+	</section>
+	<!-------------------- MODE DE VIE -------------------->
+	
+	<section>
+		<h2>Mode de vie</h2>
+		<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
+		<div class="flex-group" id="mode-de-vie-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<label for="mode-de-vie-alize"><strong>Alizé</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Alizés n’ont aucune attache, acceptant les variations et déplacements erratiques de la météo.</span>
+					<span class="long" style="display:none;">Les troupeaux et les oracles les guident vers des alliés, des abris ou des météos favorables, répondant à leurs besoins du moment. Les Alizés errent en permanence, devant garder leur cap et faire de chaque changement une opportunité.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Outils de Survie (Hiver).</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<label for="mode-de-vie-troglodyte"><strong>Troglodyte</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Troglodytes vivent presque coupés du monde, dans des grottes cachées, des vallées secrètes, ou canyons inaccessibles.</span>
+					<span class="long" style="display:none;">Leurs échanges rarissimes leur apprennent à tirer le meilleur parti de leur environnement. Les Troglodytes doivent connaître et comprendre leur milieu de vie à la perfection pour ne jamais manquer de rien.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Outils de Sapience (Printemps).</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<label for="mode-de-vie-sedentaire"><strong>Sédentaire</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Sédentaires s’établissent dans un lieu offrant au moins une ressource pérenne, telle que l’eau, un abri ou un sol fertile.</span>
+					<span class="long" style="display:none;">Ils construisent de quoi la faire fructifier et échangent pour le reste. Les Sédentaires doivent plus que tout maintenir leur unité et la bonne entente face à l’adversité tant interne qu’externe.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Outils du Foyer (Été).</span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<label for="mode-de-vie-nomade"><strong>Nomade</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Nomades voyagent entre les communautés sédentaires et des points habitables, exploités puis abandonnés le temps qu’ils se régénèrent.</span>
+					<span class="long" style="display:none;">Les Nomades entretiennent les échanges et voies de communication. Ils doivent souvent réparer les infrastructures et habitations, de la route où aider les communautés qu’ils visitent.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder des Outils de Confection (Automne).</span>
+				</span>
+			</div>
+		</div>
+	</section>
+	
+	<!-------------------- PHILOSOPHIE -------------------->
+	
+	<section>
+		<h2>Philosophie</h2>
+		<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
+		<div class="flex-group" id="philosophie-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" onclick="selectUnique('philosophie', this); updateLignees()">
+					<label for="philosophie-inne"><strong>Inné</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage considère que puisqu’aucune connaissance ne peut être complète et aucune technologie totalement fiable, le plus sage est d’apprivoiser au mieux ses qualités naturelles.</span>
+					<span class="long" style="display:none;">Connaître ses atouts permet de faire face à toutes les situations, en improvisant à partir de la confiance en soi ainsi bâtie.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder comme Vêtement une Écharpe (Hiver).</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" onclick="selectUnique('philosophie', this); updateLignees()">
+					<label for="philosophie-appris"><strong>Appris</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage estime que dans chaque problème réside sa propre solution.</span>
+					<span class="long" style="display:none;">Aussi, étudier le monde et ses peuples permet de développer des connaissances éclectiques pour parer à toutes les situations. Cela demande d’embrasser chaque expérience et d’en tirer des leçons, afin d’apprivoiser le monde.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder comme Vêtement une Cape (Printemps).</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" onclick="selectUnique('philosophie', this); updateLignees()">
+					<label for="philosophie-chitine"><strong>Entraide</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage sait que personne n’est parfait, qu’aucun expert ne saurait être infaillible, qu’il aura toujours besoin des autres et les autres de lui.</span>
+					<span class="long" style="display:none;">En travaillant ensemble avec sincérité et confiance, la synergie dépasse la somme des individus.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder comme Vêtement une Parure (Été).</span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" onclick="selectUnique('philosophie', this); updateLignees()">
+					<label for="philosophie-construit"><strong>Construit</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage pense que la technologie, incarnation du contrôle de la matière, est la clé qui permet de surmonter les épreuves de la vie.</span>
+					<span class="long" style="display:none;">Un bon outil compense les faiblesses naturelles, permet d’aller dans l’inconnu ou de faire progresser les savoirs.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder comme Vêtement un Tablier (Automne).</span>
+				</span>
+			</div>
+		</div>
+	</section>
+	<!-------------------- RELATION A LA RUPTURE -------------------->
+	
+	<section>
+		<h2>Relation à la Rupture</h2>
+		<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
+		<div class="flex-group" id="relation-rupture-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<label for="relation-rupture-dompter"><strong>Dompter</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage a grandi dans un environnement où la Rupture était une force à dompter, où puiser avec sagesse, ou pas.</span>
+					<span class="long" style="display:none;">Cela pouvait être pour combattre le feu par le feu, par facilité ou par recherche de puissance. En tout cas, les Rongés y étaient fréquents, peut-être même les Parjures, s’ils n’y étaient pas vu comme des faibles.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder une Arme Articulée (Hiver) : garrot, harpon, fouet ou fléau</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<label for="relation-rupture-etudier"><strong>Étudier</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mystère à percer, une énigme à résoudre.</span>
+					<span class="long" style="display:none;">La comprendre était l’objectif, pour la détruire, la forger, ou même l’asservir. La Pourprine y était présente, peut-être des Parjures volontaires ou esclaves, ou des Séides et Chimères capturés pour études.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder une Arme à Distance (Printemps) : bolas, arc, arbalète, sarbacane, javelot, chakram, boomerang ou fronde</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<label for="relation-rupture-purifier"><strong>Purifier</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mal à abattre.</span>
+					<span class="long" style="display:none;">Que ce soit pour ramener un ancien monde idéalisé, fantasmé, ou simplement pour débarrasser le monde de son influence et en construire un nouveau, tout ce qui portait sa marque, même les Rongés, était détruit.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder une Arme Courte (Été) : tonfa, dague, serpe, épée, hache, masse ou ceste</span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<label for="relation-rupture-composer"><strong>Composer</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Le personnage a grandi dans un environnement où la Rupture était acceptée comme faisant partie du monde actuel.</span>
+					<span class="long" style="display:none;">Par résignation, fatalisme ou pragmatisme, elle n’était pas activement combattue, simplement contenue. Les gens géraient les dégâts qu’elle causait et cherchaient à s’en prémunir, sans imaginer l’éradiquer.</span>
+					<hr class="don-separateur">
+					<span class="don">Le personnage pourrait posséder une Arme Longue (Automne) : trident, sasumata, lance, pic, vouge, claymore ou bâton.</span>
+				</span>
+			</div>
+		</div>
+	</section>
+	
+	<button type="button" onclick="genererFiche()">Voir la fiche</button>
 	<div id="fiche" style="display:none;">
 		<h2>Fiche de personnage</h2>
 		<p><strong>Nom :</strong> <span id="fiche-nom"></span></p>

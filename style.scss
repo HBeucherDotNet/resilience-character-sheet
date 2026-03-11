@@ -34,7 +34,15 @@ section {
 		transform: translateY(-2px);
 	}
 	
-	
+	&> div {
+		margin-bottom: 1em;
+		margin-top: 0.3em;
+		color: #444;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 h2 {
@@ -53,6 +61,8 @@ h3 {
 }
 
 .option {
+	border-width: 1px;
+	border-style: solid;
 	position: relative;
 	border-radius: 8px;
 	background: #f9f9f9;
@@ -80,7 +90,6 @@ h3 {
 }
 
 .selected-option {
-	border-width: 3px;
 	box-shadow: 0 0 8px rgba(58,122,210,0.12);
 	z-index: 1;
 	&.hiver {
@@ -161,7 +170,6 @@ h3 {
 	
 	label {
 		color: #222;
-		font-weight: bold;
 	}
 	
 	.lignee-sexe {

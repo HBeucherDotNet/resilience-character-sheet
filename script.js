@@ -9,16 +9,37 @@ function toggleDesc(btn) {
 	const short = desc.querySelector('.short');
 	const long = desc.querySelector('.long');
 
-	// Pour le bouton pictogramme (hiver)
+	// Détecte la saison de l'option
+	let saison = '';
+	const option = btn.closest('.option');
+	if (option) {
+		if (option.classList.contains('hiver')) saison = 'hiver';
+		else if (option.classList.contains('printemps')) saison = 'printemps';
+		else if (option.classList.contains('ete')) saison = 'ete';
+		else if (option.classList.contains('automne')) saison = 'automne';
+		else if (option.classList.contains('temps')) saison = 'temps';
+	}
+
+	// Couleurs par saison
+	const couleurs = {
+		hiver: '#235a8a',
+		printemps: '#2c7a4b',
+		ete: '#bfa600',
+		automne: '#a13a3a',
+		temps: '#3a7ad2'
+	};
+	const couleur = couleurs[saison] || '#235a8a';
+
+	// Pour le bouton pictogramme
 	if (btn.classList.contains('pictogram-btn')) {
 		if (long.style.display === 'none') {
 			long.style.display = 'inline';
 			// Point d'interrogation barré
 			btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-					<line x1="6" y1="6" x2="16" y2="16" stroke="#235a8a" stroke-width="2"/>
+					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
+					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
+					<line x1="6" y1="6" x2="16" y2="16" stroke="${couleur}" stroke-width="2"/>
 				</svg>
 			`;
 		} else {
@@ -26,8 +47,8 @@ function toggleDesc(btn) {
 			// Point d'interrogation normal
 			btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
+					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
 				</svg>
 			`;
 		}
