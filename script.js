@@ -101,5 +101,22 @@ function updateLignees() {
 }
 
 function genererFiche() {
-	// ...existing code...
+	// Remplit dynamiquement la fiche de personnage
+	const saison = document.querySelector('input[name="saison"]:checked');
+	const famille = document.querySelector('input[name="famille"]:checked');
+	const lignee = document.querySelector('input[name="lignee"]:checked');
+
+	document.getElementById('fiche-saison').textContent = saison ? saison.closest('.option').querySelector('label').textContent.trim() : '';
+	document.getElementById('fiche-famille').textContent = famille ? famille.closest('.option').querySelector('label').textContent.trim() : '';
+	document.getElementById('fiche-lignee').textContent = lignee ? lignee.closest('.option').querySelector('label').textContent.trim() : '';
 }
+
+// Mise à jour automatique de la fiche
+window.addEventListener('DOMContentLoaded', function() {
+	   ['saison', 'famille', 'lignee'].forEach(group => {
+		   document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+			   input.addEventListener('change', genererFiche);
+		   });
+	   });
+	   genererFiche(); // Initialiser la fiche au chargement
+	});

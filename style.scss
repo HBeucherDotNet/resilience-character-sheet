@@ -203,3 +203,71 @@ h3 {
 }
 
 
+.fiche-personnage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  background: #fff;
+  padding: 2em;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  font-family: 'Georgia', serif;
+}
+.fiche-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: flex-start;
+}
+.fiche-logo { width: 120px; }
+.fiche-nom { font-size: 2em; font-weight: bold; margin-left: 1em; }
+.fiche-infos, .fiche-valeurs, .fiche-sante { margin: 0.5em 1em; }
+.fiche-valeurs { display: flex; gap: 1em; }
+.valeur { border-radius: 8px; padding: 0.5em 1em; border: 2px solid #235a8a; background: #f7f7ff; }
+.valeur.saison-hiver { border-color: #235a8a; }
+.valeur.rupture { border-color: #7d5fa3; background: #f7f7ff; }
+.fiche-sante { border: 2px solid #222; padding: 0.5em 1em; background: #fff; }
+.fiche-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5em; }
+.fiche-saisons { display: flex; flex-wrap: wrap; gap: 1em; }
+.saison-block {
+  flex: 1 1 40%;
+  border-radius: 16px;
+  border: 2px solid #235a8a;
+  background: #f7f7ff;
+  padding: 1em;
+  min-width: 220px;
+  position: relative;
+}
+.saison-block.saison-hiver { border-color: #235a8a; background: #e3ecf7; }
+.saison-block.saison-printemps { border-color: #2c7a4b; background: #e6f7e3; }
+.saison-block.saison-ete { border-color: #bfa600; background: #f7f5e3; }
+.saison-block.saison-automne { border-color: #a13a3a; background: #f7e3e3; }
+.saison-title { font-size: 1.2em; font-weight: bold; display: flex; align-items: center; gap: 0.5em; }
+.saison-icon { font-size: 1.5em; }
+.saison-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; position: absolute; top: 1em; right: 1em; }
+.fiche-tableaux { display: flex; flex-direction: column; gap: 1em; }
+.fiche-resonances table { width: 100%; border-collapse: collapse; }
+.fiche-resonances th, .fiche-resonances td { border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; }
+.fiche-magie { border: 1px solid #235a8a; border-radius: 8px; padding: 1em; background: #f7f7ff; }
+.fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; margin-top: 1em; }
+.fiche-morphologies, .fiche-competences, .fiche-equipements, .fiche-dons {
+  flex: 1 1 40%;
+  border-radius: 8px;
+  border: 2px solid #235a8a;
+  background: #fff;
+  padding: 0.7em 1em;
+  font-weight: bold;
+  display: flex; align-items: center; gap: 0.5em;
+}
+.fiche-morphologies { border-color: #235a8a; }
+.fiche-competences { border-color: #2c7a4b; }
+.fiche-equipements { border-color: #a13a3a; }
+.fiche-dons { border-color: #bfa600; }
+.fiche-champ-lexical {
+  border-top: 2px dotted #235a8a;
+  margin-top: 1em;
+  padding-top: 0.7em;
+  font-size: 1em;
+  color: #235a8a;
+  display: flex; flex-direction: column; align-items: center;
+}
