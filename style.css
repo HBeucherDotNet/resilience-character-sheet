@@ -210,15 +210,11 @@ h3 {
   margin: 0.5em 1em;
 }
 
-.fiche-valeurs {
-  display: flex;
-  gap: 1em;
-}
-
 .valeur {
   border-radius: 8px;
   padding: 0.5em 1em;
-  border: 2px solid #235a8a;
+  border-width: 2px;
+  border-style: solid;
   background: #f7f7ff;
 }
 
@@ -228,11 +224,13 @@ h3 {
 
 .valeur.rupture {
   border-color: #7d5fa3;
-  background: #f7f7ff;
+  background: #e3e0f0;
 }
 
 .fiche-sante {
-  border: 2px solid #222;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #222;
   padding: 0.5em 1em;
   background: #fff;
 }

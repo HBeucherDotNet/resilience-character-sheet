@@ -31,8 +31,8 @@
 				</span>
 				<hr class="don-separateur">
 				<span class="don">
-					<strong>Essence : Adaptation.</strong> Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. <br>
-					<strong>Anathème : Fierté.</strong> Qui se met en avant tombera en premier…
+					<strong>Essence : <span class="label-essence">Adaptation</span>.</strong> Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. <br>
+					<strong>Anathème : <span class="label-anatheme">Fierté</span>.</strong> Qui se met en avant tombera en premier…
 				</span>
 			</div>
 			<div class="option printemps">
@@ -52,8 +52,8 @@
 				</span>
 				<hr class="don-separateur">
 				<span class="don">
-					<strong>Essence : Curiosité.</strong> Le Printemps c'est le renouveau de la vie, la découverte du monde... <br>
-					<strong>Anathème : Contrôle.</strong> Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte.
+					<strong>Essence : <span class="label-essence">Curiosité</span>.</strong> Le Printemps c'est le renouveau de la vie, la découverte du monde... <br>
+					<strong>Anathème : <span class="label-anatheme">Contrôle</span>.</strong> Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte.
 				</span>
 			</div>
 			<div class="option ete">
@@ -73,8 +73,8 @@
 				</span>
 				<hr class="don-separateur">
 				<span class="don">
-					<strong>Essence : Émotion.</strong> L’Été c’est la recherche de l’autre. L'Émotion est le vecteur du lien… <br>
-					<strong>Anathème : Insouciance.</strong> Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux.
+					<strong>Essence : <span class="label-essence">Émotion</span>.</strong> L’Été c’est la recherche de l’autre. L'Émotion est le vecteur du lien… <br>
+					<strong>Anathème : <span class="label-anatheme">Insouciance</span>.</strong> Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux.
 				</span>
 			</div>
 			<div class="option automne">
@@ -94,8 +94,8 @@
 				</span>
 				<hr class="don-separateur">
 				<span class="don">
-					<strong>Essence : Prévoyance.</strong> En Automne, il faut se préparer à l’Hiver et à ses dangers… <br>
-					<strong>Anathème : Facilité.</strong> Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine.
+					<strong>Essence : <span class="label-essence">Prévoyance</span>.</strong> En Automne, il faut se préparer à l’Hiver et à ses dangers… <br>
+					<strong>Anathème : <span class="label-anatheme">Facilité</span>.</strong> Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine.
 				</span>
 			</div>
 			<div class="option temps">
@@ -774,6 +774,7 @@
 		</div>
 		<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
 	</section>
+	
 	<!-------------------- MODE DE VIE -------------------->
 	
 	<section>
@@ -1016,17 +1017,290 @@
 		</div>
 	</section>
 	
+	<!-------------------- RÔLE -------------------->
+	
+	<section>
+		<h2>Rôle</h2>
+		<div>Le Rôle est la place du personnage dans le monde, son métier et sa façon de se rendre utile aux siens. Cela détermine ses Compétence : ce que le personnage sait faire, ce qu’il a appris par l’expérience et la pratique. Tous les noms de Rôle sont épicènes, pouvant désigner n’importe quel individu.<br/>
+			<br/>
+			Le Rôle d’un personnage détermine sa Compétence de Rôle, associée à une Saison, qu’il reçoit automatiquement.<br/>
+			Il choisit sa première Compétence parmi les quatre proposées par son Rôle. Il la reçoit automatiquement.<br/>
+			La catégorie de chaque Compétence est indiquée entre parenthèses.
+		</div>
+		<div class="flex-group" id="role-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-guide"><strong>Guide</strong> (nourrir et prévenir)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
+					<span class="long" style="display:none;">Grâce à eux, leurs communautés ne s’égarent pas et anticipent les dangers naturels. Le cas échéant, ils savent comment fabriquer le nécessaire pour se protéger des aléas. Les Guides nourrissent les leurs grâce à la chasse et à la cueillette et savent également comment protéger les leurs et le matériel des intempéries.</span>
+					<hr class="don-separateur">
+					<span class="don">
+						<ul>
+							<li>Compétence de Rôle : Exploration (Hiver) : orientation par les astres, lecture des courants, trouver les points d’eau. Cartographie, analyse du paysage et de la météo. Communication à distance et signalisation.</li>
+							<li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li>
+						</ul>
+					</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-sibylle"><strong>Sibylle</strong> (connaître et purifier)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
+					<span class="long" style="display:none;">Maîtresses des rituels, elles organisent le passage de la vie à la mort, soignent les affections du corps et de l’âme et protègent contre les mauvais esprits. Les Sibylles oscillent entre pythies plongées dans les oracles et les secrets de l’invisible et sages dépositaires des savoirs ancestraux, permettant de faire revivre l’ancien monde au coeur de la Rupture.</span>
+					<hr class="don-separateur">
+					<span class="don">
+						<ul>
+							<li>Compétence de Rôle : Sagesse (Printemps) : Augures, rites, rituels, mythes et Talismans. Connaissances sur l’Essence et l’Anathème, les Mondes Spirituels, les relations entre les êtres vivants et leur milieu.</li>
+							<li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li>
+						</ul>
+					</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-matrice"><strong>Matrice</strong> (unir et échanger)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
+					<span class="long" style="display:none;">Elles mettent en place les structures sociales et les échanges, veillent aux troupeaux et aux récoltes. Les Matrices trouvent une place pour chaque membre de la communauté et organisent la gestion des ressources en fonction des besoins. Elles soudent les personnes entre elles, les communautés entre elles, dans une organisation dépassant leur existence.</span>
+					<hr class="don-separateur">
+					<span class="don"><ul>
+						<li>Compétence de Rôle : Civilisation (Été) : intendance, négociation, connaissance et compréhension des communautés (lois, politique, ressources, relations…). Rendre la justice, diplomatie, art de la guerre.</li>
+						<li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li>
+					</ul></span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-artisan"><strong>Artisan</strong> (construire et innover)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
+					<span class="long" style="display:none;">Ils savent comment transformer la matière brute pour en extraire de nouvelles ressources et matériaux afin d’en faire les objets du quotidien ou de modifier leur environnement. Face à l’inconnu et à l’imprévu, leur ingéniosité et inventivité leur permet de trouver et créer de nouvelles solutions.</span>
+					<hr class="don-separateur">
+					<span class="don"><ul>
+						<li>Compétence de Rôle : Ingénierie (Automne) : maîtrise des poulies, grues, échafaudages et engrenages simples, permettant la construction de puits, systèmes d'irrigation, ponts, mines, moulins et routes.</li>
+						<li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li>
+					</ul></span>
+				</span>
+			</div>
+		</div>
+	</section>
+	
+	<!-------------------- Age -------------------->
+	
+	<section>
+		<h2>Âge</h2>
+		<div class="flex-group" id="role-group">
+			<div class="option temps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('age', this);">
+					<label for="role-guide"><strong>Jeune</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces personnages n'ont pas fini leur croissance et apprennent encore souvent leur métier.</span>
+					<span class="long" style="display:none;">Aussi leurs Compétences sont limitées. En revanche, ils ont de nombreux Dons, des qualités innées leur permettant de dépasser leurs limites. Les Nymphes les Adoubent peu, car leur jeunesse fait que leur volonté d'agir, leur inclinaison profonde n’a pas souvent eu l’occasion de semanifester. Toutefois, les catastrophes ou leur fougue juvénile peuvent les avoir stimulés.</span>
+				</span>
+			</div>
+			<div class="option temps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('age', this);">
+					<label for="role-sibylle"><strong>Adulte</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces personnages se sont déjà confrontés au monde, ils ont pratiqué leur profession et l’ont affinée, ce qui leur a montré l’étendue de ce qu’ils ont encore à apprendre.</span>
+					<span class="long" style="display:none;">Leurs corps et leur esprits sont encore frais, ce qui leur permet de cumuler à la fois la volonté et les moyens d’agir. S’il sont souvent encore caricaturaux voire extrêmes dans leur philosophie, ils n’en sont que plus réceptifs à l’enseignement des Nymphes. Ils forment la majorité des Voix.</span>
+				</span>
+			</div>
+			<div class="option temps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('age', this);">
+					<label for="role-matrice"><strong>Mûr</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces personnages ont accumulé de l’expérience et des années peu communes pour ce monde post-Rupture.</span>
+					<span class="long" style="display:none;">Cela en fait des êtres respectés dans leur communautés, tant pour leur expertise que pour leur sagesse, qui leur permet de voir les nuances des êtres. Cependant, leur volonté commence à s’étioler, ils agissent plutôt par habitude voire lassitude. Pourtant, leur flamme est toujours présente, juste dormante. Devenir une Voix les transforme en puissants leviers d’actions vers un monde meilleur.</span>
+				</span>
+			</div>
+			<div class="option temps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('age', this);">
+					<label for="role-artisan"><strong>Âgé</strong></label>
+				</span>
+				<span class="desc">
+					<span class="short">Ces personnages sont des êtres à part, leur longévité prouvant leur capacité de survie hors normes.</span>
+					<span class="long" style="display:none;">Ces individus sont rares et portés en haute estime par leurs communautés. Les stigmates de leur vie sont l’histoire de celles-ci et le terreau de mythes à venir. Souvent ces personnages n'attendent plus rien de la vie que transmettre le maximum de leurs immenses connaissances avant leur trépas. Toutefois, les Nymphes les Adoubent parfois, preuve qu’il n’y a pas d’âge pour servir et changer le monde.</span>
+				</span>
+			</div>
+		</div>
+	</section>
+	
+	<!-------------------- PERSONNALITE -------------------->
+	
+	<section>
+		<h2>Personnalité</h2>
+		<div>Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
+			Cette personnalité définit aussi ce qui est cher au personnage, et son point faible vis-à-vis de la corruption de la Rupture.
+		</div>
+		<div class="flex-group" id="role-group">
+			<div class="option hiver">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-guide"><strong>Guide</strong> (nourrir et prévenir)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
+					<span class="long" style="display:none;">Grâce à eux, leurs communautés ne s’égarent pas et anticipent les dangers naturels. Le cas échéant, ils savent comment fabriquer le nécessaire pour se protéger des aléas. Les Guides nourrissent les leurs grâce à la chasse et à la cueillette et savent également comment protéger les leurs et le matériel des intempéries.</span>
+					<hr class="don-separateur">
+					<span class="don">
+						<ul>
+							<li>Compétence de Rôle : Exploration (Hiver) : orientation par les astres, lecture des courants, trouver les points d’eau. Cartographie, analyse du paysage et de la météo. Communication à distance et signalisation.</li>
+							<li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li>
+						</ul>
+					</span>
+				</span>
+			</div>
+			<div class="option printemps">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-sibylle"><strong>Sibylle</strong> (connaître et purifier)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
+					<span class="long" style="display:none;">Maîtresses des rituels, elles organisent le passage de la vie à la mort, soignent les affections du corps et de l’âme et protègent contre les mauvais esprits. Les Sibylles oscillent entre pythies plongées dans les oracles et les secrets de l’invisible et sages dépositaires des savoirs ancestraux, permettant de faire revivre l’ancien monde au coeur de la Rupture.</span>
+					<hr class="don-separateur">
+					<span class="don">
+						<ul>
+							<li>Compétence de Rôle : Sagesse (Printemps) : Augures, rites, rituels, mythes et Talismans. Connaissances sur l’Essence et l’Anathème, les Mondes Spirituels, les relations entre les êtres vivants et leur milieu.</li>
+							<li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li>
+						</ul>
+					</span>
+				</span>
+			</div>
+			<div class="option ete">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-matrice"><strong>Matrice</strong> (unir et échanger)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
+					<span class="long" style="display:none;">Elles mettent en place les structures sociales et les échanges, veillent aux troupeaux et aux récoltes. Les Matrices trouvent une place pour chaque membre de la communauté et organisent la gestion des ressources en fonction des besoins. Elles soudent les personnes entre elles, les communautés entre elles, dans une organisation dépassant leur existence.</span>
+					<hr class="don-separateur">
+					<span class="don"><ul>
+						<li>Compétence de Rôle : Civilisation (Été) : intendance, négociation, connaissance et compréhension des communautés (lois, politique, ressources, relations…). Rendre la justice, diplomatie, art de la guerre.</li>
+						<li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li>
+					</ul></span>
+				</span>
+			</div>
+			<div class="option automne">
+				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+					</svg>
+				</button>
+				<span style="display:flex;align-items:center;gap:0.5em;">
+					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('role', this); updateLignees()">
+					<label for="role-artisan"><strong>Artisan</strong> (construire et innover)</label>
+				</span>
+				<span class="desc">
+					<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
+					<span class="long" style="display:none;">Ils savent comment transformer la matière brute pour en extraire de nouvelles ressources et matériaux afin d’en faire les objets du quotidien ou de modifier leur environnement. Face à l’inconnu et à l’imprévu, leur ingéniosité et inventivité leur permet de trouver et créer de nouvelles solutions.</span>
+					<hr class="don-separateur">
+					<span class="don"><ul>
+						<li>Compétence de Rôle : Ingénierie (Automne) : maîtrise des poulies, grues, échafaudages et engrenages simples, permettant la construction de puits, systèmes d'irrigation, ponts, mines, moulins et routes.</li>
+						<li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li>
+					</ul></span>
+				</span>
+			</div>
+		</div>
+	</section>
+	
 	<div class="fiche-personnage">
 		<div class="fiche-header">
 			<img src="logo-resilience.png" alt="Resilience" class="fiche-logo">
 			<div class="fiche-nom">Nom :</div>
 			<div class="fiche-infos">
 				<div>Saison : <span id="fiche-saison"></span></div>
-				<div>Taille : 5</div>
+				<div>Taille : <span>5</span></div>
 				<div>Famille : <span id="fiche-famille"></span></div>
 				<div>Lignée : <span id="fiche-lignee"></span></div>
-				<div>Âge :</div>
-				<div>Rôle :</div>
+				<div>Âge : <span id="fiche-age"></span></div>
+				<div>Rôle : <span id="fiche-role"></span></div>
 			</div>
 			<div class="fiche-valeurs">
 				<div>Essence : <span id="fiche-essence"></span></div>

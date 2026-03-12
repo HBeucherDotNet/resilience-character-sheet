@@ -112,10 +112,14 @@ function genererFiche() {
 	const saison = document.querySelector('input[name="saison"]:checked');
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
+	const role = document.querySelector('input[name="role"]:checked');
 	
 	document.getElementById('fiche-saison').textContent = saison ? saison.closest('.option').querySelector('label').textContent.trim() : '';
+	document.getElementById('fiche-essence').textContent = saison ? saison.closest('.option').querySelector('.label-essence').textContent.trim() : '';
+	document.getElementById('fiche-anatheme').textContent = saison ? saison.closest('.option').querySelector('.label-anatheme').textContent.trim() : '';
 	document.getElementById('fiche-famille').textContent = famille ? famille.closest('.option').querySelector('label').textContent.trim() : '';
 	document.getElementById('fiche-lignee').textContent = lignee ? lignee.closest('.option').querySelector('label').textContent.trim() : '';
+	document.getElementById('fiche-role').textContent = role ? role.closest('.option').querySelector('label').textContent.trim() : '';
 	
 	document.getElementById('fiche-hiver').textContent = getsaisonScore(saison, 'hiver');
 	document.getElementById('fiche-printemps').textContent = getsaisonScore(saison, 'printemps');
