@@ -1015,97 +1015,115 @@
 			</div>
 		</div>
 	</section>
-
-		<div class="fiche-personnage">
-	  <div class="fiche-header">
-		<img src="logo-resilience.png" alt="Resilience" class="fiche-logo">
-		<div class="fiche-nom">Nom :</div>
-		<div class="fiche-infos">
-		   <p><strong>Saison :</strong> <span id="fiche-saison"></span></p>
-		  <div>Taille : 5</div>
-		  <div>Famille :</div>
-		  <div>Lignée :</div>
-
-		   <p><strong>Famille :</strong> <span id="fiche-famille"></span></p>
-		   <p><strong>Lignée :</strong> <span id="fiche-lignee"></span></p>
-		  <div>Âge :</div>
-		  <div>Rôle :</div>
-		</div>
-		<div class="fiche-valeurs">
-		  <div class="valeur saison-hiver">Essence : Adaptation</div>
-		  <div class="valeur rupture">Anathème : Fierté</div>
-		  <div class="valeur">Harmonie :</div>
-		  <div class="valeur">Rupture :</div>
-		</div>
-		<div class="fiche-sante">
-		  <div>Vitalité :</div>
-		  <div>Résilience :</div>
-		  <div>Blessures :</div>
-		</div>
-	  </div>
-	  <div class="fiche-grid">
-		<div class="fiche-saisons">
-		  <div class="saison-block saison-hiver">
-			<div class="saison-title">Hiver <span class="saison-icon">❄️</span></div>
-			<div class="saison-desc">Coordonner, Instinct, Mimer, Modifier, Mouvement, Profiter</div>
-			<img src="hiver.jpg" alt="Hiver" class="saison-img">
-		  </div>
-		  <div class="saison-block saison-printemps">
-			<div class="saison-title">Printemps <span class="saison-icon">🌱</span></div>
-			<div class="saison-desc">Apaiser, Éviter, Fausser, Cacher, Trouver, Vérité</div>
-			<img src="printemps.jpg" alt="Printemps" class="saison-img">
-		  </div>
-		  <div class="saison-block saison-ete">
-			<div class="saison-title">Été <span class="saison-icon">☀️</span></div>
-			<div class="saison-desc">Beau, Inspirer, Interagir, Rassembler, Sacrifier, Vitesse</div>
-			<img src="ete.jpg" alt="Été" class="saison-img">
-		  </div>
-		  <div class="saison-block saison-automne">
-			<div class="saison-title">Automne <span class="saison-icon">🍁</span></div>
-			<div class="saison-desc">Acquérir, Concevoir, Détruire, Logique, Protéger, Réparer</div>
-			<img src="automne.jpg" alt="Automne" class="saison-img">
-		  </div>
-		  <div class="saison-block souffle">
-			<div class="saison-title">Souffle <span class="saison-icon">⚪</span></div>
-		  </div>
-		</div>
-		<div class="fiche-tableaux">
-		  <div class="fiche-resonances">
-			<table>
-			  <thead>
-				<tr><th>Nom</th><th>Points/Niveau</th><th>Nature</th></tr>
-			  </thead>
-			  <tbody>
-				<tr><td></td><td></td><td></td></tr>
-				<!-- ... -->
-			  </tbody>
-			</table>
-		  </div>
-		  <div class="fiche-magie">
-			<div>Magie de l’Hiver</div>
-			<div>Talisman :</div>
-			<div>Liturgy :</div>
-			<div>
-			  <label><input type="checkbox"> Eau</label>
-			  <label><input type="checkbox"> Chair</label>
-			  <label><input type="checkbox"> Vie</label>
-			  <label><input type="checkbox"> Rêve</label>
-			  <label><input type="checkbox"> Vide</label>
+	
+	<div class="fiche-personnage">
+		<div class="fiche-header">
+			<img src="logo-resilience.png" alt="Resilience" class="fiche-logo">
+			<div class="fiche-nom">Nom :</div>
+			<div class="fiche-infos">
+				<div>Saison : <span id="fiche-saison"></span></div>
+				<div>Taille : 5</div>
+				<div>Famille : <span id="fiche-famille"></span></div>
+				<div>Lignée : <span id="fiche-lignee"></span></div>
+				<div>Âge :</div>
+				<div>Rôle :</div>
 			</div>
-			<!-- ... autres cases ... -->
-		  </div>
+			<div class="fiche-valeurs">
+				<div>Essence : <span id="fiche-essence"></span></div>
+				<div>Anathème : <span id="fiche-anatheme"></span></div>
+				<div>Harmonie :</div>
+				<div>Rupture :</div>
+			</div>
+			<div class="fiche-sante">
+				<div>Vitalité : <span id="fiche-vitalite"></span></div>
+				<div>Résilience : <span id="fiche-resilience"></span></div>
+				<div>Blessures : </div>
+			</div>
 		</div>
-		<div class="fiche-blocs">
-		  <div class="fiche-morphologies saison-hiver">Morphologies <span class="saison-icon">❄️</span></div>
-		  <div class="fiche-competences saison-printemps">Compétences <span class="saison-icon">🌱</span></div>
-		  <div class="fiche-equipements saison-automne">Équipements <span class="saison-icon">🍁</span></div>
-		  <div class="fiche-dons saison-ete">Dons <span class="saison-icon">☀️</span></div>
+		<div class="fiche-grid">
+			<div class="fiche-saisons">
+				<div class="saison-block saison-hiver">
+					<div class="saison-info saison-left">
+						<div class="saison-title">Hiver <span class="saison-icon">❄️</span></div>
+						<div class="saison-desc">Coordonner, Instinct, Mimer, Modifier, Mouvement, Profiter</div>
+					</div>
+					<div class="saison-score saison-right">
+						<div class="saison-cercle"><span id="fiche-hiver"></span></div>
+					</div>
+				</div>
+				<div class="saison-block saison-printemps">
+					<div class="saison-score saison-left">
+						<div class="saison-cercle"><span id="fiche-printemps"></span></div>
+					</div>
+					<div class="saison-info saison-right">
+						<div class="saison-title">Printemps <span class="saison-icon">🌱</span></div>
+						<div class="saison-desc">Apaiser, Éviter, Fausser, Cacher, Trouver, Vérité</div>
+					</div>
+				</div>
+				<div class="saison-block saison-ete">
+					<div class="saison-info saison-left">
+						<div class="saison-title">Été <span class="saison-icon">☀️</span></div>
+						<div class="saison-desc">Beau, Inspirer, Interagir, Rassembler, Sacrifier, Vitesse</div>
+					</div>
+					<div class="saison-score saison-right">
+						<div class="saison-cercle"><span id="fiche-ete"></span></div>
+					</div>
+				</div>
+				<div class="saison-block saison-automne">
+					<div class="saison-score saison-left">
+						<div class="saison-cercle"><span id="fiche-automne"></span></div>
+					</div>
+					<div class="saison-info saison-right">
+						<div class="saison-title">Automne <span class="saison-icon">🍁</span></div>
+						<div class="saison-desc">Acquérir, Concevoir, Détruire, Logique, Protéger, Réparer</div>
+					</div>
+				</div>
+				<div class="saison-block souffle">
+					<div class="saison-info saison-left">
+						<div class="saison-title">Souffle <span class="saison-icon">⏳</span></div>
+					</div>
+					<div class="saison-score saison-right">
+						<div class="saison-cercle"><span id="fiche-souffle"></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="fiche-tableaux">
+				<div class="fiche-resonances">
+					<table>
+						<thead>
+							<tr><th>Nom</th><th>Points/Niveau</th><th>Nature</th></tr>
+						</thead>
+						<tbody>
+							<tr><td></td><td></td><td></td></tr>
+							<!-- ... -->
+						</tbody>
+					</table>
+				</div>
+				<div class="fiche-magie">
+					<div>Magie de l’Hiver</div>
+					<div>Talisman :</div>
+					<div>Liturgy :</div>
+					<div>
+						<label><input type="checkbox"> Eau</label>
+						<label><input type="checkbox"> Chair</label>
+						<label><input type="checkbox"> Vie</label>
+						<label><input type="checkbox"> Rêve</label>
+						<label><input type="checkbox"> Vide</label>
+					</div>
+					<!-- ... autres cases ... -->
+				</div>
+			</div>
+			<div class="fiche-blocs">
+				<div class="fiche-morphologies saison-hiver">Morphologies <span class="saison-icon">❄️</span></div>
+				<div class="fiche-competences saison-printemps">Compétences <span class="saison-icon">🌱</span></div>
+				<div class="fiche-equipements saison-automne">Équipements <span class="saison-icon">🍁</span></div>
+				<div class="fiche-dons saison-ete">Dons <span class="saison-icon">☀️</span></div>
+			</div>
+			<div class="fiche-champ-lexical saison-hiver">
+				<div>Champ lexical de l’Hiver</div>
+				<div>Eau, Coordonner, Chair, Instinct, Vie, Mimer, Rêve, Modifier, Vide, Mouvement, Adaptation, Profiter</div>
+			</div>
 		</div>
-		<div class="fiche-champ-lexical saison-hiver">
-		  <div>Champ lexical de l’Hiver</div>
-		  <div>Eau, Coordonner, Chair, Instinct, Vie, Mimer, Rêve, Modifier, Vide, Mouvement, Adaptation, Profiter</div>
-		</div>
-	  </div>
 	</div>
 	
 	<script src="script.js"></script>

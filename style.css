@@ -47,7 +47,6 @@ h3 {
   border-style: solid;
   position: relative;
   border-radius: 8px;
-  background: #f9f9f9;
   padding: 0.5em;
 }
 .option.hiver {
@@ -72,7 +71,6 @@ h3 {
 }
 
 .selected-option {
-  box-shadow: 0 0 8px rgba(58, 122, 210, 0.12);
   z-index: 1;
 }
 .selected-option.hiver {
@@ -259,26 +257,103 @@ h3 {
   padding: 1em;
   min-width: 220px;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.saison-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.saison-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+}
+
+.saison-cercle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #888;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+.saison-left {
+  order: 1;
+}
+
+.saison-right {
+  order: 2;
+}
+
+.saison-hiver .saison-info,
+.saison-ete .saison-info {
+  text-align: left;
+}
+
+.saison-hiver .saison-score,
+.saison-ete .saison-score {
+  justify-content: flex-end;
+}
+
+.saison-printemps .saison-info,
+.saison-automne .saison-info {
+  text-align: right;
+}
+
+.saison-printemps .saison-score,
+.saison-automne .saison-score {
+  justify-content: flex-start;
+}
+
+.saison-printemps .saison-title,
+.saison-automne .saison-title {
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .saison-block.saison-hiver {
   border-color: #235a8a;
   background: #e3ecf7;
 }
+.saison-block.saison-hiver .saison-cercle {
+  border-color: #235a8a;
+}
 
 .saison-block.saison-printemps {
   border-color: #2c7a4b;
   background: #e6f7e3;
+}
+.saison-block.saison-printemps .saison-cercle {
+  border-color: #2c7a4b;
 }
 
 .saison-block.saison-ete {
   border-color: #bfa600;
   background: #f7f5e3;
 }
+.saison-block.saison-ete .saison-cercle {
+  border-color: #bfa600;
+}
 
 .saison-block.saison-automne {
   border-color: #a13a3a;
   background: #f7e3e3;
+}
+.saison-block.saison-automne .saison-cercle {
+  border-color: #a13a3a;
 }
 
 .saison-title {

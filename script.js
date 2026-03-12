@@ -1,3 +1,10 @@
+const saisonsEnum = {
+	hiver: 1,
+	printemps: 2,
+	ete: 3,
+	automne: 4
+};
+
 function toggleDesc(btn) {
 	// Cherche le sibling .desc dans le parent
 	let desc = null;
@@ -8,7 +15,7 @@ function toggleDesc(btn) {
 	if (!desc) return;
 	const short = desc.querySelector('.short');
 	const long = desc.querySelector('.long');
-
+	
 	// Détecte la saison de l'option
 	let saison = '';
 	const option = btn.closest('.option');
@@ -19,7 +26,7 @@ function toggleDesc(btn) {
 		else if (option.classList.contains('automne')) saison = 'automne';
 		else if (option.classList.contains('temps')) saison = 'temps';
 	}
-
+	
 	// Couleurs par saison
 	const couleurs = {
 		hiver: '#235a8a',
@@ -29,7 +36,7 @@ function toggleDesc(btn) {
 		temps: '#3a7ad2'
 	};
 	const couleur = couleurs[saison] || '#235a8a';
-
+	
 	// Pour le bouton pictogramme
 	if (btn.classList.contains('pictogram-btn')) {
 		if (long.style.display === 'none') {
@@ -54,7 +61,7 @@ function toggleDesc(btn) {
 		}
 		return;
 	}
-
+	
 	// Pour les autres boutons
 	if (long.style.display === 'none') {
 		long.style.display = 'inline';
@@ -81,15 +88,15 @@ function updateLignees() {
 	const lignéesMessage = document.getElementById('lignées-message');
 	const lignéesList = document.getElementById('lignées-list');
 	const allLignees = lignéesList.querySelectorAll('.lignee.option');
-
+	
 	if (!famille) {
 		lignéesMessage.style.display = 'block';
 		allLignees.forEach(l => l.style.display = 'none');
 		return;
 	}
-
+	
 	let familleClass = famille.value;
-
+	
 	lignéesMessage.style.display = 'none';
 	allLignees.forEach(l => {
 		if (l.classList.contains(familleClass)) {
@@ -105,18 +112,35 @@ function genererFiche() {
 	const saison = document.querySelector('input[name="saison"]:checked');
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
-
+	
 	document.getElementById('fiche-saison').textContent = saison ? saison.closest('.option').querySelector('label').textContent.trim() : '';
 	document.getElementById('fiche-famille').textContent = famille ? famille.closest('.option').querySelector('label').textContent.trim() : '';
 	document.getElementById('fiche-lignee').textContent = lignee ? lignee.closest('.option').querySelector('label').textContent.trim() : '';
+	
+	document.getElementById('fiche-hiver').textContent = getsaisonScore(saison, 'hiver');
+	document.getElementById('fiche-printemps').textContent = getsaisonScore(saison, 'printemps');
+	document.getElementById('fiche-ete').textContent = getsaisonScore(saison, 'ete');
+	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
+	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
+}
+
+function getsaisonScore(saison, saisonName) {
+	if (!saison) return '';
+	switch (Math.abs(saisonsEnum[saison.value] - saisonsEnum[saisonName])) {
+		case 0: return 3;
+		case 1:
+		case 3: return 2;
+		case 2: return 1;
+		default: return '';
+	}
 }
 
 // Mise à jour automatique de la fiche
 window.addEventListener('DOMContentLoaded', function() {
-	   ['saison', 'famille', 'lignee'].forEach(group => {
-		   document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
-			   input.addEventListener('change', genererFiche);
-		   });
-	   });
-	   genererFiche(); // Initialiser la fiche au chargement
+	['saison', 'famille', 'lignee'].forEach(group => {
+		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+			input.addEventListener('change', genererFiche);
+		});
 	});
+	genererFiche(); // Initialiser la fiche au chargement
+});
