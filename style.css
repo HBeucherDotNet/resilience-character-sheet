@@ -252,7 +252,8 @@ h3 {
 .saison-block {
   flex: 1 1 40%;
   border-radius: 16px;
-  border: 2px solid #235a8a;
+  border-width: 2px;
+  border-style: solid;
   background: #f7f7ff;
   padding: 1em;
   min-width: 220px;
@@ -261,6 +262,41 @@ h3 {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
+}
+.saison-block.saison-hiver {
+  border-color: #235a8a;
+  background: #e3ecf7;
+}
+.saison-block.saison-hiver .saison-cercle {
+  border-color: #235a8a;
+}
+.saison-block.saison-printemps {
+  border-color: #2c7a4b;
+  background: #e6f7e3;
+}
+.saison-block.saison-printemps .saison-cercle {
+  border-color: #2c7a4b;
+}
+.saison-block.saison-ete {
+  border-color: #bfa600;
+  background: #f7f5e3;
+}
+.saison-block.saison-ete .saison-cercle {
+  border-color: #bfa600;
+}
+.saison-block.saison-automne {
+  border-color: #a13a3a;
+  background: #f7e3e3;
+}
+.saison-block.saison-automne .saison-cercle {
+  border-color: #a13a3a;
+}
+.saison-block.saison-temps {
+  border-color: #235a8a;
+  background: #f5f5f5;
+}
+.saison-block.saison-temps .saison-cercle {
+  border-color: #235a8a;
 }
 
 .saison-info {
@@ -290,70 +326,34 @@ h3 {
   color: #333;
 }
 
-.saison-left {
-  order: 1;
-}
-
-.saison-right {
+.saison-left > *:nth-child(1) {
   order: 2;
 }
-
-.saison-hiver .saison-info,
-.saison-ete .saison-info {
+.saison-left > *:nth-child(2) {
+  order: 1;
+}
+.saison-left .saison-info {
   text-align: left;
 }
-
-.saison-hiver .saison-score,
-.saison-ete .saison-score {
+.saison-left .saison-score {
   justify-content: flex-end;
 }
 
-.saison-printemps .saison-info,
-.saison-automne .saison-info {
+.saison-right > *:nth-child(1) {
+  order: 1;
+}
+.saison-right > *:nth-child(2) {
+  order: 2;
+}
+.saison-right .saison-info {
   text-align: right;
 }
-
-.saison-printemps .saison-score,
-.saison-automne .saison-score {
+.saison-right .saison-score {
   justify-content: flex-start;
 }
-
-.saison-printemps .saison-title,
-.saison-automne .saison-title {
+.saison-right .saison-title {
   justify-content: flex-end;
   text-align: right;
-}
-
-.saison-block.saison-hiver {
-  border-color: #235a8a;
-  background: #e3ecf7;
-}
-.saison-block.saison-hiver .saison-cercle {
-  border-color: #235a8a;
-}
-
-.saison-block.saison-printemps {
-  border-color: #2c7a4b;
-  background: #e6f7e3;
-}
-.saison-block.saison-printemps .saison-cercle {
-  border-color: #2c7a4b;
-}
-
-.saison-block.saison-ete {
-  border-color: #bfa600;
-  background: #f7f5e3;
-}
-.saison-block.saison-ete .saison-cercle {
-  border-color: #bfa600;
-}
-
-.saison-block.saison-automne {
-  border-color: #a13a3a;
-  background: #f7e3e3;
-}
-.saison-block.saison-automne .saison-cercle {
-  border-color: #a13a3a;
 }
 
 .saison-title {
@@ -412,7 +412,8 @@ h3 {
 .fiche-morphologies, .fiche-competences, .fiche-equipements, .fiche-dons {
   flex: 1 1 40%;
   border-radius: 8px;
-  border: 2px solid #235a8a;
+  border-width: 2px;
+  border-style: solid;
   background: #fff;
   padding: 0.7em 1em;
   font-weight: bold;

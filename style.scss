@@ -40,6 +40,7 @@ $color-automne: #a13a3a;
 
 $color-temps-lighter: #f5f5f5;
 $color-temps-light: #cccccc;
+$color-temps: #235a8a;
 
 $color-purple: #7d5fa3;
 
@@ -131,7 +132,6 @@ h3 {
 		border-color: $color-automne !important;
 	}
 }
-
 
 .flex-group {
 	display: flex;
@@ -258,7 +258,8 @@ h3 {
 .saison-block {
 	flex: 1 1 40%;
 	border-radius: 16px;
-	border: 2px solid #235a8a;
+	border-width: 2px;
+	border-style: solid;
 	background: #f7f7ff;
 	padding: 1em;
 	min-width: 220px;
@@ -267,6 +268,32 @@ h3 {
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: space-between;
+	
+	&.saison-hiver { 
+		border-color: $color-hiver; 
+		background: $color-hiver-lighter; 
+		.saison-cercle { border-color: $color-hiver; }
+	}
+	&.saison-printemps { 
+		border-color: $color-printemps; 
+		background: $color-printemps-lighter; 
+		.saison-cercle { border-color: $color-printemps; }
+	}
+	&.saison-ete { 
+		border-color: $color-ete; 
+		background: $color-ete-lighter; 
+		.saison-cercle { border-color: $color-ete; }
+	}
+	&.saison-automne { 
+		border-color: $color-automne; 
+		background: $color-automne-lighter; 
+		.saison-cercle { border-color: $color-automne; }
+	}
+	&.saison-temps { 
+		border-color: $color-temps; 
+		background: $color-temps-lighter; 
+		.saison-cercle { border-color: $color-temps; }
+	}
 }
 .saison-info {
 	display: flex;
@@ -293,51 +320,37 @@ h3 {
 	color: #333;
 }
 .saison-left {
-	order: 1;
+	&>*:nth-child(1) {
+		order: 2;
+	}
+	&>*:nth-child(2) {
+		order: 1;
+	}
+	
+	.saison-info {
+		text-align: left;
+	}
+	.saison-score {
+		justify-content: flex-end;
+	}
 }
 .saison-right {
-	order: 2;
-}
-.saison-hiver .saison-info,
-.saison-ete .saison-info {
-	text-align: left;
-}
-.saison-hiver .saison-score,
-.saison-ete .saison-score {
-	justify-content: flex-end;
-}
-.saison-printemps .saison-info,
-.saison-automne .saison-info {
-	text-align: right;
-}
-.saison-printemps .saison-score,
-.saison-automne .saison-score {
-	justify-content: flex-start;
-}
-.saison-printemps .saison-title,
-.saison-automne .saison-title {
-	justify-content: flex-end;
-	text-align: right;
-}
-.saison-block.saison-hiver { 
-	border-color: $color-hiver; 
-	background: $color-hiver-lighter; 
-	.saison-cercle { border-color: $color-hiver; }
-}
-.saison-block.saison-printemps { 
-	border-color: $color-printemps; 
-	background: $color-printemps-lighter; 
-	.saison-cercle { border-color: $color-printemps; }
-}
-.saison-block.saison-ete { 
-	border-color: $color-ete; 
-	background: $color-ete-lighter; 
-	.saison-cercle { border-color: $color-ete; }
-}
-.saison-block.saison-automne { 
-	border-color: $color-automne; 
-	background: $color-automne-lighter; 
-	.saison-cercle { border-color: $color-automne; }
+	&>*:nth-child(1) {
+		order: 1;
+	}
+	&>*:nth-child(2) {
+		order: 2;
+	}
+	.saison-info {
+		text-align: right;
+	}
+	.saison-score {
+		justify-content: flex-start;
+	}
+	.saison-title {
+		justify-content: flex-end;
+		text-align: right;
+	}
 }
 .saison-title { font-size: 1.2em; font-weight: bold; display: flex; align-items: center; gap: 0.5em; }
 .saison-icon { font-size: 1.5em; }
@@ -350,21 +363,22 @@ h3 {
 .fiche-morphologies, .fiche-competences, .fiche-equipements, .fiche-dons {
 	flex: 1 1 40%;
 	border-radius: 8px;
-	border: 2px solid #235a8a;
+	border-width: 2px;
+	border-style: solid;
 	background: #fff;
 	padding: 0.7em 1em;
 	font-weight: bold;
 	display: flex; align-items: center; gap: 0.5em;
 }
-.fiche-morphologies { border-color: #235a8a; }
-.fiche-competences { border-color: #2c7a4b; }
-.fiche-equipements { border-color: #a13a3a; }
-.fiche-dons { border-color: #bfa600; }
+.fiche-morphologies { border-color: $color-hiver; }
+.fiche-competences { border-color: $color-printemps; }
+.fiche-equipements { border-color: $color-automne; }
+.fiche-dons { border-color: $color-ete; }
 .fiche-champ-lexical {
-	border-top: 2px dotted #235a8a;
+	border-top: 2px dotted $color-hiver;
 	margin-top: 1em;
 	padding-top: 0.7em;
 	font-size: 1em;
-	color: #235a8a;
+	color: $color-hiver;
 	display: flex; flex-direction: column; align-items: center;
 }
