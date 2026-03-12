@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Résilience - Création de Voix</title>
 	<link rel="stylesheet" href="style.css">
+	<script type="module" src="script.js"></script>
 </head>
 <body>
 	<h2>Résilience - Création de Voix</h2>
@@ -134,14 +135,14 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="famille" value="squelette" id="famille-squelette" onclick="selectUnique('famille', this); updateLignees()">
+					<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline" onclick="selectUnique('famille', this); updateLignees()">
 					<label for="famille-squelette"><strong>Squelette</strong></label>
 				</span>
 				<span class="desc">
 					<span class="short">La Famille Squelette regroupe tous les personnages ayant un squelette interne, quatre membres et une tête.</span>
 					<span class="long" style="display:none;"> Ils peuvent tenir du mammifère et être couvert de poils, de l’oiseau, ou avoir plutôt une ascendance reptilienne voir un apparence directement inspirée des amphibiens, leur donnant une peau multicolore.</span>
 					<hr class="don-separateur">
-					<span class="don">Adrénaline (Été): les personnages ayant ce Don sont capables de dépasser leurs limites physiques pendant un bref laps de temps. Juste assez pour se mettre hors de danger par la fuite ou le combat. Ce Don s’utilise lors des Conflits ou lorsque le personnage est en danger immédiat.</span>
+					<span class="don">Don : Adrénaline (Été)</span>
 				</span>
 			</div>
 			<div class="option printemps" style="position:relative;">
@@ -152,14 +153,14 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" onclick="selectUnique('famille', this); updateLignees()">
+					<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose" onclick="selectUnique('famille', this); updateLignees()">
 					<label for="famille-cellulose"><strong>Cellulose</strong></label>
 				</span>
 				<span class="desc">
 					<span class="short">La Famille Cellulose contient tous les personnages issus du règne des végétaux ou des champignons.</span>
 					<span class="long" style="display:none;"> Ces individus particulièrement étranges simulent des visages pour parvenir à communiquer avec les autres Familles. Dans leur incroyable diversité, ils ont trouvé le moyen d’avoir des morphologies relativement constantes, en apparence du moins.</span>
 					<hr class="don-separateur">
-					<span class="don">Symbiose (Printemps) : les personnages ayant ce Don savent comment faire en sorte que le tout soit supérieur à la somme de parties. Ils tirent une meilleure efficacité de l’association de qualités différentes. Ce Don s’utilise quand le personnage reçoit de l’Aide, bénéficie de ou fait un Support ou une Tactique</span>
+					<span class="don">Don : Symbiose (Printemps)</span>
 				</span>
 			</div>
 			<div class="option automne" style="position:relative;">
@@ -170,14 +171,14 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="famille" value="chitine" id="famille-chitine" onclick="selectUnique('famille', this); updateLignees()">
+					<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette" onclick="selectUnique('famille', this); updateLignees()">
 					<label for="famille-chitine"><strong>Chitine</strong></label>
 				</span>
 				<span class="desc">
 					<span class="short">La Famille Chitine comprend tous les personnages portant un exosquelette de chitine.</span>
 					<span class="long" style="display:none;"> Leur apparence est très variée, pouvant avoir de six à plusieurs dizaines de membres, des pinces, des antennes, ou des ailes. Ces personnages peuvent donc aussi bien tenir de la fourmi de l’araignée, du mille-patte ou de la mante.</span>
 					<hr class="don-separateur">
-					<span class="don">Exosquelette (Automne) : les personnages ayant ce Don ont un le corps couvert d’une carapace décuplant sa puissance et garnie d’excroissances utiles. Ce Don s’utilise pour les épreuves de force, d'endurance et la récolte de ressources.</span>
+					<span class="don">Don : Exosquelette (Automne)</span>
 				</span>
 			</div>
 			<div class="option hiver" style="position:relative;">
@@ -188,14 +189,14 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="famille" value="souple" id="famille-souple" onclick="selectUnique('famille', this); updateLignees()">
+					<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme" onclick="selectUnique('famille', this); updateLignees()">
 					<label for="famille-souple"><strong>Souple</strong></label>
 				</span>
 				<span class="desc">
 					<span class="short">La Famille Souple englobe tous les personnages tenant du mollusque.</span>
 					<span class="long" style="display:none;"> Ils peuvent ainsi être inspirés très simplement des étoiles de mer, mais un poulpe est parfaitement envisageable. Les personnages les plus extravagants pourront avoir une coquille dans laquelle se réfugier, ou même tenir du ver de terre.</span>
 					<hr class="don-separateur">
-					<span class="don">Mimétisme (Hiver) : les personnages ayant ce Don peuvent modifier la forme et les couleurs de leurs corps et de leurs visages. Ce Don s’utilise pour les épreuves d’agilité, la discrétion, le déguisement et l’imitation.</span>
+					<span class="don">Don : Mimétisme (Hiver)</span>
 				</span>
 			</div>
 		</div>
@@ -215,7 +216,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose" data-don="amphibie" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Amphiose"><strong>Amphiose</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -242,7 +243,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire" data-don="signaux" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Aviaire"><strong>Aviaire</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -273,7 +274,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien" data-don="reserves" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Mammalien"><strong>Mammalien</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -304,7 +305,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie" data-don="thermoception" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Ophidie"><strong>Ophidie</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -335,7 +336,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose" data-don="grimper" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Bryose"><strong>Bryose</strong> <span class="lignee-sexe">(asexué)</span></label>
 					</span>
 					<div class="desc">
@@ -365,7 +366,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon" data-don="sonar" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Mycon"><strong>Mycon</strong> <span class="lignee-sexe">(plurisexués)</span></label>
 					</span>
 					<div class="desc">
@@ -395,7 +396,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien" data-don="empathie" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Pollinien"><strong>Pollinien</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
 					</span>
 					<div class="desc">
@@ -426,7 +427,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose" data-don="prehenseurs" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Xylose"><strong>Xylose</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
 					</span>
 					<div class="desc">
@@ -456,7 +457,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen" data-don="poison" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Arachéen"><strong>Arachéen</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -486,7 +487,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes" data-don="presence" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Orthocètes"><strong>Orthocètes</strong> <span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span></label>
 					</span>
 					<div class="desc">
@@ -515,7 +516,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige" data-don="pistage" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Scutige"><strong>Scutige</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -545,7 +546,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide" data-don="bond" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Syrphide"><strong>Syrphide</strong> <span class="lignee-sexe">(unisexe)</span></label>
 					</span>
 					<div class="desc">
@@ -575,7 +576,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope" data-don="ecran" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Céphope"><strong>Céphope</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -605,7 +606,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse" data-don="coquille" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Nacrisse"><strong>Nacrisse</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
 					</span>
 					<div class="desc">
@@ -635,7 +636,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite" data-don="terrier" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Saprosite"><strong>Saprosite</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
 					</span>
 					<div class="desc">
@@ -665,7 +666,7 @@
 						</svg>
 					</button>
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule" onclick="selectUnique('lignee', this)">
+						<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule" data-don="electroreception" onclick="selectUnique('lignee', this)">
 						<label for="lignee-Spicule"><strong>Spicule</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
 					</span>
 					<div class="desc">
@@ -1127,8 +1128,8 @@
 			<div class="option temps">
 				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
 					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
@@ -1143,8 +1144,8 @@
 			<div class="option temps">
 				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
 					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
@@ -1159,8 +1160,8 @@
 			<div class="option temps">
 				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
 					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
+						<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
@@ -1175,8 +1176,8 @@
 			<div class="option temps">
 				<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
 					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
+						<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
@@ -1207,18 +1208,13 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('role', this); updateLignees()">
-					<label for="role-guide"><strong>Guide</strong> (nourrir et prévenir)</label>
+					<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onclick="selectUnique('personnalite', this); updateLignees()">
+					<label for="personnalite-eminence"><strong>Éminence</strong></label>
 				</span>
 				<span class="desc">
-					<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
-					<span class="long" style="display:none;">Grâce à eux, leurs communautés ne s’égarent pas et anticipent les dangers naturels. Le cas échéant, ils savent comment fabriquer le nécessaire pour se protéger des aléas. Les Guides nourrissent les leurs grâce à la chasse et à la cueillette et savent également comment protéger les leurs et le matériel des intempéries.</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<ul>
-							<li>Compétence de Rôle : Exploration (Hiver) : orientation par les astres, lecture des courants, trouver les points d’eau. Cartographie, analyse du paysage et de la météo. Communication à distance et signalisation.</li>
-							<li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li>
-						</ul>
+					<span class="short">Le personnage fait porter ses opinions par d’autres lors des prises de décisions, ou suggère des idées aux personnes qui s’expriment ouvertement.</span>
+					<span class="long" style="display:none;">Lors des actions lancées par la communauté, il préfère conseiller les volontaires et leur fournir de quoi réussir leur mission.<br/>
+						La Rupture tentera le personnage lorsqu’il se sentira impuissant, dépassé par les événements. Elle sera alors le témoignage inavouable de la méconnaissance de ses limites, ou au contraire l’allié qui lui permet de se dépasser.
 					</span>
 				</span>
 			</div>
@@ -1230,18 +1226,14 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('role', this); updateLignees()">
-					<label for="role-sibylle"><strong>Sibylle</strong> (connaître et purifier)</label>
+					<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix" onclick="selectUnique('personnalite', this)">
+					<label for="personnalite-portefaix"><strong>Portefaix</strong></label>
 				</span>
 				<span class="desc">
-					<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
-					<span class="long" style="display:none;">Maîtresses des rituels, elles organisent le passage de la vie à la mort, soignent les affections du corps et de l’âme et protègent contre les mauvais esprits. Les Sibylles oscillent entre pythies plongées dans les oracles et les secrets de l’invisible et sages dépositaires des savoirs ancestraux, permettant de faire revivre l’ancien monde au coeur de la Rupture.</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<ul>
-							<li>Compétence de Rôle : Sagesse (Printemps) : Augures, rites, rituels, mythes et Talismans. Connaissances sur l’Essence et l’Anathème, les Mondes Spirituels, les relations entre les êtres vivants et leur milieu.</li>
-							<li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li>
-						</ul>
+					<span class="short">Le personnage écoute les propositions des autres, ou les conseille, et se range du côté des idées qui lui paraissent les plus sensées.</span>
+					<span class="long" style="display:none;">
+						Il se porte généralement volontaire pour mener à bien les actions décidées par la communauté, s’intégrant dans un groupe ou en formant un autour de lui.<br/>
+						La Rupture tentera le personnage lorsqu’il doutera ou se sentira incompétant voire inutile. Elle sera alors le cuisant rappel de son ignorance, ou bien sa source d’inspiration permanente.
 					</span>
 				</span>
 			</div>
@@ -1253,17 +1245,15 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('role', this); updateLignees()">
-					<label for="role-matrice"><strong>Matrice</strong> (unir et échanger)</label>
+					<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onclick="selectUnique('personnalite', this); updateLignees()">
+					<label for="personnalite-leader"><strong>Leader</strong></label>
 				</span>
 				<span class="desc">
-					<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
-					<span class="long" style="display:none;">Elles mettent en place les structures sociales et les échanges, veillent aux troupeaux et aux récoltes. Les Matrices trouvent une place pour chaque membre de la communauté et organisent la gestion des ressources en fonction des besoins. Elles soudent les personnes entre elles, les communautés entre elles, dans une organisation dépassant leur existence.</span>
-					<hr class="don-separateur">
-					<span class="don"><ul>
-						<li>Compétence de Rôle : Civilisation (Été) : intendance, négociation, connaissance et compréhension des communautés (lois, politique, ressources, relations…). Rendre la justice, diplomatie, art de la guerre.</li>
-						<li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li>
-					</ul></span>
+					<span class="short">Le personnage s’implique directement dans les processus de décision, soit en exprimant ses idées, soit en relayant celles d’autres.</span>
+					<span class="long" style="display:none;">
+						Il participe également activement aux actions menées, rassemblant les volontaires autour de lui ou rejoignant les groupes déjà formés.<br/>
+						La Rupture tentera le personnage sur sa peur d’être rejeté, inutile, ou ses craintes sur l’intégrité du groupe. Elle deviendra la honte d’avoir perdu confiance, ou un moyen de maintenir les sociétés, par l’admiration ou la tyrannie.
+					</span>
 				</span>
 			</div>
 			<div class="option automne">
@@ -1274,17 +1264,15 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('role', this); updateLignees()">
-					<label for="role-artisan"><strong>Artisan</strong> (construire et innover)</label>
+					<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onclick="selectUnique('personnalite', this); updateLignees()">
+					<label for="personnalite-sage"><strong>Sage</strong></label>
 				</span>
 				<span class="desc">
-					<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
-					<span class="long" style="display:none;">Ils savent comment transformer la matière brute pour en extraire de nouvelles ressources et matériaux afin d’en faire les objets du quotidien ou de modifier leur environnement. Face à l’inconnu et à l’imprévu, leur ingéniosité et inventivité leur permet de trouver et créer de nouvelles solutions.</span>
-					<hr class="don-separateur">
-					<span class="don"><ul>
-						<li>Compétence de Rôle : Ingénierie (Automne) : maîtrise des poulies, grues, échafaudages et engrenages simples, permettant la construction de puits, systèmes d'irrigation, ponts, mines, moulins et routes.</li>
-						<li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li>
-					</ul></span>
+					<span class="short">Le personnage se fait le relais d’autres voix que la sienne lors des prises de décision, ou exprime ses propres idées, participant toujours aux discussions.</span>
+					<span class="long" style="display:none;">
+						Lorsqu’une action est menée, il fournit aux volontaires ce dont ils ont besoin, et reste au sein de la communauté pour aider les plus fragiles.<br/>
+						La Rupture tentera le personnage lorsqu’il aura la sensation d’avoir tout perdu, ou en lui offrant ce dont il pense avoir besoin. Elle sera alors le châtiment de n’avoir pas su anticiper, ou bien un outil résolvant toutes les situations.
+					</span>
 				</span>
 			</div>
 		</div>
@@ -1388,10 +1376,22 @@
 				</div>
 			</div>
 			<div class="fiche-blocs">
-				<div class="fiche-morphologies saison-hiver"><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></div>
-				<div class="fiche-competences saison-printemps"><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></div>
-				<div class="fiche-equipements saison-automne"><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></div>
-				<div class="fiche-dons saison-ete"><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></div>
+				<div class="fiche-bloc saison-hiver">
+					<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
+					<div id="fiche-morphologies"></div>
+				</div>
+				<div class="fiche-bloc saison-printemps">
+					<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
+					<div id="fiche-competences"></div>
+				</div>
+				<div class="fiche-bloc saison-automne">
+					<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
+					<div id="fiche-equipements"></div>
+				</div>
+				<div class="fiche-bloc saison-ete">
+					<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>
+					<div id="fiche-dons"></div>
+				</div>
 			</div>
 			<div class="fiche-champ-lexical saison-hiver">
 				<div>Champ lexical de l’Hiver</div>
@@ -1399,7 +1399,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<script src="script.js"></script>
 </body>
 </html>

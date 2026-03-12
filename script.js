@@ -1,8 +1,10 @@
+import { dons } from './dons.js';
+
 const saisonsEnum = {
-	hiver: 1,
-	printemps: 2,
-	ete: 3,
-	automne: 4
+  hiver: 1,
+  printemps: 2,
+  ete: 3,
+  automne: 4
 };
 
 function toggleDesc(btn) {
@@ -139,7 +141,11 @@ function getsaisonScore(saison, saisonName) {
 	}
 }
 
-// Mise à jour automatique de la fiche
+// Expose les fonctions pour le HTML
+window.toggleDesc = toggleDesc;
+window.selectUnique = selectUnique;
+window.updateLignees = updateLignees;
+
 window.addEventListener('DOMContentLoaded', function() {
 	['saison', 'famille', 'lignee'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
@@ -147,4 +153,32 @@ window.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 	genererFiche(); // Initialiser la fiche au chargement
+	updateFicheDons();
+});
+
+function updateFicheDons() {
+	// Récupère le don sélectionné (famille ou lignée)
+	const famille = document.querySelector('input[name="famille"]:checked');
+	const lignee = document.querySelector('input[name="lignee"]:checked');
+	let donsSelectionnes = [];
+	if (famille && famille.dataset.don) {
+		donsSelectionnes.push(famille.dataset.don);
+	}
+	if (lignee && lignee.dataset.don) {
+		donsSelectionnes.push(lignee.dataset.don);
+	}
+	const ficheDons = document.getElementById('fiche-dons');
+	ficheDons.innerHTML = '';
+	donsSelectionnes.forEach(donKey => {
+		if (dons[donKey]) {
+			ficheDons.innerHTML += `<div class="don-recap"><strong>${dons[donKey].nom}</strong><br>${dons[donKey].description}</div>`;
+		}
+	});
+}
+
+// Ajoute les listeners pour afficher les dons
+['famille', 'lignee'].forEach(group => {
+	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+		input.addEventListener('change', updateFicheDons);
+	});
 });

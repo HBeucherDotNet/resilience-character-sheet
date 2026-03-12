@@ -1,3 +1,17 @@
+.fiche-bloc.saison-ete {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 0.5em;
+	flex-wrap: wrap;
+}
+.fiche-bloc.saison-ete label {
+	flex-basis: 100%;
+	text-align: center;
+}
+.fiche-bloc.saison-ete .don-recap {
+	flex: 1 1 0;
+}
 // Variables de couleurs
 $color-bg-page: #e9ecf3;
 $color-white: #fff;
@@ -361,7 +375,7 @@ h3 {
 .fiche-resonances th, .fiche-resonances td { border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; }
 .fiche-magie { border: 1px solid #235a8a; border-radius: 8px; padding: 1em; background: #f7f7ff; }
 .fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; margin-top: 1em; }
-.fiche-morphologies, .fiche-competences, .fiche-equipements, .fiche-dons {
+.fiche-bloc {
 	flex: 1 1 40%;
 	border-radius: 8px;
 	border-width: 2px;
@@ -370,11 +384,20 @@ h3 {
 	padding: 0.7em 1em;
 	font-weight: bold;
 	display: flex; align-items: center; gap: 0.5em;
+
+	&.saison-hiver { 
+		border-color: $color-hiver; 
+	}
+	&.saison-printemps { 
+		border-color: $color-printemps; 
+	}
+	&.saison-ete { 
+		border-color: $color-ete; 
+	}
+	&.saison-automne { 
+		border-color: $color-automne; 
+	}
 }
-.fiche-morphologies { border-color: $color-hiver; }
-.fiche-competences { border-color: $color-printemps; }
-.fiche-equipements { border-color: $color-automne; }
-.fiche-dons { border-color: $color-ete; }
 .fiche-champ-lexical {
 	border-top: 2px dotted $color-hiver;
 	margin-top: 1em;

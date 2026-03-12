@@ -1,4 +1,21 @@
 @charset "UTF-8";
+.fiche-bloc.saison-ete {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.fiche-bloc.saison-ete label {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.fiche-bloc.saison-ete .don-recap {
+  flex: 1 1 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 2em;
@@ -407,7 +424,7 @@ h3 {
   margin-top: 1em;
 }
 
-.fiche-morphologies, .fiche-competences, .fiche-equipements, .fiche-dons {
+.fiche-bloc {
   flex: 1 1 40%;
   border-radius: 8px;
   border-width: 2px;
@@ -419,21 +436,17 @@ h3 {
   align-items: center;
   gap: 0.5em;
 }
-
-.fiche-morphologies {
+.fiche-bloc.saison-hiver {
   border-color: #235a8a;
 }
-
-.fiche-competences {
+.fiche-bloc.saison-printemps {
   border-color: #2c7a4b;
 }
-
-.fiche-equipements {
-  border-color: #a13a3a;
-}
-
-.fiche-dons {
+.fiche-bloc.saison-ete {
   border-color: #bfa600;
+}
+.fiche-bloc.saison-automne {
+  border-color: #a13a3a;
 }
 
 .fiche-champ-lexical {
