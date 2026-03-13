@@ -123,6 +123,7 @@
 				</div>
 			</div>
 		</section>
+		
 		<!-------------------- FAMILLES -------------------->
 		
 		<section>
@@ -758,7 +759,7 @@
 				</div>
 				<div class="option hiver">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-morphologie="mucus" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-mucus"><strong>Mucus</strong></label>
 					</span>
 					<span class="desc">
@@ -767,7 +768,7 @@
 				</div>
 				<div class="option printemps">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-morphologie="urticant" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-urticant"><strong>Urticant</strong></label>
 					</span>
 					<span class="desc">
@@ -776,7 +777,7 @@
 				</div>
 				<div class="option ete">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-morphologie="bourre" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-bourre"><strong>Bourre</strong></label>
 					</span>
 					<span class="desc">
@@ -785,7 +786,7 @@
 				</div>
 				<div class="option automne">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-morphologie="carapace" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-carapace"><strong>Carapace</strong></label>
 					</span>
 					<span class="desc">
@@ -804,7 +805,7 @@
 				</div>
 				<div class="option hiver">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-equipement="ventouses" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-morphologie="ventouses" onclick="selectUnique('mains', this)">
 						<label for="mains-ventouses"><strong>Ventouses</strong></label>
 					</span>
 					<span class="desc">
@@ -813,7 +814,7 @@
 				</div>
 				<div class="option printemps">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-equipement="vibrisses" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-morphologie="vibrisses" onclick="selectUnique('mains', this)">
 						<label for="mains-vibrisses"><strong>Vibrisses</strong></label>
 					</span>
 					<span class="desc">
@@ -822,7 +823,7 @@
 				</div>
 				<div class="option ete">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-equipement="crochets" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-morphologie="crochets" onclick="selectUnique('mains', this)">
 						<label for="mains-crochets"><strong>Crochets</strong></label>
 					</span>
 					<span class="desc">
@@ -831,7 +832,7 @@
 				</div>
 				<div class="option automne">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-equipement="pinces" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-morphologie="pinces" onclick="selectUnique('mains', this)">
 						<label for="mains-pinces"><strong>Pinces</strong></label>
 					</span>
 					<span class="desc">
@@ -850,7 +851,7 @@
 				</div>
 				<div class="option hiver">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-equipement="membrane" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-morphologie="membrane" onclick="selectUnique('peau', this)">
 						<label for="peau-membrane"><strong>Membrane</strong></label>
 					</span>
 					<span class="desc">
@@ -859,7 +860,7 @@
 				</div>
 				<div class="option printemps">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-equipement="camouflage" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-morphologie="camouflage" onclick="selectUnique('peau', this)">
 						<label for="peau-camouflage"><strong>Camouflage</strong></label>
 					</span>
 					<span class="desc">
@@ -868,7 +869,7 @@
 				</div>
 				<div class="option ete">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-equipement="aposematisme" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-morphologie="aposematisme" onclick="selectUnique('peau', this)">
 						<label for="peau-aposematisme"><strong>Aposématisme</strong></label>
 					</span>
 					<span class="desc">
@@ -877,7 +878,7 @@
 				</div>
 				<div class="option automne">
 					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="peau" value="ecaille" id="peau-ecaille" data-equipement="ecaille" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="ecaille" id="peau-ecaille" data-morphologie="ecaille" onclick="selectUnique('peau', this)">
 						<label for="peau-ecaille"><strong>Écailles</strong></label>
 					</span>
 					<span class="desc">

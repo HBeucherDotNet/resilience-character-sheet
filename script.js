@@ -1,6 +1,7 @@
-import { dons } from './dons.js';
-import { equipements } from './equipements.js';
-import { competences } from './competences.js';
+import { dons } from './data/dons.js';
+import { equipements } from './data/equipements.js';
+import { competences } from './data/competences.js';
+import { morphologies } from './data/morphologies.js';
 
 const saisonsEnum = {
 	hiver: 1,
@@ -133,6 +134,12 @@ window.genererFiche = function() {
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 }
 
+window.toggleResume = function(eqKey, btn) {
+	const resume = btn.parentElement.querySelector('.resume');
+	if (!resume) return;
+	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
+};
+
 window.addEventListener('DOMContentLoaded', function() {
 	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
@@ -144,6 +151,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	updateFicheDons(); // Met à jour les dons au chargement
 	updateFicheEquipements(); // Met à jour les équipements au chargement
 	updateFicheCompetences(); // Met à jour les compétences au chargement
+	updateFicheMorphologies(); // Met à jour les morphologies au chargement
 });
 
 function updateFicheCompetences() {
@@ -157,8 +165,6 @@ function updateFicheCompetences() {
 	// Supprime les doublons
 	competencesSelectionnees = [...new Set(competencesSelectionnees)];
 	
-	console.log(competencesSelectionnees);
-	
 	const ficheCompetences = document.getElementById('fiche-competences');
 	ficheCompetences.innerHTML = '';
 	competencesSelectionnees.forEach(compKey => {
@@ -167,10 +173,10 @@ function updateFicheCompetences() {
 				<div class="competence-recap fiche-bloc-item">
 					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
 					<label for="competence-${compKey}">${competences[role.dataset.competence][compKey].nom}</label>
-					<button type="button" class="competence-picto" onclick="window.toggleCompetenceResume('${compKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="competence-picto" onclick="window.toggleResume('${compKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+							<circle cx="11" cy="11" r="10" stroke="${couleurs.printemps}" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.printemps}">?</text>
 						</svg>
 					</button>
 					<span class="competence-resume" style="display:none;">${competences[role.dataset.competence][compKey].description}</span>
@@ -180,16 +186,6 @@ function updateFicheCompetences() {
 	});
 }
 
-window.toggleCompetenceResume = function(compKey, btn) {
-	const resume = btn.parentElement.querySelector('.competence-resume');
-	if (!resume) return;
-	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-};
-['role'].forEach(group => {
-	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
-		input.addEventListener('change', updateFicheCompetences);
-	});
-});
 function updateFicheEquipements() {
 	// Récupère les équipements sélectionnés (environnement, mode-de-vie, philosophie, relation-rupture)
 	const env = document.querySelector('input[name="environnement"]:checked');
@@ -211,26 +207,20 @@ function updateFicheEquipements() {
 				<div class="equipement-recap fiche-bloc-item">
 					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
 					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
-					<button type="button" class="equipement-picto" onclick="window.toggleEquipementResume('${eqKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="equipement-picto" onclick="window.toggleResume('${eqKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+							<circle cx="11" cy="11" r="10" stroke="${couleurs.automne}" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.automne}">?</text>
 						</svg>
 					</button>
-					<span class="equipement-resume" style="display:none;">${equipements[eqKey].description}</span>
+					<span class="resume" style="display:none;">${equipements[eqKey].description}</span>
 				</div>
 			`;
 		}
 	});
 }
 
-window.toggleEquipementResume = function(eqKey, btn) {
-	const resume = btn.parentElement.querySelector('.equipement-resume');
-	if (!resume) return;
-	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-};
-
-window.updateFicheDons = function() {
+function updateFicheDons() {
 	// Récupère le don sélectionné (famille ou lignée)
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
@@ -242,8 +232,6 @@ window.updateFicheDons = function() {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
 	
-	console.log(donsSelectionnes);
-	
 	const ficheDons = document.getElementById('fiche-dons');
 	ficheDons.innerHTML = '';
 	donsSelectionnes.forEach(donKey => {
@@ -252,21 +240,49 @@ window.updateFicheDons = function() {
 				<div class="don-recap fiche-bloc-item">
 					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
 					<label for="don-${donKey}">${dons[donKey].nom}</label>
-					<button type="button" class="don-picto" onclick="window.toggleDonResume('${donKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="don-picto" onclick="window.toggleResume('${donKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+							<circle cx="11" cy="11" r="10" stroke="${couleurs.ete}" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.ete}">?</text>
 						</svg>
 					</button>
-					<span class="don-resume" style="display:none;">${dons[donKey].description}</span>
+					<span class="resume" style="display:none;">${dons[donKey].description}</span>
 				</div>
 			`;
-			// Affiche ou masque le résumé du don
-			window.toggleDonResume = function(donKey, btn) {
-				const resume = btn.parentElement.querySelector('.don-resume');
-				if (!resume) return;
-				resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-			};
+		}
+	});
+}
+
+function updateFicheMorphologies() {
+	// Récupère les morphologies sélectionnées
+	const groups = ['armement', 'cuirasse', 'mains', 'peau'];
+	let morphologiesSelectionnees = [];
+	groups.forEach(group => {
+		const input = document.querySelector(`#${group}-group input:checked`);
+		if (input && input.dataset.morphologie) {
+			morphologiesSelectionnees.push(input.dataset.morphologie);
+		}
+	});
+
+	// Supprime les doublons
+	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
+	const ficheMorphologies = document.getElementById('fiche-morphologies');
+	ficheMorphologies.innerHTML = '';
+	morphologiesSelectionnees.forEach(morphKey => {
+		if (morphologies[morphKey]) {
+			ficheMorphologies.innerHTML += `
+				<div class="equipement-recap fiche-bloc-item">
+					<input type="checkbox" id="morphologie-${morphKey}" name="morphologie-selected" value="${morphKey}">
+					<label for="morphologie-${morphKey}">${morphologies[morphKey].nom}</label>
+					<button type="button" class="morphologie-picto" onclick="window.toggleResume('${morphKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="${couleurs.hiver}" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.hiver}">?</text>
+						</svg>
+					</button>
+					<span class="resume" style="display:none;">${morphologies[morphKey].description}</span>
+				</div>
+			`;
 		}
 	});
 }
@@ -288,8 +304,18 @@ function getsaisonScore(saison, saisonName) {
 		input.addEventListener('change', updateFicheDons);
 	});
 });
+['role'].forEach(group => {
+	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+		input.addEventListener('change', updateFicheCompetences);
+	});
+});
 ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
 	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
 		input.addEventListener('change', updateFicheEquipements);
+	});
+});
+['armement', 'cuirasse', 'mains', 'peau'].forEach(group => {
+	document.querySelectorAll(`#${group}-group input`).forEach(input => {
+		input.addEventListener('change', updateFicheMorphologies);
 	});
 });
