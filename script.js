@@ -1,4 +1,5 @@
 import { dons } from './dons.js';
+import { equipements } from './equipements.js';
 
 const saisonsEnum = {
   hiver: 1,
@@ -147,14 +148,55 @@ window.selectUnique = selectUnique;
 window.updateLignees = updateLignees;
 
 window.addEventListener('DOMContentLoaded', function() {
-	['saison', 'famille', 'lignee'].forEach(group => {
+	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
 			input.addEventListener('change', genererFiche);
 		});
 	});
 	genererFiche(); // Initialiser la fiche au chargement
-	updateFicheDons();
+	updateLignees(); // Met à jour les lignées au chargement
+	updateFicheDons(); // Met à jour les dons au chargement
+	updateFicheEquipements(); // Met à jour les équipements au chargement
 });
+function updateFicheEquipements() {
+	// Récupère les équipements sélectionnés (environnement, mode-de-vie, philosophie, relation-rupture)
+	const env = document.querySelector('input[name="environnement"]:checked');
+	const mode = document.querySelector('input[name="mode-de-vie"]:checked');
+	const philo = document.querySelector('input[name="philosophie"]:checked');
+	const rupture = document.querySelector('input[name="relation-rupture"]:checked');
+	let equipementsSelectionnes = [];
+	if (env && env.dataset.equipement) equipementsSelectionnes.push(env.dataset.equipement);
+	if (mode && mode.dataset.equipement) equipementsSelectionnes.push(mode.dataset.equipement);
+	if (philo && philo.dataset.equipement) equipementsSelectionnes.push(philo.dataset.equipement);
+	if (rupture && rupture.dataset.equipement) equipementsSelectionnes.push(rupture.dataset.equipement);
+	// Supprime les doublons
+	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
+	const ficheEquipements = document.getElementById('fiche-equipements');
+	ficheEquipements.innerHTML = '';
+	equipementsSelectionnes.forEach(eqKey => {
+		if (equipements[eqKey]) {
+			ficheEquipements.innerHTML += `
+				<div class="equipement-recap">
+					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
+					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
+					<button type="button" class="equipement-picto" onclick="window.toggleEquipementResume('${eqKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
+						</svg>
+					</button>
+					<span class="equipement-resume" style="display:none;">${equipements[eqKey].description}</span>
+				</div>
+			`;
+		}
+	});
+}
+
+window.toggleEquipementResume = function(eqKey, btn) {
+	const resume = btn.parentElement.querySelector('.equipement-resume');
+	if (!resume) return;
+	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
+};
 
 function updateFicheDons() {
 	// Récupère le don sélectionné (famille ou lignée)
@@ -171,7 +213,25 @@ function updateFicheDons() {
 	ficheDons.innerHTML = '';
 	donsSelectionnes.forEach(donKey => {
 		if (dons[donKey]) {
-			ficheDons.innerHTML += `<div class="don-recap"><strong>${dons[donKey].nom}</strong><br>${dons[donKey].description}</div>`;
+			ficheDons.innerHTML += `
+				<div class="don-recap">
+					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
+					<label for="don-${donKey}">${dons[donKey].nom}</label>
+					<button type="button" class="don-picto" onclick="window.toggleDonResume('${donKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+						</svg>
+					</button>
+					<span class="don-resume" style="display:none;">${dons[donKey].description}</span>
+				</div>
+			`;
+		// Affiche ou masque le résumé du don
+		window.toggleDonResume = function(donKey, btn) {
+			const resume = btn.parentElement.querySelector('.don-resume');
+			if (!resume) return;
+			resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
+		};
 		}
 	});
 }
@@ -180,5 +240,10 @@ function updateFicheDons() {
 ['famille', 'lignee'].forEach(group => {
 	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
 		input.addEventListener('change', updateFicheDons);
+	});
+});
+['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
+	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+		input.addEventListener('change', updateFicheEquipements);
 	});
 });

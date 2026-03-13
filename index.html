@@ -708,7 +708,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" onclick="selectUnique('environnement', this)">
+					<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres" onclick="selectUnique('environnement', this)">
 					<label for="environnement-riviere-lacs-marais"><strong>Rivières, lacs et marais</strong></label>
 				</span>
 				<span class="desc">
@@ -726,7 +726,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" onclick="selectUnique('environnement', this)">
+					<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards" onclick="selectUnique('environnement', this)">
 					<label for="environnement-iles-littoral"><strong>Îles et littoral</strong></label>
 				</span>
 				<span class="desc">
@@ -744,7 +744,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" onclick="selectUnique('environnement', this)">
+					<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque" onclick="selectUnique('environnement', this)">
 					<label for="environnement-plaines-collines"><strong>Plaines et collines</strong></label>
 				</span>
 				<span class="desc">
@@ -762,7 +762,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" onclick="selectUnique('environnement', this)">
+					<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron" onclick="selectUnique('environnement', this)">
 					<label for="environnement-montagnes-canyons"><strong>Montagnes et canyons</strong></label>
 				</span>
 				<span class="desc">
@@ -790,7 +790,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie" onclick="selectUnique('mode-de-vie', this)">
 					<label for="mode-de-vie-alize"><strong>Alizé</strong></label>
 				</span>
 				<span class="desc">
@@ -808,7 +808,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience" onclick="selectUnique('mode-de-vie', this)">
 					<label for="mode-de-vie-troglodyte"><strong>Troglodyte</strong></label>
 				</span>
 				<span class="desc">
@@ -826,7 +826,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer" onclick="selectUnique('mode-de-vie', this)">
 					<label for="mode-de-vie-sedentaire"><strong>Sédentaire</strong></label>
 				</span>
 				<span class="desc">
@@ -844,7 +844,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" onclick="selectUnique('mode-de-vie', this); updateLignees()">
+					<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection" onclick="selectUnique('mode-de-vie', this)">
 					<label for="mode-de-vie-nomade"><strong>Nomade</strong></label>
 				</span>
 				<span class="desc">
@@ -871,7 +871,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" onclick="selectUnique('philosophie', this); updateLignees()">
+					<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe" onclick="selectUnique('philosophie', this)">
 					<label for="philosophie-inne"><strong>Inné</strong></label>
 				</span>
 				<span class="desc">
@@ -889,7 +889,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" onclick="selectUnique('philosophie', this); updateLignees()">
+					<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape" onclick="selectUnique('philosophie', this)">
 					<label for="philosophie-appris"><strong>Appris</strong></label>
 				</span>
 				<span class="desc">
@@ -907,7 +907,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" onclick="selectUnique('philosophie', this); updateLignees()">
+					<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure" onclick="selectUnique('philosophie', this)">
 					<label for="philosophie-chitine"><strong>Entraide</strong></label>
 				</span>
 				<span class="desc">
@@ -925,7 +925,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" onclick="selectUnique('philosophie', this); updateLignees()">
+					<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier" onclick="selectUnique('philosophie', this)">
 					<label for="philosophie-construit"><strong>Construit</strong></label>
 				</span>
 				<span class="desc">
@@ -951,7 +951,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee" onclick="selectUnique('relation-rupture', this)">
 					<label for="relation-rupture-dompter"><strong>Dompter</strong></label>
 				</span>
 				<span class="desc">
@@ -969,7 +969,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance" onclick="selectUnique('relation-rupture', this)">
 					<label for="relation-rupture-etudier"><strong>Étudier</strong></label>
 				</span>
 				<span class="desc">
@@ -987,7 +987,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte" onclick="selectUnique('relation-rupture', this)">
 					<label for="relation-rupture-purifier"><strong>Purifier</strong></label>
 				</span>
 				<span class="desc">
@@ -1005,7 +1005,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" onclick="selectUnique('relation-rupture', this); updateLignees()">
+					<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue" onclick="selectUnique('relation-rupture', this)">
 					<label for="relation-rupture-composer"><strong>Composer</strong></label>
 				</span>
 				<span class="desc">
@@ -1037,7 +1037,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('role', this); updateLignees()">
+					<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('role', this)">
 					<label for="role-guide"><strong>Guide</strong> (nourrir et prévenir)</label>
 				</span>
 				<span class="desc">
@@ -1060,7 +1060,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('role', this); updateLignees()">
+					<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('role', this)">
 					<label for="role-sibylle"><strong>Sibylle</strong> (connaître et purifier)</label>
 				</span>
 				<span class="desc">
@@ -1083,7 +1083,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('role', this); updateLignees()">
+					<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('role', this)">
 					<label for="role-matrice"><strong>Matrice</strong> (unir et échanger)</label>
 				</span>
 				<span class="desc">
@@ -1104,7 +1104,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('role', this); updateLignees()">
+					<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('role', this)">
 					<label for="role-artisan"><strong>Artisan</strong> (construire et innover)</label>
 				</span>
 				<span class="desc">
@@ -1208,7 +1208,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onclick="selectUnique('personnalite', this); updateLignees()">
+					<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onclick="selectUnique('personnalite', this)">
 					<label for="personnalite-eminence"><strong>Éminence</strong></label>
 				</span>
 				<span class="desc">
@@ -1245,7 +1245,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onclick="selectUnique('personnalite', this); updateLignees()">
+					<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onclick="selectUnique('personnalite', this)">
 					<label for="personnalite-leader"><strong>Leader</strong></label>
 				</span>
 				<span class="desc">
@@ -1264,7 +1264,7 @@
 					</svg>
 				</button>
 				<span style="display:flex;align-items:center;gap:0.5em;">
-					<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onclick="selectUnique('personnalite', this); updateLignees()">
+					<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onclick="selectUnique('personnalite', this)">
 					<label for="personnalite-sage"><strong>Sage</strong></label>
 				</span>
 				<span class="desc">
