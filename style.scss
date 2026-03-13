@@ -222,16 +222,17 @@ h3 {
 
 /* Masquer les questions lors de l'impression */
 @media print {
-	.questions, #questions {
+	#character-builder {
 		display: none !important;
 	}
-	#fiche {
-		display: block !important;
+	#fiche-personnage {
+		padding: 0 !important;
+		box-shadow: none !important;
+		border: none !important;
 	}
 }
 
-
-.fiche-personnage {
+#fiche-personnage {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5em;
