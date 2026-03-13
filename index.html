@@ -10,9 +10,9 @@
 <body>
 	<div id="character-builder">
 		<h2>Résilience - Création de Voix</h2>
-
+		
 		<!-------------------- SAISONS -------------------->
-
+		
 		<section>
 			<h2>Saison</h2>
 			<div class="flex-group" id="saison-group">
@@ -202,6 +202,7 @@
 				</div>
 			</div>
 		</section>
+
 		<!-------------------- LIGNEES -------------------->
 		
 		<section>
@@ -694,6 +695,197 @@
 		
 		<!-------------------- MORPHOLOGIES -------------------->
 		
+		<section>
+			<h2>Morphologies</h2>
+			<div>
+				Les Morphologies sont les atouts physiques innés du personnage. Elles sont intégrées à son corps, à sa biologie, et peuvent s'abîmer avec le temps.<br/>
+				Elles sont de cinq types : Armement, Cuirasse, Mains et Peau, plus les Matières.
+			</div>
+			<div class="flex-group" id="armement-group">
+				<div class="option temps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<label for="saison-temps"><strong>Armement</strong></label>
+					</span>
+					<span class="desc temps-desc">
+						<span class="short"></span>
+					</span>
+				</div>
+				<div class="option hiver">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="armement" value="articule" id="armement-articule" data-morphologie="articule" onclick="selectUnique('armement', this)">
+						<label for="armement-articule"><strong>Articulé</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Tentacule, Dard, Serres, Queue, etc.</span>
+					</span>
+				</div>
+				<div class="option printemps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="armement" value="distance" id="armement-distance" data-morphologie="distance" onclick="selectUnique('armement', this)">
+						<label for="armement-distance"><strong>Distance</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Langue, Épines, Crachat, Projectile, etc.</span>
+					</span>
+				</div>
+				<div class="option ete">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="armement" value="court" id="armement-court" data-morphologie="court" onclick="selectUnique('armement', this)">
+						<label for="armement-court"><strong>Court</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Croc, Bec, Griffes, Cornes, etc.</span>
+					</span>
+				</div>
+				<div class="option automne">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="armement" value="long" id="armement-long" data-morphologie="long" onclick="selectUnique('armement', this)">
+						<label for="armement-long"><strong>Long</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Ramure, Défenses, Mandibules, Sabots, etc.</span>
+					</span>
+				</div>
+			</div>
+			<div class="flex-group" id="cuirasse-group">
+				<div class="option temps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<label for="saison-temps"><strong>Cuirasse</strong></label>
+					</span>
+					<span class="desc temps-desc">
+						<span class="short">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
+					</span>
+				</div>
+				<div class="option hiver">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<label for="cuirasse-mucus"><strong>Mucus</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Revêtement gluant ou glissant</span>
+					</span>
+				</div>
+				<div class="option printemps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<label for="cuirasse-urticant"><strong>Urticant</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Poils acérés presque invisibles.</span>
+					</span>
+				</div>
+				<div class="option ete">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<label for="cuirasse-bourre"><strong>Bourre</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Duvet, fourrure, plumes ou liège.</span>
+					</span>
+				</div>
+				<div class="option automne">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-equipement="cuirasse" onclick="selectUnique('cuirasse', this)">
+						<label for="cuirasse-carapace"><strong>Carapace</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Cuir, os, kératine ou écorce.</span>
+					</span>
+				</div>
+			</div>
+			<div class="flex-group" id="mains-group">
+				<div class="option temps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<label for="saison-temps"><strong>Mains</strong></label>
+					</span>
+					<span class="desc temps-desc">
+						<span class="short">Des Mains s’utilisent lorsque le personnage interagit avec certains êtres ou matériaux.</span>
+					</span>
+				</div>
+				<div class="option hiver">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-equipement="ventouses" onclick="selectUnique('mains', this)">
+						<label for="mains-ventouses"><strong>Ventouses</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short"></span>
+					</span>
+				</div>
+				<div class="option printemps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-equipement="vibrisses" onclick="selectUnique('mains', this)">
+						<label for="mains-vibrisses"><strong>Vibrisses</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short"></span>
+					</span>
+				</div>
+				<div class="option ete">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-equipement="crochets" onclick="selectUnique('mains', this)">
+						<label for="mains-crochets"><strong>Crochets</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short"></span>
+					</span>
+				</div>
+				<div class="option automne">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-equipement="pinces" onclick="selectUnique('mains', this)">
+						<label for="mains-pinces"><strong>Pinces</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short"></span>
+					</span>
+				</div>
+			</div>
+			<div class="flex-group" id="peau-group">
+				<div class="option temps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<label for="saison-temps"><strong>Peau</strong></label>
+					</span>
+					<span class="desc temps-desc">
+						<span class="short">Une Peau s’utilise lorsque le personnage effectue une action d’un certain type.</span>
+					</span>
+				</div>
+				<div class="option hiver">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-equipement="membrane" onclick="selectUnique('peau', this)">
+						<label for="peau-membrane"><strong>Membrane</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Dorsale, recouvrant le corps ou rejoignant les membres ou doigts.</span>
+					</span>
+				</div>
+				<div class="option printemps">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-equipement="camouflage" onclick="selectUnique('peau', this)">
+						<label for="peau-camouflage"><strong>Camouflage</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Coussinets, motifs, silencieux, feuillage…</span>
+					</span>
+				</div>
+				<div class="option ete">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-equipement="aposematisme" onclick="selectUnique('peau', this)">
+						<label for="peau-aposematisme"><strong>Aposématisme</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">Couleurs vives et motifs complexes.</span>
+					</span>
+				</div>
+				<div class="option automne">
+					<span style="display:flex;align-items:center;gap:0.5em;">
+						<input type="checkbox" name="peau" value="ecaille" id="peau-ecaille" data-equipement="ecaille" onclick="selectUnique('peau', this)">
+						<label for="peau-ecaille"><strong>Écailles</strong></label>
+					</span>
+					<span class="desc">
+						<span class="short">D’os, de chitine ou d’écorce, couvrant le corps et s’emboîtant</span>
+					</span>
+				</div>
+			</div>
+		</section>
 		
 		<!-------------------- ENVIRONNEMENT -------------------->
 		
