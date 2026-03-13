@@ -389,40 +389,23 @@ h3 {
 	& > label {
 		flex-basis: 100%;
 		text-align: center;
-	font-weight: bold;
+		font-weight: bold;
 	}
-}
-#fiche-dons {
-	display: flex;
-	flex-direction: row;
-	gap: 0.5em;
-	flex-wrap: wrap;
 	
-	.don-recap {
+	& > div {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5em;
+		flex-wrap: wrap;
+	}
+	
+	.fiche-bloc-item {
 		border: 1px solid #ccc;
 		border-radius: 6px;
 		padding: 0.5em 1em;
 		background: #fff;
 		box-sizing: border-box;
-		flex: 1 1 180px;
-		min-width: 160px;
-		max-width: 320px;
-	}
-}
-
-#fiche-equipements {
-	display: flex;
-	flex-direction: row;
-	gap: 0.5em;
-	flex-wrap: wrap;
-	
-	.equipement-recap {
-		border: 1px solid #ccc;
-		border-radius: 6px;
-		padding: 0.5em 1em;
-		background: #fff;
-		box-sizing: border-box;
-		flex: 1 1 180px;
+		flex: 1 1 200px;
 		min-width: 160px;
 		max-width: 320px;
 	}

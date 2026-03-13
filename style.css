@@ -436,37 +436,19 @@ h3 {
   text-align: center;
   font-weight: bold;
 }
-
-#fiche-dons {
+.fiche-bloc > div {
   display: flex;
   flex-direction: row;
   gap: 0.5em;
   flex-wrap: wrap;
 }
-#fiche-dons .don-recap {
+.fiche-bloc .fiche-bloc-item {
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 0.5em 1em;
   background: #fff;
   box-sizing: border-box;
-  flex: 1 1 180px;
-  min-width: 160px;
-  max-width: 320px;
-}
-
-#fiche-equipements {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-  flex-wrap: wrap;
-}
-#fiche-equipements .equipement-recap {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 0.5em 1em;
-  background: #fff;
-  box-sizing: border-box;
-  flex: 1 1 180px;
+  flex: 1 1 200px;
   min-width: 160px;
   max-width: 320px;
 }

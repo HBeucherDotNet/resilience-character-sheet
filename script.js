@@ -3,13 +3,22 @@ import { equipements } from './equipements.js';
 import { competences } from './competences.js';
 
 const saisonsEnum = {
-  hiver: 1,
-  printemps: 2,
-  ete: 3,
-  automne: 4
+	hiver: 1,
+	printemps: 2,
+	ete: 3,
+	automne: 4
 };
 
-function toggleDesc(btn) {
+// Couleurs par saison
+const couleurs = {
+	hiver: '#235a8a',
+	printemps: '#2c7a4b',
+	ete: '#bfa600',
+	automne: '#a13a3a',
+	temps: '#3a7ad2'
+};
+
+window.toggleDesc = function(btn) {
 	// Cherche le sibling .desc dans le parent
 	let desc = null;
 	const parent = btn.parentElement;
@@ -17,6 +26,7 @@ function toggleDesc(btn) {
 		desc = parent.querySelector('.desc');
 	}
 	if (!desc) return;
+	
 	const short = desc.querySelector('.short');
 	const long = desc.querySelector('.long');
 	
@@ -30,15 +40,6 @@ function toggleDesc(btn) {
 		else if (option.classList.contains('automne')) saison = 'automne';
 		else if (option.classList.contains('temps')) saison = 'temps';
 	}
-	
-	// Couleurs par saison
-	const couleurs = {
-		hiver: '#235a8a',
-		printemps: '#2c7a4b',
-		ete: '#bfa600',
-		automne: '#a13a3a',
-		temps: '#3a7ad2'
-	};
 	const couleur = couleurs[saison] || '#235a8a';
 	
 	// Pour le bouton pictogramme
@@ -76,7 +77,7 @@ function toggleDesc(btn) {
 	}
 }
 
-function selectUnique(group, el) {
+window.selectUnique = function(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
@@ -87,7 +88,7 @@ function selectUnique(group, el) {
 	if (selectedOption && el.checked) selectedOption.classList.add('selected-option');
 }
 
-function updateLignees() {
+window.updateLignees = function() {
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignéesMessage = document.getElementById('lignées-message');
 	const lignéesList = document.getElementById('lignées-list');
@@ -111,7 +112,7 @@ function updateLignees() {
 	});
 }
 
-function genererFiche() {
+window.genererFiche = function() {
 	// Remplit dynamiquement la fiche de personnage
 	const saison = document.querySelector('input[name="saison"]:checked');
 	const famille = document.querySelector('input[name="famille"]:checked');
@@ -132,22 +133,6 @@ function genererFiche() {
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 }
 
-function getsaisonScore(saison, saisonName) {
-	if (!saison) return '';
-	switch (Math.abs(saisonsEnum[saison.value] - saisonsEnum[saisonName])) {
-		case 0: return 3;
-		case 1:
-		case 3: return 2;
-		case 2: return 1;
-		default: return '';
-	}
-}
-
-// Expose les fonctions pour le HTML
-window.toggleDesc = toggleDesc;
-window.selectUnique = selectUnique;
-window.updateLignees = updateLignees;
-
 window.addEventListener('DOMContentLoaded', function() {
 	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
@@ -160,30 +145,35 @@ window.addEventListener('DOMContentLoaded', function() {
 	updateFicheEquipements(); // Met à jour les équipements au chargement
 	updateFicheCompetences(); // Met à jour les compétences au chargement
 });
+
 function updateFicheCompetences() {
 	// Récupère la compétence liée au rôle sélectionné
 	const role = document.querySelector('input[name="role"]:checked');
 	let competencesSelectionnees = [];
-	if (role && role.dataset.competence) {
-		competencesSelectionnees.push(role.dataset.competence);
+	if (role && role.dataset.competence && competences[role.dataset.competence]) {
+		const compObj = competences[role.dataset.competence];
+		competencesSelectionnees = Object.keys(compObj);
 	}
 	// Supprime les doublons
 	competencesSelectionnees = [...new Set(competencesSelectionnees)];
+	
+	console.log(competencesSelectionnees);
+	
 	const ficheCompetences = document.getElementById('fiche-competences');
 	ficheCompetences.innerHTML = '';
 	competencesSelectionnees.forEach(compKey => {
-		if (competences[compKey]) {
+		if (competences[role.dataset.competence][compKey]) {
 			ficheCompetences.innerHTML += `
-				<div class="competence-recap">
+				<div class="competence-recap fiche-bloc-item">
 					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
-					<label for="competence-${compKey}">${competences[compKey].nom}</label>
+					<label for="competence-${compKey}">${competences[role.dataset.competence][compKey].nom}</label>
 					<button type="button" class="competence-picto" onclick="window.toggleCompetenceResume('${compKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span class="competence-resume" style="display:none;">${competences[compKey].description}</span>
+					<span class="competence-resume" style="display:none;">${competences[role.dataset.competence][compKey].description}</span>
 				</div>
 			`;
 		}
@@ -218,7 +208,7 @@ function updateFicheEquipements() {
 	equipementsSelectionnes.forEach(eqKey => {
 		if (equipements[eqKey]) {
 			ficheEquipements.innerHTML += `
-				<div class="equipement-recap">
+				<div class="equipement-recap fiche-bloc-item">
 					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
 					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
 					<button type="button" class="equipement-picto" onclick="window.toggleEquipementResume('${eqKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
@@ -240,7 +230,7 @@ window.toggleEquipementResume = function(eqKey, btn) {
 	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
 };
 
-function updateFicheDons() {
+window.updateFicheDons = function() {
 	// Récupère le don sélectionné (famille ou lignée)
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
@@ -251,12 +241,15 @@ function updateFicheDons() {
 	if (lignee && lignee.dataset.don) {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
+	
+	console.log(donsSelectionnes);
+	
 	const ficheDons = document.getElementById('fiche-dons');
 	ficheDons.innerHTML = '';
 	donsSelectionnes.forEach(donKey => {
 		if (dons[donKey]) {
 			ficheDons.innerHTML += `
-				<div class="don-recap">
+				<div class="don-recap fiche-bloc-item">
 					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
 					<label for="don-${donKey}">${dons[donKey].nom}</label>
 					<button type="button" class="don-picto" onclick="window.toggleDonResume('${donKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
@@ -268,14 +261,25 @@ function updateFicheDons() {
 					<span class="don-resume" style="display:none;">${dons[donKey].description}</span>
 				</div>
 			`;
-		// Affiche ou masque le résumé du don
-		window.toggleDonResume = function(donKey, btn) {
-			const resume = btn.parentElement.querySelector('.don-resume');
-			if (!resume) return;
-			resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-		};
+			// Affiche ou masque le résumé du don
+			window.toggleDonResume = function(donKey, btn) {
+				const resume = btn.parentElement.querySelector('.don-resume');
+				if (!resume) return;
+				resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
+			};
 		}
 	});
+}
+
+function getsaisonScore(saison, saisonName) {
+	if (!saison) return '';
+	switch (Math.abs(saisonsEnum[saison.value] - saisonsEnum[saisonName])) {
+		case 0: return 3;
+		case 1:
+		case 3: return 2;
+		case 2: return 1;
+		default: return '';
+	}
 }
 
 // Ajoute les listeners pour afficher les dons
