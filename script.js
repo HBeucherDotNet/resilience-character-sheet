@@ -1,5 +1,6 @@
 import { dons } from './dons.js';
 import { equipements } from './equipements.js';
+import { competences } from './competences.js';
 
 const saisonsEnum = {
   hiver: 1,
@@ -148,7 +149,7 @@ window.selectUnique = selectUnique;
 window.updateLignees = updateLignees;
 
 window.addEventListener('DOMContentLoaded', function() {
-	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
+	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
 			input.addEventListener('change', genererFiche);
 		});
@@ -157,6 +158,47 @@ window.addEventListener('DOMContentLoaded', function() {
 	updateLignees(); // Met à jour les lignées au chargement
 	updateFicheDons(); // Met à jour les dons au chargement
 	updateFicheEquipements(); // Met à jour les équipements au chargement
+	updateFicheCompetences(); // Met à jour les compétences au chargement
+});
+function updateFicheCompetences() {
+	// Récupère la compétence liée au rôle sélectionné
+	const role = document.querySelector('input[name="role"]:checked');
+	let competencesSelectionnees = [];
+	if (role && role.dataset.competence) {
+		competencesSelectionnees.push(role.dataset.competence);
+	}
+	// Supprime les doublons
+	competencesSelectionnees = [...new Set(competencesSelectionnees)];
+	const ficheCompetences = document.getElementById('fiche-competences');
+	ficheCompetences.innerHTML = '';
+	competencesSelectionnees.forEach(compKey => {
+		if (competences[compKey]) {
+			ficheCompetences.innerHTML += `
+				<div class="competence-recap">
+					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
+					<label for="competence-${compKey}">${competences[compKey].nom}</label>
+					<button type="button" class="competence-picto" onclick="window.toggleCompetenceResume('${compKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
+							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
+						</svg>
+					</button>
+					<span class="competence-resume" style="display:none;">${competences[compKey].description}</span>
+				</div>
+			`;
+		}
+	});
+}
+
+window.toggleCompetenceResume = function(compKey, btn) {
+	const resume = btn.parentElement.querySelector('.competence-resume');
+	if (!resume) return;
+	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
+};
+['role'].forEach(group => {
+	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+		input.addEventListener('change', updateFicheCompetences);
+	});
 });
 function updateFicheEquipements() {
 	// Récupère les équipements sélectionnés (environnement, mode-de-vie, philosophie, relation-rupture)
