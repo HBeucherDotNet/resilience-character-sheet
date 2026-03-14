@@ -199,14 +199,29 @@ h3 {
 	}
 }
 
+.fiche-header-logo-row {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+}
+.fiche-nom {
+	margin: 0;
+	align-self: center;
+}
+
 .fiche-logo { 
-	width: 120px;
+	width: 200px;
 }
 
 .fiche-nom {
 	font-size: 2em;
-	font-weight: bold;
 	margin-left: 1em; 
+}
+
+#fiche-nom-input {
+	border-width: 1px;
+	border-style: none none solid none;
+	font-size: 2em;
 }
 
 .fiche-valeurs,
@@ -214,7 +229,7 @@ h3 {
 	padding: 0.5em 1em;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
-
+	
 	&.hiver {
 		border-color: colors.$color-hiver;
 	}
@@ -239,7 +254,7 @@ h3 {
 	padding: 0;
 	grid-column: span 2;
 	border-collapse: collapse; 
-
+	
 	td { 
 		border: 1px dotted #222; 
 		padding: 0.3em 0.5em;
@@ -504,7 +519,7 @@ h3 {
 	.fiche-bloc-item {
 		border: 1px solid #ccc;
 		border-radius: 6px;
-		padding: 0.5em 1em 0.5em 2em;
+		padding: 0.5em 2em 0.5em 0.5em;
 		background: #fff;
 		box-sizing: border-box;
 		flex: 1 1 200px;
