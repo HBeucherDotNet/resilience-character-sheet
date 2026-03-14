@@ -134,6 +134,7 @@ window.genererFiche = function() {
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 
 	document.getElementById('fiche-champ-lexical').className = saison.value;
+	document.getElementById('fiche-magie').className = saison.value;
 }
 
 window.toggleResume = function(eqKey, btn) {
@@ -175,7 +176,7 @@ function updateFicheCompetences() {
 				<div class="competence-recap fiche-bloc-item">
 					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
 					<label for="competence-${compKey}">${competences[role.dataset.competence][compKey].nom}</label>
-					<button type="button" class="competence-picto" onclick="window.toggleResume('${compKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume('${compKey}', this)" aria-label="Afficher le résumé">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="${couleurs.printemps}" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.printemps}">?</text>
@@ -209,7 +210,7 @@ function updateFicheEquipements() {
 				<div class="equipement-recap fiche-bloc-item">
 					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
 					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
-					<button type="button" class="equipement-picto" onclick="window.toggleResume('${eqKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume('${eqKey}', this)" aria-label="Afficher le résumé">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="${couleurs.automne}" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.automne}">?</text>
@@ -242,7 +243,7 @@ function updateFicheDons() {
 				<div class="don-recap fiche-bloc-item">
 					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
 					<label for="don-${donKey}">${dons[donKey].nom}</label>
-					<button type="button" class="don-picto" onclick="window.toggleResume('${donKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume('${donKey}', this)" aria-label="Afficher le résumé">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="${couleurs.ete}" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.ete}">?</text>
@@ -276,7 +277,7 @@ function updateFicheMorphologies() {
 				<div class="equipement-recap fiche-bloc-item">
 					<input type="checkbox" id="morphologie-${morphKey}" name="morphologie-selected" value="${morphKey}">
 					<label for="morphologie-${morphKey}">${morphologies[morphKey].nom}</label>
-					<button type="button" class="morphologie-picto" onclick="window.toggleResume('${morphKey}', this)" aria-label="Afficher le résumé" style="background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume('${morphKey}', this)" aria-label="Afficher le résumé">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="${couleurs.hiver}" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.hiver}">?</text>
