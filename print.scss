@@ -1,0 +1,21 @@
+@use "colors";
+
+/* Masquer les questions lors de l'impression */
+@media print {
+	body {
+		background: colors.$color-white !important;
+		margin: 0 !important;
+		font-size: smaller !important;
+	}
+	#character-builder {
+		display: none !important;
+	}
+	#fiche-personnage {
+		padding: 0 !important;
+		box-shadow: none !important;
+		border: none !important;
+	}
+	.pictogram-btn {
+		display: none !important;
+	}
+}

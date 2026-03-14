@@ -1,4 +1,23 @@
 @charset "UTF-8";
+/* Masquer les questions lors de l'impression */
+@media print {
+  body {
+    background: #fff !important;
+    margin: 0 !important;
+    font-size: smaller !important;
+  }
+  #character-builder {
+    display: none !important;
+  }
+  #fiche-personnage {
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .pictogram-btn {
+    display: none !important;
+  }
+}
 body {
   font-family: Arial, sans-serif;
   margin: 2em;
@@ -169,20 +188,6 @@ h3 {
   margin-bottom: 0.5em;
 }
 
-/* Masquer les questions lors de l'impression */
-@media print {
-  #character-builder {
-    display: none !important;
-  }
-  #fiche-personnage {
-    padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  .pictogram-btn {
-    display: none !important;
-  }
-}
 #fiche-personnage {
   display: flex;
   flex-direction: column;
@@ -376,6 +381,7 @@ h3 {
   flex-direction: column;
   gap: 1em;
   grid-row: span 2;
+  max-width: 520px;
 }
 
 .fiche-resonances table {
@@ -386,6 +392,13 @@ h3 {
   border: 1px dotted #222;
   padding: 0.3em 0.5em;
   text-align: left;
+}
+.fiche-resonances input {
+  border-width: 1px;
+  border-style: none none solid none;
+}
+.fiche-resonances .resonnance-point, .fiche-resonances .resonnance-niveau {
+  width: 45px;
 }
 
 #fiche-magie {
@@ -495,7 +508,7 @@ h3 {
 .fiche-bloc .fiche-bloc-item {
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em 2em;
   background: #fff;
   box-sizing: border-box;
   flex: 1 1 200px;

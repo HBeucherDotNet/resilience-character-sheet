@@ -1,64 +1,19 @@
-// Variables de couleurs
-$color-bg-page: #e9ecf3;
-$color-white: #fff;
-$color-border-section: #d3d7e3;
-$color-hiver-bg: #e3ecf7;
-$color-printemps-bg: #e6f7e3;
-$color-ete-bg: #f7f5e3;
-$color-automne-bg: #f7e3e3;
-$color-hiver-border: #b3cbe6;
-$color-printemps-border: #b6e6b3;
-$color-ete-border: #e6e3b3;
-$color-automne-border: #e6b3b3;
-$color-text-main: #444;
-$color-text-dark: #333;
-$color-bg-option: #f9f9f9;
-$color-bg-temps: #f5f5f5;
-$color-border-gray: #cccccc;
-$color-text-muted: #555;
-$color-border-light: #ccc;
-$color-text-label: #222;
-$color-border-separator: #bbb;
-$color-border-cercle: #888;
-
-// couleurs saisonnières
-$color-hiver-lighter: #e3ecf7;
-$color-hiver-light: #b3cbe6;
-$color-hiver: #235a8a;
-
-$color-printemps-lighter: #e6f7e3;
-$color-printemps-light: #b6e6b3;
-$color-printemps: #2c7a4b;
-
-$color-ete-lighter: #f7f5e3;
-$color-ete-light: #e6e3b3;
-$color-ete: #bfa600;
-
-$color-automne-lighter: #f7e3e3;
-$color-automne-light: #e6b3b3;
-$color-automne: #a13a3a;
-
-$color-temps-lighter: #f5f5f5;
-$color-temps-light: #cccccc;
-$color-temps: #235a8a;
-
-$color-rupture-lighter: #e3e0f0;
-$color-rupture-light: #b3a3d6;
-$color-rupture: #7d5fa3;
+@use "colors";
+@use "print.scss";
 
 body {
 	font-family: Arial, sans-serif;
 	margin: 2em;
-	background: $color-bg-page;
+	background: colors.$color-bg-page;
 }
 
 section {
 	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-	background: $color-white;
+	background: colors.$color-white;
 	padding: 1.2em 1em;
 	margin-bottom: 1.5em;
-	border: 1px solid $color-border-section;
+	border: 1px solid colors.$color-border-section;
 	transition: box-shadow 0.2s, transform 0.2s;
 	&:hover {
 		box-shadow: 0 4px 16px rgba(0,0,0,0.12);
@@ -79,7 +34,7 @@ section {
 h2 {
 	margin-top: 0;
 	font-size: 1.25em;
-	color: $color-hiver;
+	color: colors.$color-hiver;
 	letter-spacing: 0.02em;
 	margin-bottom: 0.7em;
 }
@@ -98,40 +53,40 @@ h3 {
 	border-radius: 8px;
 	padding: 0.5em;
 	&.hiver {
-		background: $color-hiver-lighter;
-		border-color: $color-hiver-light;
+		background: colors.$color-hiver-lighter;
+		border-color: colors.$color-hiver-light;
 	}
 	&.printemps {
-		background: $color-printemps-lighter;
-		border-color: $color-printemps-light;
+		background: colors.$color-printemps-lighter;
+		border-color: colors.$color-printemps-light;
 	}
 	&.ete {
-		background: $color-ete-lighter;
-		border-color: $color-ete-light;
+		background: colors.$color-ete-lighter;
+		border-color: colors.$color-ete-light;
 	}
 	&.automne {
-		background: $color-automne-lighter;
-		border-color: $color-automne-light;
+		background: colors.$color-automne-lighter;
+		border-color: colors.$color-automne-light;
 	}
 	&.temps {
-		background: $color-temps-lighter;
-		border-color: $color-temps-light;
+		background: colors.$color-temps-lighter;
+		border-color: colors.$color-temps-light;
 	}
 }
 
 .selected-option {
 	z-index: 1;
 	&.hiver {
-		border-color: $color-hiver !important;
+		border-color: colors.$color-hiver !important;
 	}
 	&.printemps {
-		border-color: $color-printemps !important;
+		border-color: colors.$color-printemps !important;
 	}
 	&.ete {
-		border-color: $color-ete !important;
+		border-color: colors.$color-ete !important;
 	}
 	&.automne {
-		border-color: $color-automne !important;
+		border-color: colors.$color-automne !important;
 	}
 }
 
@@ -220,26 +175,11 @@ h3 {
 	margin-bottom: 0.5em;
 }
 
-/* Masquer les questions lors de l'impression */
-@media print {
-	#character-builder {
-		display: none !important;
-	}
-	#fiche-personnage {
-		padding: 0 !important;
-		box-shadow: none !important;
-		border: none !important;
-	}
-	.pictogram-btn {
-		display: none !important;
-	}
-}
-
 #fiche-personnage {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5em;
-	background: $color-white;
+	background: colors.$color-white;
 	padding: 2em;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -255,9 +195,9 @@ h3 {
 .fiche-nom { font-size: 2em; font-weight: bold; margin-left: 1em; }
 .fiche-infos, .fiche-valeurs, .fiche-sante { margin: 0.5em 1em; }
 .valeur { border-radius: 8px; padding: 0.5em 1em; border-width: 2px; border-style: solid; background: #f7f7ff; }
-.valeur.saison-hiver { border-color: $color-hiver; }
-.valeur.rupture { border-color: $color-rupture; background: $color-rupture-lighter; }
-.fiche-sante { border-width: 2px; border-style: solid; border-color: $color-text-label; padding: 0.5em 1em; background: $color-white; }
+.valeur.saison-hiver { border-color: colors.$color-hiver; }
+.valeur.rupture { border-color: colors.$color-rupture; background: colors.$color-rupture-lighter; }
+.fiche-sante { border-width: 2px; border-style: solid; border-color: colors.$color-text-label; padding: 0.5em 1em; background: colors.$color-white; }
 .fiche-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5em; }
 .fiche-saisons { display: flex; flex-wrap: wrap; gap: 1em; }
 .saison-block {
@@ -275,29 +215,29 @@ h3 {
 	justify-content: space-between;
 	
 	&.saison-hiver { 
-		border-color: $color-hiver; 
-		background: $color-hiver-lighter; 
-		.saison-cercle { border-color: $color-hiver; }
+		border-color: colors.$color-hiver; 
+		background: colors.$color-hiver-lighter; 
+		.saison-cercle { border-color: colors.$color-hiver; }
 	}
 	&.saison-printemps { 
-		border-color: $color-printemps; 
-		background: $color-printemps-lighter; 
-		.saison-cercle { border-color: $color-printemps; }
+		border-color: colors.$color-printemps; 
+		background: colors.$color-printemps-lighter; 
+		.saison-cercle { border-color: colors.$color-printemps; }
 	}
 	&.saison-ete { 
-		border-color: $color-ete; 
-		background: $color-ete-lighter; 
-		.saison-cercle { border-color: $color-ete; }
+		border-color: colors.$color-ete; 
+		background: colors.$color-ete-lighter; 
+		.saison-cercle { border-color: colors.$color-ete; }
 	}
 	&.saison-automne { 
-		border-color: $color-automne; 
-		background: $color-automne-lighter; 
-		.saison-cercle { border-color: $color-automne; }
+		border-color: colors.$color-automne; 
+		background: colors.$color-automne-lighter; 
+		.saison-cercle { border-color: colors.$color-automne; }
 	}
 	&.saison-temps { 
-		border-color: $color-temps; 
-		background: $color-temps-lighter; 
-		.saison-cercle { border-color: $color-temps; }
+		border-color: colors.$color-temps; 
+		background: colors.$color-temps-lighter; 
+		.saison-cercle { border-color: colors.$color-temps; }
 	}
 }
 .saison-info {
@@ -375,6 +315,7 @@ h3 {
 	flex-direction: column;
 	gap: 1em;
 	grid-row: span 2;
+	max-width: 520px;
 }
 
 .fiche-resonances {
@@ -382,7 +323,16 @@ h3 {
 		width: 100%; border-collapse: collapse; 
 	}
 	th, td { 
-		border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; 
+		border: 1px dotted #222; 
+		padding: 0.3em 0.5em;
+		text-align: left; 
+	}
+	input {
+		border-width: 1px;
+		border-style: none none solid none;
+	}
+	.resonnance-point, .resonnance-niveau {
+		width: 45px; 
 	}
 }
 
@@ -394,36 +344,36 @@ h3 {
 	background: #f7f7ff;
 	
 	&.hiver {
-		background: $color-hiver-lighter;
-		border-color: $color-hiver-light;
+		background: colors.$color-hiver-lighter;
+		border-color: colors.$color-hiver-light;
 		#fiche-magie-hiver {
 			display: table;
 		}
 	}
 	&.printemps {
-		background: $color-printemps-lighter;
-		border-color: $color-printemps-light;
+		background: colors.$color-printemps-lighter;
+		border-color: colors.$color-printemps-light;
 		#fiche-magie-printemps {
 			display: table;
 		}
 	}
 	&.ete {
-		background: $color-ete-lighter;
-		border-color: $color-ete-light;
+		background: colors.$color-ete-lighter;
+		border-color: colors.$color-ete-light;
 		#fiche-magie-ete {
 			display: table;
 		}
 	}
 	&.automne {
-		background: $color-automne-lighter;
-		border-color: $color-automne-light;
+		background: colors.$color-automne-lighter;
+		border-color: colors.$color-automne-light;
 		#fiche-magie-automne {
 			display: table;
 		}
 	}
 	&.temps {
-		background: $color-temps-lighter;
-		border-color: $color-temps-light;
+		background: colors.$color-temps-lighter;
+		border-color: colors.$color-temps-light;
 		#fiche-magie-temps {
 			display: table;
 		}
@@ -467,16 +417,16 @@ h3 {
 	gap: 0.5em;
 	
 	&.saison-hiver { 
-		border-color: $color-hiver; 
+		border-color: colors.$color-hiver; 
 	}
 	&.saison-printemps { 
-		border-color: $color-printemps; 
+		border-color: colors.$color-printemps; 
 	}
 	&.saison-ete { 
-		border-color: $color-ete; 
+		border-color: colors.$color-ete; 
 	}
 	&.saison-automne { 
-		border-color: $color-automne; 
+		border-color: colors.$color-automne; 
 	}
 	
 	& > label {
@@ -495,7 +445,7 @@ h3 {
 	.fiche-bloc-item {
 		border: 1px solid #ccc;
 		border-radius: 6px;
-		padding: 0.5em 1em;
+		padding: 0.5em 1em 0.5em 2em;
 		background: #fff;
 		box-sizing: border-box;
 		flex: 1 1 200px;
@@ -527,40 +477,40 @@ h3 {
 	}
 	
 	&.hiver {
-		border-color: $color-hiver;
-		background-color: $color-hiver-lighter;
+		border-color: colors.$color-hiver;
+		background-color: colors.$color-hiver-lighter;
 		#mots-hiver {
 			display: flex;
 		}
 	}
 	
 	&.printemps {
-		border-color: $color-printemps;
-		background-color: $color-printemps-lighter;
+		border-color: colors.$color-printemps;
+		background-color: colors.$color-printemps-lighter;
 		#mots-printemps {
 			display: flex;
 		}
 	}
 	
 	&.ete {
-		border-color: $color-ete;
-		background-color: $color-ete-lighter;
+		border-color: colors.$color-ete;
+		background-color: colors.$color-ete-lighter;
 		#mots-ete {
 			display: flex;
 		}
 	}
 	
 	&.automne {
-		border-color: $color-automne;
-		background-color: $color-automne-lighter;
+		border-color: colors.$color-automne;
+		background-color: colors.$color-automne-lighter;
 		#mots-automne {
 			display: flex;
 		}
 	}
 	
 	&.temps {
-		border-color: $color-temps;
-		background-color: $color-temps-lighter;
+		border-color: colors.$color-temps;
+		background-color: colors.$color-temps-lighter;
 		#mots-temps {
 			display: flex;
 		}
