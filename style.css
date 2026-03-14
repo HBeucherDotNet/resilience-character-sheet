@@ -223,50 +223,45 @@ h3 {
 }
 
 .fiche-valeurs,
-.fiche-sante,
 #fiche-essence-harmonie {
   padding: 0.5em 1em;
   border: 2px solid #d3d7e3;
   border-radius: 16px;
 }
 .fiche-valeurs.hiver,
-.fiche-sante.hiver,
 #fiche-essence-harmonie.hiver {
   border-color: #235a8a;
 }
 .fiche-valeurs.printemps,
-.fiche-sante.printemps,
 #fiche-essence-harmonie.printemps {
   border-color: #2c7a4b;
 }
 .fiche-valeurs.ete,
-.fiche-sante.ete,
 #fiche-essence-harmonie.ete {
   border-color: #bfa600;
 }
 .fiche-valeurs.automne,
-.fiche-sante.automne,
 #fiche-essence-harmonie.automne {
   border-color: #a13a3a;
 }
 .fiche-valeurs.temps,
-.fiche-sante.temps,
 #fiche-essence-harmonie.temps {
   border-color: #235a8a;
 }
 .fiche-valeurs.rupture,
-.fiche-sante.rupture,
 #fiche-essence-harmonie.rupture {
   border-color: #7d5fa3;
 }
 
 .fiche-sante {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #222;
-  padding: 0.5em 1em;
-  background: #fff;
-  grid-row: span 2;
+  padding: 0;
+  grid-column: span 2;
+  border-collapse: collapse;
+}
+.fiche-sante td {
+  border: 1px dotted #222;
+  padding: 0.3em 0.5em;
+  text-align: left;
 }
 
 .fiche-grid {

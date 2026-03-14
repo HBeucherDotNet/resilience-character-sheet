@@ -132,6 +132,7 @@ window.genererFiche = function() {
 	document.getElementById('fiche-ete').textContent = getsaisonScore(saison, 'ete');
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
+	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
 
 	document.getElementById('fiche-essence-harmonie').className = saison.value;
 	document.getElementById('fiche-champ-lexical').className = saison.value;
@@ -298,7 +299,7 @@ function getsaisonScore(saison, saisonName) {
 		case 1:
 		case 3: return 2;
 		case 2: return 1;
-		default: return '';
+		default: return 2;
 	}
 }
 
