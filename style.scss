@@ -354,13 +354,59 @@ h3 {
 		text-align: right;
 	}
 }
-.saison-title { font-size: 1.2em; font-weight: bold; display: flex; align-items: center; gap: 0.5em; }
-.saison-icon { font-size: 1.5em; }
-.saison-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; position: absolute; top: 1em; right: 1em; }
-.fiche-tableaux { display: flex; flex-direction: column; gap: 1em; }
-.fiche-resonances table { width: 100%; border-collapse: collapse; }
-.fiche-resonances th, .fiche-resonances td { border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; }
-.fiche-magie { border: 1px solid #235a8a; border-radius: 8px; padding: 1em; background: #f7f7ff; }
+
+.saison-title { 
+	font-size: 1.2em;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 0.5em; 
+}
+
+.saison-icon { 
+	font-size: 1.5em; 
+}
+
+.fiche-tableaux { 
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	
+}
+
+.fiche-resonances {
+	table {
+		width: 100%; border-collapse: collapse; 
+	}
+	th, td { 
+		border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; 
+	}
+}
+
+.fiche-magie {
+	border: 1px solid #235a8a;
+	border-radius: 8px;
+	padding: 1em;
+	background: #f7f7ff; 
+	
+	.tableau-magie-talents	{
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	textarea {
+		width: 98%;
+		box-sizing: border-box;
+		border-radius: 6px;
+		border: 1px solid #ccc;
+		padding: 0.5em;
+		font-family: inherit;
+		font-size: 1em;
+		resize: vertical;
+		margin-bottom: 1em;
+	}
+}
+
 .fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; }
 .fiche-bloc {
 	flex: 1 1 40%;
@@ -425,7 +471,7 @@ h3 {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
-
+		
 		div {
 			flex-basis: 16%;
 			flex-shrink: 0;
