@@ -361,7 +361,7 @@ h3 {
 .fiche-resonances table { width: 100%; border-collapse: collapse; }
 .fiche-resonances th, .fiche-resonances td { border: 1px dotted #222; padding: 0.3em 0.5em; text-align: left; }
 .fiche-magie { border: 1px solid #235a8a; border-radius: 8px; padding: 1em; background: #f7f7ff; }
-.fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; margin-top: 1em; }
+.fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; }
 .fiche-bloc {
 	flex: 1 1 40%;
 	border-radius: 8px;
@@ -412,11 +412,64 @@ h3 {
 	}
 }
 
-.fiche-champ-lexical {
-	border-top: 2px dotted $color-hiver;
-	margin-top: 1em;
-	padding-top: 0.7em;
+#fiche-champ-lexical {
+	border-width: 2px 0;
+	border-style: dotted none;
+	padding: 0.5em 0;
 	font-size: 1em;
-	color: $color-hiver;
-	display: flex; flex-direction: column; align-items: center;
+	flex-direction: column;
+	align-items: center;
+	
+	.champ-lexical {
+		display: none;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		div {
+			flex-basis: 16%;
+			flex-shrink: 0;
+			text-align: center;
+		}
+	}
+	
+	&.hiver {
+		border-color: $color-hiver;
+		background-color: $color-hiver-lighter;
+		#mots-hiver {
+			display: flex;
+		}
+	}
+	
+	&.printemps {
+		border-color: $color-printemps;
+		background-color: $color-printemps-lighter;
+		#mots-printemps {
+			display: flex;
+		}
+	}
+	
+	&.ete {
+		border-color: $color-ete;
+		background-color: $color-ete-lighter;
+		#mots-ete {
+			display: flex;
+		}
+	}
+	
+	&.automne {
+		border-color: $color-automne;
+		background-color: $color-automne-lighter;
+		#mots-automne {
+			display: flex;
+		}
+	}
+	
+	&.temps {
+		border-color: $color-temps;
+		background-color: $color-temps-lighter;
+		#mots-temps {
+			display: flex;
+		}
+	}
 }

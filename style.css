@@ -406,7 +406,6 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  margin-top: 1em;
 }
 
 .fiche-bloc {
@@ -455,15 +454,59 @@ h3 {
   max-width: 320px;
 }
 
-.fiche-champ-lexical {
-  border-top: 2px dotted #235a8a;
-  margin-top: 1em;
-  padding-top: 0.7em;
+#fiche-champ-lexical {
+  border-width: 2px 0;
+  border-style: dotted none;
+  padding: 0.5em 0;
   font-size: 1em;
-  color: #235a8a;
-  display: flex;
   flex-direction: column;
   align-items: center;
+}
+#fiche-champ-lexical .champ-lexical {
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#fiche-champ-lexical .champ-lexical div {
+  flex-basis: 16%;
+  flex-shrink: 0;
+  text-align: center;
+}
+#fiche-champ-lexical.hiver {
+  border-color: #235a8a;
+  background-color: #e3ecf7;
+}
+#fiche-champ-lexical.hiver #mots-hiver {
+  display: flex;
+}
+#fiche-champ-lexical.printemps {
+  border-color: #2c7a4b;
+  background-color: #e6f7e3;
+}
+#fiche-champ-lexical.printemps #mots-printemps {
+  display: flex;
+}
+#fiche-champ-lexical.ete {
+  border-color: #bfa600;
+  background-color: #f7f5e3;
+}
+#fiche-champ-lexical.ete #mots-ete {
+  display: flex;
+}
+#fiche-champ-lexical.automne {
+  border-color: #a13a3a;
+  background-color: #f7e3e3;
+}
+#fiche-champ-lexical.automne #mots-automne {
+  display: flex;
+}
+#fiche-champ-lexical.temps {
+  border-color: #235a8a;
+  background-color: #f5f5f5;
+}
+#fiche-champ-lexical.temps #mots-temps {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */
