@@ -132,6 +132,8 @@ window.genererFiche = function() {
 	document.getElementById('fiche-ete').textContent = getsaisonScore(saison, 'ete');
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
+
+	document.getElementById('fiche-champ-lexical').className = saison.value;
 }
 
 window.toggleResume = function(eqKey, btn) {
@@ -300,17 +302,17 @@ function getsaisonScore(saison, saisonName) {
 
 // Ajoute les listeners pour afficher les dons
 ['famille', 'lignee'].forEach(group => {
-	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
 		input.addEventListener('change', updateFicheDons);
 	});
 });
 ['role'].forEach(group => {
-	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
 		input.addEventListener('change', updateFicheCompetences);
 	});
 });
 ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
-	document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
+	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
 		input.addEventListener('change', updateFicheEquipements);
 	});
 });
