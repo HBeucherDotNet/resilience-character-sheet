@@ -17,13 +17,13 @@
 			<h2>Saison</h2>
 			<div class="flex-group" id="saison-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onclick="selectUnique('saison', this)">
 						<label for="saison-hiver"><strong>Hiver</strong></label>
 					</span>
@@ -38,13 +38,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onclick="selectUnique('saison', this)">
 						<label for="saison-printemps"><strong>Printemps</strong></label>
 					</span>
@@ -59,13 +59,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="saison" value="ete" id="saison-ete" onclick="selectUnique('saison', this)">
 						<label for="saison-ete"><strong>Été</strong></label>
 					</span>
@@ -80,13 +80,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="saison" value="automne" id="saison-automne" onclick="selectUnique('saison', this)">
 						<label for="saison-automne"><strong>Automne</strong></label>
 					</span>
@@ -101,13 +101,13 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="saison" value="temps" id="saison-temps" onclick="selectUnique('saison', this)">
 						<label for="saison-temps"><strong>Temps</strong></label>
 					</span>
@@ -130,13 +130,13 @@
 			<h2>Famille</h2>
 			<div class="flex-group" id="famille-group">
 				<div class="option ete" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline" onclick="selectUnique('famille', this); updateLignees()">
 						<label for="famille-squelette"><strong>Squelette</strong></label>
 					</span>
@@ -148,13 +148,13 @@
 					</span>
 				</div>
 				<div class="option printemps" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose" onclick="selectUnique('famille', this); updateLignees()">
 						<label for="famille-cellulose"><strong>Cellulose</strong></label>
 					</span>
@@ -166,13 +166,13 @@
 					</span>
 				</div>
 				<div class="option automne" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette" onclick="selectUnique('famille', this); updateLignees()">
 						<label for="famille-chitine"><strong>Chitine</strong></label>
 					</span>
@@ -184,13 +184,13 @@
 					</span>
 				</div>
 				<div class="option hiver" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme" onclick="selectUnique('famille', this); updateLignees()">
 						<label for="famille-souple"><strong>Souple</strong></label>
 					</span>
@@ -212,15 +212,15 @@
 				<p id="lignées-message">Veuillez choisir une famille.</p>
 				<div id="lignées-list" class="flex-group">
 					<div class="option lignee hiver squelette" style="display:none;position:relative;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose" data-don="amphibie" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Amphiose"><strong>Amphiose</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Amphiose"><strong>Amphiose</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Amphioses sont dérivées des amphibiens : grenouilles, crapauds et salamandres.</span>
@@ -239,15 +239,15 @@
 						</div>
 					</div>
 					<div class="option lignee ete squelette" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire" data-don="signaux" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Aviaire"><strong>Aviaire</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Aviaire"><strong>Aviaire</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Aviaires peuvent tenir de n'importe quel oiseau, mais aussi des raies, requins et poissons cartilagineux.</span>
@@ -270,15 +270,15 @@
 						</div>
 					</div>
 					<div class="option lignee automne squelette" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien" data-don="reserves" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Mammalien"><strong>Mammalien</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Mammalien"><strong>Mammalien</strong></label> <span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Mammaliens sont la Lignée majoritaire à Kiwandoto. Ils ont une très grande diversité morphologique, pouvant tenir de n’importe quel mammifère, y compris marin comme les phoques et les cétacés.</span>
@@ -301,15 +301,15 @@
 						</div>
 					</div>
 					<div class="option lignee printemps squelette" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie" data-don="thermoception" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Ophidie"><strong>Ophidie</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Ophidie"><strong>Ophidie</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Ophidies sont des êtres de grande taille, tenant du lézard, du crocodile ou du serpent. Les tortues marines et poissons osseux sont également des sources d’inspiration pour les Ophidies.</span>
@@ -332,15 +332,15 @@
 						</div>
 					</div>
 					<div class="option lignee hiver cellulose" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose" data-don="grimper" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Bryose"><strong>Bryose</strong> <span class="lignee-sexe">(asexué)</span></label>
+							<label for="lignee-Bryose"><strong>Bryose</strong></label><span class="lignee-sexe">(asexué)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Bryoses sont des lichens, des mousses ou des fougères se construisant un habitat mobile de sable, de graviers et de pierres. Elles peuvent aussi avoir pour origine des algues, coraux ou foraminifères.</span>
@@ -362,15 +362,15 @@
 						</div>
 					</div>
 					<div class="option lignee printemps cellulose" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon" data-don="sonar" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Mycon"><strong>Mycon</strong> <span class="lignee-sexe">(plurisexués)</span></label>
+							<label for="lignee-Mycon"><strong>Mycon</strong></label><span class="lignee-sexe">(plurisexués)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Mycons sont des superorganismes, des colonies de champignons, de blob et/ou d’éponges d’espèces différentes, chacune assurant la fonction d'un organe ou d'une partie d'un membre de ce corps anthropoïde, aux deux jambes qui glissent sur le sol sans se lever.</span>
@@ -392,15 +392,15 @@
 						</div>
 					</div>
 					<div class="option lignee ete cellulose" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien" data-don="empathie" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Pollinien"><strong>Pollinien</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+							<label for="lignee-Pollinien"><strong>Pollinien</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Polliniens sont pratiquement les seules fleurs restantes sur Kiwandoto. Ils sont issus des herbacées comme les pissenlits, les céréales, mais aussi des lotus et roseaux.</span>
@@ -423,15 +423,15 @@
 						</div>
 					</div>
 					<div class="option lignee automne cellulose" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose" data-don="prehenseurs" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Xylose"><strong>Xylose</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+							<label for="lignee-Xylose"><strong>Xylose</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Xyloses sont originaires des arbres et arbustes, parfois des hydres et anémones. Leur apparence est anthropomorphe, avec une chevelure de feuilles ou d’aiguilles, et une écorce très variable.</span>
@@ -453,15 +453,15 @@
 						</div>
 					</div>
 					<div class="option lignee automne chitine" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen" data-don="poison" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Arachéen"><strong>Arachéen</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Arachéen"><strong>Arachéen</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Arachéens ont pour origine les araignées, scorpions, opilions et autres arachnides. Les limules font aussi partie des inspirations pour les Arachéens.</span>
@@ -483,15 +483,15 @@
 						</div>
 					</div>
 					<div class="option lignee ete chitine" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes" data-don="presence" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Orthocètes"><strong>Orthocètes</strong> <span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span></label>
+							<label for="lignee-Orthocètes"><strong>Orthocètes</strong></label><span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Orthocètes ont pour origine les fourmis, termites, abeilles et tous les insectes sociaux ou grégaires tels que les criquets, charançons et gendarmes. Les crabes, écrevisses et autres animaux marins décapodes sont également des inspirations possibles.</span>
@@ -512,15 +512,15 @@
 						</div>
 					</div>
 					<div class="option lignee printemps chitine" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige" data-don="pistage" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Scutige"><strong>Scutige</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Scutige"><strong>Scutige</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Scutiges sont une Lignée descendant les iules, mille-pattes et scolopendre, ainsi que des crevettes, puces de mer et autres décapodes et isopodes dont les cloportes.</span>
@@ -542,15 +542,15 @@
 						</div>
 					</div>
 					<div class="option lignee hiver chitine" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide" data-don="bond" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Syrphide"><strong>Syrphide</strong> <span class="lignee-sexe">(unisexe)</span></label>
+							<label for="lignee-Syrphide"><strong>Syrphide</strong></label><span class="lignee-sexe">(unisexe)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Syrphides peuvent provenir de n'importe quels insectes solitaires : papillon, punaise, mouche, libellule, mante, scarabée, phasmes ou même les nèpes et dytiques pour les membres les plus aquatiques.</span>
@@ -572,15 +572,15 @@
 						</div>
 					</div>
 					<div class="option lignee ete souple" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope" data-don="ecran" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Céphope"><strong>Céphope</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Céphope"><strong>Céphope</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Céphopes sont issus des poulpes, calamars, nautiles et autres octopus. Leurs tentacules fonctionnent généralement par paires, parfois fusionnés, équivalant concrètement à quatre membres très mobiles.</span>
@@ -602,15 +602,15 @@
 						</div>
 					</div>
 					<div class="option lignee automne souple" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse" data-don="coquille" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Nacrisse"><strong>Nacrisse</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+							<label for="lignee-Nacrisse"><strong>Nacrisse</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Nacrisses descendent des mollusques, comme les escargots, limaces et coquillages. Courbées sous leur coquille pour la majorité, elles avancent sur un unique pied puissant et massif.</span>
@@ -632,15 +632,15 @@
 						</div>
 					</div>
 					<div class="option lignee hiver souple" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite" data-don="terrier" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Saprosite"><strong>Saprosite</strong> <span class="lignee-sexe">(hermaphrodite)</span></label>
+							<label for="lignee-Saprosite"><strong>Saprosite</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Saprosites tiennent des lombrics, arénicoles, nématodes et autres annélides, mais aussi des limaces de mer, comme si cinq d'entre eux s'étaient associés pour former un genre de cheval.</span>
@@ -662,15 +662,15 @@
 						</div>
 					</div>
 					<div class="option lignee printemps souple" style="display:none;">
-						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+						<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 							<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 								<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 							</svg>
 						</button>
-						<span style="display:flex;align-items:center;gap:0.5em;">
+						<span class="option-label">
 							<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule" data-don="electroreception" onclick="selectUnique('lignee', this)">
-							<label for="lignee-Spicule"><strong>Spicule</strong> <span class="lignee-sexe">(mâle ou femelle)</span></label>
+							<label for="lignee-Spicule"><strong>Spicule</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
 							<span class="short">Les Spicules sont typiquement issues des étoiles de mer, parfois de l’ophiure, du concombre de mer ou de l’oursin. Les méduses et autres cnidaires en font également partie.</span>
@@ -704,7 +704,7 @@
 			</div>
 			<div class="flex-group" id="armement-group">
 				<div class="option temps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<label for="saison-temps"><strong>Armement</strong></label>
 					</span>
 					<span class="desc temps-desc">
@@ -712,7 +712,7 @@
 					</span>
 				</div>
 				<div class="option hiver">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="armement" value="articule" id="armement-articule" data-morphologie="articule" onclick="selectUnique('armement', this)">
 						<label for="armement-articule"><strong>Articulé</strong></label>
 					</span>
@@ -721,7 +721,7 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="armement" value="distance" id="armement-distance" data-morphologie="distance" onclick="selectUnique('armement', this)">
 						<label for="armement-distance"><strong>Distance</strong></label>
 					</span>
@@ -730,7 +730,7 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="armement" value="court" id="armement-court" data-morphologie="court" onclick="selectUnique('armement', this)">
 						<label for="armement-court"><strong>Court</strong></label>
 					</span>
@@ -739,7 +739,7 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="armement" value="long" id="armement-long" data-morphologie="long" onclick="selectUnique('armement', this)">
 						<label for="armement-long"><strong>Long</strong></label>
 					</span>
@@ -750,7 +750,7 @@
 			</div>
 			<div class="flex-group" id="cuirasse-group">
 				<div class="option temps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<label for="saison-temps"><strong>Cuirasse</strong></label>
 					</span>
 					<span class="desc temps-desc">
@@ -758,7 +758,7 @@
 					</span>
 				</div>
 				<div class="option hiver">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-morphologie="mucus" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-mucus"><strong>Mucus</strong></label>
 					</span>
@@ -767,7 +767,7 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-morphologie="urticant" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-urticant"><strong>Urticant</strong></label>
 					</span>
@@ -776,7 +776,7 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-morphologie="bourre" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-bourre"><strong>Bourre</strong></label>
 					</span>
@@ -785,7 +785,7 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-morphologie="carapace" onclick="selectUnique('cuirasse', this)">
 						<label for="cuirasse-carapace"><strong>Carapace</strong></label>
 					</span>
@@ -796,7 +796,7 @@
 			</div>
 			<div class="flex-group" id="mains-group">
 				<div class="option temps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<label for="saison-temps"><strong>Mains</strong></label>
 					</span>
 					<span class="desc temps-desc">
@@ -804,7 +804,7 @@
 					</span>
 				</div>
 				<div class="option hiver">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-morphologie="ventouses" onclick="selectUnique('mains', this)">
 						<label for="mains-ventouses"><strong>Ventouses</strong></label>
 					</span>
@@ -813,7 +813,7 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-morphologie="vibrisses" onclick="selectUnique('mains', this)">
 						<label for="mains-vibrisses"><strong>Vibrisses</strong></label>
 					</span>
@@ -822,7 +822,7 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-morphologie="crochets" onclick="selectUnique('mains', this)">
 						<label for="mains-crochets"><strong>Crochets</strong></label>
 					</span>
@@ -831,7 +831,7 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-morphologie="pinces" onclick="selectUnique('mains', this)">
 						<label for="mains-pinces"><strong>Pinces</strong></label>
 					</span>
@@ -842,7 +842,7 @@
 			</div>
 			<div class="flex-group" id="peau-group">
 				<div class="option temps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<label for="saison-temps"><strong>Peau</strong></label>
 					</span>
 					<span class="desc temps-desc">
@@ -850,7 +850,7 @@
 					</span>
 				</div>
 				<div class="option hiver">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-morphologie="membrane" onclick="selectUnique('peau', this)">
 						<label for="peau-membrane"><strong>Membrane</strong></label>
 					</span>
@@ -859,7 +859,7 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-morphologie="camouflage" onclick="selectUnique('peau', this)">
 						<label for="peau-camouflage"><strong>Camouflage</strong></label>
 					</span>
@@ -868,7 +868,7 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-morphologie="aposematisme" onclick="selectUnique('peau', this)">
 						<label for="peau-aposematisme"><strong>Aposématisme</strong></label>
 					</span>
@@ -877,7 +877,7 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="peau" value="ecaille" id="peau-ecaille" data-morphologie="ecaille" onclick="selectUnique('peau', this)">
 						<label for="peau-ecaille"><strong>Écailles</strong></label>
 					</span>
@@ -895,13 +895,13 @@
 			<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
 			<div class="flex-group" id="environnement-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres" onclick="selectUnique('environnement', this)">
 						<label for="environnement-riviere-lacs-marais"><strong>Rivières, lacs et marais</strong></label>
 					</span>
@@ -913,13 +913,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards" onclick="selectUnique('environnement', this)">
 						<label for="environnement-iles-littoral"><strong>Îles et littoral</strong></label>
 					</span>
@@ -931,13 +931,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque" onclick="selectUnique('environnement', this)">
 						<label for="environnement-plaines-collines"><strong>Plaines et collines</strong></label>
 					</span>
@@ -949,13 +949,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron" onclick="selectUnique('environnement', this)">
 						<label for="environnement-montagnes-canyons"><strong>Montagnes et canyons</strong></label>
 					</span>
@@ -977,13 +977,13 @@
 			<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
 			<div class="flex-group" id="mode-de-vie-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie" onclick="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-alize"><strong>Alizé</strong></label>
 					</span>
@@ -995,13 +995,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience" onclick="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-troglodyte"><strong>Troglodyte</strong></label>
 					</span>
@@ -1013,13 +1013,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer" onclick="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-sedentaire"><strong>Sédentaire</strong></label>
 					</span>
@@ -1031,13 +1031,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection" onclick="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-nomade"><strong>Nomade</strong></label>
 					</span>
@@ -1058,13 +1058,13 @@
 			<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
 			<div class="flex-group" id="philosophie-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe" onclick="selectUnique('philosophie', this)">
 						<label for="philosophie-inne"><strong>Inné</strong></label>
 					</span>
@@ -1076,13 +1076,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape" onclick="selectUnique('philosophie', this)">
 						<label for="philosophie-appris"><strong>Appris</strong></label>
 					</span>
@@ -1094,13 +1094,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure" onclick="selectUnique('philosophie', this)">
 						<label for="philosophie-chitine"><strong>Entraide</strong></label>
 					</span>
@@ -1112,13 +1112,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier" onclick="selectUnique('philosophie', this)">
 						<label for="philosophie-construit"><strong>Construit</strong></label>
 					</span>
@@ -1138,13 +1138,13 @@
 			<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
 			<div class="flex-group" id="relation-rupture-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee" onclick="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-dompter"><strong>Dompter</strong></label>
 					</span>
@@ -1156,13 +1156,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance" onclick="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-etudier"><strong>Étudier</strong></label>
 					</span>
@@ -1174,13 +1174,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte" onclick="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-purifier"><strong>Purifier</strong></label>
 					</span>
@@ -1192,13 +1192,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue" onclick="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-composer"><strong>Composer</strong></label>
 					</span>
@@ -1224,15 +1224,15 @@
 			</div>
 			<div class="flex-group" id="role-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="role" value="guide" id="role-guide" data-competence="guide" onclick="selectUnique('role', this)">
-						<label for="role-guide"><strong>Guide</strong> (nourrir et prévenir)</label>
+						<label for="role-guide"><strong>Guide</strong></label> (nourrir et prévenir)
 					</span>
 					<span class="desc">
 						<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
@@ -1247,15 +1247,15 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" data-competence="sibylle" onclick="selectUnique('role', this)">
-						<label for="role-sibylle"><strong>Sibylle</strong> (connaître et purifier)</label>
+						<label for="role-sibylle"><strong>Sibylle</strong></label> (connaître et purifier)
 					</span>
 					<span class="desc">
 						<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
@@ -1270,15 +1270,15 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="role" value="matrice" id="role-matrice" data-competence="matrice" onclick="selectUnique('role', this)">
-						<label for="role-matrice"><strong>Matrice</strong> (unir et échanger)</label>
+						<label for="role-matrice"><strong>Matrice</strong></label> (unir et échanger)
 					</span>
 					<span class="desc">
 						<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
@@ -1291,15 +1291,15 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="role" value="artisan" id="role-artisan" data-competence="artisan" onclick="selectUnique('role', this)">
-						<label for="role-artisan"><strong>Artisan</strong> (construire et innover)</label>
+						<label for="role-artisan"><strong>Artisan</strong></label> (construire et innover)
 					</span>
 					<span class="desc">
 						<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
@@ -1320,15 +1320,15 @@
 			<h2>Âge</h2>
 			<div class="flex-group" id="role-group">
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="role" value="guide" id="role-guide" onclick="selectUnique('age', this);">
-						<label for="role-guide"><strong>Jeune</strong></label>
+					<span class="option-label">
+						<input type="checkbox" name="age" value="jeune" id="age-jeune" onclick="selectUnique('age', this);">
+						<label for="age-jeune"><strong>Jeune</strong></label>
 					</span>
 					<span class="desc">
 						<span class="short">Ces personnages n'ont pas fini leur croissance et apprennent encore souvent leur métier.</span>
@@ -1336,15 +1336,15 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" onclick="selectUnique('age', this);">
-						<label for="role-sibylle"><strong>Adulte</strong></label>
+					<span class="option-label">
+						<input type="checkbox" name="age" value="adulte" id="age-adulte" onclick="selectUnique('age', this);">
+						<label for="age-adulte"><strong>Adulte</strong></label>
 					</span>
 					<span class="desc">
 						<span class="short">Ces personnages se sont déjà confrontés au monde, ils ont pratiqué leur profession et l’ont affinée, ce qui leur a montré l’étendue de ce qu’ils ont encore à apprendre.</span>
@@ -1352,15 +1352,15 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="role" value="matrice" id="role-matrice" onclick="selectUnique('age', this);">
-						<label for="role-matrice"><strong>Mûr</strong></label>
+					<span class="option-label">
+						<input type="checkbox" name="age" value="mur" id="age-mur" onclick="selectUnique('age', this);">
+						<label for="age-mur"><strong>Mûr</strong></label>
 					</span>
 					<span class="desc">
 						<span class="short">Ces personnages ont accumulé de l’expérience et des années peu communes pour ce monde post-Rupture.</span>
@@ -1368,15 +1368,15 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
-						<input type="checkbox" name="role" value="artisan" id="role-artisan" onclick="selectUnique('age', this);">
-						<label for="role-artisan"><strong>Âgé</strong></label>
+					<span class="option-label">
+						<input type="checkbox" name="age" value="age" id="age-age" onclick="selectUnique('age', this);">
+						<label for="age-age"><strong>Âgé</strong></label>
 					</span>
 					<span class="desc">
 						<span class="short">Ces personnages sont des êtres à part, leur longévité prouvant leur capacité de survie hors normes.</span>
@@ -1395,13 +1395,13 @@
 			</div>
 			<div class="flex-group" id="role-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onclick="selectUnique('personnalite', this)">
 						<label for="personnalite-eminence"><strong>Éminence</strong></label>
 					</span>
@@ -1413,13 +1413,13 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix" onclick="selectUnique('personnalite', this)">
 						<label for="personnalite-portefaix"><strong>Portefaix</strong></label>
 					</span>
@@ -1432,13 +1432,13 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onclick="selectUnique('personnalite', this)">
 						<label for="personnalite-leader"><strong>Leader</strong></label>
 					</span>
@@ -1451,13 +1451,13 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus" style="position:absolute;top:0.5em;right:0.5em;background:none;border:none;padding:0;cursor:pointer;">
+					<button type="button" class="lire-plus pictogram-btn" onclick="toggleDesc(this)" aria-label="Lire plus">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
 							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
 						</svg>
 					</button>
-					<span style="display:flex;align-items:center;gap:0.5em;">
+					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onclick="selectUnique('personnalite', this)">
 						<label for="personnalite-sage"><strong>Sage</strong></label>
 					</span>

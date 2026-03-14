@@ -88,6 +88,11 @@ h3 {
   background: #f5f5f5;
   border-color: #cccccc;
 }
+.option .option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
 
 .selected-option {
   z-index: 1;

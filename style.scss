@@ -72,6 +72,12 @@ h3 {
 		background: colors.$color-temps-lighter;
 		border-color: colors.$color-temps-light;
 	}
+
+	.option-label {
+		display:flex;
+		align-items:center;
+		gap:0.5em;
+	}
 }
 
 .selected-option {

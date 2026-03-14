@@ -153,11 +153,22 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 	genererFiche(); // Initialiser la fiche au chargement
 	updateLignees(); // Met à jour les lignées au chargement
+	updateFicheAge(); // Met à jour l'âge au chargement
 	updateFicheDons(); // Met à jour les dons au chargement
 	updateFicheEquipements(); // Met à jour les équipements au chargement
 	updateFicheCompetences(); // Met à jour les compétences au chargement
 	updateFicheMorphologies(); // Met à jour les morphologies au chargement
 });
+
+function updateFicheAge() {
+	const age = document.querySelector('input[name="age"]:checked');
+	const ficheAge = document.getElementById('fiche-age');
+	if (!age) {
+		ficheAge.textContent = '';
+		return;
+	}
+	ficheAge.textContent = age.closest('.option').querySelector('label').textContent.trim();
+}
 
 function updateFicheCompetences() {
 	// Récupère la compétence liée au rôle sélectionné
@@ -312,6 +323,11 @@ function getsaisonScore(saison, saisonName) {
 ['role'].forEach(group => {
 	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
 		input.addEventListener('change', updateFicheCompetences);
+	});
+});
+['age'].forEach(group => {
+	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+		input.addEventListener('change', updateFicheAge);
 	});
 });
 ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
