@@ -1474,28 +1474,38 @@
 	</div>
 	
 	<div id="fiche-personnage">
+		<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
+		<div class="fiche-nom">Nom :</div>
 		<div class="fiche-header">
-			<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
-			<div class="fiche-nom">Nom :</div>
-			<div class="fiche-infos">
+			<div class="fiche-valeurs">
 				<div>Saison : <span id="fiche-saison"></span></div>
 				<div>Taille : <span>5</span></div>
+			</div>
+			<div class="fiche-valeurs">
 				<div>Famille : <span id="fiche-famille"></span></div>
 				<div>Lignée : <span id="fiche-lignee"></span></div>
+			</div>
+			<div class="fiche-valeurs">
 				<div>Âge : <span id="fiche-age"></span></div>
 				<div>Rôle : <span id="fiche-role"></span></div>
 			</div>
-			<div class="fiche-valeurs">
+			<div id="fiche-essence-harmonie">
 				<div>Essence : <span id="fiche-essence"></span></div>
-				<div>Anathème : <span id="fiche-anatheme"></span></div>
 				<div>Harmonie :</div>
+				</div>
+			<div class="fiche-valeurs rupture">
+				<div>Anathème : <span id="fiche-anatheme"></span></div>
 				<div>Rupture :</div>
 			</div>
-			<div class="fiche-sante">
-				<div>Vitalité : <span id="fiche-vitalite"></span></div>
-				<div>Résilience : <span id="fiche-resilience"></span></div>
-				<div>Blessures : </div>
-			</div>
+			<table class="fiche-sante">
+				<tr>
+					<td>Vitalité : 8</td>
+					<td>Résilience : <span id="fiche-resilience"></span></td>
+				</tr>
+				<tr>
+					<td colspan="2">Blessures : </td>
+				</tr>
+			</table>
 		</div>
 		<div class="fiche-grid">
 			<div class="fiche-saisons">

@@ -186,18 +186,64 @@ h3 {
 	font-family: 'Georgia', serif;
 }
 .fiche-header {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
 	gap: 1em;
-	align-items: flex-start;
+	align-items: start;
+	
+	& > div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+	}
 }
-.fiche-logo { width: 120px; }
-.fiche-nom { font-size: 2em; font-weight: bold; margin-left: 1em; }
-.fiche-infos, .fiche-valeurs, .fiche-sante { margin: 0.5em 1em; }
-.valeur { border-radius: 8px; padding: 0.5em 1em; border-width: 2px; border-style: solid; background: #f7f7ff; }
-.valeur.saison-hiver { border-color: colors.$color-hiver; }
-.valeur.rupture { border-color: colors.$color-rupture; background: colors.$color-rupture-lighter; }
-.fiche-sante { border-width: 2px; border-style: solid; border-color: colors.$color-text-label; padding: 0.5em 1em; background: colors.$color-white; }
+
+.fiche-logo { 
+	width: 120px;
+}
+
+.fiche-nom {
+	font-size: 2em;
+	font-weight: bold;
+	margin-left: 1em; 
+}
+
+.fiche-valeurs,
+.fiche-sante,
+#fiche-essence-harmonie { 
+	padding: 0.5em 1em;
+	border: 2px solid colors.$color-border-section;
+	border-radius: 16px;
+
+	&.hiver {
+		border-color: colors.$color-hiver;
+	}
+	&.printemps {
+		border-color: colors.$color-printemps;
+	}
+	&.ete {
+		border-color: colors.$color-ete;
+	}
+	&.automne {
+		border-color: colors.$color-automne;
+	}
+	&.temps {
+		border-color: colors.$color-temps;
+	}
+	&.rupture {
+		border-color: colors.$color-rupture;
+	}
+}
+
+.fiche-sante { 
+	border-width: 2px;
+	border-style: solid; 
+	border-color: colors.$color-text-label;
+	padding: 0.5em 1em;
+	background: colors.$color-white; 
+	grid-row: span 2;
+}
 
 .fiche-grid {
 	display: grid;

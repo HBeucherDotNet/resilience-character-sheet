@@ -133,6 +133,7 @@ window.genererFiche = function() {
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 
+	document.getElementById('fiche-essence-harmonie').className = saison.value;
 	document.getElementById('fiche-champ-lexical').className = saison.value;
 	document.getElementById('fiche-magie').className = saison.value;
 }
