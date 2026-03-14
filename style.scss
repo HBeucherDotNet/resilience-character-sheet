@@ -198,8 +198,19 @@ h3 {
 .valeur.saison-hiver { border-color: colors.$color-hiver; }
 .valeur.rupture { border-color: colors.$color-rupture; background: colors.$color-rupture-lighter; }
 .fiche-sante { border-width: 2px; border-style: solid; border-color: colors.$color-text-label; padding: 0.5em 1em; background: colors.$color-white; }
-.fiche-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5em; }
-.fiche-saisons { display: flex; flex-wrap: wrap; gap: 1em; }
+
+.fiche-grid {
+	display: grid;
+	grid-template-columns: 2fr minmax(0, 30%); 
+	gap: 1.5em; 
+}
+
+.fiche-saisons {
+	display: flex; 
+	flex-wrap: wrap;
+	gap: 1em; 
+}
+
 .saison-block {
 	flex: 1 1 40%;
 	border-radius: 16px;
@@ -315,7 +326,6 @@ h3 {
 	flex-direction: column;
 	gap: 1em;
 	grid-row: span 2;
-	max-width: 520px;
 }
 
 .fiche-resonances {
