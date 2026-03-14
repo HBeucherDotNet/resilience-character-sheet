@@ -18,4 +18,9 @@
 	.pictogram-btn {
 		display: none !important;
 	}
+	.fiche-bloc .fiche-bloc-item {
+		border: none !important;
+		padding: 0.5em 0 !important;
+		flex: 1 1 auto !important;
+	}
 }

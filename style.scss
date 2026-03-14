@@ -184,7 +184,7 @@ h3 {
 #fiche-personnage {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5em;
+	gap: 1.2em;
 	background: colors.$color-white;
 	padding: 2em;
 	border-radius: 16px;
@@ -216,7 +216,7 @@ h3 {
 }
 
 .fiche-logo { 
-	width: 200px;
+	width: 180px;
 }
 
 .fiche-nom {
@@ -228,6 +228,7 @@ h3 {
 	border-width: 1px;
 	border-style: none none solid none;
 	font-size: 2em;
+	width: 450px;
 }
 
 .fiche-valeurs,
@@ -271,7 +272,7 @@ h3 {
 .fiche-grid {
 	display: grid;
 	grid-template-columns: 2fr minmax(0, 30%); 
-	gap: 1.5em; 
+	gap: 1.2em; 
 }
 
 .fiche-saisons {
@@ -333,8 +334,8 @@ h3 {
 	flex: 0 0 80px;
 }
 .saison-cercle {
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	border: 2px solid #888;
 	background: #fff;
@@ -387,7 +388,7 @@ h3 {
 }
 
 .saison-icon { 
-	font-size: 1.5em; 
+	font-size: 1.3em; 
 }
 
 .fiche-tableaux { 
@@ -395,6 +396,10 @@ h3 {
 	flex-direction: column;
 	gap: 1em;
 	grid-row: span 2;
+
+	h2 {
+		margin-bottom: 0;
+	}
 }
 
 .fiche-resonances {
@@ -458,9 +463,9 @@ h3 {
 			display: table;
 		}
 	}
-	
+
 	h5 {
-		margin: 0.5em 0 0.2em 0;
+		margin: 0;
 		font-size: 1em;
 	}
 	
@@ -479,7 +484,7 @@ h3 {
 		font-family: inherit;
 		font-size: 1em;
 		resize: vertical;
-		margin-bottom: 1em;
+		margin-bottom: 0.5em;
 	}
 }
 
@@ -529,8 +534,6 @@ h3 {
 		background: #fff;
 		box-sizing: border-box;
 		flex: 1 1 200px;
-		min-width: 160px;
-		max-width: 320px;
 		position: relative;
 	}
 }
