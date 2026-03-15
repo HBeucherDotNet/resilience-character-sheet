@@ -298,18 +298,33 @@ h3 {
 }
 
 .fiche-saisons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2em;
+  position: relative;
+}
+
+.saisons-center {
+  grid-column: 1/3;
+  grid-row: 1/3;
+  place-self: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.saisons-center .saison-cercle {
+  border-color: #235a8a;
 }
 
 .saison-block {
   flex: 1 1 40%;
-  border-radius: 16px;
+  border-radius: 100px;
   border-width: 2px;
   border-style: solid;
-  background: #f7f7ff;
-  padding: 1em;
+  padding: 0 2em;
   min-width: 220px;
   position: relative;
   display: flex;
@@ -368,8 +383,8 @@ h3 {
 }
 
 .saison-cercle {
-  width: 60px;
-  height: 60px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 2px solid #888;
   background: #fff;
@@ -408,6 +423,21 @@ h3 {
 .saison-right .saison-title {
   justify-content: flex-end;
   text-align: right;
+}
+
+.saisons-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.saisons-center .saison-title {
+  position: absolute;
+  left: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0.8em;
 }
 
 .saison-title {
@@ -507,7 +537,7 @@ h3 {
   border: 1px solid #ccc;
   padding: 0.5em;
   font-family: inherit;
-  font-size: 1em;
+  font-size: 0.8em;
   resize: vertical;
   margin-bottom: 0.5em;
 }
