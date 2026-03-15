@@ -277,14 +277,14 @@ h3 {
 
 .fiche-saisons {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 5fr 1fr 5fr;
 	grid-template-rows: 1fr 1fr;
-	gap: 2em;
+	row-gap: 2em;
 	position: relative;
 }
 
 .saisons-center {
-	grid-column: 1 / 3;
+	grid-column: 2 / 3;
 	grid-row: 1 / 3;
 	place-self: center;
 	position: absolute;
@@ -297,34 +297,32 @@ h3 {
 }
 
 .saison-block {
-	flex: 1 1 40%;
 	border-radius: 100px;
 	border-width: 2px;
 	border-style: solid;
-	padding: 0 2em;
-	min-width: 220px;
+	padding: 1em 2em;
 	position: relative;
-	display: flex;
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: space-between;
 	
 	&.saison-hiver { 
+		grid-column-start: 1;
 		border-color: colors.$color-hiver; 
 		background: colors.$color-hiver-lighter; 
 		.saison-cercle { border-color: colors.$color-hiver; }
 	}
 	&.saison-printemps { 
+		grid-column-start: 3;
 		border-color: colors.$color-printemps; 
 		background: colors.$color-printemps-lighter; 
 		.saison-cercle { border-color: colors.$color-printemps; }
 	}
 	&.saison-ete { 
+		grid-column-start: 3;
 		border-color: colors.$color-ete; 
 		background: colors.$color-ete-lighter; 
 		.saison-cercle { border-color: colors.$color-ete; }
 	}
 	&.saison-automne { 
+		grid-column-start: 1;
 		border-color: colors.$color-automne; 
 		background: colors.$color-automne-lighter; 
 		.saison-cercle { border-color: colors.$color-automne; }
@@ -334,6 +332,8 @@ h3 {
 		background: colors.$color-temps-lighter; 
 		.saison-cercle { border-color: colors.$color-temps; }
 	}
+
+	.saison-cercle { position: absolute; }
 }
 
 .saison-info {
@@ -360,38 +360,26 @@ h3 {
 	align-items: center;
 	justify-content: center;
 	font-size: 2rem;
-	color: #333;
+	color: colors.$color-text-dark;
 }
 
 .saison-left {
-	&>*:nth-child(1) {
-		order: 2;
-	}
-	&>*:nth-child(2) {
-		order: 1;
-	}
-	
 	.saison-info {
 		text-align: left;
 	}
-	.saison-score {
-		justify-content: flex-end;
-	}
+	.saison-cercle {
+		 right: -30px; 
+		}
+
 }
 
 .saison-right {
-	&>*:nth-child(1) {
-		order: 1;
-	}
-	&>*:nth-child(2) {
-		order: 2;
-	}
 	.saison-info {
 		text-align: right;
 	}
-	.saison-score {
-		justify-content: flex-start;
-	}
+	.saison-cercle {
+		 left: -30px; 
+		}
 	.saison-title {
 		justify-content: flex-end;
 		text-align: right;
