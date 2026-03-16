@@ -328,9 +328,6 @@ h3 {
   gap: 2em;
   grid-template-columns: 75px auto 75px;
 }
-.saison-block > div {
-  place-self: center;
-}
 .saison-block .saison-icon {
   font-size: 2.8em;
   place-self: center;
@@ -379,9 +376,6 @@ h3 {
 }
 .saison-block.saison-temps .saison-cercle {
   border-color: #235a8a;
-}
-.saison-block .saison-cercle {
-  position: absolute;
 }
 
 .saison-info {
