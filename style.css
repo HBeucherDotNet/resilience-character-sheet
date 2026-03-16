@@ -203,7 +203,7 @@ h3 {
   flex-direction: column;
   gap: 1.2em;
   background: #fff;
-  padding: 2em;
+  padding: 1.6em 1.8em;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   font-family: "Georgia", serif;
@@ -301,7 +301,7 @@ h3 {
   display: grid;
   grid-template-columns: 5fr 1fr 5fr;
   grid-template-rows: 1fr 1fr;
-  row-gap: 2em;
+  row-gap: 2.5em;
   position: relative;
 }
 
@@ -323,8 +323,23 @@ h3 {
   border-radius: 100px;
   border-width: 2px;
   border-style: solid;
-  padding: 1em 2em;
-  position: relative;
+  padding: 1em 0.5em;
+  display: grid;
+  gap: 2em;
+  grid-template-columns: 75px auto 75px;
+}
+.saison-block > div {
+  place-self: center;
+}
+.saison-block .saison-icon {
+  font-size: 2.8em;
+  place-self: center;
+}
+.saison-block .saison-info {
+  grid-column: 2/span 1;
+}
+.saison-block .saison-cercle {
+  place-self: center;
 }
 .saison-block.saison-hiver {
   grid-column-start: 1;
@@ -399,16 +414,26 @@ h3 {
 
 .saison-left .saison-info {
   text-align: left;
+  place-self: center start;
 }
 .saison-left .saison-cercle {
-  right: -30px;
+  transform: translateX(50%);
+  grid-column: 3/span 1;
+}
+.saison-left .saison-icon {
+  grid-column: 1/span 1;
 }
 
 .saison-right .saison-info {
   text-align: right;
+  place-self: center end;
 }
 .saison-right .saison-cercle {
-  left: -30px;
+  transform: translateX(-50%);
+  grid-column: 1/span 1;
+}
+.saison-right .saison-icon {
+  grid-column: 3/span 1;
 }
 .saison-right .saison-title {
   justify-content: flex-end;

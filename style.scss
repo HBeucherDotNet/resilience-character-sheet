@@ -186,7 +186,7 @@ h3 {
 	flex-direction: column;
 	gap: 1.2em;
 	background: colors.$color-white;
-	padding: 2em;
+	padding: 1.6em 1.8em;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 	font-family: 'Georgia', serif;
@@ -302,10 +302,24 @@ h3 {
 	border-style: solid;
 	padding: 1em 0.5em;
 	display: grid;
+	gap: 2em;
 	grid-template-columns: 75px auto 75px;
+	
+	& > div {
+		place-self: center;
+	}
 	
 	.saison-icon {
 		font-size: 2.8em;
+		place-self: center;
+	}
+	
+	.saison-info {
+		grid-column: 2 / span 1;
+	}
+	
+	.saison-cercle {
+		place-self: center;
 	}
 	
 	&.saison-hiver { 
@@ -369,13 +383,10 @@ h3 {
 	color: colors.$color-text-dark;
 }
 
-.saison-info {
-	grid-column: 2 / span 1;
-}
-
 .saison-left {
 	.saison-info {
 		text-align: left;
+		place-self: center start;
 	}
 	.saison-cercle {
 		transform: translateX(50%);
@@ -389,6 +400,7 @@ h3 {
 .saison-right {
 	.saison-info {
 		text-align: right;
+		place-self: center end;
 	}
 	.saison-cercle {
 		transform: translateX(-50%);
