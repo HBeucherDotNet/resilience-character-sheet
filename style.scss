@@ -279,7 +279,7 @@ h3 {
 	display: grid;
 	grid-template-columns: 5fr 1fr 5fr;
 	grid-template-rows: 1fr 1fr;
-	row-gap: 2em;
+	row-gap: 2.5em;
 	position: relative;
 }
 
@@ -300,8 +300,13 @@ h3 {
 	border-radius: 100px;
 	border-width: 2px;
 	border-style: solid;
-	padding: 1em 2em;
-	position: relative;
+	padding: 1em 0.5em;
+	display: grid;
+	grid-template-columns: 75px auto 75px;
+	
+	.saison-icon {
+		font-size: 2.8em;
+	}
 	
 	&.saison-hiver { 
 		grid-column-start: 1;
@@ -364,14 +369,21 @@ h3 {
 	color: colors.$color-text-dark;
 }
 
+.saison-info {
+	grid-column: 2 / span 1;
+}
+
 .saison-left {
 	.saison-info {
 		text-align: left;
 	}
 	.saison-cercle {
-		 right: -30px; 
-		}
-
+		transform: translateX(50%);
+		grid-column: 3 / span 1;
+	}
+	.saison-icon {
+		grid-column: 1 / span 1;
+	}
 }
 
 .saison-right {
@@ -379,8 +391,12 @@ h3 {
 		text-align: right;
 	}
 	.saison-cercle {
-		 left: -30px; 
-		}
+		transform: translateX(-50%);
+		grid-column: 1 / span 1;
+	}
+	.saison-icon {
+		grid-column: 3 / span 1;
+	}
 	.saison-title {
 		justify-content: flex-end;
 		text-align: right;
