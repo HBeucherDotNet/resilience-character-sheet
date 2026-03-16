@@ -134,9 +134,9 @@ window.genererFiche = function() {
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
 
-	document.getElementById('fiche-essence-harmonie').className = saison.value;
-	document.getElementById('fiche-champ-lexical').className = saison.value;
-	document.getElementById('fiche-magie').className = saison.value;
+	document.getElementById('fiche-essence-harmonie').className = saison ? saison.value : '';
+	document.getElementById('fiche-champ-lexical').className = saison ? saison.value : '';
+	document.getElementById('fiche-magie').className = saison ? saison.value : '';
 }
 
 window.toggleResume = function(btn) {
@@ -151,6 +151,21 @@ window.addEventListener('DOMContentLoaded', function() {
 			input.addEventListener('change', genererFiche);
 		});
 	});
+
+	// Ajoute le comportement de sélection sur .option
+	document.querySelectorAll('.option').forEach(option => {
+		option.addEventListener('click', function(e) {
+			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
+			const checkbox = option.querySelector('input[type="checkbox"], input[type="radio"]');
+			if (checkbox) {
+				checkbox.checked = !checkbox.checked;
+				selectUnique(checkbox.name, checkbox);
+				checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+			}
+		});
+	});
+
 	genererFiche(); // Initialiser la fiche au chargement
 	updateLignees(); // Met à jour les lignées au chargement
 	updateFicheAge(); // Met à jour l'âge au chargement

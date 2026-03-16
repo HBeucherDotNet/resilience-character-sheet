@@ -22,6 +22,9 @@
     padding: 0.5em 0 !important;
     flex: 1 1 auto !important;
   }
+  #fiche-magie .tableau-magie-talents {
+    font-size: 0.8em !important;
+  }
 }
 body {
   font-family: Arial, sans-serif;
@@ -36,11 +39,10 @@ section {
   padding: 1.2em 1em;
   margin-bottom: 1.5em;
   border: 1px solid #d3d7e3;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.2s;
 }
 section:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
 }
 section > div {
   margin-bottom: 1em;
@@ -72,6 +74,10 @@ h3 {
   position: relative;
   border-radius: 8px;
   padding: 0.5em;
+  transition: box-shadow 0.2s;
+}
+.option:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 .option.hiver {
   background: #e3ecf7;
