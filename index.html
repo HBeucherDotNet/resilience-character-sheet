@@ -24,7 +24,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onclick="selectUnique('saison', this)">
+						<input type="checkbox" name="saison" value="hiver" id="saison-hiver" onchange="selectUnique('saison', this)">
 						<label for="saison-hiver"><strong>Hiver</strong></label>
 					</span>
 					<span class="desc hiver-desc">
@@ -45,7 +45,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onclick="selectUnique('saison', this)">
+						<input type="checkbox" name="saison" value="printemps" id="saison-printemps" onchange="selectUnique('saison', this)">
 						<label for="saison-printemps"><strong>Printemps</strong></label>
 					</span>
 					<span class="desc printemps-desc">
@@ -66,7 +66,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="saison" value="ete" id="saison-ete" onclick="selectUnique('saison', this)">
+						<input type="checkbox" name="saison" value="ete" id="saison-ete" onchange="selectUnique('saison', this)">
 						<label for="saison-ete"><strong>Été</strong></label>
 					</span>
 					<span class="desc ete-desc">
@@ -87,7 +87,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="saison" value="automne" id="saison-automne" onclick="selectUnique('saison', this)">
+						<input type="checkbox" name="saison" value="automne" id="saison-automne" onchange="selectUnique('saison', this)">
 						<label for="saison-automne"><strong>Automne</strong></label>
 					</span>
 					<span class="desc automne-desc">
@@ -108,7 +108,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="saison" value="temps" id="saison-temps" onclick="selectUnique('saison', this)">
+						<input type="checkbox" name="saison" value="temps" id="saison-temps" onchange="selectUnique('saison', this)">
 						<label for="saison-temps"><strong>Temps</strong></label>
 					</span>
 					<span class="desc temps-desc">
@@ -137,7 +137,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline" onclick="selectUnique('famille', this); updateLignees()">
+						<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline" onchange="selectUnique('famille', this); updateLignees()">
 						<label for="famille-squelette"><strong>Squelette</strong></label>
 					</span>
 					<span class="desc">
@@ -155,7 +155,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose" onclick="selectUnique('famille', this); updateLignees()">
+						<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose" onchange="selectUnique('famille', this); updateLignees()">
 						<label for="famille-cellulose"><strong>Cellulose</strong></label>
 					</span>
 					<span class="desc">
@@ -173,7 +173,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette" onclick="selectUnique('famille', this); updateLignees()">
+						<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette" onchange="selectUnique('famille', this); updateLignees()">
 						<label for="famille-chitine"><strong>Chitine</strong></label>
 					</span>
 					<span class="desc">
@@ -191,7 +191,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme" onclick="selectUnique('famille', this); updateLignees()">
+						<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme" onchange="selectUnique('famille', this); updateLignees()">
 						<label for="famille-souple"><strong>Souple</strong></label>
 					</span>
 					<span class="desc">
@@ -219,7 +219,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose" data-don="amphibie" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Amphiose" id="lignee-Amphiose" data-don="amphibie" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Amphiose"><strong>Amphiose</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -246,7 +246,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire" data-don="signaux" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Aviaire" id="lignee-Aviaire" data-don="signaux" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Aviaire"><strong>Aviaire</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -277,7 +277,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien" data-don="reserves" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Mammalien" id="lignee-Mammalien" data-don="reserves" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Mammalien"><strong>Mammalien</strong></label> <span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -308,7 +308,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie" data-don="thermoception" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Ophidie" id="lignee-Ophidie" data-don="thermoception" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Ophidie"><strong>Ophidie</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -339,7 +339,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose" data-don="grimper" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Bryose" id="lignee-Bryose" data-don="grimper" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Bryose"><strong>Bryose</strong></label><span class="lignee-sexe">(asexué)</span>
 						</span>
 						<div class="desc">
@@ -369,7 +369,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon" data-don="sonar" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Mycon" id="lignee-Mycon" data-don="sonar" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Mycon"><strong>Mycon</strong></label><span class="lignee-sexe">(plurisexués)</span>
 						</span>
 						<div class="desc">
@@ -399,7 +399,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien" data-don="empathie" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Pollinien" id="lignee-Pollinien" data-don="empathie" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Pollinien"><strong>Pollinien</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
@@ -430,7 +430,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose" data-don="prehenseurs" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Xylose" id="lignee-Xylose" data-don="prehenseurs" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Xylose"><strong>Xylose</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
@@ -460,7 +460,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen" data-don="poison" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Arachéen" id="lignee-Arachéen" data-don="poison" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Arachéen"><strong>Arachéen</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -490,7 +490,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes" data-don="presence" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Orthocètes" id="lignee-Orthocètes" data-don="presence" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Orthocètes"><strong>Orthocètes</strong></label><span class="lignee-sexe">(mâle, femelle ou asexué, change selon les besoins)</span>
 						</span>
 						<div class="desc">
@@ -519,7 +519,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige" data-don="pistage" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Scutige" id="lignee-Scutige" data-don="pistage" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Scutige"><strong>Scutige</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -549,7 +549,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide" data-don="bond" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Syrphide" id="lignee-Syrphide" data-don="bond" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Syrphide"><strong>Syrphide</strong></label><span class="lignee-sexe">(unisexe)</span>
 						</span>
 						<div class="desc">
@@ -579,7 +579,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope" data-don="ecran" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Céphope" id="lignee-Céphope" data-don="ecran" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Céphope"><strong>Céphope</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -609,7 +609,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse" data-don="coquille" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Nacrisse" id="lignee-Nacrisse" data-don="coquille" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Nacrisse"><strong>Nacrisse</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
@@ -639,7 +639,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite" data-don="terrier" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Saprosite" id="lignee-Saprosite" data-don="terrier" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Saprosite"><strong>Saprosite</strong></label><span class="lignee-sexe">(hermaphrodite)</span>
 						</span>
 						<div class="desc">
@@ -669,7 +669,7 @@
 							</svg>
 						</button>
 						<span class="option-label">
-							<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule" data-don="electroreception" onclick="selectUnique('lignee', this)">
+							<input type="checkbox" name="lignee" value="Spicule" id="lignee-Spicule" data-don="electroreception" onchange="selectUnique('lignee', this)">
 							<label for="lignee-Spicule"><strong>Spicule</strong></label><span class="lignee-sexe">(mâle ou femelle)</span>
 						</span>
 						<div class="desc">
@@ -713,7 +713,7 @@
 				</div>
 				<div class="option hiver">
 					<span class="option-label">
-						<input type="checkbox" name="armement" value="articule" id="armement-articule" data-morphologie="articule" onclick="selectUnique('armement', this)">
+						<input type="checkbox" name="armement" value="articule" id="armement-articule" data-morphologie="articule" onchange="selectUnique('armement', this)">
 						<label for="armement-articule"><strong>Articulé</strong></label>
 					</span>
 					<span class="desc">
@@ -722,7 +722,7 @@
 				</div>
 				<div class="option printemps">
 					<span class="option-label">
-						<input type="checkbox" name="armement" value="distance" id="armement-distance" data-morphologie="distance" onclick="selectUnique('armement', this)">
+						<input type="checkbox" name="armement" value="distance" id="armement-distance" data-morphologie="distance" onchange="selectUnique('armement', this)">
 						<label for="armement-distance"><strong>Distance</strong></label>
 					</span>
 					<span class="desc">
@@ -731,7 +731,7 @@
 				</div>
 				<div class="option ete">
 					<span class="option-label">
-						<input type="checkbox" name="armement" value="court" id="armement-court" data-morphologie="court" onclick="selectUnique('armement', this)">
+						<input type="checkbox" name="armement" value="court" id="armement-court" data-morphologie="court" onchange="selectUnique('armement', this)">
 						<label for="armement-court"><strong>Court</strong></label>
 					</span>
 					<span class="desc">
@@ -740,7 +740,7 @@
 				</div>
 				<div class="option automne">
 					<span class="option-label">
-						<input type="checkbox" name="armement" value="long" id="armement-long" data-morphologie="long" onclick="selectUnique('armement', this)">
+						<input type="checkbox" name="armement" value="long" id="armement-long" data-morphologie="long" onchange="selectUnique('armement', this)">
 						<label for="armement-long"><strong>Long</strong></label>
 					</span>
 					<span class="desc">
@@ -759,7 +759,7 @@
 				</div>
 				<div class="option hiver">
 					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-morphologie="mucus" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-morphologie="mucus" onchange="selectUnique('cuirasse', this)">
 						<label for="cuirasse-mucus"><strong>Mucus</strong></label>
 					</span>
 					<span class="desc">
@@ -768,7 +768,7 @@
 				</div>
 				<div class="option printemps">
 					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-morphologie="urticant" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-morphologie="urticant" onchange="selectUnique('cuirasse', this)">
 						<label for="cuirasse-urticant"><strong>Urticant</strong></label>
 					</span>
 					<span class="desc">
@@ -777,7 +777,7 @@
 				</div>
 				<div class="option ete">
 					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-morphologie="bourre" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-morphologie="bourre" onchange="selectUnique('cuirasse', this)">
 						<label for="cuirasse-bourre"><strong>Bourre</strong></label>
 					</span>
 					<span class="desc">
@@ -786,7 +786,7 @@
 				</div>
 				<div class="option automne">
 					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-morphologie="carapace" onclick="selectUnique('cuirasse', this)">
+						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-morphologie="carapace" onchange="selectUnique('cuirasse', this)">
 						<label for="cuirasse-carapace"><strong>Carapace</strong></label>
 					</span>
 					<span class="desc">
@@ -805,7 +805,7 @@
 				</div>
 				<div class="option hiver">
 					<span class="option-label">
-						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-morphologie="ventouses" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-morphologie="ventouses" onchange="selectUnique('mains', this)">
 						<label for="mains-ventouses"><strong>Ventouses</strong></label>
 					</span>
 					<span class="desc">
@@ -814,7 +814,7 @@
 				</div>
 				<div class="option printemps">
 					<span class="option-label">
-						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-morphologie="vibrisses" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-morphologie="vibrisses" onchange="selectUnique('mains', this)">
 						<label for="mains-vibrisses"><strong>Vibrisses</strong></label>
 					</span>
 					<span class="desc">
@@ -823,7 +823,7 @@
 				</div>
 				<div class="option ete">
 					<span class="option-label">
-						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-morphologie="crochets" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-morphologie="crochets" onchange="selectUnique('mains', this)">
 						<label for="mains-crochets"><strong>Crochets</strong></label>
 					</span>
 					<span class="desc">
@@ -832,7 +832,7 @@
 				</div>
 				<div class="option automne">
 					<span class="option-label">
-						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-morphologie="pinces" onclick="selectUnique('mains', this)">
+						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-morphologie="pinces" onchange="selectUnique('mains', this)">
 						<label for="mains-pinces"><strong>Pinces</strong></label>
 					</span>
 					<span class="desc">
@@ -851,7 +851,7 @@
 				</div>
 				<div class="option hiver">
 					<span class="option-label">
-						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-morphologie="membrane" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-morphologie="membrane" onchange="selectUnique('peau', this)">
 						<label for="peau-membrane"><strong>Membrane</strong></label>
 					</span>
 					<span class="desc">
@@ -860,7 +860,7 @@
 				</div>
 				<div class="option printemps">
 					<span class="option-label">
-						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-morphologie="camouflage" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-morphologie="camouflage" onchange="selectUnique('peau', this)">
 						<label for="peau-camouflage"><strong>Camouflage</strong></label>
 					</span>
 					<span class="desc">
@@ -869,7 +869,7 @@
 				</div>
 				<div class="option ete">
 					<span class="option-label">
-						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-morphologie="aposematisme" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-morphologie="aposematisme" onchange="selectUnique('peau', this)">
 						<label for="peau-aposematisme"><strong>Aposématisme</strong></label>
 					</span>
 					<span class="desc">
@@ -878,7 +878,7 @@
 				</div>
 				<div class="option automne">
 					<span class="option-label">
-						<input type="checkbox" name="peau" value="ecailles" id="peau-ecailles" data-morphologie="ecailles" onclick="selectUnique('peau', this)">
+						<input type="checkbox" name="peau" value="ecailles" id="peau-ecailles" data-morphologie="ecailles" onchange="selectUnique('peau', this)">
 						<label for="peau-ecailles"><strong>Écailles</strong></label>
 					</span>
 					<span class="desc">
@@ -902,7 +902,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres" onclick="selectUnique('environnement', this)">
+						<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres" onchange="selectUnique('environnement', this)">
 						<label for="environnement-riviere-lacs-marais"><strong>Rivières, lacs et marais</strong></label>
 					</span>
 					<span class="desc">
@@ -920,7 +920,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards" onclick="selectUnique('environnement', this)">
+						<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards" onchange="selectUnique('environnement', this)">
 						<label for="environnement-iles-littoral"><strong>Îles et littoral</strong></label>
 					</span>
 					<span class="desc">
@@ -938,7 +938,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque" onclick="selectUnique('environnement', this)">
+						<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque" onchange="selectUnique('environnement', this)">
 						<label for="environnement-plaines-collines"><strong>Plaines et collines</strong></label>
 					</span>
 					<span class="desc">
@@ -956,7 +956,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron" onclick="selectUnique('environnement', this)">
+						<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron" onchange="selectUnique('environnement', this)">
 						<label for="environnement-montagnes-canyons"><strong>Montagnes et canyons</strong></label>
 					</span>
 					<span class="desc">
@@ -984,7 +984,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie" onclick="selectUnique('mode-de-vie', this)">
+						<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie" onchange="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-alize"><strong>Alizé</strong></label>
 					</span>
 					<span class="desc">
@@ -1002,7 +1002,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience" onclick="selectUnique('mode-de-vie', this)">
+						<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience" onchange="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-troglodyte"><strong>Troglodyte</strong></label>
 					</span>
 					<span class="desc">
@@ -1020,7 +1020,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer" onclick="selectUnique('mode-de-vie', this)">
+						<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer" onchange="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-sedentaire"><strong>Sédentaire</strong></label>
 					</span>
 					<span class="desc">
@@ -1038,7 +1038,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection" onclick="selectUnique('mode-de-vie', this)">
+						<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection" onchange="selectUnique('mode-de-vie', this)">
 						<label for="mode-de-vie-nomade"><strong>Nomade</strong></label>
 					</span>
 					<span class="desc">
@@ -1065,7 +1065,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe" onclick="selectUnique('philosophie', this)">
+						<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe" onchange="selectUnique('philosophie', this)">
 						<label for="philosophie-inne"><strong>Inné</strong></label>
 					</span>
 					<span class="desc">
@@ -1083,7 +1083,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape" onclick="selectUnique('philosophie', this)">
+						<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape" onchange="selectUnique('philosophie', this)">
 						<label for="philosophie-appris"><strong>Appris</strong></label>
 					</span>
 					<span class="desc">
@@ -1101,7 +1101,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure" onclick="selectUnique('philosophie', this)">
+						<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure" onchange="selectUnique('philosophie', this)">
 						<label for="philosophie-chitine"><strong>Entraide</strong></label>
 					</span>
 					<span class="desc">
@@ -1119,7 +1119,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier" onclick="selectUnique('philosophie', this)">
+						<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier" onchange="selectUnique('philosophie', this)">
 						<label for="philosophie-construit"><strong>Construit</strong></label>
 					</span>
 					<span class="desc">
@@ -1145,7 +1145,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee" onclick="selectUnique('relation-rupture', this)">
+						<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee" onchange="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-dompter"><strong>Dompter</strong></label>
 					</span>
 					<span class="desc">
@@ -1163,7 +1163,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance" onclick="selectUnique('relation-rupture', this)">
+						<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance" onchange="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-etudier"><strong>Étudier</strong></label>
 					</span>
 					<span class="desc">
@@ -1181,7 +1181,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte" onclick="selectUnique('relation-rupture', this)">
+						<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte" onchange="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-purifier"><strong>Purifier</strong></label>
 					</span>
 					<span class="desc">
@@ -1199,7 +1199,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue" onclick="selectUnique('relation-rupture', this)">
+						<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue" onchange="selectUnique('relation-rupture', this)">
 						<label for="relation-rupture-composer"><strong>Composer</strong></label>
 					</span>
 					<span class="desc">
@@ -1231,7 +1231,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="role" value="guide" id="role-guide" data-competence="guide" onclick="selectUnique('role', this)">
+						<input type="checkbox" name="role" value="guide" id="role-guide" data-competence="guide" onchange="selectUnique('role', this)">
 						<label for="role-guide"><strong>Guide</strong></label> (nourrir et prévenir)
 					</span>
 					<span class="desc">
@@ -1254,7 +1254,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" data-competence="sibylle" onclick="selectUnique('role', this)">
+						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" data-competence="sibylle" onchange="selectUnique('role', this)">
 						<label for="role-sibylle"><strong>Sibylle</strong></label> (connaître et purifier)
 					</span>
 					<span class="desc">
@@ -1277,7 +1277,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="role" value="matrice" id="role-matrice" data-competence="matrice" onclick="selectUnique('role', this)">
+						<input type="checkbox" name="role" value="matrice" id="role-matrice" data-competence="matrice" onchange="selectUnique('role', this)">
 						<label for="role-matrice"><strong>Matrice</strong></label> (unir et échanger)
 					</span>
 					<span class="desc">
@@ -1298,7 +1298,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="role" value="artisan" id="role-artisan" data-competence="artisan" onclick="selectUnique('role', this)">
+						<input type="checkbox" name="role" value="artisan" id="role-artisan" data-competence="artisan" onchange="selectUnique('role', this)">
 						<label for="role-artisan"><strong>Artisan</strong></label> (construire et innover)
 					</span>
 					<span class="desc">
@@ -1327,7 +1327,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="age" value="jeune" id="age-jeune" onclick="selectUnique('age', this);">
+						<input type="checkbox" name="age" value="jeune" id="age-jeune" onchange="selectUnique('age', this);">
 						<label for="age-jeune"><strong>Jeune</strong></label>
 					</span>
 					<span class="desc">
@@ -1343,7 +1343,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="age" value="adulte" id="age-adulte" onclick="selectUnique('age', this);">
+						<input type="checkbox" name="age" value="adulte" id="age-adulte" onchange="selectUnique('age', this);">
 						<label for="age-adulte"><strong>Adulte</strong></label>
 					</span>
 					<span class="desc">
@@ -1359,7 +1359,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="age" value="mur" id="age-mur" onclick="selectUnique('age', this);">
+						<input type="checkbox" name="age" value="mur" id="age-mur" onchange="selectUnique('age', this);">
 						<label for="age-mur"><strong>Mûr</strong></label>
 					</span>
 					<span class="desc">
@@ -1375,7 +1375,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="age" value="age" id="age-age" onclick="selectUnique('age', this);">
+						<input type="checkbox" name="age" value="age" id="age-age" onchange="selectUnique('age', this);">
 						<label for="age-age"><strong>Âgé</strong></label>
 					</span>
 					<span class="desc">
@@ -1402,7 +1402,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onclick="selectUnique('personnalite', this)">
+						<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence" onchange="selectUnique('personnalite', this)">
 						<label for="personnalite-eminence"><strong>Éminence</strong></label>
 					</span>
 					<span class="desc">
@@ -1420,7 +1420,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix" onclick="selectUnique('personnalite', this)">
+						<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix" onchange="selectUnique('personnalite', this)">
 						<label for="personnalite-portefaix"><strong>Portefaix</strong></label>
 					</span>
 					<span class="desc">
@@ -1439,7 +1439,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onclick="selectUnique('personnalite', this)">
+						<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader" onchange="selectUnique('personnalite', this)">
 						<label for="personnalite-leader"><strong>Leader</strong></label>
 					</span>
 					<span class="desc">
@@ -1458,7 +1458,7 @@
 						</svg>
 					</button>
 					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onclick="selectUnique('personnalite', this)">
+						<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage" onchange="selectUnique('personnalite', this)">
 						<label for="personnalite-sage"><strong>Sage</strong></label>
 					</span>
 					<span class="desc">

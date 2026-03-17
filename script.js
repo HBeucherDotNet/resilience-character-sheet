@@ -156,7 +156,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('.option').forEach(option => {
 		option.addEventListener('click', function(e) {
 			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
-			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input, label')) return;
 			const checkbox = option.querySelector('input[type="checkbox"], input[type="radio"]');
 			if (checkbox) {
 				checkbox.checked = !checkbox.checked;

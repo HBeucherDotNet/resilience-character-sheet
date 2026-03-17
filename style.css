@@ -20,7 +20,6 @@
   .fiche-bloc .fiche-bloc-item {
     border: none !important;
     padding: 0.5em 0 !important;
-    flex: 1 1 auto !important;
   }
   #fiche-magie .tableau-magie-talents {
     font-size: 0.8em !important;
@@ -604,7 +603,7 @@ h3 {
   padding: 0.5em 2em 0.5em 0.5em;
   background: #fff;
   box-sizing: border-box;
-  flex: 1 1 200px;
+  flex: 1 1 auto;
   position: relative;
 }
 
