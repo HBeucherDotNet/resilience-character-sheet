@@ -3,6 +3,57 @@ import { equipements } from './data/equipements.js';
 import { competences } from './data/competences.js';
 import { morphologies } from './data/morphologies.js';
 
+// Génération et restauration de l'état via hash
+function getCheckedInputs() {
+	const checked = [];
+	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+		if (input.checked && input.id) checked.push(input.id);
+	});
+	return checked;
+}
+
+function setCheckedInputs(ids) {
+	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+		input.checked = ids.includes(input.id);
+		input.dispatchEvent(new Event('change', { bubbles: true }));
+	});
+}
+
+function updateHashFromState() {
+	const checked = getCheckedInputs();
+	window.location.hash = checked.join(',');
+}
+
+function restoreStateFromHash() {
+	const hash = window.location.hash.replace(/^#/, '');
+	if (!hash) return;
+	const ids = hash.split(',').filter(Boolean);
+	setCheckedInputs(ids);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+	// ...existing code...
+
+	// Bouton de génération de lien
+	const btn = document.getElementById('generate-link-btn');
+	const linkInput = document.getElementById('generated-link');
+	if (btn && linkInput) {
+		btn.addEventListener('click', function() {
+			updateHashFromState();
+			linkInput.value = window.location.href;
+			linkInput.style.display = 'block';
+			linkInput.select();
+			linkInput.setSelectionRange(0, 99999);
+		});
+	}
+
+	// Restaure l'état à l'ouverture si hash présent
+	restoreStateFromHash();
+});
+
+// Permet de restaurer l'état si le hash change (navigation ou collage)
+window.addEventListener('hashchange', restoreStateFromHash);
+
 const saisonsEnum = {
 	hiver: 1,
 	printemps: 2,
