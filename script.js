@@ -13,10 +13,29 @@ function getCheckedInputs() {
 }
 
 function setCheckedInputs(ids) {
+	
+	console.log(document.querySelectorAll('input[type="checkbox"], input[type="radio"]').length);
+	
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-		input.checked = ids.includes(input.id);
-		input.dispatchEvent(new Event('change', { bubbles: true }));
+		if (ids.includes(input.id)) {
+			console.log('Checking', input.id);
+			input.checked = true;
+			input.dispatchEvent(new Event('change', { bubbles: true }));
+		}
 	});
+
+console.warn('toto');
+
+	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+		if (ids.includes(input.id) && !input.checked) {
+			console.log('Checking', input);
+			input.checked = true;
+			input.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+	});
+	
+	console.log(document.querySelectorAll('input[type="checkbox"], input[type="radio"]').length);
+	
 }
 
 function updateHashFromState() {
@@ -33,7 +52,7 @@ function restoreStateFromHash() {
 
 window.addEventListener('DOMContentLoaded', function() {
 	// ...existing code...
-
+	
 	// Bouton de génération de lien
 	const btn = document.getElementById('generate-link-btn');
 	const linkInput = document.getElementById('generated-link');
@@ -46,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			linkInput.setSelectionRange(0, 99999);
 		});
 	}
-
+	
 	// Restaure l'état à l'ouverture si hash présent
 	restoreStateFromHash();
 });
@@ -184,7 +203,7 @@ window.genererFiche = function() {
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
-
+	
 	document.getElementById('fiche-essence-harmonie').className = saison ? saison.value : '';
 	document.getElementById('fiche-champ-lexical').className = saison ? saison.value : '';
 	document.getElementById('fiche-magie').className = saison ? saison.value : '';
@@ -202,7 +221,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			input.addEventListener('change', genererFiche);
 		});
 	});
-
+	
 	// Ajoute le comportement de sélection sur .option
 	document.querySelectorAll('.option').forEach(option => {
 		option.addEventListener('click', function(e) {
@@ -216,7 +235,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
-
+	
 	genererFiche(); // Initialiser la fiche au chargement
 	updateLignees(); // Met à jour les lignées au chargement
 	updateFicheAge(); // Met à jour l'âge au chargement
@@ -345,7 +364,7 @@ function updateFicheMorphologies() {
 			morphologiesSelectionnees.push(input.dataset.morphologie);
 		}
 	});
-
+	
 	// Supprime les doublons
 	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
 	const ficheMorphologies = document.getElementById('fiche-morphologies');
