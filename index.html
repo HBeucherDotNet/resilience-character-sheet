@@ -1787,7 +1787,239 @@
 			<div class="fiche-blocs">
 				<div class="fiche-bloc saison-hiver">
 					<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
-					<div id="fiche-morphologies"></div>
+					<div id="fiche-morphologies">
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="articule">
+							<input type="checkbox" id="morphologie-articule" name="morphologie-articule" value="articule">
+							<label for="morphologie-articule">Armement articulé ❄️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Armement Articulé s’utilise pour fuir, entraver, étrangler, manipuler, renvoyer l’attaque de l’adversaire ou le mettre face à ses contradictions.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="distance">
+							<input type="checkbox" id="morphologie-distance" name="morphologie-distance" value="distance">
+							<label for="morphologie-distance">Armement à Distance 🌱</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Armement à Distance s’utilise pour feinter, percer, désarmer, rester hors de danger, embrouiller ou distraire.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="court">
+							<input type="checkbox" id="morphologie-court" name="morphologie-court" value="court">
+							<label for="morphologie-court">Armement Court ☀️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Armement Court s’utilise pour charger, mettre en fuite, trancher, submerger, intimider et attaquer sur les émotions.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="long">
+							<input type="checkbox" id="morphologie-long" name="morphologie-long" value="long">
+							<label for="morphologie-long">Armement Long 🍁</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Armement Long s’utilise pour tenir la ligne, épuiser l’adversaire, assommer, renverser, faire preuve de logique et contrôler l’espace.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="crete">
+							<input type="checkbox" id="morphologie-crete" name="morphologie-crete" value="crete">
+							<label for="morphologie-crete">Crête</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Crête s’utilise en Conflit. C’est une Morphologie de la Saison Appelée. Chaque utilisation d’une Crête coûte 1 point de Souffle.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="mucus">
+							<input type="checkbox" id="morphologie-mucus" name="morphologie-mucus" value="mucus">
+							<label for="morphologie-mucus">Mucus ❄️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="urticant">
+							<input type="checkbox" id="morphologie-urticant" name="morphologie-urticant" value="urticant">
+							<label for="morphologie-urticant">Urticant 🌱</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="bourre">
+							<input type="checkbox" id="morphologie-bourre" name="morphologie-bourre" value="bourre">
+							<label for="morphologie-bourre">Bourre ☀️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="carapace">
+							<input type="checkbox" id="morphologie-carapace" name="morphologie-carapace" value="carapace">
+							<label for="morphologie-carapace">Carapace 🍁</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="ventouses">
+							<input type="checkbox" id="morphologie-ventouses" name="morphologie-ventouses" value="ventouses">
+							<label for="morphologie-ventouses">Ventouses ❄️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Appel impliquant des animaux, de la chair, des poils, de la fourrure, de la peau, de la chitine ou des plumes.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="vibrisses">
+							<input type="checkbox" id="morphologie-vibrisses" name="morphologie-vibrisses" value="vibrisses">
+							<label for="morphologie-vibrisses">Vibrisses 🌱</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Appel impliquant des plantes, champignons, des feuilles, de l’écorce ou du bois.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="crochets">
+							<input type="checkbox" id="morphologie-crochets" name="morphologie-crochets" value="crochets">
+							<label for="morphologie-crochets">Crochets ☀️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Appel impliquant du feu, des résines, des huiles et autres extraits (sucs, sève, sang, lymphe, venin…)</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="pinces">
+							<input type="checkbox" id="morphologie-pinces" name="morphologie-pinces" value="pinces">
+							<label for="morphologie-pinces">Pinces 🍁</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Appel impliquant des matériaux inertes comme la pierre, le silex, l’argile, le sel, l’os ou les coquilles.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="membrane">
+							<input type="checkbox" id="morphologie-membrane" name="morphologie-membrane" value="membrane">
+							<label for="morphologie-membrane">Membrane ❄️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Une Membrane s’utilise pour les actions physiques.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="camouflage">
+							<input type="checkbox" id="morphologie-camouflage" name="morphologie-camouflage" value="camouflage">
+							<label for="morphologie-camouflage">Camouflage 🌱</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Camouflage s’utilise pour les actions de perception.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="aposematisme">
+							<input type="checkbox" id="morphologie-aposematisme" name="morphologie-aposematisme" value="aposematisme">
+							<label for="morphologie-aposematisme">Aposématisme ☀️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Un Aposématisme s’utilise pour les actions sociales.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="ecailles">
+							<input type="checkbox" id="morphologie-ecailles" name="morphologie-ecailles" value="ecailles">
+							<label for="morphologie-ecailles">Écailles 🍁</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Des Écailles s’utilisent pour les actions mentales ou manuelles.</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="comestible">
+							<input type="checkbox" id="morphologie-comestible" name="morphologie-comestible" value="comestible">
+							<label for="morphologie-comestible">Comestible ❄️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Fruit, graine, feuilles, miellat, lait, nectar…</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="secretion">
+							<input type="checkbox" id="morphologie-secretion" name="morphologie-secretion" value="secretion">
+							<label for="morphologie-secretion">Sécrétion 🌱</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Latex, laine, cire, soie, sève, huile…</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="ornement">
+							<input type="checkbox" id="morphologie-ornement" name="morphologie-ornement" value="ornement">
+							<label for="morphologie-ornement">Ornement ☀️</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Crinière, fleur, ambre, plume, pigment, nacre…</span>
+						</div>
+						<div class="equipement-recap fiche-bloc-item" data-morphologie="ossature">
+							<input type="checkbox" id="morphologie-ossature" name="morphologie-ossature" value="ossature">
+							<label for="morphologie-ossature">Ossature 🍁</label>
+							<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"></circle>
+									<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
+								</svg>
+							</button>
+							<span class="resume" style="display:none;">Bois, os, chitine, coquillage, écaille, pierre…</span>
+						</div>
+					</div>
 				</div>
 				<div class="fiche-bloc saison-printemps">
 					<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
@@ -1795,7 +2027,11 @@
 				</div>
 				<div class="fiche-bloc saison-automne">
 					<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
-					<div id="fiche-equipements"></div>
+					<div id="fiche-equipements">
+
+						
+
+					</div>
 				</div>
 				<div class="fiche-bloc saison-ete">
 					<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>

@@ -1,7 +1,6 @@
 import { dons } from './data/dons.js';
 import { equipements } from './data/equipements.js';
 import { competences } from './data/competences.js';
-import { morphologies } from './data/morphologies.js';
 
 // Génération et restauration de l'état via hash
 function getCheckedInputs() {
@@ -13,9 +12,6 @@ function getCheckedInputs() {
 }
 
 function setCheckedInputs(ids) {
-	
-	console.log(document.querySelectorAll('input[type="checkbox"], input[type="radio"]').length);
-	
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
 		if (ids.includes(input.id)) {
 			console.log('Checking', input.id);
@@ -23,19 +19,6 @@ function setCheckedInputs(ids) {
 			input.dispatchEvent(new Event('change', { bubbles: true }));
 		}
 	});
-
-console.warn('toto');
-
-	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-		if (ids.includes(input.id) && !input.checked) {
-			console.log('Checking', input);
-			input.checked = true;
-			input.dispatchEvent(new Event('change', { bubbles: true }));
-		}
-	});
-	
-	console.log(document.querySelectorAll('input[type="checkbox"], input[type="radio"]').length);
-	
 }
 
 function updateHashFromState() {
@@ -288,36 +271,26 @@ function updateFicheCompetences() {
 }
 
 function updateFicheEquipements() {
-	// Récupère les équipements sélectionnés (environnement, mode-de-vie, philosophie, relation-rupture)
-	const env = document.querySelector('input[name="environnement"]:checked');
-	const mode = document.querySelector('input[name="mode-de-vie"]:checked');
-	const philo = document.querySelector('input[name="philosophie"]:checked');
-	const rupture = document.querySelector('input[name="relation-rupture"]:checked');
-	let equipementsSelectionnes = [];
-	if (env && env.dataset.equipement) equipementsSelectionnes.push(env.dataset.equipement);
-	if (mode && mode.dataset.equipement) equipementsSelectionnes.push(mode.dataset.equipement);
-	if (philo && philo.dataset.equipement) equipementsSelectionnes.push(philo.dataset.equipement);
-	if (rupture && rupture.dataset.equipement) equipementsSelectionnes.push(rupture.dataset.equipement);
+	// Récupère les morphologies sélectionnées
+	const groups = ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'];
+	let equipementsSelectionnes = 
+		groups
+			.map(group => document.querySelector(`#${group}-group input:checked`))
+			.filter(input => input && input.dataset.equipement)
+			.map(input => input.dataset.equipement);
+	
 	// Supprime les doublons
 	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
-	const ficheEquipements = document.getElementById('fiche-equipements');
-	ficheEquipements.innerHTML = '';
+
+	// Masque tous les équipements
+	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	// Affiche ceux sélectionnés
 	equipementsSelectionnes.forEach(eqKey => {
-		if (equipements[eqKey]) {
-			ficheEquipements.innerHTML += `
-				<div class="equipement-recap fiche-bloc-item">
-					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
-					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.automne}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.automne}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${equipements[eqKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
@@ -357,34 +330,24 @@ function updateFicheDons() {
 function updateFicheMorphologies() {
 	// Récupère les morphologies sélectionnées
 	const groups = ['armement', 'cuirasse', 'mains', 'peau'];
-	let morphologiesSelectionnees = [];
-	groups.forEach(group => {
-		const input = document.querySelector(`#${group}-group input:checked`);
-		if (input && input.dataset.morphologie) {
-			morphologiesSelectionnees.push(input.dataset.morphologie);
-		}
-	});
-	
+	let morphologiesSelectionnees = 
+		groups
+			.map(group => document.querySelector(`#${group}-group input:checked`))
+			.filter(input => input && input.dataset.morphologie)
+			.map(input => input.dataset.morphologie);
+
 	// Supprime les doublons
 	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
-	const ficheMorphologies = document.getElementById('fiche-morphologies');
-	ficheMorphologies.innerHTML = '';
+
+	// Masque toutes les morphologies
+	document.querySelectorAll('#fiche-morphologies .equipement-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	// Affiche celles sélectionnées
 	morphologiesSelectionnees.forEach(morphKey => {
-		if (morphologies[morphKey]) {
-			ficheMorphologies.innerHTML += `
-				<div class="equipement-recap fiche-bloc-item">
-					<input type="checkbox" id="morphologie-${morphKey}" name="morphologie-selected" value="${morphKey}">
-					<label for="morphologie-${morphKey}">${morphologies[morphKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.hiver}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.hiver}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${morphologies[morphKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-morphologies .equipement-recap[data-morphologie="${morphKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
