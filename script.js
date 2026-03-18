@@ -1,5 +1,4 @@
 import { dons } from './data/dons.js';
-import { equipements } from './data/equipements.js';
 import { competences } from './data/competences.js';
 
 // Génération et restauration de l'état via hash
