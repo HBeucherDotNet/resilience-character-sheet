@@ -57,7 +57,7 @@ function encodeCheckedIds(ids) {
 
 	const textStateJson = JSON.stringify(getTextStateValues());
 	const textStateEncoded = encodeUnicodeToBase64Url(textStateJson);
-	return `v3.${bitset.toString(36)}.${textStateEncoded}`;
+	return `v1.${bitset.toString(36)}.${textStateEncoded}`;
 }
 
 function base36ToBigInt(value) {
@@ -74,32 +74,11 @@ function base36ToBigInt(value) {
 
 function decodeCheckedIds(hash) {
 	if (!hash) return [];
-	if (hash.startsWith('v2-')) {
-		const payload = hash.slice(3);
-		if (!payload) return [];
-		let bitset;
-		try {
-			bitset = base36ToBigInt(payload);
-		} catch {
-			return [];
-		}
-
-		const allInputs = getChoiceInputs();
-		const ids = [];
-		allInputs.forEach((input, index) => {
-			if (((bitset >> BigInt(index)) & 1n) === 1n) {
-				ids.push(input.id);
-			}
-		});
-		return ids;
-	}
-
-	if (!hash.startsWith('v3.')) return [];
+	if (!hash.startsWith('v1.')) return [];
 	const parts = hash.split('.');
 	if (parts.length !== 3) return [];
 
 	const bitsetPayload = parts[1];
-	const textPayload = parts[2];
 	let bitset;
 	try {
 		bitset = base36ToBigInt(bitsetPayload);
@@ -119,7 +98,7 @@ function decodeCheckedIds(hash) {
 }
 
 function decodeTextStateValues(hash) {
-	if (!hash || !hash.startsWith('v3.')) return {};
+	if (!hash || !hash.startsWith('v1.')) return {};
 	const parts = hash.split('.');
 	if (parts.length !== 3) return {};
 
