@@ -1,6 +1,3 @@
-import { dons } from './data/dons.js';
-import { competences } from './data/competences.js';
-
 // Génération et restauration de l'état via hash
 function getCheckedInputs() {
 	const checked = [];
@@ -240,32 +237,18 @@ function updateFicheAge() {
 function updateFicheCompetences() {
 	// Récupère la compétence liée au rôle sélectionné
 	const role = document.querySelector('input[name="role"]:checked');
-	let competencesSelectionnees = [];
-	if (role && role.dataset.competence && competences[role.dataset.competence]) {
-		const compObj = competences[role.dataset.competence];
-		competencesSelectionnees = Object.keys(compObj);
+	let roleSelectionne = '';
+	if (role && role.value) {
+		roleSelectionne = role.value;
 	}
-	// Supprime les doublons
-	competencesSelectionnees = [...new Set(competencesSelectionnees)];
-	
-	const ficheCompetences = document.getElementById('fiche-competences');
-	ficheCompetences.innerHTML = '';
-	competencesSelectionnees.forEach(compKey => {
-		if (competences[role.dataset.competence][compKey]) {
-			ficheCompetences.innerHTML += `
-				<div class="competence-recap fiche-bloc-item">
-					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
-					<label for="competence-${compKey}">${competences[role.dataset.competence][compKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.printemps}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.printemps}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${competences[role.dataset.competence][compKey].description}</span>
-				</div>
-			`;
-		}
+
+	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${roleSelectionne}"]`);
+	competenceBlocs.forEach(competenceBloc => {
+		if (competenceBloc) competenceBloc.style.display = '';
 	});
 }
 
@@ -304,25 +287,19 @@ function updateFicheDons() {
 	if (lignee && lignee.dataset.don) {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
-	
-	const ficheDons = document.getElementById('fiche-dons');
-	ficheDons.innerHTML = '';
+
+	// Supprime les doublons
+	donsSelectionnes = [...new Set(donsSelectionnes)];
+
+	// Masque tous les dons
+	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	// Affiche ceux sélectionnés
 	donsSelectionnes.forEach(donKey => {
-		if (dons[donKey]) {
-			ficheDons.innerHTML += `
-				<div class="don-recap fiche-bloc-item">
-					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
-					<label for="don-${donKey}">${dons[donKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.ete}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.ete}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${dons[donKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
