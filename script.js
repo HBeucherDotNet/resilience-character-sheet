@@ -7,10 +7,65 @@ function getCheckedInputs() {
 	return checked;
 }
 
+function getStateInputs() {
+	return Array.from(document.querySelectorAll('input[type="checkbox"], input[type="radio"]')).filter(input => input.id);
+}
+
+function encodeCheckedIds(ids) {
+	const checkedSet = new Set(ids);
+	const allInputs = getStateInputs();
+	let bitset = 0n;
+	allInputs.forEach((input, index) => {
+		if (checkedSet.has(input.id)) {
+			bitset |= 1n << BigInt(index);
+		}
+	});
+	return `v2-${bitset.toString(36)}`;
+}
+
+function base36ToBigInt(value) {
+	let result = 0n;
+	for (const char of value.toLowerCase()) {
+		const digit = parseInt(char, 36);
+		if (Number.isNaN(digit) || digit < 0 || digit > 35) {
+			throw new Error('Invalid base36 value');
+		}
+		result = result * 36n + BigInt(digit);
+	}
+	return result;
+}
+
+function decodeCheckedIds(hash) {
+	if (!hash) return [];
+	if (!hash.startsWith('v2-')) return [];
+
+	const payload = hash.slice(3);
+	if (!payload) return [];
+	let bitset;
+	try {
+		bitset = base36ToBigInt(payload);
+	} catch {
+		return [];
+	}
+
+	const allInputs = getStateInputs();
+	const ids = [];
+	allInputs.forEach((input, index) => {
+		if (((bitset >> BigInt(index)) & 1n) === 1n) {
+			ids.push(input.id);
+		}
+	});
+	return ids;
+}
+
 function setCheckedInputs(ids) {
+	const selectedIds = new Set(ids);
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-		if (ids.includes(input.id)) {
-			console.log('Checking', input.id);
+		input.checked = false;
+	});
+
+	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+		if (selectedIds.has(input.id)) {
 			input.checked = true;
 			input.dispatchEvent(new Event('change', { bubbles: true }));
 		}
@@ -19,19 +74,17 @@ function setCheckedInputs(ids) {
 
 function updateHashFromState() {
 	const checked = getCheckedInputs();
-	window.location.hash = checked.join(',');
+	window.location.hash = encodeCheckedIds(checked);
 }
 
 function restoreStateFromHash() {
 	const hash = window.location.hash.replace(/^#/, '');
 	if (!hash) return;
-	const ids = hash.split(',').filter(Boolean);
+	const ids = decodeCheckedIds(hash);
 	setCheckedInputs(ids);
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-	// ...existing code...
-	
 	// Bouton de génération de lien
 	const btn = document.getElementById('generate-link-btn');
 	const linkInput = document.getElementById('generated-link');
@@ -287,9 +340,6 @@ function updateFicheDons() {
 	if (lignee && lignee.dataset.don) {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
-
-	// Supprime les doublons
-	donsSelectionnes = [...new Set(donsSelectionnes)];
 
 	// Masque tous les dons
 	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
