@@ -7,20 +7,57 @@ function getCheckedInputs() {
 	return checked;
 }
 
-function getStateInputs() {
+function getChoiceInputs() {
 	return Array.from(document.querySelectorAll('input[type="checkbox"], input[type="radio"]')).filter(input => input.id);
+}
+
+function getTextStateFields() {
+	return Array.from(document.querySelectorAll('input[type="text"], textarea')).filter(field => field.id);
+}
+
+function getTextStateValues() {
+	const values = {};
+	getTextStateFields().forEach(field => {
+		if (field.value !== '') {
+			values[field.id] = field.value;
+		}
+	});
+	return values;
+}
+
+function encodeUnicodeToBase64Url(value) {
+	const bytes = new TextEncoder().encode(value);
+	let binary = '';
+	bytes.forEach(byte => {
+		binary += String.fromCharCode(byte);
+	});
+	return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+function decodeBase64UrlToUnicode(value) {
+	const base64 = value.replace(/-/g, '+').replace(/_/g, '/');
+	const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+	const binary = atob(padded);
+	const bytes = new Uint8Array(binary.length);
+	for (let i = 0; i < binary.length; i++) {
+		bytes[i] = binary.charCodeAt(i);
+	}
+	return new TextDecoder().decode(bytes);
 }
 
 function encodeCheckedIds(ids) {
 	const checkedSet = new Set(ids);
-	const allInputs = getStateInputs();
+	const allInputs = getChoiceInputs();
 	let bitset = 0n;
 	allInputs.forEach((input, index) => {
 		if (checkedSet.has(input.id)) {
 			bitset |= 1n << BigInt(index);
 		}
 	});
-	return `v2-${bitset.toString(36)}`;
+
+	const textStateJson = JSON.stringify(getTextStateValues());
+	const textStateEncoded = encodeUnicodeToBase64Url(textStateJson);
+	return `v3.${bitset.toString(36)}.${textStateEncoded}`;
 }
 
 function base36ToBigInt(value) {
@@ -37,25 +74,66 @@ function base36ToBigInt(value) {
 
 function decodeCheckedIds(hash) {
 	if (!hash) return [];
-	if (!hash.startsWith('v2-')) return [];
+	if (hash.startsWith('v2-')) {
+		const payload = hash.slice(3);
+		if (!payload) return [];
+		let bitset;
+		try {
+			bitset = base36ToBigInt(payload);
+		} catch {
+			return [];
+		}
 
-	const payload = hash.slice(3);
-	if (!payload) return [];
+		const allInputs = getChoiceInputs();
+		const ids = [];
+		allInputs.forEach((input, index) => {
+			if (((bitset >> BigInt(index)) & 1n) === 1n) {
+				ids.push(input.id);
+			}
+		});
+		return ids;
+	}
+
+	if (!hash.startsWith('v3.')) return [];
+	const parts = hash.split('.');
+	if (parts.length !== 3) return [];
+
+	const bitsetPayload = parts[1];
+	const textPayload = parts[2];
 	let bitset;
 	try {
-		bitset = base36ToBigInt(payload);
+		bitset = base36ToBigInt(bitsetPayload);
 	} catch {
 		return [];
 	}
 
-	const allInputs = getStateInputs();
+	const allInputs = getChoiceInputs();
 	const ids = [];
 	allInputs.forEach((input, index) => {
 		if (((bitset >> BigInt(index)) & 1n) === 1n) {
 			ids.push(input.id);
 		}
 	});
+
 	return ids;
+}
+
+function decodeTextStateValues(hash) {
+	if (!hash || !hash.startsWith('v3.')) return {};
+	const parts = hash.split('.');
+	if (parts.length !== 3) return {};
+
+	const textPayload = parts[2];
+	if (!textPayload) return {};
+
+	try {
+		const json = decodeBase64UrlToUnicode(textPayload);
+		const values = JSON.parse(json);
+		if (!values || typeof values !== 'object' || Array.isArray(values)) return {};
+		return values;
+	} catch {
+		return {};
+	}
 }
 
 function setCheckedInputs(ids) {
@@ -72,16 +150,50 @@ function setCheckedInputs(ids) {
 	});
 }
 
+function setTextStateValues(values) {
+	const fields = getTextStateFields();
+	fields.forEach(field => {
+		field.value = '';
+	});
+
+	fields.forEach(field => {
+		if (Object.prototype.hasOwnProperty.call(values, field.id)) {
+			field.value = String(values[field.id] ?? '');
+			field.dispatchEvent(new Event('input', { bubbles: true }));
+			field.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+	});
+}
+
 function updateHashFromState() {
 	const checked = getCheckedInputs();
-	window.location.hash = encodeCheckedIds(checked);
+	const encoded = encodeCheckedIds(checked);
+	const newUrl = `${window.location.pathname}${window.location.search}#${encoded}`;
+	history.replaceState(null, '', newUrl);
+}
+
+function bindAutoHashSync() {
+	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+		input.addEventListener('change', updateHashFromState);
+	});
+
+	let textSyncTimer;
+	document.querySelectorAll('input[type="text"], textarea').forEach(field => {
+		field.addEventListener('input', () => {
+			clearTimeout(textSyncTimer);
+			textSyncTimer = setTimeout(updateHashFromState, 1000);
+		});
+		field.addEventListener('change', updateHashFromState);
+	});
 }
 
 function restoreStateFromHash() {
 	const hash = window.location.hash.replace(/^#/, '');
 	if (!hash) return;
 	const ids = decodeCheckedIds(hash);
+	const textValues = decodeTextStateValues(hash);
 	setCheckedInputs(ids);
+	setTextStateValues(textValues);
 }
 
 window.addEventListener('DOMContentLoaded', function() {
@@ -100,6 +212,9 @@ window.addEventListener('DOMContentLoaded', function() {
 	
 	// Restaure l'état à l'ouverture si hash présent
 	restoreStateFromHash();
+
+	// Synchronise automatiquement le hash sans rechargement
+	bindAutoHashSync();
 });
 
 // Permet de restaurer l'état si le hash change (navigation ou collage)
