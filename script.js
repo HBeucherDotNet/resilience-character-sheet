@@ -481,10 +481,10 @@ function initStateFromHash() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
+
 	updateViewModeUi();
 	initBindings();
 	initStateFromHash();
-
-	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 });
 
