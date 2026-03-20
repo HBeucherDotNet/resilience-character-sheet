@@ -1,7 +1,4 @@
-import { dons } from './data/dons.js';
-import { equipements } from './data/equipements.js';
-import { competences } from './data/competences.js';
-import { morphologies } from './data/morphologies.js';
+import { HashCodec } from './hashCodec.js';
 
 const saisonsEnum = {
 	hiver: 1,
@@ -12,28 +9,121 @@ const saisonsEnum = {
 
 // Couleurs par saison
 const couleurs = {
-	hiver: '#235a8a',
-	printemps: '#2c7a4b',
-	ete: '#bfa600',
-	automne: '#a13a3a',
-	temps: '#3a7ad2'
+	hiver: getCssColorVar('--color-hiver', '#235a8a'),
+	printemps: getCssColorVar('--color-printemps', '#2c7a4b'),
+	ete: getCssColorVar('--color-ete', '#bfa600'),
+	automne: getCssColorVar('--color-automne', '#a13a3a'),
+	temps: getCssColorVar('--color-temps', '#3a7ad2')
 };
+
+function getCssColorVar(varName, fallback) {
+	const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+	return value || fallback;
+}
+
+// Génération et restauration de l'état via hash
+function getCheckedInputs() {
+	return Array.from(document.querySelectorAll('input[type="checkbox"]'))
+	.filter(input => input.checked && input.id)
+	.map(input => input.id);
+}
+
+function getChoiceInputs() {
+	return Array.from(document.querySelectorAll('input[type="checkbox"]')).filter(input => input.id);
+}
+
+function getTextStateFields() {
+	return Array.from(document.querySelectorAll('input[type="text"], textarea')).filter(field => field.id);
+}
+
+function getTextStateValues() {
+	const values = {};
+	getTextStateFields()
+	.filter(field => field.value !== '')
+	.forEach(field => {
+		values[field.id] = field.value;
+	});
+	return values;
+}
+
+function setCheckedInputs(ids) {
+	const selectedIds = new Set(ids);
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+		input.checked = false;
+	});
+	
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+		if (selectedIds.has(input.id)) {
+			input.checked = true;
+			input.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+	});
+}
+
+function setTextStateValues(values) {
+	const fields = getTextStateFields();
+	fields.forEach(field => {
+		field.value = '';
+	});
+	
+	fields.forEach(field => {
+		if (Object.prototype.hasOwnProperty.call(values, field.id)) {
+			field.value = String(values[field.id] ?? '');
+			field.dispatchEvent(new Event('input', { bubbles: true }));
+			field.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+	});
+}
+
+function updateHashFromState() {
+	const encoded = HashCodec.encode({
+		checkedIds: getCheckedInputs(),
+		textValues: getTextStateValues(),
+		allChoiceIds: getChoiceInputs().map(input => input.id)
+	});
+	const newUrl = `${window.location.pathname}${window.location.search}#${encoded}`;
+	history.replaceState(null, '', newUrl);
+}
+
+function bindAutoHashSync() {
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+		input.addEventListener('change', updateHashFromState);
+	});
+	
+	let textSyncTimer;
+	document.querySelectorAll('input[type="text"], textarea').forEach(field => {
+		field.addEventListener('input', () => {
+			clearTimeout(textSyncTimer);
+			textSyncTimer = setTimeout(updateHashFromState, 1000);
+		});
+		field.addEventListener('change', updateHashFromState);
+	});
+}
+
+function restoreStateFromHash() {
+	const hash = window.location.hash.replace(/^#/, '');
+	if (!hash) return;
+	const state = HashCodec.decode(hash, {
+		allChoiceIds: getChoiceInputs().map(input => input.id)
+	});
+	if (!state) return;
+	setCheckedInputs(state.checkedIds);
+	setTextStateValues(state.textValues);
+}
 
 window.toggleDesc = function(btn) {
 	// Cherche le sibling .desc dans le parent
 	let desc = null;
 	const parent = btn.parentElement;
-	if (parent) {
-		desc = parent.querySelector('.desc');
-	}
+	if (parent) { desc = parent.querySelector('.desc'); }
 	if (!desc) return;
 	
-	const short = desc.querySelector('.short');
-	const long = desc.querySelector('.long');
+	const long = desc.querySelector('.long') ?? desc; // Si pas de .long, toggle sur tout le .desc
 	
 	// Détecte la saison de l'option
 	let saison = '';
 	const option = btn.closest('.option');
+	const item = btn.closest('.fiche-bloc-item');
 	if (option) {
 		if (option.classList.contains('hiver')) saison = 'hiver';
 		else if (option.classList.contains('printemps')) saison = 'printemps';
@@ -41,44 +131,45 @@ window.toggleDesc = function(btn) {
 		else if (option.classList.contains('automne')) saison = 'automne';
 		else if (option.classList.contains('temps')) saison = 'temps';
 	}
-	const couleur = couleurs[saison] || '#235a8a';
+	else if (item) {
+		if (item.classList.contains('morphologie-recap')) saison = 'hiver';
+		else if (item.classList.contains('competence-recap')) saison = 'printemps';
+		else if (item.classList.contains('don-recap')) saison = 'ete';
+		else if (item.classList.contains('equipement-recap')) saison = 'automne';
+	}
+	else {
+		return; // Pas de saison détectée, ne pas continuer
+	}
+	
+	const couleur = couleurs[saison] || couleurs.temps;
 	
 	// Pour le bouton pictogramme
-	if (btn.classList.contains('pictogram-btn')) {
-		if (long.style.display === 'none') {
-			long.style.display = 'inline';
-			// Point d'interrogation barré
-			btn.innerHTML = `
+	if (!btn.classList.contains('pictogram-btn'))
+		return;
+	
+	if (long.style.display === 'none') {
+		long.style.display = 'inline';
+		// Point d'interrogation barré
+		btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
 					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
 					<line x1="6" y1="6" x2="16" y2="16" stroke="${couleur}" stroke-width="2"/>
 				</svg>
 			`;
-		} else {
-			long.style.display = 'none';
-			// Point d'interrogation normal
-			btn.innerHTML = `
+	} else {
+		long.style.display = 'none';
+		// Point d'interrogation normal
+		btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
 					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
 				</svg>
 			`;
-		}
-		return;
-	}
-	
-	// Pour les autres boutons
-	if (long.style.display === 'none') {
-		long.style.display = 'inline';
-		btn.textContent = 'Lire moins';
-	} else {
-		long.style.display = 'none';
-		btn.textContent = 'Lire plus';
 	}
 }
 
-window.selectUnique = function(group, el) {
+function selectUnique(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
@@ -89,7 +180,7 @@ window.selectUnique = function(group, el) {
 	if (selectedOption && el.checked) selectedOption.classList.add('selected-option');
 }
 
-window.updateLignees = function() {
+function updateLignees() {
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignéesMessage = document.getElementById('lignées-message');
 	const lignéesList = document.getElementById('lignées-list');
@@ -113,8 +204,8 @@ window.updateLignees = function() {
 	});
 }
 
-window.genererFiche = function() {
-	// Remplit dynamiquement la fiche de personnage
+// Remplit dynamiquement la fiche de personnage
+function genererFiche() {
 	const saison = document.querySelector('input[name="saison"]:checked');
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
@@ -133,47 +224,11 @@ window.genererFiche = function() {
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
-
+	
 	document.getElementById('fiche-essence-harmonie').className = saison ? saison.value : '';
 	document.getElementById('fiche-champ-lexical').className = saison ? saison.value : '';
 	document.getElementById('fiche-magie').className = saison ? saison.value : '';
 }
-
-window.toggleResume = function(btn) {
-	const resume = btn.parentElement.querySelector('.resume');
-	if (!resume) return;
-	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-};
-
-window.addEventListener('DOMContentLoaded', function() {
-	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
-		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
-			input.addEventListener('change', genererFiche);
-		});
-	});
-
-	// Ajoute le comportement de sélection sur .option
-	document.querySelectorAll('.option').forEach(option => {
-		option.addEventListener('click', function(e) {
-			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
-			if (e.target.closest('.lire-plus.pictogram-btn, svg, input, label')) return;
-			const checkbox = option.querySelector('input[type="checkbox"], input[type="radio"]');
-			if (checkbox) {
-				checkbox.checked = !checkbox.checked;
-				selectUnique(checkbox.name, checkbox);
-				checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-			}
-		});
-	});
-
-	genererFiche(); // Initialiser la fiche au chargement
-	updateLignees(); // Met à jour les lignées au chargement
-	updateFicheAge(); // Met à jour l'âge au chargement
-	updateFicheDons(); // Met à jour les dons au chargement
-	updateFicheEquipements(); // Met à jour les équipements au chargement
-	updateFicheCompetences(); // Met à jour les compétences au chargement
-	updateFicheMorphologies(); // Met à jour les morphologies au chargement
-});
 
 function updateFicheAge() {
 	const age = document.querySelector('input[name="age"]:checked');
@@ -188,66 +243,42 @@ function updateFicheAge() {
 function updateFicheCompetences() {
 	// Récupère la compétence liée au rôle sélectionné
 	const role = document.querySelector('input[name="role"]:checked');
-	let competencesSelectionnees = [];
-	if (role && role.dataset.competence && competences[role.dataset.competence]) {
-		const compObj = competences[role.dataset.competence];
-		competencesSelectionnees = Object.keys(compObj);
+	let roleSelectionne = '';
+	if (role && role.value) {
+		roleSelectionne = role.value;
 	}
-	// Supprime les doublons
-	competencesSelectionnees = [...new Set(competencesSelectionnees)];
 	
-	const ficheCompetences = document.getElementById('fiche-competences');
-	ficheCompetences.innerHTML = '';
-	competencesSelectionnees.forEach(compKey => {
-		if (competences[role.dataset.competence][compKey]) {
-			ficheCompetences.innerHTML += `
-				<div class="competence-recap fiche-bloc-item">
-					<input type="checkbox" id="competence-${compKey}" name="competence-selected" value="${compKey}">
-					<label for="competence-${compKey}">${competences[role.dataset.competence][compKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.printemps}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.printemps}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${competences[role.dataset.competence][compKey].description}</span>
-				</div>
-			`;
-		}
+	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+	
+	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${roleSelectionne}"]`);
+	competenceBlocs.forEach(competenceBloc => {
+		if (competenceBloc) competenceBloc.style.display = '';
 	});
 }
 
 function updateFicheEquipements() {
-	// Récupère les équipements sélectionnés (environnement, mode-de-vie, philosophie, relation-rupture)
-	const env = document.querySelector('input[name="environnement"]:checked');
-	const mode = document.querySelector('input[name="mode-de-vie"]:checked');
-	const philo = document.querySelector('input[name="philosophie"]:checked');
-	const rupture = document.querySelector('input[name="relation-rupture"]:checked');
-	let equipementsSelectionnes = [];
-	if (env && env.dataset.equipement) equipementsSelectionnes.push(env.dataset.equipement);
-	if (mode && mode.dataset.equipement) equipementsSelectionnes.push(mode.dataset.equipement);
-	if (philo && philo.dataset.equipement) equipementsSelectionnes.push(philo.dataset.equipement);
-	if (rupture && rupture.dataset.equipement) equipementsSelectionnes.push(rupture.dataset.equipement);
+	// Récupère les morphologies sélectionnées
+	const groups = ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'];
+	let equipementsSelectionnes = 
+	groups
+	.map(group => document.querySelector(`#${group}-group input:checked`))
+	.filter(input => input && input.dataset.equipement)
+	.map(input => input.dataset.equipement);
+	
 	// Supprime les doublons
 	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
-	const ficheEquipements = document.getElementById('fiche-equipements');
-	ficheEquipements.innerHTML = '';
+	
+	// Masque tous les équipements
+	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+	
+	// Affiche ceux sélectionnés
 	equipementsSelectionnes.forEach(eqKey => {
-		if (equipements[eqKey]) {
-			ficheEquipements.innerHTML += `
-				<div class="equipement-recap fiche-bloc-item">
-					<input type="checkbox" id="equipement-${eqKey}" name="equipement-selected" value="${eqKey}">
-					<label for="equipement-${eqKey}">${equipements[eqKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.automne}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.automne}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${equipements[eqKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
@@ -263,58 +294,39 @@ function updateFicheDons() {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
 	
-	const ficheDons = document.getElementById('fiche-dons');
-	ficheDons.innerHTML = '';
+	// Masque tous les dons
+	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+	
+	// Affiche ceux sélectionnés
 	donsSelectionnes.forEach(donKey => {
-		if (dons[donKey]) {
-			ficheDons.innerHTML += `
-				<div class="don-recap fiche-bloc-item">
-					<input type="checkbox" id="don-${donKey}" name="don-selected" value="${donKey}">
-					<label for="don-${donKey}">${dons[donKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.ete}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.ete}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${dons[donKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
 function updateFicheMorphologies() {
 	// Récupère les morphologies sélectionnées
 	const groups = ['armement', 'cuirasse', 'mains', 'peau'];
-	let morphologiesSelectionnees = [];
-	groups.forEach(group => {
-		const input = document.querySelector(`#${group}-group input:checked`);
-		if (input && input.dataset.morphologie) {
-			morphologiesSelectionnees.push(input.dataset.morphologie);
-		}
-	});
-
+	let morphologiesSelectionnees = 
+	groups
+	.map(group => document.querySelector(`#${group}-group input:checked`))
+	.filter(input => input && input.dataset.morphologie)
+	.map(input => input.dataset.morphologie);
+	
 	// Supprime les doublons
 	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
-	const ficheMorphologies = document.getElementById('fiche-morphologies');
-	ficheMorphologies.innerHTML = '';
+	
+	// Masque toutes les morphologies
+	document.querySelectorAll('#fiche-morphologies .morphologie-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+	
+	// Affiche celles sélectionnées
 	morphologiesSelectionnees.forEach(morphKey => {
-		if (morphologies[morphKey]) {
-			ficheMorphologies.innerHTML += `
-				<div class="equipement-recap fiche-bloc-item">
-					<input type="checkbox" id="morphologie-${morphKey}" name="morphologie-selected" value="${morphKey}">
-					<label for="morphologie-${morphKey}">${morphologies[morphKey].nom}</label>
-					<button type="button" class="lire-plus pictogram-btn" onclick="window.toggleResume(this)" aria-label="Afficher le résumé">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="${couleurs.hiver}" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleurs.hiver}">?</text>
-						</svg>
-					</button>
-					<span class="resume" style="display:none;">${morphologies[morphKey].description}</span>
-				</div>
-			`;
-		}
+		const div = document.querySelector(`#fiche-morphologies .morphologie-recap[data-morphologie="${morphKey}"]`);
+		if (div) div.style.display = '';
 	});
 }
 
@@ -329,29 +341,75 @@ function getsaisonScore(saison, saisonName) {
 	}
 }
 
-// Ajoute les listeners pour afficher les dons
-['famille', 'lignee'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheDons);
+window.addEventListener('DOMContentLoaded', function() {
+	document.querySelectorAll('#character-builder input[type="checkbox"]').forEach(input => {
+		input.addEventListener('change', selectUnique.bind(null, input.name, input));
+		input.addEventListener('change', genererFiche);
 	});
-});
-['role'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheCompetences);
+	
+	document.querySelectorAll('input[name="famille"]').forEach(input => {
+		input.addEventListener('change', updateLignees);
 	});
-});
-['age'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheAge);
+	
+	['famille', 'lignee'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheDons);
+		});
 	});
-});
-['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheEquipements);
+	['role'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheCompetences);
+		});
 	});
-});
-['armement', 'cuirasse', 'mains', 'peau'].forEach(group => {
-	document.querySelectorAll(`#${group}-group input`).forEach(input => {
-		input.addEventListener('change', updateFicheMorphologies);
+	['age'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheAge);
+		});
 	});
+	['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheEquipements);
+		});
+	});
+	['armement', 'cuirasse', 'mains', 'peau'].forEach(group => {
+		document.querySelectorAll(`#${group}-group input`).forEach(input => {
+			input.addEventListener('change', updateFicheMorphologies);
+		});
+	});
+	
+	document.querySelectorAll(`.lire-plus.pictogram-btn`).forEach(div => {
+		div.addEventListener('click', () => toggleDesc(div));
+	});
+	
+	// Permet de restaurer l'état si le hash change (navigation ou collage)
+	window.addEventListener('hashchange', restoreStateFromHash);
+	
+	// Ajoute le comportement de sélection sur .option
+	document.querySelectorAll('.option').forEach(option => {
+		option.addEventListener('click', function(e) {
+			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
+			const checkbox = option.querySelector('input[type="checkbox"]');
+			if (checkbox) {
+				checkbox.checked = !checkbox.checked;
+				selectUnique(checkbox.name, checkbox);
+				checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+			}
+		});
+	});
+	
+	// Restaure l'état à l'ouverture si hash présent
+	restoreStateFromHash();
+	
+	// Synchronise automatiquement le hash sans rechargement
+	bindAutoHashSync();
+	
+	genererFiche(); // Initialiser la fiche au chargement
+	updateLignees(); // Met à jour les lignées au chargement
+	updateFicheAge(); // Met à jour l'âge au chargement
+	updateFicheDons(); // Met à jour les dons au chargement
+	updateFicheEquipements(); // Met à jour les équipements au chargement
+	updateFicheCompetences(); // Met à jour les compétences au chargement
+	updateFicheMorphologies(); // Met à jour les morphologies au chargement
 });
+
