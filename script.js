@@ -75,6 +75,14 @@ function setTextStateValues(values) {
 	});
 }
 
+function debounce(fn, delay) {
+	let timer;
+	return (...args) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => fn(...args), delay);
+	};
+}
+
 let isRestoringState = false;
 
 function updateHashFromState() {
@@ -92,13 +100,10 @@ function bindAutoHashSync() {
 	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', updateHashFromState);
 	});
-	
-	let textSyncTimer;
+
+	const debouncedUpdateHash = debounce(updateHashFromState, 1000);
 	document.querySelectorAll('input[type="text"], textarea').forEach(field => {
-		field.addEventListener('input', () => {
-			clearTimeout(textSyncTimer);
-			textSyncTimer = setTimeout(updateHashFromState, 1000);
-		});
+		field.addEventListener('input', debouncedUpdateHash);
 		field.addEventListener('change', updateHashFromState);
 	});
 }
