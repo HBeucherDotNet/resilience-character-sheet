@@ -272,11 +272,11 @@ function updateFicheEquipements() {
 	// Récupère les morphologies sélectionnées
 	const groups = ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'];
 	let equipementsSelectionnes = 
-	groups
-	.map(group => document.querySelector(`#${group}-group input:checked`))
-	.filter(input => input && input.dataset.equipement)
-	.map(input => input.dataset.equipement);
-	
+		groups
+			.map(group => document.querySelector(`#${group}-group input:checked`))
+			.filter(input => input && input.dataset.equipement)
+			.map(input => input.dataset.equipement);
+		
 	// Supprime les doublons
 	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
 	
@@ -418,5 +418,7 @@ function initStateFromHash() {
 window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
+
+	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 });
 
