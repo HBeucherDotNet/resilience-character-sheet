@@ -75,7 +75,10 @@ function setTextStateValues(values) {
 	});
 }
 
+let isRestoringState = false;
+
 function updateHashFromState() {
+	if (isRestoringState) return;
 	const encoded = HashCodec.encode({
 		checkedIds: getCheckedInputs(),
 		textValues: getTextStateValues(),
@@ -107,8 +110,10 @@ function restoreStateFromHash() {
 		allChoiceIds: getChoiceInputs().map(input => input.id)
 	});
 	if (!state) return;
+	isRestoringState = true;
 	setCheckedInputs(state.checkedIds);
 	setTextStateValues(state.textValues);
+	isRestoringState = false;
 }
 
 window.toggleDesc = function(btn) {
