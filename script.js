@@ -1,3 +1,10 @@
+const saisonsEnum = {
+	hiver: 1,
+	printemps: 2,
+	ete: 3,
+	automne: 4
+};
+
 // Génération et restauration de l'état via hash
 function getCheckedInputs() {
 	const checked = [];
@@ -54,7 +61,7 @@ function encodeCheckedIds(ids) {
 			bitset |= 1n << BigInt(index);
 		}
 	});
-
+	
 	const textStateJson = JSON.stringify(getTextStateValues());
 	const textStateEncoded = encodeUnicodeToBase64Url(textStateJson);
 	return `v1.${bitset.toString(36)}.${textStateEncoded}`;
@@ -77,7 +84,7 @@ function decodeCheckedIds(hash) {
 	if (!hash.startsWith('v1.')) return [];
 	const parts = hash.split('.');
 	if (parts.length !== 3) return [];
-
+	
 	const bitsetPayload = parts[1];
 	let bitset;
 	try {
@@ -85,7 +92,7 @@ function decodeCheckedIds(hash) {
 	} catch {
 		return [];
 	}
-
+	
 	const allInputs = getChoiceInputs();
 	const ids = [];
 	allInputs.forEach((input, index) => {
@@ -93,7 +100,7 @@ function decodeCheckedIds(hash) {
 			ids.push(input.id);
 		}
 	});
-
+	
 	return ids;
 }
 
@@ -101,10 +108,10 @@ function decodeTextStateValues(hash) {
 	if (!hash || !hash.startsWith('v1.')) return {};
 	const parts = hash.split('.');
 	if (parts.length !== 3) return {};
-
+	
 	const textPayload = parts[2];
 	if (!textPayload) return {};
-
+	
 	try {
 		const json = decodeBase64UrlToUnicode(textPayload);
 		const values = JSON.parse(json);
@@ -120,7 +127,7 @@ function setCheckedInputs(ids) {
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
 		input.checked = false;
 	});
-
+	
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
 		if (selectedIds.has(input.id)) {
 			input.checked = true;
@@ -134,7 +141,7 @@ function setTextStateValues(values) {
 	fields.forEach(field => {
 		field.value = '';
 	});
-
+	
 	fields.forEach(field => {
 		if (Object.prototype.hasOwnProperty.call(values, field.id)) {
 			field.value = String(values[field.id] ?? '');
@@ -155,7 +162,7 @@ function bindAutoHashSync() {
 	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
 		input.addEventListener('change', updateHashFromState);
 	});
-
+	
 	let textSyncTimer;
 	document.querySelectorAll('input[type="text"], textarea').forEach(field => {
 		field.addEventListener('input', () => {
@@ -175,36 +182,8 @@ function restoreStateFromHash() {
 	setTextStateValues(textValues);
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-	// Bouton de génération de lien
-	const btn = document.getElementById('generate-link-btn');
-	const linkInput = document.getElementById('generated-link');
-	if (btn && linkInput) {
-		btn.addEventListener('click', function() {
-			updateHashFromState();
-			linkInput.value = window.location.href;
-			linkInput.style.display = 'block';
-			linkInput.select();
-			linkInput.setSelectionRange(0, 99999);
-		});
-	}
-	
-	// Restaure l'état à l'ouverture si hash présent
-	restoreStateFromHash();
-
-	// Synchronise automatiquement le hash sans rechargement
-	bindAutoHashSync();
-});
-
 // Permet de restaurer l'état si le hash change (navigation ou collage)
 window.addEventListener('hashchange', restoreStateFromHash);
-
-const saisonsEnum = {
-	hiver: 1,
-	printemps: 2,
-	ete: 3,
-	automne: 4
-};
 
 // Couleurs par saison
 const couleurs = {
@@ -219,17 +198,15 @@ window.toggleDesc = function(btn) {
 	// Cherche le sibling .desc dans le parent
 	let desc = null;
 	const parent = btn.parentElement;
-	if (parent) {
-		desc = parent.querySelector('.desc');
-	}
+	if (parent) { desc = parent.querySelector('.desc'); }
 	if (!desc) return;
 	
-	const short = desc.querySelector('.short');
-	const long = desc.querySelector('.long');
+	const long = desc.querySelector('.long') ?? desc; // Si pas de .long, toggle sur tout le .desc
 	
 	// Détecte la saison de l'option
 	let saison = '';
 	const option = btn.closest('.option');
+	const item = btn.closest('.fiche-bloc-item');
 	if (option) {
 		if (option.classList.contains('hiver')) saison = 'hiver';
 		else if (option.classList.contains('printemps')) saison = 'printemps';
@@ -237,40 +214,41 @@ window.toggleDesc = function(btn) {
 		else if (option.classList.contains('automne')) saison = 'automne';
 		else if (option.classList.contains('temps')) saison = 'temps';
 	}
+	else if (item) {
+		if (item.classList.contains('morphologie-recap')) saison = 'hiver';
+		else if (item.classList.contains('competence-recap')) saison = 'printemps';
+		else if (item.classList.contains('don-recap')) saison = 'ete';
+		else if (item.classList.contains('equipement-recap')) saison = 'automne';
+	}
+	else {
+		return; // Pas de saison détectée, ne pas continuer
+	}
+	
 	const couleur = couleurs[saison] || '#235a8a';
 	
 	// Pour le bouton pictogramme
-	if (btn.classList.contains('pictogram-btn')) {
-		if (long.style.display === 'none') {
-			long.style.display = 'inline';
-			// Point d'interrogation barré
-			btn.innerHTML = `
+	if (!btn.classList.contains('pictogram-btn'))
+		return;
+	
+	if (long.style.display === 'none') {
+		long.style.display = 'inline';
+		// Point d'interrogation barré
+		btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
 					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
 					<line x1="6" y1="6" x2="16" y2="16" stroke="${couleur}" stroke-width="2"/>
 				</svg>
 			`;
-		} else {
-			long.style.display = 'none';
-			// Point d'interrogation normal
-			btn.innerHTML = `
+	} else {
+		long.style.display = 'none';
+		// Point d'interrogation normal
+		btn.innerHTML = `
 				<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="11" cy="11" r="10" stroke="${couleur}" stroke-width="2" fill="#fff"/>
 					<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${couleur}">?</text>
 				</svg>
 			`;
-		}
-		return;
-	}
-	
-	// Pour les autres boutons
-	if (long.style.display === 'none') {
-		long.style.display = 'inline';
-		btn.textContent = 'Lire moins';
-	} else {
-		long.style.display = 'none';
-		btn.textContent = 'Lire plus';
 	}
 }
 
@@ -335,12 +313,6 @@ window.genererFiche = function() {
 	document.getElementById('fiche-magie').className = saison ? saison.value : '';
 }
 
-window.toggleResume = function(btn) {
-	const resume = btn.parentElement.querySelector('.resume');
-	if (!resume) return;
-	resume.style.display = resume.style.display === 'none' ? 'block' : 'none';
-};
-
 window.addEventListener('DOMContentLoaded', function() {
 	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
 		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
@@ -361,6 +333,12 @@ window.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
+	
+	// Restaure l'état à l'ouverture si hash présent
+	restoreStateFromHash();
+	
+	// Synchronise automatiquement le hash sans rechargement
+	bindAutoHashSync();
 	
 	genererFiche(); // Initialiser la fiche au chargement
 	updateLignees(); // Met à jour les lignées au chargement
@@ -388,11 +366,11 @@ function updateFicheCompetences() {
 	if (role && role.value) {
 		roleSelectionne = role.value;
 	}
-
+	
 	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
 		div.style.display = 'none';
 	});
-
+	
 	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${roleSelectionne}"]`);
 	competenceBlocs.forEach(competenceBloc => {
 		if (competenceBloc) competenceBloc.style.display = '';
@@ -403,19 +381,19 @@ function updateFicheEquipements() {
 	// Récupère les morphologies sélectionnées
 	const groups = ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'];
 	let equipementsSelectionnes = 
-		groups
-			.map(group => document.querySelector(`#${group}-group input:checked`))
-			.filter(input => input && input.dataset.equipement)
-			.map(input => input.dataset.equipement);
+	groups
+	.map(group => document.querySelector(`#${group}-group input:checked`))
+	.filter(input => input && input.dataset.equipement)
+	.map(input => input.dataset.equipement);
 	
 	// Supprime les doublons
 	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
-
+	
 	// Masque tous les équipements
 	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
 		div.style.display = 'none';
 	});
-
+	
 	// Affiche ceux sélectionnés
 	equipementsSelectionnes.forEach(eqKey => {
 		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
@@ -434,12 +412,12 @@ function updateFicheDons() {
 	if (lignee && lignee.dataset.don) {
 		donsSelectionnes.push(lignee.dataset.don);
 	}
-
+	
 	// Masque tous les dons
 	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
 		div.style.display = 'none';
 	});
-
+	
 	// Affiche ceux sélectionnés
 	donsSelectionnes.forEach(donKey => {
 		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
@@ -451,22 +429,22 @@ function updateFicheMorphologies() {
 	// Récupère les morphologies sélectionnées
 	const groups = ['armement', 'cuirasse', 'mains', 'peau'];
 	let morphologiesSelectionnees = 
-		groups
-			.map(group => document.querySelector(`#${group}-group input:checked`))
-			.filter(input => input && input.dataset.morphologie)
-			.map(input => input.dataset.morphologie);
-
+	groups
+	.map(group => document.querySelector(`#${group}-group input:checked`))
+	.filter(input => input && input.dataset.morphologie)
+	.map(input => input.dataset.morphologie);
+	
 	// Supprime les doublons
 	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
-
+	
 	// Masque toutes les morphologies
-	document.querySelectorAll('#fiche-morphologies .equipement-recap').forEach(div => {
+	document.querySelectorAll('#fiche-morphologies .morphologie-recap').forEach(div => {
 		div.style.display = 'none';
 	});
-
+	
 	// Affiche celles sélectionnées
 	morphologiesSelectionnees.forEach(morphKey => {
-		const div = document.querySelector(`#fiche-morphologies .equipement-recap[data-morphologie="${morphKey}"]`);
+		const div = document.querySelector(`#fiche-morphologies .morphologie-recap[data-morphologie="${morphKey}"]`);
 		if (div) div.style.display = '';
 	});
 }
@@ -507,4 +485,8 @@ function getsaisonScore(saison, saisonName) {
 	document.querySelectorAll(`#${group}-group input`).forEach(input => {
 		input.addEventListener('change', updateFicheMorphologies);
 	});
+});
+
+document.querySelectorAll(`.lire-plus.pictogram-btn`).forEach(div => {
+	div.addEventListener('click', () => toggleDesc(div));
 });
