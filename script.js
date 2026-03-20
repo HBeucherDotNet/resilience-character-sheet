@@ -341,16 +341,16 @@ function getsaisonScore(saison, saisonName) {
 	}
 }
 
-window.addEventListener('DOMContentLoaded', function() {
+function initBindings() {
 	document.querySelectorAll('#character-builder input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', selectUnique.bind(null, input.name, input));
 		input.addEventListener('change', genererFiche);
 	});
-	
+
 	document.querySelectorAll('input[name="famille"]').forEach(input => {
 		input.addEventListener('change', updateLignees);
 	});
-	
+
 	['famille', 'lignee'].forEach(group => {
 		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
 			input.addEventListener('change', updateFicheDons);
@@ -376,14 +376,11 @@ window.addEventListener('DOMContentLoaded', function() {
 			input.addEventListener('change', updateFicheMorphologies);
 		});
 	});
-	
-	document.querySelectorAll(`.lire-plus.pictogram-btn`).forEach(div => {
+
+	document.querySelectorAll('.lire-plus.pictogram-btn').forEach(div => {
 		div.addEventListener('click', () => toggleDesc(div));
 	});
-	
-	// Permet de restaurer l'état si le hash change (navigation ou collage)
-	window.addEventListener('hashchange', restoreStateFromHash);
-	
+
 	// Ajoute le comportement de sélection sur .option
 	document.querySelectorAll('.option').forEach(option => {
 		option.addEventListener('click', function(e) {
@@ -397,19 +394,19 @@ window.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
-	
-	// Restaure l'état à l'ouverture si hash présent
-	restoreStateFromHash();
-	
-	// Synchronise automatiquement le hash sans rechargement
+
 	bindAutoHashSync();
-	
-	genererFiche(); // Initialiser la fiche au chargement
-	updateLignees(); // Met à jour les lignées au chargement
-	updateFicheAge(); // Met à jour l'âge au chargement
-	updateFicheDons(); // Met à jour les dons au chargement
-	updateFicheEquipements(); // Met à jour les équipements au chargement
-	updateFicheCompetences(); // Met à jour les compétences au chargement
-	updateFicheMorphologies(); // Met à jour les morphologies au chargement
+}
+
+function initStateFromHash() {
+	// Restaure l'état à l'ouverture si hash présent (déclenche les change events → updateFiche*)
+	restoreStateFromHash();
+	// Permet de restaurer si le hash change en cours de navigation
+	window.addEventListener('hashchange', restoreStateFromHash);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+	initBindings();
+	initStateFromHash();
 });
 
