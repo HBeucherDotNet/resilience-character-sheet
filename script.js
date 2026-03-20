@@ -1,3 +1,5 @@
+import { HashCodec } from './hashCodec.js';
+
 const saisonsEnum = {
 	hiver: 1,
 	printemps: 2,
@@ -39,89 +41,6 @@ function getTextStateValues() {
 	return values;
 }
 
-function encodeUnicodeToBase64Url(value) {
-	const bytes = new TextEncoder().encode(value);
-	let binary = '';
-	bytes.forEach(byte => {
-		binary += String.fromCharCode(byte);
-	});
-	return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
-}
-
-function decodeBase64UrlToUnicode(value) {
-	const base64 = value.replace(/-/g, '+').replace(/_/g, '/');
-	const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
-	const binary = atob(padded);
-	const bytes = new Uint8Array(binary.length);
-	for (let i = 0; i < binary.length; i++) {
-		bytes[i] = binary.charCodeAt(i);
-	}
-	return new TextDecoder().decode(bytes);
-}
-
-function encodeCheckedIds(ids) {
-	const checkedSet = new Set(ids);
-	const allInputs = getChoiceInputs();
-	let bitset = 0n;
-	allInputs.forEach((input, index) => {
-		if (checkedSet.has(input.id)) {
-			bitset |= 1n << BigInt(index);
-		}
-	});
-	
-	const textStateJson = JSON.stringify(getTextStateValues());
-	const textStateEncoded = encodeUnicodeToBase64Url(textStateJson);
-	return `v1.${bitset.toString(36)}.${textStateEncoded}`;
-}
-
-function base36ToBigInt(value) {
-	let result = 0n;
-	for (const char of value.toLowerCase()) {
-		const digit = parseInt(char, 36);
-		if (Number.isNaN(digit) || digit < 0 || digit > 35) {
-			throw new Error('Invalid base36 value');
-		}
-		result = result * 36n + BigInt(digit);
-	}
-	return result;
-}
-
-function decodeCheckedIds(hash) {
-	if (!hash) return [];
-	if (!hash.startsWith('v1.')) return [];
-	const parts = hash.split('.');
-	if (parts.length !== 3) return [];
-	
-	const bitsetPayload = parts[1];
-	let bitset;
-	try {
-		bitset = base36ToBigInt(bitsetPayload);
-	} catch {
-		return [];
-	}
-	
-	const allInputs = getChoiceInputs();
-	return allInputs.filter((_, index) => ((bitset >> BigInt(index)) & 1n) === 1n).map(input => input.id);
-}
-
-function decodeTextStateValues(hash) {
-	if (!hash || !hash.startsWith('v1.')) return {};
-	const parts = hash.split('.');
-	if (parts.length !== 3) return {};
-	
-	const textPayload = parts[2];
-	if (!textPayload) return {};
-	
-	try {
-		const json = decodeBase64UrlToUnicode(textPayload);
-		const values = JSON.parse(json);
-		if (!values || typeof values !== 'object' || Array.isArray(values)) return {};
-		return values;
-	} catch {
-		return {};
-	}
-}
-
 function setCheckedInputs(ids) {
 	const selectedIds = new Set(ids);
 	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
@@ -152,8 +71,11 @@ function setTextStateValues(values) {
 }
 
 function updateHashFromState() {
-	const checked = getCheckedInputs();
-	const encoded = encodeCheckedIds(checked);
+	const encoded = HashCodec.encode({
+		checkedIds: getCheckedInputs(),
+		textValues: getTextStateValues(),
+		allChoiceIds: getChoiceInputs().map(input => input.id)
+	});
 	const newUrl = `${window.location.pathname}${window.location.search}#${encoded}`;
 	history.replaceState(null, '', newUrl);
 }
@@ -176,10 +98,12 @@ function bindAutoHashSync() {
 function restoreStateFromHash() {
 	const hash = window.location.hash.replace(/^#/, '');
 	if (!hash) return;
-	const ids = decodeCheckedIds(hash);
-	const textValues = decodeTextStateValues(hash);
-	setCheckedInputs(ids);
-	setTextStateValues(textValues);
+	const state = HashCodec.decode(hash, {
+		allChoiceIds: getChoiceInputs().map(input => input.id)
+	});
+	if (!state) return;
+	setCheckedInputs(state.checkedIds);
+	setTextStateValues(state.textValues);
 }
 
 window.toggleDesc = function(btn) {
