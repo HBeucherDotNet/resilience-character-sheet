@@ -7,6 +7,62 @@ body {
 	background: colors.$color-bg-page;
 }
 
+.page-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.75em;
+	margin-bottom: 1.25em;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.page-action-btn {
+	border: 1px solid colors.$color-hiver;
+	background: colors.$color-hiver;
+	color: colors.$color-white;
+	padding: 0.7em 1.1em;
+	border-radius: 999px;
+	font-size: 0.95em;
+	cursor: pointer;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+	&:hover {
+		filter: brightness(1.05);
+	}
+}
+
+.page-action-btn-secondary {
+	background: colors.$color-white;
+	color: colors.$color-hiver;
+}
+
+body.view-mode {
+	background: colors.$color-white;
+	margin: 0;
+	padding: 1em;
+
+	#character-builder {
+		display: none;
+	}
+
+	.page-actions {
+		padding: 0.75em 1em;
+		margin: 0;
+		background: colors.$color-white;
+	}
+
+	#fiche-personnage {
+		width: 100%;
+		max-width: none;
+		padding: 0;
+		margin: 0;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
 :root {
 	--color-hiver: #{colors.$color-hiver};
 	--color-printemps: #{colors.$color-printemps};

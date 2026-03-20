@@ -14,6 +14,9 @@
     box-shadow: none !important;
     border: none !important;
   }
+  .page-actions {
+    display: none !important;
+  }
   .pictogram-btn {
     display: none !important;
   }
@@ -29,6 +32,58 @@ body {
   font-family: Arial, sans-serif;
   margin: 2em;
   background: #e9ecf3;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75em;
+  margin-bottom: 1.25em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.page-action-btn {
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  padding: 0.7em 1.1em;
+  border-radius: 999px;
+  font-size: 0.95em;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.page-action-btn:hover {
+  filter: brightness(1.05);
+}
+
+.page-action-btn-secondary {
+  background: #fff;
+  color: #235a8a;
+}
+
+body.view-mode {
+  background: #fff;
+  margin: 0;
+  padding: 1em;
+}
+body.view-mode #character-builder {
+  display: none;
+}
+body.view-mode .page-actions {
+  padding: 0.75em 1em;
+  margin: 0;
+  background: #fff;
+}
+body.view-mode #fiche-personnage {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 :root {
