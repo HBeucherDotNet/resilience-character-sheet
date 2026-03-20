@@ -5,17 +5,24 @@ const saisonsEnum = {
 	automne: 4
 };
 
+// Couleurs par saison
+const couleurs = {
+	hiver: '#235a8a',
+	printemps: '#2c7a4b',
+	ete: '#bfa600',
+	automne: '#a13a3a',
+	temps: '#3a7ad2'
+};
+
 // Génération et restauration de l'état via hash
 function getCheckedInputs() {
-	const checked = [];
-	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-		if (input.checked && input.id) checked.push(input.id);
-	});
-	return checked;
+	return Array.from(document.querySelectorAll('input[type="checkbox"]'))
+	.filter(input => input.checked && input.id)
+	.map(input => input.id);
 }
 
 function getChoiceInputs() {
-	return Array.from(document.querySelectorAll('input[type="checkbox"], input[type="radio"]')).filter(input => input.id);
+	return Array.from(document.querySelectorAll('input[type="checkbox"]')).filter(input => input.id);
 }
 
 function getTextStateFields() {
@@ -24,10 +31,10 @@ function getTextStateFields() {
 
 function getTextStateValues() {
 	const values = {};
-	getTextStateFields().forEach(field => {
-		if (field.value !== '') {
-			values[field.id] = field.value;
-		}
+	getTextStateFields()
+	.filter(field => field.value !== '')
+	.forEach(field => {
+		values[field.id] = field.value;
 	});
 	return values;
 }
@@ -94,14 +101,7 @@ function decodeCheckedIds(hash) {
 	}
 	
 	const allInputs = getChoiceInputs();
-	const ids = [];
-	allInputs.forEach((input, index) => {
-		if (((bitset >> BigInt(index)) & 1n) === 1n) {
-			ids.push(input.id);
-		}
-	});
-	
-	return ids;
+	return allInputs.filter((_, index) => ((bitset >> BigInt(index)) & 1n) === 1n).map(input => input.id);
 }
 
 function decodeTextStateValues(hash) {
@@ -124,11 +124,11 @@ function decodeTextStateValues(hash) {
 
 function setCheckedInputs(ids) {
 	const selectedIds = new Set(ids);
-	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
 		input.checked = false;
 	});
 	
-	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
 		if (selectedIds.has(input.id)) {
 			input.checked = true;
 			input.dispatchEvent(new Event('change', { bubbles: true }));
@@ -159,7 +159,7 @@ function updateHashFromState() {
 }
 
 function bindAutoHashSync() {
-	document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', updateHashFromState);
 	});
 	
@@ -181,18 +181,6 @@ function restoreStateFromHash() {
 	setCheckedInputs(ids);
 	setTextStateValues(textValues);
 }
-
-// Permet de restaurer l'état si le hash change (navigation ou collage)
-window.addEventListener('hashchange', restoreStateFromHash);
-
-// Couleurs par saison
-const couleurs = {
-	hiver: '#235a8a',
-	printemps: '#2c7a4b',
-	ete: '#bfa600',
-	automne: '#a13a3a',
-	temps: '#3a7ad2'
-};
 
 window.toggleDesc = function(btn) {
 	// Cherche le sibling .desc dans le parent
@@ -252,7 +240,7 @@ window.toggleDesc = function(btn) {
 	}
 }
 
-window.selectUnique = function(group, el) {
+function selectUnique(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
@@ -263,7 +251,7 @@ window.selectUnique = function(group, el) {
 	if (selectedOption && el.checked) selectedOption.classList.add('selected-option');
 }
 
-window.updateLignees = function() {
+function updateLignees() {
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignéesMessage = document.getElementById('lignées-message');
 	const lignéesList = document.getElementById('lignées-list');
@@ -287,8 +275,8 @@ window.updateLignees = function() {
 	});
 }
 
-window.genererFiche = function() {
-	// Remplit dynamiquement la fiche de personnage
+// Remplit dynamiquement la fiche de personnage
+function genererFiche() {
 	const saison = document.querySelector('input[name="saison"]:checked');
 	const famille = document.querySelector('input[name="famille"]:checked');
 	const lignee = document.querySelector('input[name="lignee"]:checked');
@@ -312,42 +300,6 @@ window.genererFiche = function() {
 	document.getElementById('fiche-champ-lexical').className = saison ? saison.value : '';
 	document.getElementById('fiche-magie').className = saison ? saison.value : '';
 }
-
-window.addEventListener('DOMContentLoaded', function() {
-	['saison', 'famille', 'lignee', 'environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role'].forEach(group => {
-		document.querySelectorAll('input[name="' + group + '"]').forEach(input => {
-			input.addEventListener('change', genererFiche);
-		});
-	});
-	
-	// Ajoute le comportement de sélection sur .option
-	document.querySelectorAll('.option').forEach(option => {
-		option.addEventListener('click', function(e) {
-			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
-			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
-			const checkbox = option.querySelector('input[type="checkbox"], input[type="radio"]');
-			if (checkbox) {
-				checkbox.checked = !checkbox.checked;
-				selectUnique(checkbox.name, checkbox);
-				checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-			}
-		});
-	});
-	
-	// Restaure l'état à l'ouverture si hash présent
-	restoreStateFromHash();
-	
-	// Synchronise automatiquement le hash sans rechargement
-	bindAutoHashSync();
-	
-	genererFiche(); // Initialiser la fiche au chargement
-	updateLignees(); // Met à jour les lignées au chargement
-	updateFicheAge(); // Met à jour l'âge au chargement
-	updateFicheDons(); // Met à jour les dons au chargement
-	updateFicheEquipements(); // Met à jour les équipements au chargement
-	updateFicheCompetences(); // Met à jour les compétences au chargement
-	updateFicheMorphologies(); // Met à jour les morphologies au chargement
-});
 
 function updateFicheAge() {
 	const age = document.querySelector('input[name="age"]:checked');
@@ -460,33 +412,75 @@ function getsaisonScore(saison, saisonName) {
 	}
 }
 
-// Ajoute les listeners pour afficher les dons
-['famille', 'lignee'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheDons);
+window.addEventListener('DOMContentLoaded', function() {
+	document.querySelectorAll('#character-builder input[type="checkbox"]').forEach(input => {
+		input.addEventListener('change', selectUnique.bind(null, input.name, input));
+		input.addEventListener('change', genererFiche);
 	});
-});
-['role'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheCompetences);
+	
+	document.querySelectorAll('input[name="famille"]').forEach(input => {
+		input.addEventListener('change', updateLignees);
 	});
-});
-['age'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheAge);
+	
+	['famille', 'lignee'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheDons);
+		});
 	});
-});
-['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
-	document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
-		input.addEventListener('change', updateFicheEquipements);
+	['role'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheCompetences);
+		});
 	});
-});
-['armement', 'cuirasse', 'mains', 'peau'].forEach(group => {
-	document.querySelectorAll(`#${group}-group input`).forEach(input => {
-		input.addEventListener('change', updateFicheMorphologies);
+	['age'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheAge);
+		});
 	});
+	['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'].forEach(group => {
+		document.querySelectorAll(`input[name="${group}"]`).forEach(input => {
+			input.addEventListener('change', updateFicheEquipements);
+		});
+	});
+	['armement', 'cuirasse', 'mains', 'peau'].forEach(group => {
+		document.querySelectorAll(`#${group}-group input`).forEach(input => {
+			input.addEventListener('change', updateFicheMorphologies);
+		});
+	});
+	
+	document.querySelectorAll(`.lire-plus.pictogram-btn`).forEach(div => {
+		div.addEventListener('click', () => toggleDesc(div));
+	});
+	
+	// Permet de restaurer l'état si le hash change (navigation ou collage)
+	window.addEventListener('hashchange', restoreStateFromHash);
+	
+	// Ajoute le comportement de sélection sur .option
+	document.querySelectorAll('.option').forEach(option => {
+		option.addEventListener('click', function(e) {
+			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
+			const checkbox = option.querySelector('input[type="checkbox"]');
+			if (checkbox) {
+				checkbox.checked = !checkbox.checked;
+				selectUnique(checkbox.name, checkbox);
+				checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+			}
+		});
+	});
+	
+	// Restaure l'état à l'ouverture si hash présent
+	restoreStateFromHash();
+	
+	// Synchronise automatiquement le hash sans rechargement
+	bindAutoHashSync();
+	
+	genererFiche(); // Initialiser la fiche au chargement
+	updateLignees(); // Met à jour les lignées au chargement
+	updateFicheAge(); // Met à jour l'âge au chargement
+	updateFicheDons(); // Met à jour les dons au chargement
+	updateFicheEquipements(); // Met à jour les équipements au chargement
+	updateFicheCompetences(); // Met à jour les compétences au chargement
+	updateFicheMorphologies(); // Met à jour les morphologies au chargement
 });
 
-document.querySelectorAll(`.lire-plus.pictogram-btn`).forEach(div => {
-	div.addEventListener('click', () => toggleDesc(div));
-});
