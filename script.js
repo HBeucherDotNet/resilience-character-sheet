@@ -9,12 +9,17 @@ const saisonsEnum = {
 
 // Couleurs par saison
 const couleurs = {
-	hiver: '#235a8a',
-	printemps: '#2c7a4b',
-	ete: '#bfa600',
-	automne: '#a13a3a',
-	temps: '#3a7ad2'
+	hiver: getCssColorVar('--color-hiver', '#235a8a'),
+	printemps: getCssColorVar('--color-printemps', '#2c7a4b'),
+	ete: getCssColorVar('--color-ete', '#bfa600'),
+	automne: getCssColorVar('--color-automne', '#a13a3a'),
+	temps: getCssColorVar('--color-temps', '#3a7ad2')
 };
+
+function getCssColorVar(varName, fallback) {
+	const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+	return value || fallback;
+}
 
 // Génération et restauration de l'état via hash
 function getCheckedInputs() {
@@ -136,7 +141,7 @@ window.toggleDesc = function(btn) {
 		return; // Pas de saison détectée, ne pas continuer
 	}
 	
-	const couleur = couleurs[saison] || '#235a8a';
+	const couleur = couleurs[saison] || couleurs.temps;
 	
 	// Pour le bouton pictogramme
 	if (!btn.classList.contains('pictogram-btn'))

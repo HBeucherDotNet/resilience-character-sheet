@@ -7,6 +7,14 @@ body {
 	background: colors.$color-bg-page;
 }
 
+:root {
+	--color-hiver: #{colors.$color-hiver};
+	--color-printemps: #{colors.$color-printemps};
+	--color-ete: #{colors.$color-ete};
+	--color-automne: #{colors.$color-automne};
+	--color-temps: #{colors.$color-temps};
+}
+
 section {
 	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
