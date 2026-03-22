@@ -339,6 +339,13 @@ h3 {
   border: 2px solid #d3d7e3;
   border-radius: 16px;
 }
+.fiche-valeurs input,
+#fiche-essence-harmonie input {
+  border-width: 1px;
+  border-style: none none solid none;
+  width: 30px;
+  text-align: center;
+}
 .fiche-valeurs.hiver,
 #fiche-essence-harmonie.hiver {
   border-color: #235a8a;
@@ -569,6 +576,7 @@ h3 {
   border-style: none none solid none;
 }
 .fiche-resonances .resonnance-point, .fiche-resonances .resonnance-niveau {
+  text-align: center;
   width: 45px;
 }
 

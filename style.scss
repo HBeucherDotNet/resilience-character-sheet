@@ -325,6 +325,13 @@ h3 {
 	padding: 0.5em 1em;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
+
+	input {
+		border-width: 1px;
+		border-style: none none solid none;
+		width: 30px;
+		text-align: center;
+	}
 	
 	&.hiver {
 		border-color: colors.$color-hiver;
@@ -552,6 +559,7 @@ h3 {
 		border-style: none none solid none;
 	}
 	.resonnance-point, .resonnance-niveau {
+		text-align: center;
 		width: 45px; 
 	}
 }

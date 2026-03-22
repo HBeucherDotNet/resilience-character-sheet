@@ -295,6 +295,7 @@ function genererFiche() {
 	document.getElementById('fiche-printemps').textContent = getsaisonScore(saison, 'printemps');
 	document.getElementById('fiche-ete').textContent = getsaisonScore(saison, 'ete');
 	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
+	document.getElementById('fiche-vitalite').textContent = getsaisonScore(saison, 'hiver') + getsaisonScore(saison, 'printemps') + getsaisonScore(saison, 'ete') + getsaisonScore(saison, 'automne');
 	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
 	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
 	
