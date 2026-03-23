@@ -1,11 +1,5 @@
 import { HashCodec } from './hashCodec.js';
-
-const saisonsEnum = {
-	hiver: 1,
-	printemps: 2,
-	ete: 3,
-	automne: 4
-};
+import { Personnage } from './personnage.js';
 
 // Couleurs par saison
 const couleurs = {
@@ -15,6 +9,40 @@ const couleurs = {
 	automne: getCssColorVar('--color-automne', '#a13a3a'),
 	temps: getCssColorVar('--color-temps', '#3a7ad2')
 };
+
+const personnage = new Personnage();
+
+function syncPersonnageFromDom() {
+	personnage.setSelections({
+		saison: document.querySelector('input[name="saison"]:checked'),
+		famille: document.querySelector('input[name="famille"]:checked'),
+		lignee: document.querySelector('input[name="lignee"]:checked'),
+		role: document.querySelector('input[name="role"]:checked'),
+		age: document.querySelector('input[name="age"]:checked')
+	});
+}
+
+function renderPersonnage(state) {
+	document.getElementById('fiche-saison').textContent = state.ficheSaison;
+	document.getElementById('fiche-essence').textContent = state.ficheEssence;
+	document.getElementById('fiche-anatheme').textContent = state.ficheAnatheme;
+	document.getElementById('fiche-famille').textContent = state.ficheFamille;
+	document.getElementById('fiche-lignee').textContent = state.ficheLignee;
+	document.getElementById('fiche-role').textContent = state.ficheRole;
+	document.getElementById('fiche-age').textContent = state.ficheAge;
+
+	document.getElementById('fiche-hiver').textContent = state.ficheHiver;
+	document.getElementById('fiche-printemps').textContent = state.fichePrintemps;
+	document.getElementById('fiche-ete').textContent = state.ficheEte;
+	document.getElementById('fiche-automne').textContent = state.ficheAutomne;
+	document.getElementById('fiche-vitalite').textContent = state.ficheVitalite;
+	document.getElementById('fiche-souffle').textContent = state.ficheSouffle;
+	document.getElementById('fiche-resilience').textContent = state.ficheResilience;
+
+	document.getElementById('fiche-essence-harmonie').className = state.saisonClass;
+	document.getElementById('fiche-champ-lexical').className = state.saisonClass;
+	document.getElementById('fiche-magie').className = state.saisonClass;
+}
 
 function getCssColorVar(varName, fallback) {
 	const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -279,39 +307,11 @@ function updateLignees() {
 
 // Remplit dynamiquement la fiche de personnage
 function genererFiche() {
-	const saison = document.querySelector('input[name="saison"]:checked');
-	const famille = document.querySelector('input[name="famille"]:checked');
-	const lignee = document.querySelector('input[name="lignee"]:checked');
-	const role = document.querySelector('input[name="role"]:checked');
-	
-	document.getElementById('fiche-saison').textContent = saison ? saison.closest('.option').querySelector('label').textContent.trim() : '';
-	document.getElementById('fiche-essence').textContent = saison ? saison.closest('.option').querySelector('.label-essence').textContent.trim() : '';
-	document.getElementById('fiche-anatheme').textContent = saison ? saison.closest('.option').querySelector('.label-anatheme').textContent.trim() : '';
-	document.getElementById('fiche-famille').textContent = famille ? famille.closest('.option').querySelector('label').textContent.trim() : '';
-	document.getElementById('fiche-lignee').textContent = lignee ? lignee.closest('.option').querySelector('label').textContent.trim() : '';
-	document.getElementById('fiche-role').textContent = role ? role.closest('.option').querySelector('label').textContent.trim() : '';
-	
-	document.getElementById('fiche-hiver').textContent = getsaisonScore(saison, 'hiver');
-	document.getElementById('fiche-printemps').textContent = getsaisonScore(saison, 'printemps');
-	document.getElementById('fiche-ete').textContent = getsaisonScore(saison, 'ete');
-	document.getElementById('fiche-automne').textContent = getsaisonScore(saison, 'automne');
-	document.getElementById('fiche-vitalite').textContent = getsaisonScore(saison, 'hiver') + getsaisonScore(saison, 'printemps') + getsaisonScore(saison, 'ete') + getsaisonScore(saison, 'automne');
-	document.getElementById('fiche-souffle').textContent = saison && saison.value === 'temps' ? 3 : 2;
-	document.getElementById('fiche-resilience').textContent = saison && saison.value === 'temps' ? 3 : 2;
-	
-	document.getElementById('fiche-essence-harmonie').className = saison ? saison.value : '';
-	document.getElementById('fiche-champ-lexical').className = saison ? saison.value : '';
-	document.getElementById('fiche-magie').className = saison ? saison.value : '';
+	syncPersonnageFromDom();
 }
 
 function updateFicheAge() {
-	const age = document.querySelector('input[name="age"]:checked');
-	const ficheAge = document.getElementById('fiche-age');
-	if (!age) {
-		ficheAge.textContent = '';
-		return;
-	}
-	ficheAge.textContent = age.closest('.option').querySelector('label').textContent.trim();
+	syncPersonnageFromDom();
 }
 
 function updateFicheCompetences() {
@@ -404,17 +404,6 @@ function updateFicheMorphologies() {
 	});
 }
 
-function getsaisonScore(saison, saisonName) {
-	if (!saison) return '';
-	switch (Math.abs(saisonsEnum[saison.value] - saisonsEnum[saisonName])) {
-		case 0: return 3;
-		case 1:
-		case 3: return 2;
-		case 2: return 1;
-		default: return 2;
-	}
-}
-
 function initBindings() {
 	bindViewModeActions();
 
@@ -483,9 +472,11 @@ function initStateFromHash() {
 
 window.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
+	personnage.subscribe(renderPersonnage);
 
 	updateViewModeUi();
 	initBindings();
 	initStateFromHash();
+	syncPersonnageFromDom();
 });
 
