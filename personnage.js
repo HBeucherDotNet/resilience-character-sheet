@@ -28,6 +28,15 @@ function getSaisonScore(saison, saisonName) {
 	}
 }
 
+function getDatasetValue(input, datasetKey) {
+	if (!input || !input.dataset) return '';
+	return input.dataset[datasetKey] || '';
+}
+
+function getUniqueValues(values) {
+	return [...new Set(values.filter(Boolean))];
+}
+
 export class Personnage {
 	constructor() {
 		this.state = {
@@ -36,6 +45,10 @@ export class Personnage {
 			lignee: null,
 			role: null,
 			age: null,
+			roleSelectionne: '',
+			donsSelectionnes: [],
+			equipementsSelectionnes: [],
+			morphologiesSelectionnees: [],
 			ficheSaison: '',
 			ficheEssence: '',
 			ficheAnatheme: '',
@@ -60,12 +73,43 @@ export class Personnage {
 		return () => this.listeners.delete(listener);
 	}
 
-	setSelections({ saison, famille, lignee, role, age }) {
+	setSelections({
+		saison,
+		famille,
+		lignee,
+		role,
+		age,
+		environnement,
+		modeDeVie,
+		philosophie,
+		relationRupture,
+		armement,
+		cuirasse,
+		mains,
+		peau
+	}) {
 		this.state.saison = saison ?? null;
 		this.state.famille = famille ?? null;
 		this.state.lignee = lignee ?? null;
 		this.state.role = role ?? null;
 		this.state.age = age ?? null;
+		this.state.roleSelectionne = this.state.role?.value || '';
+		this.state.donsSelectionnes = getUniqueValues([
+			getDatasetValue(this.state.famille, 'don'),
+			getDatasetValue(this.state.lignee, 'don')
+		]);
+		this.state.equipementsSelectionnes = getUniqueValues([
+			getDatasetValue(environnement, 'equipement'),
+			getDatasetValue(modeDeVie, 'equipement'),
+			getDatasetValue(philosophie, 'equipement'),
+			getDatasetValue(relationRupture, 'equipement')
+		]);
+		this.state.morphologiesSelectionnees = getUniqueValues([
+			getDatasetValue(armement, 'morphologie'),
+			getDatasetValue(cuirasse, 'morphologie'),
+			getDatasetValue(mains, 'morphologie'),
+			getDatasetValue(peau, 'morphologie')
+		]);
 
 		this.state.ficheSaison = getLabelFromSelectedInput(this.state.saison);
 		this.state.ficheEssence = getTextContentFromClosest(this.state.saison, '.label-essence');

@@ -19,7 +19,15 @@ function syncPersonnageFromDom() {
 		famille: document.querySelector('input[name="famille"]:checked'),
 		lignee: document.querySelector('input[name="lignee"]:checked'),
 		role: document.querySelector('input[name="role"]:checked'),
-		age: document.querySelector('input[name="age"]:checked')
+		age: document.querySelector('input[name="age"]:checked'),
+		environnement: document.querySelector('#environnement-group input:checked'),
+		modeDeVie: document.querySelector('#mode-de-vie-group input:checked'),
+		philosophie: document.querySelector('#philosophie-group input:checked'),
+		relationRupture: document.querySelector('#relation-rupture-group input:checked'),
+		armement: document.querySelector('#armement-group input:checked'),
+		cuirasse: document.querySelector('#cuirasse-group input:checked'),
+		mains: document.querySelector('#mains-group input:checked'),
+		peau: document.querySelector('#peau-group input:checked')
 	});
 }
 
@@ -43,6 +51,55 @@ function renderPersonnage(state) {
 	document.getElementById('fiche-essence-harmonie').className = state.saisonClass;
 	document.getElementById('fiche-champ-lexical').className = state.saisonClass;
 	document.getElementById('fiche-magie').className = state.saisonClass;
+
+	renderCompetences(state);
+	renderEquipements(state);
+	renderDons(state);
+	renderMorphologies(state);
+}
+
+function renderCompetences(state) {
+	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${state.roleSelectionne}"]`);
+	competenceBlocs.forEach(competenceBloc => {
+		if (competenceBloc) competenceBloc.style.display = '';
+	});
+}
+
+function renderEquipements(state) {
+	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	state.equipementsSelectionnes.forEach(eqKey => {
+		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
+		if (div) div.style.display = '';
+	});
+}
+
+function renderDons(state) {
+	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	state.donsSelectionnes.forEach(donKey => {
+		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
+		if (div) div.style.display = '';
+	});
+}
+
+function renderMorphologies(state) {
+	document.querySelectorAll('#fiche-morphologies .morphologie-recap').forEach(div => {
+		div.style.display = 'none';
+	});
+
+	state.morphologiesSelectionnees.forEach(morphKey => {
+		const div = document.querySelector(`#fiche-morphologies .morphologie-recap[data-morphologie="${morphKey}"]`);
+		if (div) div.style.display = '';
+	});
 }
 
 function getCssColorVar(varName, fallback) {
@@ -253,93 +310,19 @@ function updateFicheAge() {
 }
 
 function updateFicheCompetences() {
-	// Récupère la compétence liée au rôle sélectionné
-	const role = document.querySelector('input[name="role"]:checked');
-	let roleSelectionne = '';
-	if (role && role.value) {
-		roleSelectionne = role.value;
-	}
-	
-	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
-		div.style.display = 'none';
-	});
-	
-	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${roleSelectionne}"]`);
-	competenceBlocs.forEach(competenceBloc => {
-		if (competenceBloc) competenceBloc.style.display = '';
-	});
+	syncPersonnageFromDom();
 }
 
 function updateFicheEquipements() {
-	// Récupère les morphologies sélectionnées
-	const groups = ['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture'];
-	let equipementsSelectionnes = 
-		groups
-			.map(group => document.querySelector(`#${group}-group input:checked`))
-			.filter(input => input && input.dataset.equipement)
-			.map(input => input.dataset.equipement);
-		
-	// Supprime les doublons
-	equipementsSelectionnes = [...new Set(equipementsSelectionnes)];
-	
-	// Masque tous les équipements
-	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
-		div.style.display = 'none';
-	});
-	
-	// Affiche ceux sélectionnés
-	equipementsSelectionnes.forEach(eqKey => {
-		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
-		if (div) div.style.display = '';
-	});
+	syncPersonnageFromDom();
 }
 
 function updateFicheDons() {
-	// Récupère le don sélectionné (famille ou lignée)
-	const famille = document.querySelector('input[name="famille"]:checked');
-	const lignee = document.querySelector('input[name="lignee"]:checked');
-	let donsSelectionnes = [];
-	if (famille && famille.dataset.don) {
-		donsSelectionnes.push(famille.dataset.don);
-	}
-	if (lignee && lignee.dataset.don) {
-		donsSelectionnes.push(lignee.dataset.don);
-	}
-	
-	// Masque tous les dons
-	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
-		div.style.display = 'none';
-	});
-	
-	// Affiche ceux sélectionnés
-	donsSelectionnes.forEach(donKey => {
-		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
-		if (div) div.style.display = '';
-	});
+	syncPersonnageFromDom();
 }
 
 function updateFicheMorphologies() {
-	// Récupère les morphologies sélectionnées
-	const groups = ['armement', 'cuirasse', 'mains', 'peau'];
-	let morphologiesSelectionnees = 
-	groups
-	.map(group => document.querySelector(`#${group}-group input:checked`))
-	.filter(input => input && input.dataset.morphologie)
-	.map(input => input.dataset.morphologie);
-	
-	// Supprime les doublons
-	morphologiesSelectionnees = [...new Set(morphologiesSelectionnees)];
-	
-	// Masque toutes les morphologies
-	document.querySelectorAll('#fiche-morphologies .morphologie-recap').forEach(div => {
-		div.style.display = 'none';
-	});
-	
-	// Affiche celles sélectionnées
-	morphologiesSelectionnees.forEach(morphKey => {
-		const div = document.querySelector(`#fiche-morphologies .morphologie-recap[data-morphologie="${morphKey}"]`);
-		if (div) div.style.display = '';
-	});
+	syncPersonnageFromDom();
 }
 
 function initBindings() {
