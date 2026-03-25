@@ -38,10 +38,37 @@ function syncPersonnageFromDom() {
 		cuirasse: document.querySelector('#cuirasse-group input:checked'),
 		mains: document.querySelector('#mains-group input:checked'),
 		peau: document.querySelector('#peau-group input:checked'),
+		scoreModHiver: document.getElementById('amelioration-score-hiver')?.value ?? '0',
+		scoreModPrintemps: document.getElementById('amelioration-score-printemps')?.value ?? '0',
+		scoreModEte: document.getElementById('amelioration-score-ete')?.value ?? '0',
+		scoreModAutomne: document.getElementById('amelioration-score-automne')?.value ?? '0',
+		scoreModSouffle: document.getElementById('amelioration-score-souffle')?.value ?? '0',
 		competencesAjoutees: getCheckedFicheBlocKeys('#fiche-competences', '.competence-recap', 'competence'),
 		donsAjoutes: getCheckedFicheBlocKeys('#fiche-dons', '.don-recap', 'don'),
 		equipementsAjoutes: getCheckedFicheBlocKeys('#fiche-equipements', '.equipement-recap', 'equipement'),
 		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.morphologie-recap', 'morphologie')
+	});
+}
+
+function bindAmeliorationScoreControls() {
+	document.querySelectorAll('.amelioration-score-btn').forEach(button => {
+		button.addEventListener('click', () => {
+			const targetId = button.dataset.scoreTarget;
+			const step = Number.parseInt(button.dataset.scoreStep ?? '0', 10);
+			const input = targetId ? document.getElementById(targetId) : null;
+			if (!input || !Number.isFinite(step)) return;
+
+			const current = Number.parseInt(input.value || '0', 10);
+			const nextValue = (Number.isFinite(current) ? current : 0) + step;
+			input.value = String(nextValue);
+			input.dispatchEvent(new Event('input', { bubbles: true }));
+			input.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+	});
+
+	document.querySelectorAll('.amelioration-score-input').forEach(input => {
+		input.addEventListener('input', syncPersonnageFromDom);
+		input.addEventListener('change', syncPersonnageFromDom);
 	});
 }
 
@@ -554,6 +581,8 @@ function initBindings() {
 			input.addEventListener('change', updateFicheMorphologies);
 		});
 	});
+
+	bindAmeliorationScoreControls();
 
 	document.querySelectorAll('.lire-plus.pictogram-btn').forEach(div => {
 		div.addEventListener('click', () => toggleDesc(div));

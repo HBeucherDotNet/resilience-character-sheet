@@ -177,6 +177,13 @@ h2 {
 	gap: 1em;
 }
 
+#ameliorations-scores-row {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(150px, 1fr));
+	gap: 0.6em;
+	margin-bottom: 1em;
+}
+
 .ameliorations-zone {
 	flex: 1 1 calc(25% - 0.75em);
 	min-width: 220px;
@@ -243,6 +250,51 @@ h2 {
 .ameliorations-item-description {
 	font-size: 0.92em;
 	color: #333;
+}
+
+.amelioration-score-row {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: 0.8em;
+	background: colors.$color-white;
+	border: 1px solid colors.$color-border-section;
+	border-radius: 8px;
+	padding: 0.55em 0.6em;
+}
+
+.amelioration-score-row > span {
+	font-weight: 600;
+	color: #333;
+}
+
+.amelioration-score-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.35em;
+}
+
+.amelioration-score-input {
+	width: 2.6em;
+	text-align: center;
+	padding: 0.2em;
+	border: 1px solid colors.$color-border-section;
+	border-radius: 6px;
+	background: colors.$color-white;
+}
+
+.amelioration-score-btn {
+	width: 1.6em;
+	height: 1.6em;
+	border: 1px solid colors.$color-hiver;
+	border-radius: 999px;
+	background: colors.$color-hiver;
+	color: colors.$color-white;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
 }
 
 h3 {

@@ -38,6 +38,11 @@ function getDatasetValue(input, datasetKey) {
 	return input.dataset[datasetKey] || '';
 }
 
+function toInteger(value) {
+	const parsed = Number.parseInt(String(value ?? '0'), 10);
+	return Number.isFinite(parsed) ? parsed : 0;
+}
+
 function getCompetencesForRole(roleValue) {
 	if (!roleValue) return [];
 	return Object.entries(competences)
@@ -125,6 +130,11 @@ export class Personnage {
 			morphologiesDeBase: [],
 			morphologiesAjoutees: [],
 			morphologiesSelectionnees: [],
+			scoreModHiver: 0,
+			scoreModPrintemps: 0,
+			scoreModEte: 0,
+			scoreModAutomne: 0,
+			scoreModSouffle: 0,
 			ficheSaison: '',
 			ficheEssence: '',
 			ficheAnatheme: '',
@@ -163,6 +173,11 @@ export class Personnage {
 		cuirasse,
 		mains,
 		peau,
+		scoreModHiver = 0,
+		scoreModPrintemps = 0,
+		scoreModEte = 0,
+		scoreModAutomne = 0,
+		scoreModSouffle = 0,
 		competencesAjoutees = [],
 		donsAjoutes = [],
 		equipementsAjoutes = [],
@@ -181,6 +196,11 @@ export class Personnage {
 		this.state.donsAjoutes = getExistingSelections(dons, donsAjoutes);
 		this.state.equipementsAjoutes = getExistingSelections(equipements, equipementsAjoutes);
 		this.state.morphologiesAjoutees = getExistingSelections(morphologies, morphologiesAjoutees);
+		this.state.scoreModHiver = toInteger(scoreModHiver);
+		this.state.scoreModPrintemps = toInteger(scoreModPrintemps);
+		this.state.scoreModEte = toInteger(scoreModEte);
+		this.state.scoreModAutomne = toInteger(scoreModAutomne);
+		this.state.scoreModSouffle = toInteger(scoreModSouffle);
 		this._syncSelectionArrays();
 
 		this.state.ficheSaison = getLabelFromSelectedInput(this.state.saison);
@@ -232,14 +252,20 @@ export class Personnage {
 	}
 
 	_recalculate() {
-		this.state.ficheHiver = getSaisonScore(this.state.saison, 'hiver');
-		this.state.fichePrintemps = getSaisonScore(this.state.saison, 'printemps');
-		this.state.ficheEte = getSaisonScore(this.state.saison, 'ete');
-		this.state.ficheAutomne = getSaisonScore(this.state.saison, 'automne');
+		const baseHiver = Number(getSaisonScore(this.state.saison, 'hiver') || 0);
+		const basePrintemps = Number(getSaisonScore(this.state.saison, 'printemps') || 0);
+		const baseEte = Number(getSaisonScore(this.state.saison, 'ete') || 0);
+		const baseAutomne = Number(getSaisonScore(this.state.saison, 'automne') || 0);
+
+		this.state.ficheHiver = Math.max(0, baseHiver + this.state.scoreModHiver);
+		this.state.fichePrintemps = Math.max(0, basePrintemps + this.state.scoreModPrintemps);
+		this.state.ficheEte = Math.max(0, baseEte + this.state.scoreModEte);
+		this.state.ficheAutomne = Math.max(0, baseAutomne + this.state.scoreModAutomne);
 		this.state.ficheVitalite = this.state.ficheHiver + this.state.fichePrintemps + this.state.ficheEte + this.state.ficheAutomne;
 		
-		this.state.ficheSouffle = this.state.saison && this.state.saison.value === 'temps' ? 3 : 2;
-		this.state.ficheResilience = this.state.saison && this.state.saison.value === 'temps' ? 3 : 2;
+		const baseSouffle = this.state.saison && this.state.saison.value === 'temps' ? 3 : 2;
+		this.state.ficheSouffle = Math.max(0, baseSouffle + this.state.scoreModSouffle);
+		this.state.ficheResilience = Math.max(0, baseSouffle + this.state.scoreModSouffle);
 		this.state.saisonClass = this.state.saison ? this.state.saison.value : '';
 	}
 
