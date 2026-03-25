@@ -139,6 +139,121 @@ h2 {
   margin-bottom: 0.7em;
 }
 
+.collapsible-section > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+.collapsible-section > summary::-webkit-details-marker {
+  display: none;
+}
+.collapsible-section > summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e3ecf7;
+  color: #235a8a;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.collapsible-section[open] > summary::after {
+  content: "−";
+}
+
+.collapsible-section-hint {
+  font-size: 0.9em;
+  color: #555;
+  text-align: right;
+}
+
+.collapsible-section-content {
+  margin-top: 0.8em;
+}
+
+.collapsible-section h2 {
+  margin-bottom: 0;
+}
+
+#ameliorations-group {
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.ameliorations-zone {
+  flex: 1 1 calc(25% - 0.75em);
+  min-width: 220px;
+  background: #e9ecf3;
+  border: 1px solid #d3d7e3;
+  border-radius: 10px;
+  padding: 0.9em;
+  box-sizing: border-box;
+}
+.ameliorations-zone h3 {
+  margin-bottom: 0.75em;
+  font-size: 1.05em;
+  color: #235a8a;
+}
+
+.ameliorations-zone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  min-height: 2em;
+}
+
+.ameliorations-item {
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.75em;
+}
+
+.ameliorations-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75em;
+  margin-bottom: 0.4em;
+}
+
+.ameliorations-item-add-btn {
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.ameliorations-item-add-btn:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.ameliorations-item-category {
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 0.35em;
+}
+
+.ameliorations-item-description {
+  font-size: 0.92em;
+  color: #333;
+}
+
 h3 {
   margin-top: 0;
   font-size: 1.25em;
