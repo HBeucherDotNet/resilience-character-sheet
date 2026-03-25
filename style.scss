@@ -26,7 +26,7 @@ body {
 	font-size: 0.7em;
 	cursor: pointer;
 	box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-
+	
 	&:hover {
 		filter: brightness(1.20);
 	}
@@ -41,17 +41,17 @@ body.view-mode {
 	background: colors.$color-white;
 	margin: 0;
 	padding: 1em;
-
+	
 	#character-builder {
 		display: none;
 	}
-
+	
 	.page-actions {
 		padding: 0.75em 1em;
 		margin: 0;
 		background: colors.$color-white;
 	}
-
+	
 	#fiche-personnage {
 		width: 100%;
 		max-width: none;
@@ -60,6 +60,27 @@ body.view-mode {
 		border: none;
 		border-radius: 0;
 		box-shadow: none;
+	}
+	
+	.fiche-bloc-item {
+		border: none;
+		padding: 0;
+		
+		input {
+			display: none;
+		}
+		
+		.lire-plus.pictogram-btn {
+			display: none;
+		}
+		
+		.desc {
+			display: inline !important;	
+		}
+		
+		&:not(:has(input:checked)) {
+			display: none;
+		}
 	}
 }
 
@@ -119,7 +140,7 @@ h3 {
 	&:hover {
 		box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 	}
-
+	
 	&.hiver {
 		background: colors.$color-hiver-lighter;
 		border-color: colors.$color-hiver-light;
@@ -304,6 +325,13 @@ h3 {
 	padding: 0.5em 1em;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
+
+	input {
+		border-width: 1px;
+		border-style: none none solid none;
+		width: 30px;
+		text-align: center;
+	}
 	
 	&.hiver {
 		border-color: colors.$color-hiver;
@@ -531,6 +559,7 @@ h3 {
 		border-style: none none solid none;
 	}
 	.resonnance-point, .resonnance-niveau {
+		text-align: center;
 		width: 45px; 
 	}
 }
