@@ -1,0 +1,57 @@
+@media (max-width: 768px) {
+	body {
+		margin: 0.5em;
+		background: white !important;
+	}
+
+	.page-actions {
+		display: none !important;
+	}
+
+	#character-builder > h2,
+	#character-builder > section:not(#ameliorations-section) {
+		display: none !important;
+	}
+
+	#fiche-personnage {
+		display: none !important;
+	}
+
+	#ameliorations-section {
+		border: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+	}
+
+	/* Force le panneau améliorations toujours ouvert sur mobile */
+	#ameliorations-section details > summary {
+		display: none;
+	}
+
+	#ameliorations-section details > .collapsible-section-content {
+		display: block !important;
+	}
+
+	/* Masquer les modificateurs de score (peu utiles en lecture seule) */
+	#ameliorations-scores-row {
+		display: none !important;
+	}
+
+	/* Empiler les zones d'améliorations verticalement */
+	#ameliorations-group {
+		flex-direction: column;
+	}
+
+	.ameliorations-zone {
+		flex: none;
+		width: 100%;
+	}
+
+	.ameliorations-item-add-btn {
+		display: none !important;
+	}
+
+	.ameliorations-item.selected {
+		order: -1;
+	}
+}
