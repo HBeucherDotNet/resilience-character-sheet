@@ -1,3 +1,8 @@
+import { competences } from './data/competences.js';
+import { dons } from './data/dons.js';
+import { equipements } from './data/equipements.js';
+import { morphologies } from './data/morphologies.js';
+
 const saisonsEnum = {
 	hiver: 1,
 	printemps: 2,
@@ -33,9 +38,72 @@ function getDatasetValue(input, datasetKey) {
 	return input.dataset[datasetKey] || '';
 }
 
-function getUniqueValues(values) {
-	return [...new Set(values.filter(Boolean))];
+function getCompetencesForRole(roleValue) {
+	if (!roleValue) return [];
+	return Object.entries(competences)
+		.filter(([, competence]) => competence.role === roleValue)
+		.map(([competenceKey]) => competenceKey);
 }
+
+function getExistingSelections(dataMap, values) {
+	return [...new Set(values.filter(value => value && Object.hasOwn(dataMap, value)))];
+}
+
+function mergeSelections(baseSelections, addedSelections, dataMap) {
+	return getExistingSelections(dataMap, [...baseSelections, ...addedSelections]);
+}
+
+function getDonsSelectionnes(famille, lignee) {
+	return getExistingSelections(dons, [
+		getDatasetValue(famille, 'don'),
+		getDatasetValue(lignee, 'don')
+	]);
+}
+
+function getEquipementsSelectionnes(environnement, modeDeVie, philosophie, relationRupture) {
+	return getExistingSelections(equipements, [
+		getDatasetValue(environnement, 'equipement'),
+		getDatasetValue(modeDeVie, 'equipement'),
+		getDatasetValue(philosophie, 'equipement'),
+		getDatasetValue(relationRupture, 'equipement')
+	]);
+}
+
+function getMorphologiesSelectionnees(armement, cuirasse, mains, peau) {
+	return getExistingSelections(morphologies, [
+		getDatasetValue(armement, 'morphologie'),
+		getDatasetValue(cuirasse, 'morphologie'),
+		getDatasetValue(mains, 'morphologie'),
+		getDatasetValue(peau, 'morphologie')
+	]);
+}
+
+const ameliorationTypeConfig = {
+	competence: {
+		dataMap: competences,
+		addedKey: 'competencesAjoutees',
+		baseKey: 'competencesDeBase',
+		selectedKey: 'competencesSelectionnees'
+	},
+	don: {
+		dataMap: dons,
+		addedKey: 'donsAjoutes',
+		baseKey: 'donsDeBase',
+		selectedKey: 'donsSelectionnes'
+	},
+	equipement: {
+		dataMap: equipements,
+		addedKey: 'equipementsAjoutes',
+		baseKey: 'equipementsDeBase',
+		selectedKey: 'equipementsSelectionnes'
+	},
+	morphologie: {
+		dataMap: morphologies,
+		addedKey: 'morphologiesAjoutees',
+		baseKey: 'morphologiesDeBase',
+		selectedKey: 'morphologiesSelectionnees'
+	}
+};
 
 export class Personnage {
 	constructor() {
@@ -45,9 +113,17 @@ export class Personnage {
 			lignee: null,
 			role: null,
 			age: null,
-			roleSelectionne: '',
+			competencesDeBase: [],
+			competencesAjoutees: [],
+			competencesSelectionnees: [],
+			donsDeBase: [],
+			donsAjoutes: [],
 			donsSelectionnes: [],
+			equipementsDeBase: [],
+			equipementsAjoutes: [],
 			equipementsSelectionnes: [],
+			morphologiesDeBase: [],
+			morphologiesAjoutees: [],
 			morphologiesSelectionnees: [],
 			ficheSaison: '',
 			ficheEssence: '',
@@ -86,30 +162,26 @@ export class Personnage {
 		armement,
 		cuirasse,
 		mains,
-		peau
+		peau,
+		competencesAjoutees = [],
+		donsAjoutes = [],
+		equipementsAjoutes = [],
+		morphologiesAjoutees = []
 	}) {
 		this.state.saison = saison ?? null;
 		this.state.famille = famille ?? null;
 		this.state.lignee = lignee ?? null;
 		this.state.role = role ?? null;
 		this.state.age = age ?? null;
-		this.state.roleSelectionne = this.state.role?.value || '';
-		this.state.donsSelectionnes = getUniqueValues([
-			getDatasetValue(this.state.famille, 'don'),
-			getDatasetValue(this.state.lignee, 'don')
-		]);
-		this.state.equipementsSelectionnes = getUniqueValues([
-			getDatasetValue(environnement, 'equipement'),
-			getDatasetValue(modeDeVie, 'equipement'),
-			getDatasetValue(philosophie, 'equipement'),
-			getDatasetValue(relationRupture, 'equipement')
-		]);
-		this.state.morphologiesSelectionnees = getUniqueValues([
-			getDatasetValue(armement, 'morphologie'),
-			getDatasetValue(cuirasse, 'morphologie'),
-			getDatasetValue(mains, 'morphologie'),
-			getDatasetValue(peau, 'morphologie')
-		]);
+		this.state.competencesDeBase = getCompetencesForRole(this.state.role?.value || '');
+		this.state.donsDeBase = getDonsSelectionnes(this.state.famille, this.state.lignee);
+		this.state.equipementsDeBase = getEquipementsSelectionnes(environnement, modeDeVie, philosophie, relationRupture);
+		this.state.morphologiesDeBase = getMorphologiesSelectionnees(armement, cuirasse, mains, peau);
+		this.state.competencesAjoutees = getExistingSelections(competences, competencesAjoutees);
+		this.state.donsAjoutes = getExistingSelections(dons, donsAjoutes);
+		this.state.equipementsAjoutes = getExistingSelections(equipements, equipementsAjoutes);
+		this.state.morphologiesAjoutees = getExistingSelections(morphologies, morphologiesAjoutees);
+		this._syncSelectionArrays();
 
 		this.state.ficheSaison = getLabelFromSelectedInput(this.state.saison);
 		this.state.ficheEssence = getTextContentFromClosest(this.state.saison, '.label-essence');
@@ -121,6 +193,42 @@ export class Personnage {
 
 		this._recalculate();
 		this._notify();
+	}
+
+	addAmelioration(type, key) {
+		const config = ameliorationTypeConfig[type];
+		if (!config || !Object.hasOwn(config.dataMap, key)) return false;
+
+		const addedSelections = this.state[config.addedKey];
+		if (addedSelections.includes(key)) return false;
+
+		this.state[config.addedKey] = [...addedSelections, key];
+		this._syncSelectionArrays();
+		this._notify();
+		return true;
+	}
+
+	removeAmelioration(type, key) {
+		const config = ameliorationTypeConfig[type];
+		if (!config || !Object.hasOwn(config.dataMap, key)) return false;
+
+		const addedSelections = this.state[config.addedKey];
+		if (!addedSelections.includes(key)) return false;
+
+		this.state[config.addedKey] = addedSelections.filter(value => value !== key);
+		this._syncSelectionArrays();
+		this._notify();
+		return true;
+	}
+
+	_syncSelectionArrays() {
+		Object.values(ameliorationTypeConfig).forEach(config => {
+			this.state[config.selectedKey] = mergeSelections(
+				this.state[config.baseKey],
+				this.state[config.addedKey],
+				config.dataMap
+			);
+		});
 	}
 
 	_recalculate() {

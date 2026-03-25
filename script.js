@@ -1,6 +1,10 @@
 import { HashCodec } from './hashCodec.js';
 import { Personnage } from './personnage.js';
 import { bindViewModeActions, updateViewModeUi } from './viewMode.js';
+import { competences } from './data/competences.js';
+import { dons } from './data/dons.js';
+import { equipements } from './data/equipements.js';
+import { morphologies } from './data/morphologies.js';
 
 // Couleurs par saison
 const couleurs = {
@@ -12,6 +16,12 @@ const couleurs = {
 };
 
 const personnage = new Personnage();
+
+function getCheckedFicheBlocKeys(containerSelector, itemSelector, dataKey) {
+	return Array.from(document.querySelectorAll(`${containerSelector} ${itemSelector} input:checked`))
+		.map(input => input.closest(itemSelector)?.dataset[dataKey] || '')
+		.filter(Boolean);
+}
 
 function syncPersonnageFromDom() {
 	personnage.setSelections({
@@ -27,7 +37,11 @@ function syncPersonnageFromDom() {
 		armement: document.querySelector('#armement-group input:checked'),
 		cuirasse: document.querySelector('#cuirasse-group input:checked'),
 		mains: document.querySelector('#mains-group input:checked'),
-		peau: document.querySelector('#peau-group input:checked')
+		peau: document.querySelector('#peau-group input:checked'),
+		competencesAjoutees: getCheckedFicheBlocKeys('#fiche-competences', '.competence-recap', 'competence'),
+		donsAjoutes: getCheckedFicheBlocKeys('#fiche-dons', '.don-recap', 'don'),
+		equipementsAjoutes: getCheckedFicheBlocKeys('#fiche-equipements', '.equipement-recap', 'equipement'),
+		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.morphologie-recap', 'morphologie')
 	});
 }
 
@@ -56,6 +70,7 @@ function renderPersonnage(state) {
 	renderEquipements(state);
 	renderDons(state);
 	renderMorphologies(state);
+	refreshAmeliorationButtons(state);
 }
 
 function renderCompetences(state) {
@@ -63,8 +78,8 @@ function renderCompetences(state) {
 		div.style.display = 'none';
 	});
 
-	const competenceBlocs = document.querySelectorAll(`#fiche-competences .competence-recap[data-role="${state.roleSelectionne}"]`);
-	competenceBlocs.forEach(competenceBloc => {
+	state.competencesSelectionnees.forEach(competenceKey => {
+		const competenceBloc = document.querySelector(`#fiche-competences .competence-recap[data-competence="${competenceKey}"]`);
 		if (competenceBloc) competenceBloc.style.display = '';
 	});
 }
@@ -325,6 +340,183 @@ function updateFicheMorphologies() {
 	syncPersonnageFromDom();
 }
 
+function getSelectedAmeliorationsForType(type, state = personnage.state) {
+	switch (type) {
+		case 'competence':
+			return state.competencesSelectionnees;
+		case 'don':
+			return state.donsSelectionnes;
+		case 'equipement':
+			return state.equipementsSelectionnes;
+		case 'morphologie':
+			return state.morphologiesSelectionnees;
+		default:
+			return [];
+	}
+}
+
+function getAddedAmeliorationsForType(type, state = personnage.state) {
+	switch (type) {
+		case 'competence':
+			return state.competencesAjoutees;
+		case 'don':
+			return state.donsAjoutes;
+		case 'equipement':
+			return state.equipementsAjoutes;
+		case 'morphologie':
+			return state.morphologiesAjoutees;
+		default:
+			return [];
+	}
+}
+
+function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
+	const selectorMap = {
+		competence: `#fiche-competences .competence-recap[data-competence="${key}"] input[type="checkbox"]`,
+		don: `#fiche-dons .don-recap[data-don="${key}"] input[type="checkbox"]`,
+		equipement: `#fiche-equipements .equipement-recap[data-equipement="${key}"] input[type="checkbox"]`,
+		morphologie: `#fiche-morphologies .morphologie-recap[data-morphologie="${key}"] input[type="checkbox"]`
+	};
+
+	const checkbox = document.querySelector(selectorMap[type]);
+	if (!checkbox || checkbox.checked === shouldBeChecked) return;
+
+	checkbox.checked = shouldBeChecked;
+	checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function toggleAmeliorationInPersonnage(type, key) {
+	const isAdded = getAddedAmeliorationsForType(type).includes(key);
+	if (isAdded) {
+		const removed = personnage.removeAmelioration(type, key);
+		if (!removed) return;
+		syncFicheBlocCheckbox(type, key, false);
+		return;
+	}
+
+	const added = personnage.addAmelioration(type, key);
+	if (!added) return;
+	syncFicheBlocCheckbox(type, key, true);
+}
+
+function refreshAmeliorationButtons(state = personnage.state) {
+	document.querySelectorAll('.ameliorations-item-add-btn').forEach(button => {
+		const { ameliorationType, ameliorationKey } = button.dataset;
+		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
+		button.textContent = isAdded ? '-' : '+';
+		button.setAttribute('aria-pressed', String(isAdded));
+	});
+}
+
+function createAmeliorationItem({ key, type, nom, meta, description, allowHtmlDescription = false }) {
+	const item = document.createElement('div');
+	item.className = 'ameliorations-item';
+
+	const header = document.createElement('div');
+	header.className = 'ameliorations-item-header';
+
+	const title = document.createElement('strong');
+	title.textContent = nom;
+	header.appendChild(title);
+
+	if (key && type) {
+		const addButton = document.createElement('button');
+		addButton.type = 'button';
+		addButton.className = 'ameliorations-item-add-btn';
+		addButton.textContent = '+';
+		addButton.dataset.ameliorationType = type;
+		addButton.dataset.ameliorationKey = key;
+		addButton.setAttribute('aria-label', `Ajouter ${nom}`);
+		addButton.addEventListener('click', () => toggleAmeliorationInPersonnage(type, key));
+		header.appendChild(addButton);
+	}
+
+	item.appendChild(header);
+
+	if (meta) {
+		const metaNode = document.createElement('div');
+		metaNode.className = 'ameliorations-item-category';
+		metaNode.textContent = meta;
+		item.appendChild(metaNode);
+	}
+
+	const descriptionNode = document.createElement('div');
+	descriptionNode.className = 'ameliorations-item-description';
+	if (allowHtmlDescription) {
+		descriptionNode.innerHTML = description;
+	} else {
+		descriptionNode.textContent = description;
+	}
+	item.appendChild(descriptionNode);
+
+	return item;
+}
+
+function fillAmeliorationsList(containerId, items) {
+	const container = document.getElementById(containerId);
+	if (!container) return;
+
+	container.innerHTML = '';
+	const fragment = document.createDocumentFragment();
+	items.forEach(item => {
+		fragment.appendChild(createAmeliorationItem(item));
+	});
+	container.appendChild(fragment);
+}
+
+function fillAmeliorationsMorphologiesList() {
+	fillAmeliorationsList(
+		'ameliorations-morphologies-list',
+		Object.entries(morphologies).map(([key, morphologie]) => ({
+			key,
+			type: 'morphologie',
+			nom: morphologie.nom,
+			meta: `Categorie : ${morphologie.categorie}`,
+			description: morphologie.description
+		}))
+	);
+}
+
+function fillAmeliorationsCompetencesList() {
+	fillAmeliorationsList(
+		'ameliorations-competences-list', 
+		Object.entries(competences).map(([key, competence]) => ({
+			key,
+			type: 'competence',
+			nom: competence.nom,
+			meta: `Rôle : ${competence.role}`,
+			description: competence.description
+		}))
+	);
+}
+
+function fillAmeliorationsDonsList() {
+	fillAmeliorationsList(
+		'ameliorations-dons-list',
+		Object.entries(dons).map(([key, don]) => ({
+			key,
+			type: 'don',
+			nom: don.nom,
+			meta: don.saison ? `Categorie : ${don.categorie} • Saison : ${don.saison}` : `Categorie : ${don.categorie}`,
+			description: don.description
+		}))
+	);
+}
+
+function fillAmeliorationsEquipementsList() {
+	fillAmeliorationsList(
+		'ameliorations-equipements-list',
+		Object.entries(equipements).map(([key, equipement]) => ({
+			key,
+			type: 'equipement',
+			nom: equipement.nom,
+			meta: `Categorie : ${equipement.categorie} • Saison : ${equipement.saison}`,
+			description: equipement.description,
+			allowHtmlDescription: true
+		}))
+	);
+}
+
 function initBindings() {
 	bindViewModeActions();
 
@@ -394,6 +586,10 @@ function initStateFromHash() {
 window.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(renderPersonnage);
+	fillAmeliorationsCompetencesList();
+	fillAmeliorationsDonsList();
+	fillAmeliorationsEquipementsList();
+	fillAmeliorationsMorphologiesList();
 
 	updateViewModeUi();
 	initBindings();
