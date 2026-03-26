@@ -124,7 +124,11 @@ h2 {
 	margin-bottom: 0.7em;
 }
 
-.collapsible-section {
+#collapsible-section {
+	h2 {
+		margin-bottom: 0;
+	}
+	
 	& > summary {
 		list-style: none;
 		cursor: pointer;
@@ -166,10 +170,6 @@ h2 {
 
 .collapsible-section-content {
 	margin-top: 0.8em;
-}
-
-.collapsible-section h2 {
-	margin-bottom: 0;
 }
 
 #ameliorations-group {

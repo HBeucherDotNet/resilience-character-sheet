@@ -615,5 +615,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
+	
+	// force l'ouverture du bloc ameliorations si le résumé est invisible (ex: sur mobile)
+	const summaryVisible = document.querySelector('#collapsible-section summary').checkVisibility();
+	document.getElementById('collapsible-section').open = !summaryVisible;
 });
-

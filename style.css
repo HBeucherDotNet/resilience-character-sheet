@@ -185,7 +185,10 @@ h2 {
   margin-bottom: 0.7em;
 }
 
-.collapsible-section > summary {
+#collapsible-section h2 {
+  margin-bottom: 0;
+}
+#collapsible-section > summary {
   list-style: none;
   cursor: pointer;
   display: flex;
@@ -193,10 +196,10 @@ h2 {
   justify-content: space-between;
   gap: 1em;
 }
-.collapsible-section > summary::-webkit-details-marker {
+#collapsible-section > summary::-webkit-details-marker {
   display: none;
 }
-.collapsible-section > summary::after {
+#collapsible-section > summary::after {
   content: "+";
   flex: 0 0 auto;
   width: 1.5rem;
@@ -210,7 +213,7 @@ h2 {
   font-size: 1.1rem;
   font-weight: 700;
 }
-.collapsible-section[open] > summary::after {
+#collapsible-section[open] > summary::after {
   content: "−";
 }
 
@@ -222,10 +225,6 @@ h2 {
 
 .collapsible-section-content {
   margin-top: 0.8em;
-}
-
-.collapsible-section h2 {
-  margin-bottom: 0;
 }
 
 #ameliorations-group {
