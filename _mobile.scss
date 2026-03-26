@@ -1,7 +1,9 @@
+@use "colors";
+
 @media (max-width: 768px) {
 	body {
 		margin: 0.5em;
-		background: white !important;
+		background: colors.$color-white !important;
 	}
 
 	.page-actions {
@@ -54,4 +56,53 @@
 	.ameliorations-item.selected {
 		order: -1;
 	}
+}
+
+@media (min-width: 769px) {
+body.view-mode {
+	background: colors.$color-white;
+	margin: 0;
+	padding: 1em;
+	
+	#character-builder {
+		display: none !important;
+	}
+	
+	.page-actions {
+		padding: 0.75em 1em;
+		margin: 0;
+		background: colors.$color-white;
+	}
+	
+	#fiche-personnage {
+		width: 100%;
+		max-width: none;
+		padding: 0;
+		margin: 0;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	
+	.fiche-bloc-item {
+		border: none;
+		padding: 0;
+		
+		input {
+			display: none;
+		}
+		
+		.lire-plus.pictogram-btn {
+			display: none;
+		}
+		
+		.desc {
+			display: inline !important;	
+		}
+		
+		&:not(:has(input:checked)) {
+			display: none;
+		}
+	}
+}
 }
