@@ -367,21 +367,6 @@ function updateFicheMorphologies() {
 	syncPersonnageFromDom();
 }
 
-function getSelectedAmeliorationsForType(type, state = personnage.state) {
-	switch (type) {
-		case 'competence':
-			return state.competencesSelectionnees;
-		case 'don':
-			return state.donsSelectionnes;
-		case 'equipement':
-			return state.equipementsSelectionnes;
-		case 'morphologie':
-			return state.morphologiesSelectionnees;
-		default:
-			return [];
-	}
-}
-
 function getAddedAmeliorationsForType(type, state = personnage.state) {
 	switch (type) {
 		case 'competence':
@@ -430,7 +415,13 @@ function refreshAmeliorationButtons(state = personnage.state) {
 	document.querySelectorAll('.ameliorations-item-add-btn').forEach(button => {
 		const { ameliorationType, ameliorationKey } = button.dataset;
 		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
-		button.textContent = isAdded ? '-' : '+';
+		if(isAdded) {
+			button.textContent = '-';
+			button.closest('.ameliorations-item')?.classList.add('selected');
+		} else {
+			button.textContent = '+';
+			button.closest('.ameliorations-item')?.classList.remove('selected');
+		}
 		button.setAttribute('aria-pressed', String(isAdded));
 	});
 }
@@ -592,7 +583,7 @@ function initBindings() {
 	document.querySelectorAll('.option').forEach(option => {
 		option.addEventListener('click', function(e) {
 			// Si le clic est sur .lire-plus.pictogram-btn, ne coche pas la checkbox
-			if (e.target.closest('.lire-plus.pictogram-btn, svg, input')) return;
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input, label')) return;
 			const checkbox = option.querySelector('input[type="checkbox"]');
 			if (checkbox) {
 				checkbox.checked = !checkbox.checked;
