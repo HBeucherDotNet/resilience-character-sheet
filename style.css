@@ -114,10 +114,33 @@
     display: none;
   }
 }
+:root {
+  --color-hiver: #235a8a;
+  --color-printemps: #2c7a4b;
+  --color-ete: #bfa600;
+  --color-automne: #a13a3a;
+  --color-temps: #235a8a;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 2em;
   background: #e9ecf3;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #235a8a;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.7em;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #333;
+  letter-spacing: 0.02em;
 }
 
 .page-actions {
@@ -138,7 +161,7 @@ body {
   border-radius: 999px;
   font-size: 0.7em;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .page-action-btn:hover {
   filter: brightness(1.2);
@@ -149,17 +172,9 @@ body {
   color: #235a8a;
 }
 
-:root {
-  --color-hiver: #235a8a;
-  --color-printemps: #2c7a4b;
-  --color-ete: #bfa600;
-  --color-automne: #a13a3a;
-  --color-temps: #235a8a;
-}
-
 section {
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background: #fff;
   padding: 1.2em 1em;
   margin-bottom: 1.5em;
@@ -167,7 +182,7 @@ section {
   transition: box-shadow 0.2s;
 }
 section:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 section > div {
   margin-bottom: 1em;
@@ -176,14 +191,6 @@ section > div {
 }
 section > div:last-child {
   margin-bottom: 0;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 1.25em;
-  color: #235a8a;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.7em;
 }
 
 #collapsible-section h2 {
@@ -276,7 +283,7 @@ h2 {
 }
 .ameliorations-item.selected {
   border-color: #235a8a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .ameliorations-item-header {
@@ -316,26 +323,18 @@ h2 {
   color: #333;
 }
 
-.amelioration-score-row {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  gap: 0.8em;
-  background: #fff;
-  border: 1px solid #d3d7e3;
-  border-radius: 8px;
-  padding: 0.55em 0.6em;
-}
-
-.amelioration-score-row {
+.amelioration-score-row-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 0.35em;
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.55em 0.6em;
 }
-.amelioration-score-row > span {
+.amelioration-score-row-item > span {
   font-weight: 600;
   color: #333;
   flex-grow: 2;
@@ -362,13 +361,6 @@ h2 {
   cursor: pointer;
 }
 
-h3 {
-  margin-top: 0;
-  font-size: 1.25em;
-  color: #333;
-  letter-spacing: 0.02em;
-}
-
 .option {
   border-width: 1px;
   border-style: solid;
@@ -378,7 +370,7 @@ h3 {
   transition: box-shadow 0.2s;
 }
 .option:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 .option.hiver {
   background: #e3ecf7;
@@ -405,21 +397,43 @@ h3 {
   align-items: center;
   gap: 0.5em;
 }
-
-.selected-option {
+.option.selected {
   z-index: 1;
 }
-.selected-option.hiver {
+.option.selected.hiver {
   border-color: #235a8a !important;
 }
-.selected-option.printemps {
+.option.selected.printemps {
   border-color: #2c7a4b !important;
 }
-.selected-option.ete {
+.option.selected.ete {
   border-color: #bfa600 !important;
 }
-.selected-option.automne {
+.option.selected.automne {
   border-color: #a13a3a !important;
+}
+.option.selected.temps {
+  border-color: #235a8a !important;
+}
+.option.lignee {
+  flex: 1 1 22%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.5em;
+}
+.option.lignee label {
+  color: #222;
+}
+.option.lignee .lignee-sexe {
+  font-size: 0.9em;
+  color: #555;
+  font-weight: normal;
 }
 
 .flex-group {
@@ -449,10 +463,6 @@ h3 {
   margin-top: 0.2em;
 }
 
-.option {
-  position: relative;
-}
-
 .pictogram-btn {
   position: absolute;
   top: 0.5em;
@@ -469,27 +479,6 @@ h3 {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.5em;
-}
-
-.option.lignee {
-  flex: 1 1 22%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 0.5em;
-}
-.option.lignee label {
-  color: #222;
-}
-.option.lignee .lignee-sexe {
-  font-size: 0.9em;
-  color: #555;
-  font-weight: normal;
 }
 
 .don-separateur {
@@ -512,7 +501,7 @@ h3 {
   background: #fff;
   padding: 1.6em 1.8em;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   font-family: "Georgia", serif;
 }
 
@@ -600,7 +589,7 @@ h3 {
   border-collapse: collapse;
 }
 .fiche-sante td {
-  border: 1px dotted #222;
+  border: 1px dotted #333;
   padding: 0.3em 0.5em;
   text-align: left;
 }
@@ -790,7 +779,7 @@ h3 {
   border-collapse: collapse;
 }
 .fiche-resonances th, .fiche-resonances td {
-  border: 1px dotted #222;
+  border: 1px dotted #000;
   padding: 0.3em 0.5em;
   text-align: left;
 }
@@ -808,7 +797,6 @@ h3 {
   border-style: solid;
   border-radius: 16px;
   padding: 1em;
-  background: #f7f7ff;
 }
 #fiche-magie.hiver {
   background: #e3ecf7;
@@ -848,6 +836,7 @@ h3 {
 #fiche-magie h5 {
   margin: 0;
   font-size: 1em;
+  text-align: center;
 }
 #fiche-magie .tableau-magie-talents {
   width: 100%;
@@ -874,15 +863,17 @@ h3 {
 
 .fiche-bloc {
   flex: 1 1 40%;
+  position: relative;
   border-radius: 8px;
   border-width: 2px;
   border-style: solid;
   background: #fff;
-  padding: 0.7em 1em;
+  padding: 1.7em 1em 0.9em;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
+  margin-top: 0.8em;
 }
 .fiche-bloc.saison-hiver {
   border-color: #235a8a;
@@ -897,9 +888,49 @@ h3 {
   border-color: #a13a3a;
 }
 .fiche-bloc > label {
-  flex-basis: 100%;
-  text-align: center;
-  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0 0.9em;
+  background: #fff;
+  border-radius: 999px;
+  font-family: Georgia, serif;
+  font-size: 1.35em;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0.2em #fff;
+  z-index: 1;
+}
+.fiche-bloc > label .saison-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 999px;
+  font-size: 0.7em;
+  font-style: normal;
+  background: #fff;
+}
+.fiche-bloc.saison-hiver > label {
+  color: #235a8a;
+}
+.fiche-bloc.saison-printemps > label {
+  color: #2c7a4b;
+}
+.fiche-bloc.saison-ete > label {
+  color: #bfa600;
+}
+.fiche-bloc.saison-automne > label {
+  color: #a13a3a;
 }
 .fiche-bloc > div {
   display: flex;

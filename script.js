@@ -312,10 +312,10 @@ function selectUnique(group, el) {
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
 		const option = cb.closest('.option');
-		if (option) option.classList.remove('selected-option');
+		if (option) option.classList.remove('selected');
 	});
 	const selectedOption = el.closest('.option');
-	if (selectedOption && el.checked) selectedOption.classList.add('selected-option');
+	if (selectedOption && el.checked) selectedOption.classList.add('selected');
 }
 
 function updateLignees() {

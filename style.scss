@@ -2,10 +2,33 @@
 @use "print.scss";
 @use "mobile";
 
+:root {
+	--color-hiver: #{colors.$color-hiver};
+	--color-printemps: #{colors.$color-printemps};
+	--color-ete: #{colors.$color-ete};
+	--color-automne: #{colors.$color-automne};
+	--color-temps: #{colors.$color-temps};
+}
+
 body {
 	font-family: Arial, sans-serif;
 	margin: 2em;
 	background: colors.$color-bg-page;
+}
+
+h2 {
+	margin-top: 0;
+	font-size: 1.25em;
+	color: colors.$color-hiver;
+	letter-spacing: 0.02em;
+	margin-bottom: 0.7em;
+}
+
+h3 {
+	margin-top: 0;
+	font-size: 1.25em;
+	color: colors.$color-text-dark;
+	letter-spacing: 0.02em;
 }
 
 .page-actions {
@@ -26,7 +49,7 @@ body {
 	border-radius: 999px;
 	font-size: 0.7em;
 	cursor: pointer;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+	box-shadow: 0 2px 10px colors.$color-box-shadow;
 	
 	&:hover {
 		filter: brightness(1.20);
@@ -38,43 +61,27 @@ body {
 	color: colors.$color-hiver;
 }
 
-:root {
-	--color-hiver: #{colors.$color-hiver};
-	--color-printemps: #{colors.$color-printemps};
-	--color-ete: #{colors.$color-ete};
-	--color-automne: #{colors.$color-automne};
-	--color-temps: #{colors.$color-temps};
-}
-
 section {
 	border-radius: 12px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+	box-shadow: 0 2px 8px colors.$color-box-shadow;
 	background: colors.$color-white;
 	padding: 1.2em 1em;
 	margin-bottom: 1.5em;
 	border: 1px solid colors.$color-border-section;
 	transition: box-shadow 0.2s;
 	&:hover {
-		box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
 	}
 	
 	&> div {
 		margin-bottom: 1em;
 		margin-top: 0.3em;
-		color: #444;
+		color: colors.$color-text-main;
 		
 		&:last-child {
 			margin-bottom: 0;
 		}
 	}
-}
-
-h2 {
-	margin-top: 0;
-	font-size: 1.25em;
-	color: colors.$color-hiver;
-	letter-spacing: 0.02em;
-	margin-bottom: 0.7em;
 }
 
 #collapsible-section {
@@ -117,7 +124,7 @@ h2 {
 
 .collapsible-section-hint {
 	font-size: 0.9em;
-	color: #555;
+	color: colors.$color-text-muted;
 	text-align: right;
 }
 
@@ -175,7 +182,7 @@ h2 {
 	
 	&.selected {
 		border-color: colors.$color-hiver;
-		box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+		box-shadow: 0 2px 10px colors.$color-box-shadow;
 	}
 }
 
@@ -208,37 +215,29 @@ h2 {
 
 .ameliorations-item-category {
 	font-size: 0.80em;
-	color: #555;
+	color: colors.$color-text-muted;
 	margin-bottom: 0.35em;
 }
 
 .ameliorations-item-description {
 	font-size: 0.85em;
-	color: #333;
+	color: colors.$color-text-dark;
 }
 
-.amelioration-score-row {
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	justify-content: flex-start;
-	gap: 0.8em;
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 8px;
-	padding: 0.55em 0.6em;
-}
-
-.amelioration-score-row {
+.amelioration-score-row-item {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.35em;
+	background: colors.$color-white;
+	border: 1px solid colors.$color-border-section;
+	border-radius: 8px;
+	padding: 0.55em 0.6em;
 	
 	& > span {
 		font-weight: 600;
-		color: #333;
+		color: colors.$color-text-dark;
 		flex-grow: 2;
 	}
 }
@@ -264,13 +263,6 @@ h2 {
 	cursor: pointer;
 }
 
-h3 {
-	margin-top: 0;
-	font-size: 1.25em;
-	color: #333;
-	letter-spacing: 0.02em;
-}
-
 .option {
 	border-width: 1px;
 	border-style: solid;
@@ -279,7 +271,7 @@ h3 {
 	padding: 0.5em;
 	transition: box-shadow 0.2s;
 	&:hover {
-		box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
 	}
 	
 	&.hiver {
@@ -308,21 +300,47 @@ h3 {
 		align-items:center;
 		gap:0.5em;
 	}
-}
-
-.selected-option {
-	z-index: 1;
-	&.hiver {
-		border-color: colors.$color-hiver !important;
+	
+	&.selected {
+		z-index: 1;
+		&.hiver {
+			border-color: colors.$color-hiver !important;
+		}
+		&.printemps {
+			border-color: colors.$color-printemps !important;
+		}
+		&.ete {
+			border-color: colors.$color-ete !important;
+		}
+		&.automne {
+			border-color: colors.$color-automne !important;
+		}
+		&.temps {
+			border-color: colors.$color-temps !important;
+		}
 	}
-	&.printemps {
-		border-color: colors.$color-printemps !important;
-	}
-	&.ete {
-		border-color: colors.$color-ete !important;
-	}
-	&.automne {
-		border-color: colors.$color-automne !important;
+	
+	&.lignee {
+		flex: 1 1 22%;
+		min-width: 0;
+		box-sizing: border-box;
+		padding: 0.5em;
+		border: 1px solid colors.$color-border-gray;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-bottom: 0.5em;
+		
+		label {
+			color: colors.$color-text-label;
+		}
+		
+		.lignee-sexe {
+			font-size: 0.9em;
+			color: colors.$color-text-muted;
+			font-weight: normal;
+		}
 	}
 }
 
@@ -351,12 +369,8 @@ h3 {
 .desc {
 	display: block;
 	font-size: 0.9em;
-	color: #555;
+	color: colors.$color-text-muted;
 	margin-top: 0.2em;
-}
-
-.option {
-	position: relative;
 }
 
 .pictogram-btn {
@@ -369,38 +383,17 @@ h3 {
 	cursor: pointer;
 	z-index: 2;
 }
+
 .flex-group#lignées-list {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 0.5em;
 }
-.option.lignee {
-	flex: 1 1 22%;
-	min-width: 0;
-	box-sizing: border-box;
-	padding: 0.5em;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin-bottom: 0.5em;
-	
-	label {
-		color: #222;
-	}
-	
-	.lignee-sexe {
-		font-size: 0.9em;
-		color: #555;
-		font-weight: normal;
-	}
-}
 
 .don-separateur {
 	border: none;
-	border-top: 2px solid #bbb;
+	border-top: 2px solid colors.$color-border-separator;
 	margin: 0.7em 0 0.3em 0;
 }
 
@@ -418,9 +411,10 @@ h3 {
 	background: colors.$color-white;
 	padding: 1.6em 1.8em;
 	border-radius: 16px;
-	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+	box-shadow: 0 2px 12px colors.$color-box-shadow;
 	font-family: 'Georgia', serif;
 }
+
 .fiche-header {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
@@ -440,6 +434,7 @@ h3 {
 	align-items: center;
 	gap: 1em;
 }
+
 .fiche-nom {
 	margin: 0;
 	align-self: center;
@@ -500,7 +495,7 @@ h3 {
 	border-collapse: collapse; 
 	
 	td { 
-		border: 1px dotted #222; 
+		border: 1px dotted colors.$color-text-dark; 
 		padding: 0.3em 0.5em;
 		text-align: left; 
 	}
@@ -605,8 +600,8 @@ h3 {
 	width: 75px;
 	height: 75px;
 	border-radius: 50%;
-	border: 2px solid #888;
-	background: #fff;
+	border: 2px solid colors.$color-border-cercle;
+	background: colors.$color-white;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -691,7 +686,7 @@ h3 {
 		border-collapse: collapse; 
 	}
 	th, td { 
-		border: 1px dotted #222; 
+		border: 1px dotted colors.$color-black; 
 		padding: 0.3em 0.5em;
 		text-align: left; 
 	}
@@ -710,7 +705,6 @@ h3 {
 	border-style: solid;
 	border-radius: 16px;
 	padding: 1em;
-	background: #f7f7ff;
 	
 	&.hiver {
 		background: colors.$color-hiver-lighter;
@@ -751,6 +745,7 @@ h3 {
 	h5 {
 		margin: 0;
 		font-size: 1em;
+		text-align: center;
 	}
 	
 	.tableau-magie-talents{
@@ -763,7 +758,7 @@ h3 {
 		width: 98%;
 		box-sizing: border-box;
 		border-radius: 6px;
-		border: 1px solid #ccc;
+		border: 1px solid colors.$color-border-gray;
 		padding: 0.5em;
 		font-family: inherit;
 		font-size: 0.8em;
@@ -772,18 +767,25 @@ h3 {
 	}
 }
 
-.fiche-blocs { display: flex; flex-wrap: wrap; gap: 1em; }
+.fiche-blocs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em; 
+}
+
 .fiche-bloc {
 	flex: 1 1 40%;
+	position: relative;
 	border-radius: 8px;
 	border-width: 2px;
 	border-style: solid;
-	background: #fff;
-	padding: 0.7em 1em;
+	background: colors.$color-white;
+	padding: 1.7em 1em 0.9em;
 	display: flex; 
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5em;
+	margin-top: 0.8em;
 	
 	&.saison-hiver { 
 		border-color: colors.$color-hiver; 
@@ -799,9 +801,54 @@ h3 {
 	}
 	
 	& > label {
-		flex-basis: 100%;
-		text-align: center;
-		font-weight: bold;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -52%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
+		margin: 0;
+		padding: 0 0.9em;
+		background: colors.$color-white;
+		border-radius: 999px;
+		font-family: Georgia, serif;
+		font-size: 1.35em;
+		font-style: italic;
+		font-weight: 600;
+		line-height: 1.1;
+		white-space: nowrap;
+		box-shadow: 0 0 0 0.2em colors.$color-white;
+		z-index: 1;
+
+		.saison-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.6em;
+			height: 1.6em;
+			border-radius: 999px;
+			font-size: 0.7em;
+			font-style: normal;
+			background: colors.$color-white;
+		}
+	}
+
+	&.saison-hiver > label {
+		color: colors.$color-hiver;
+	}
+
+	&.saison-printemps > label {
+		color: colors.$color-printemps;
+	}
+
+	&.saison-ete > label {
+		color: colors.$color-ete;
+	}
+
+	&.saison-automne > label {
+		color: colors.$color-automne;
 	}
 	
 	& > div {
@@ -812,10 +859,10 @@ h3 {
 	}
 	
 	.fiche-bloc-item {
-		border: 1px solid #ccc;
+		border: 1px solid colors.$color-border-gray;
 		border-radius: 6px;
 		padding: 0.5em 2em 0.5em 0.5em;
-		background: #fff;
+		background: colors.$color-white;
 		box-sizing: border-box;
 		flex: 1 1 auto;
 		position: relative;

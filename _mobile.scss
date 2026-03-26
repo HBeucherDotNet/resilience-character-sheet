@@ -5,104 +5,104 @@
 		margin: 0.5em;
 		background: colors.$color-white !important;
 	}
-
+	
 	.page-actions {
 		display: none !important;
 	}
-
+	
 	#character-builder > h2,
 	#character-builder > section:not(#ameliorations-section) {
 		display: none !important;
 	}
-
+	
 	#fiche-personnage {
 		display: none !important;
 	}
-
+	
 	#ameliorations-section {
 		border: none !important;
 		box-shadow: none !important;
 		padding: 0 !important;
 	}
-
+	
 	/* Force le panneau améliorations toujours ouvert sur mobile */
 	#ameliorations-section details > summary {
 		display: none;
 	}
-
+	
 	#ameliorations-section details > .collapsible-section-content {
 		display: block !important;
 	}
-
+	
 	/* Masquer les modificateurs de score (peu utiles en lecture seule) */
 	#ameliorations-scores-row {
 		display: none !important;
 	}
-
+	
 	/* Empiler les zones d'améliorations verticalement */
 	#ameliorations-group {
 		flex-direction: column;
 	}
-
+	
 	.ameliorations-zone {
 		flex: none;
 		width: 100%;
 	}
-
+	
 	.ameliorations-item-add-btn {
 		display: none !important;
 	}
-
+	
 	.ameliorations-item.selected {
 		order: -1;
 	}
 }
 
 @media (min-width: 769px) {
-body.view-mode {
-	background: colors.$color-white;
-	margin: 0;
-	padding: 1em;
-	
-	#character-builder {
-		display: none !important;
-	}
-	
-	.page-actions {
-		padding: 0.75em 1em;
-		margin: 0;
+	body.view-mode {
 		background: colors.$color-white;
-	}
-	
-	#fiche-personnage {
-		width: 100%;
-		max-width: none;
-		padding: 0;
 		margin: 0;
-		border: none;
-		border-radius: 0;
-		box-shadow: none;
+		padding: 1em;
+		
+		#character-builder {
+			display: none !important;
+		}
+		
+		.page-actions {
+			padding: 0.75em 1em;
+			margin: 0;
+			background: colors.$color-white;
+		}
+		
+		#fiche-personnage {
+			width: 100%;
+			max-width: none;
+			padding: 0;
+			margin: 0;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+		}
+		
+		.fiche-bloc-item {
+			border: none;
+			padding: 0;
+			
+			input {
+				display: none;
+			}
+			
+			.lire-plus.pictogram-btn {
+				display: none;
+			}
+			
+			.desc {
+				display: inline !important;	
+			}
+			
+			&:not(:has(input:checked)) {
+				display: none;
+			}
+		}
 	}
-	
-	.fiche-bloc-item {
-		border: none;
-		padding: 0;
-		
-		input {
-			display: none;
-		}
-		
-		.lire-plus.pictogram-btn {
-			display: none;
-		}
-		
-		.desc {
-			display: inline !important;	
-		}
-		
-		&:not(:has(input:checked)) {
-			display: none;
-		}
-	}
-}
 }
