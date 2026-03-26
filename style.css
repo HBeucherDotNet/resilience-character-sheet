@@ -754,10 +754,12 @@ section > div:last-child {
 
 .saison-title {
   font-size: 1.2em;
-  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 0.5em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .saison-icon {
@@ -835,8 +837,11 @@ section > div:last-child {
 }
 #fiche-magie h5 {
   margin: 0;
-  font-size: 1em;
+  font-size: 1.35em;
   text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
 }
 #fiche-magie .tableau-magie-talents {
   width: 100%;
@@ -900,11 +905,10 @@ section > div:last-child {
   padding: 0 0.9em;
   background: #fff;
   border-radius: 999px;
-  font-family: Georgia, serif;
   font-size: 1.35em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-style: italic;
   font-weight: 600;
-  line-height: 1.1;
   white-space: nowrap;
   box-shadow: 0 0 0 0.2em #fff;
   z-index: 1;
