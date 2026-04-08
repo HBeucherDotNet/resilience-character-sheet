@@ -111,6 +111,194 @@ function renderCompetences(state) {
 	});
 }
 
+function createQuestionMarkSvg(color) {
+	return `
+		<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="11" cy="11" r="10" stroke="${color}" stroke-width="2" fill="#fff"/>
+			<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${color}">?</text>
+		</svg>
+	`;
+}
+
+function fillFicheCompetencesFromData() {
+	const container = document.getElementById('fiche-competences');
+	if (!container) return;
+
+	container.innerHTML = '';
+	const fragment = document.createDocumentFragment();
+	const iconColor = couleurs.printemps;
+
+	Object.entries(competences).forEach(([key, competence]) => {
+		const item = document.createElement('div');
+		item.className = 'competence-recap fiche-bloc-item';
+		item.dataset.competence = key;
+		if (competence.role && competence.role !== 'commune') {
+			item.dataset.role = competence.role;
+		}
+
+		const input = document.createElement('input');
+		input.type = 'checkbox';
+		input.id = `competence-${key}`;
+		input.name = `competence-${key}`;
+		input.value = key;
+
+		const label = document.createElement('label');
+		label.setAttribute('for', input.id);
+		label.textContent = competence.nom;
+
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'lire-plus pictogram-btn';
+		button.setAttribute('aria-label', 'Afficher le résumé');
+		button.innerHTML = createQuestionMarkSvg(iconColor);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc';
+		desc.style.display = 'none';
+		desc.textContent = competence.summary;
+
+		item.appendChild(input);
+		item.appendChild(label);
+		item.appendChild(button);
+		item.appendChild(desc);
+		fragment.appendChild(item);
+	});
+
+	container.appendChild(fragment);
+}
+
+function fillFicheEquipementsFromData() {
+	const container = document.getElementById('fiche-equipements');
+	if (!container) return;
+
+	container.innerHTML = '';
+	const fragment = document.createDocumentFragment();
+	const iconColor = couleurs.automne;
+
+	Object.entries(equipements).forEach(([key, equipement]) => {
+		const item = document.createElement('div');
+		item.className = 'equipement-recap fiche-bloc-item';
+		item.dataset.equipement = key;
+
+		const input = document.createElement('input');
+		input.type = 'checkbox';
+		input.id = `equipement-${key}`;
+		input.name = `equipement-${key}`;
+		input.value = key;
+
+		const label = document.createElement('label');
+		label.setAttribute('for', input.id);
+		label.textContent = equipement.nom;
+
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'lire-plus pictogram-btn';
+		button.setAttribute('aria-label', 'Afficher le résumé');
+		button.innerHTML = createQuestionMarkSvg(iconColor);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc';
+		desc.style.display = 'none';
+		desc.innerHTML = equipement.summary ?? equipement.description;
+
+		item.appendChild(input);
+		item.appendChild(label);
+		item.appendChild(button);
+		item.appendChild(desc);
+		fragment.appendChild(item);
+	});
+
+	container.appendChild(fragment);
+}
+
+function fillFicheMorphologiesFromData() {
+	const container = document.getElementById('fiche-morphologies');
+	if (!container) return;
+
+	container.innerHTML = '';
+	const fragment = document.createDocumentFragment();
+	const iconColor = couleurs.hiver;
+
+	Object.entries(morphologies).forEach(([key, morphologie]) => {
+		const item = document.createElement('div');
+		item.className = 'morphologie-recap fiche-bloc-item';
+		item.dataset.morphologie = key;
+
+		const input = document.createElement('input');
+		input.type = 'checkbox';
+		input.id = `morphologie-${key}`;
+		input.name = `morphologie-${key}`;
+		input.value = key;
+
+		const label = document.createElement('label');
+		label.setAttribute('for', input.id);
+		label.textContent = morphologie.nom;
+
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'lire-plus pictogram-btn';
+		button.setAttribute('aria-label', 'Afficher le résumé');
+		button.innerHTML = createQuestionMarkSvg(iconColor);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc';
+		desc.style.display = 'none';
+		desc.textContent = morphologie.summary ?? morphologie.description;
+
+		item.appendChild(input);
+		item.appendChild(label);
+		item.appendChild(button);
+		item.appendChild(desc);
+		fragment.appendChild(item);
+	});
+
+	container.appendChild(fragment);
+}
+
+function fillFicheDonsFromData() {
+	const container = document.getElementById('fiche-dons');
+	if (!container) return;
+
+	container.innerHTML = '';
+	const fragment = document.createDocumentFragment();
+	const iconColor = couleurs.ete;
+
+	Object.entries(dons).forEach(([key, don]) => {
+		const item = document.createElement('div');
+		item.className = 'don-recap fiche-bloc-item';
+		item.dataset.don = key;
+
+		const input = document.createElement('input');
+		input.type = 'checkbox';
+		input.id = `don-${key}`;
+		input.name = `don-${key}`;
+		input.value = key;
+
+		const label = document.createElement('label');
+		label.setAttribute('for', input.id);
+		label.textContent = don.nom;
+
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'lire-plus pictogram-btn';
+		button.setAttribute('aria-label', 'Afficher le résumé');
+		button.innerHTML = createQuestionMarkSvg(iconColor);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc';
+		desc.style.display = 'none';
+		desc.textContent = don.summary ?? don.description;
+
+		item.appendChild(input);
+		item.appendChild(label);
+		item.appendChild(button);
+		item.appendChild(desc);
+		fragment.appendChild(item);
+	});
+
+	container.appendChild(fragment);
+}
+
 function renderEquipements(state) {
 	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
 		div.style.display = 'none';
@@ -604,6 +792,10 @@ function initStateFromHash() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+	fillFicheCompetencesFromData();
+	fillFicheEquipementsFromData();
+	fillFicheMorphologiesFromData();
+	fillFicheDonsFromData();
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(renderPersonnage);
 	fillAmeliorationsCompetencesList();
