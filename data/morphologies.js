@@ -2,19 +2,19 @@ export const morphologies = {
 	articule: {
 		nom: "Armement articulé ❄️",
 		categorie: "armement",
-		summary: "Un Armement Articulé s’utilise pour fuir, entraver, étrangler, manipuler, renvoyer l’attaque de l’adversaire ou le mettre face à ses contradictions.",
+		summary: "Fuir, entraver, étrangler, manipuler, renvoyer l’attaque de l’adversaire ou le mettre face à ses contradictions",
 		description: "Un Armement Articulé s’utilise pour fuir, entraver, étrangler, manipuler, renvoyer l’attaque de l’adversaire ou le mettre face à ses contradictions."
 	},
 	distance: {
 		nom: "Armement à Distance 🌱",
 		categorie: "armement",
-		summary: "Un Armement à Distance s’utilise pour feinter, percer, désarmer, rester hors de danger, embrouiller ou distraire.",
+		summary: "Feinter, percer, désarmer, rester hors de danger, embrouiller ou distraire",
 		description: "Un Armement à Distance s’utilise pour feinter, percer, désarmer, rester hors de danger, embrouiller ou distraire."
 	},
 	court: {
 		nom: "Armement Court ☀️",
 		categorie: "armement",
-		summary: "Un Armement Court s’utilise pour charger, mettre en fuite, trancher, submerger, intimider et attaquer sur les émotions.",
+		summary: "Charger, mettre en fuite, trancher, submerger, intimider et attaquer sur les émotions",
 		description: "Un Armement Court s’utilise pour charger, mettre en fuite, trancher, submerger, intimider et attaquer sur les émotions."
 	},
 	long: {
