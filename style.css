@@ -956,6 +956,9 @@ section > div:last-child {
   flex: 1 1 auto;
   position: relative;
 }
+.fiche-bloc .fiche-bloc-item label {
+  margin-right: 5px;
+}
 
 #fiche-champ-lexical {
   border-width: 2px 0;

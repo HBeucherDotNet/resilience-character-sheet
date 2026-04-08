@@ -875,6 +875,10 @@ section {
 		box-sizing: border-box;
 		flex: 1 1 auto;
 		position: relative;
+
+		label {
+			margin-right: 5px;
+		}
 	}
 }
 

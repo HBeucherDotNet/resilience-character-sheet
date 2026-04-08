@@ -43,10 +43,10 @@ function syncPersonnageFromDom() {
 		scoreModEte: document.getElementById('amelioration-score-ete')?.value ?? '0',
 		scoreModAutomne: document.getElementById('amelioration-score-automne')?.value ?? '0',
 		scoreModSouffle: document.getElementById('amelioration-score-souffle')?.value ?? '0',
-		competencesAjoutees: getCheckedFicheBlocKeys('#fiche-competences', '.competence-recap', 'competence'),
-		donsAjoutes: getCheckedFicheBlocKeys('#fiche-dons', '.don-recap', 'don'),
-		equipementsAjoutes: getCheckedFicheBlocKeys('#fiche-equipements', '.equipement-recap', 'equipement'),
-		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.morphologie-recap', 'morphologie')
+		competencesAjoutees: getCheckedFicheBlocKeys('#fiche-competences', '.fiche-bloc-item', 'competence'),
+		donsAjoutes: getCheckedFicheBlocKeys('#fiche-dons', '.fiche-bloc-item', 'don'),
+		equipementsAjoutes: getCheckedFicheBlocKeys('#fiche-equipements', '.fiche-bloc-item', 'equipement'),
+		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.fiche-bloc-item', 'morphologie')
 	});
 }
 
@@ -101,12 +101,12 @@ function renderPersonnage(state) {
 }
 
 function renderCompetences(state) {
-	document.querySelectorAll('#fiche-competences .competence-recap').forEach(div => {
+	document.querySelectorAll('#fiche-competences .fiche-bloc-item').forEach(div => {
 		div.style.display = 'none';
 	});
 
 	state.competencesSelectionnees.forEach(competenceKey => {
-		const competenceBloc = document.querySelector(`#fiche-competences .competence-recap[data-competence="${competenceKey}"]`);
+		const competenceBloc = document.querySelector(`#fiche-competences .fiche-bloc-item[data-competence="${competenceKey}"]`);
 		if (competenceBloc) competenceBloc.style.display = '';
 	});
 }
@@ -120,31 +120,28 @@ function createQuestionMarkSvg(color) {
 	`;
 }
 
-function fillFicheCompetencesFromData() {
-	const container = document.getElementById('fiche-competences');
+function fillFicheFromData(data, saison, itemType) {
+	const container = document.getElementById(`fiche-${itemType}s`);
 	if (!container) return;
 
 	container.innerHTML = '';
 	const fragment = document.createDocumentFragment();
-	const iconColor = couleurs.printemps;
+	const iconColor = couleurs[saison] || couleurs.temps;
 
-	Object.entries(competences).forEach(([key, competence]) => {
-		const item = document.createElement('div');
-		item.className = 'competence-recap fiche-bloc-item';
-		item.dataset.competence = key;
-		if (competence.role && competence.role !== 'commune') {
-			item.dataset.role = competence.role;
-		}
+	Object.entries(data).forEach(([key, item]) => {
+		const itemDiv = document.createElement('div');
+		itemDiv.className = `fiche-bloc-item ${saison}`;
+		itemDiv.dataset[itemType] = key;
 
 		const input = document.createElement('input');
 		input.type = 'checkbox';
-		input.id = `competence-${key}`;
-		input.name = `competence-${key}`;
+		input.id = `${itemType}-${key}`;
+		input.name = `${itemType}-${key}`;
 		input.value = key;
 
 		const label = document.createElement('label');
 		label.setAttribute('for', input.id);
-		label.textContent = competence.nom;
+		label.textContent = item.nom;
 
 		const button = document.createElement('button');
 		button.type = 'button';
@@ -155,179 +152,47 @@ function fillFicheCompetencesFromData() {
 		const desc = document.createElement('span');
 		desc.className = 'desc';
 		desc.style.display = 'none';
-		desc.textContent = competence.summary;
+		desc.textContent = item.summary ?? item.description;
 
-		item.appendChild(input);
-		item.appendChild(label);
-		item.appendChild(button);
-		item.appendChild(desc);
-		fragment.appendChild(item);
-	});
-
-	container.appendChild(fragment);
-}
-
-function fillFicheEquipementsFromData() {
-	const container = document.getElementById('fiche-equipements');
-	if (!container) return;
-
-	container.innerHTML = '';
-	const fragment = document.createDocumentFragment();
-	const iconColor = couleurs.automne;
-
-	Object.entries(equipements).forEach(([key, equipement]) => {
-		const item = document.createElement('div');
-		item.className = 'equipement-recap fiche-bloc-item';
-		item.dataset.equipement = key;
-
-		const input = document.createElement('input');
-		input.type = 'checkbox';
-		input.id = `equipement-${key}`;
-		input.name = `equipement-${key}`;
-		input.value = key;
-
-		const label = document.createElement('label');
-		label.setAttribute('for', input.id);
-		label.textContent = equipement.nom;
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher le résumé');
-		button.innerHTML = createQuestionMarkSvg(iconColor);
-
-		const desc = document.createElement('span');
-		desc.className = 'desc';
-		desc.style.display = 'none';
-		desc.innerHTML = equipement.summary ?? equipement.description;
-
-		item.appendChild(input);
-		item.appendChild(label);
-		item.appendChild(button);
-		item.appendChild(desc);
-		fragment.appendChild(item);
-	});
-
-	container.appendChild(fragment);
-}
-
-function fillFicheMorphologiesFromData() {
-	const container = document.getElementById('fiche-morphologies');
-	if (!container) return;
-
-	container.innerHTML = '';
-	const fragment = document.createDocumentFragment();
-	const iconColor = couleurs.hiver;
-
-	Object.entries(morphologies).forEach(([key, morphologie]) => {
-		const item = document.createElement('div');
-		item.className = 'morphologie-recap fiche-bloc-item';
-		item.dataset.morphologie = key;
-
-		const input = document.createElement('input');
-		input.type = 'checkbox';
-		input.id = `morphologie-${key}`;
-		input.name = `morphologie-${key}`;
-		input.value = key;
-
-		const label = document.createElement('label');
-		label.setAttribute('for', input.id);
-		label.textContent = morphologie.nom;
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher le résumé');
-		button.innerHTML = createQuestionMarkSvg(iconColor);
-
-		const desc = document.createElement('span');
-		desc.className = 'desc';
-		desc.style.display = 'none';
-		desc.textContent = morphologie.summary ?? morphologie.description;
-
-		item.appendChild(input);
-		item.appendChild(label);
-		item.appendChild(button);
-		item.appendChild(desc);
-		fragment.appendChild(item);
-	});
-
-	container.appendChild(fragment);
-}
-
-function fillFicheDonsFromData() {
-	const container = document.getElementById('fiche-dons');
-	if (!container) return;
-
-	container.innerHTML = '';
-	const fragment = document.createDocumentFragment();
-	const iconColor = couleurs.ete;
-
-	Object.entries(dons).forEach(([key, don]) => {
-		const item = document.createElement('div');
-		item.className = 'don-recap fiche-bloc-item';
-		item.dataset.don = key;
-
-		const input = document.createElement('input');
-		input.type = 'checkbox';
-		input.id = `don-${key}`;
-		input.name = `don-${key}`;
-		input.value = key;
-
-		const label = document.createElement('label');
-		label.setAttribute('for', input.id);
-		label.textContent = don.nom;
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher le résumé');
-		button.innerHTML = createQuestionMarkSvg(iconColor);
-
-		const desc = document.createElement('span');
-		desc.className = 'desc';
-		desc.style.display = 'none';
-		desc.textContent = don.summary ?? don.description;
-
-		item.appendChild(input);
-		item.appendChild(label);
-		item.appendChild(button);
-		item.appendChild(desc);
-		fragment.appendChild(item);
+		itemDiv.appendChild(input);
+		itemDiv.appendChild(label);
+		itemDiv.appendChild(button);
+		itemDiv.appendChild(desc);
+		fragment.appendChild(itemDiv);
 	});
 
 	container.appendChild(fragment);
 }
 
 function renderEquipements(state) {
-	document.querySelectorAll('#fiche-equipements .equipement-recap').forEach(div => {
+	document.querySelectorAll('#fiche-equipements .fiche-bloc-item').forEach(div => {
 		div.style.display = 'none';
 	});
 
 	state.equipementsSelectionnes.forEach(eqKey => {
-		const div = document.querySelector(`#fiche-equipements .equipement-recap[data-equipement="${eqKey}"]`);
+		const div = document.querySelector(`#fiche-equipements .fiche-bloc-item[data-equipement="${eqKey}"]`);
 		if (div) div.style.display = '';
 	});
 }
 
 function renderDons(state) {
-	document.querySelectorAll('#fiche-dons .don-recap').forEach(div => {
+	document.querySelectorAll('#fiche-dons .fiche-bloc-item').forEach(div => {
 		div.style.display = 'none';
 	});
 
 	state.donsSelectionnes.forEach(donKey => {
-		const div = document.querySelector(`#fiche-dons .don-recap[data-don="${donKey}"]`);
+		const div = document.querySelector(`#fiche-dons .fiche-bloc-item[data-don="${donKey}"]`);
 		if (div) div.style.display = '';
 	});
 }
 
 function renderMorphologies(state) {
-	document.querySelectorAll('#fiche-morphologies .morphologie-recap').forEach(div => {
+	document.querySelectorAll('#fiche-morphologies .fiche-bloc-item').forEach(div => {
 		div.style.display = 'none';
 	});
 
 	state.morphologiesSelectionnees.forEach(morphKey => {
-		const div = document.querySelector(`#fiche-morphologies .morphologie-recap[data-morphologie="${morphKey}"]`);
+		const div = document.querySelector(`#fiche-morphologies .fiche-bloc-item[data-morphologie="${morphKey}"]`);
 		if (div) div.style.display = '';
 	});
 }
@@ -448,20 +313,13 @@ window.toggleDesc = function(btn) {
 	
 	// Détecte la saison de l'option
 	let saison = '';
-	const option = btn.closest('.option');
-	const item = btn.closest('.fiche-bloc-item');
+	const option = btn.closest('.option, .fiche-bloc-item');
 	if (option) {
 		if (option.classList.contains('hiver')) saison = 'hiver';
 		else if (option.classList.contains('printemps')) saison = 'printemps';
 		else if (option.classList.contains('ete')) saison = 'ete';
 		else if (option.classList.contains('automne')) saison = 'automne';
 		else if (option.classList.contains('temps')) saison = 'temps';
-	}
-	else if (item) {
-		if (item.classList.contains('morphologie-recap')) saison = 'hiver';
-		else if (item.classList.contains('competence-recap')) saison = 'printemps';
-		else if (item.classList.contains('don-recap')) saison = 'ete';
-		else if (item.classList.contains('equipement-recap')) saison = 'automne';
 	}
 	else {
 		return; // Pas de saison détectée, ne pas continuer
@@ -572,10 +430,10 @@ function getAddedAmeliorationsForType(type, state = personnage.state) {
 
 function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
 	const selectorMap = {
-		competence: `#fiche-competences .competence-recap[data-competence="${key}"] input[type="checkbox"]`,
-		don: `#fiche-dons .don-recap[data-don="${key}"] input[type="checkbox"]`,
-		equipement: `#fiche-equipements .equipement-recap[data-equipement="${key}"] input[type="checkbox"]`,
-		morphologie: `#fiche-morphologies .morphologie-recap[data-morphologie="${key}"] input[type="checkbox"]`
+		competence: `#fiche-competences .fiche-bloc-item[data-competence="${key}"] input[type="checkbox"]`,
+		don: `#fiche-dons .fiche-bloc-item[data-don="${key}"] input[type="checkbox"]`,
+		equipement: `#fiche-equipements .fiche-bloc-item[data-equipement="${key}"] input[type="checkbox"]`,
+		morphologie: `#fiche-morphologies .fiche-bloc-item[data-morphologie="${key}"] input[type="checkbox"]`
 	};
 
 	const checkbox = document.querySelector(selectorMap[type]);
@@ -792,12 +650,15 @@ function initStateFromHash() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-	fillFicheCompetencesFromData();
-	fillFicheEquipementsFromData();
-	fillFicheMorphologiesFromData();
-	fillFicheDonsFromData();
+
+	fillFicheFromData(competences, 'printemps', 'competence');
+	fillFicheFromData(dons, 'ete', 'don');
+	fillFicheFromData(equipements, 'automne', 'equipement');
+	fillFicheFromData(morphologies, 'hiver', 'morphologie');
+
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(renderPersonnage);
+
 	fillAmeliorationsCompetencesList();
 	fillAmeliorationsDonsList();
 	fillAmeliorationsEquipementsList();
