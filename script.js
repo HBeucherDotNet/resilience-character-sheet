@@ -92,6 +92,7 @@ function renderPersonnage(state) {
 	document.getElementById('fiche-essence-harmonie').className = state.saisonClass;
 	document.getElementById('fiche-champ-lexical').className = state.saisonClass;
 	document.getElementById('fiche-magie').className = state.saisonClass;
+	refreshFicheSummaryPlaceholders(state);
 
 	renderCompetences(state);
 	renderEquipements(state);
@@ -118,6 +119,40 @@ function createQuestionMarkSvg(color) {
 			<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${color}">?</text>
 		</svg>
 	`;
+}
+
+function normalizePlaceholderToken(token) {
+	return String(token ?? '')
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.trim();
+}
+
+function replaceSummaryPlaceholders(template, state) {
+	if (typeof template !== 'string') return '';
+
+	const valuesByToken = {
+		hiver: String(state?.ficheHiver ?? ''),
+		printemps: String(state?.fichePrintemps ?? ''),
+		ete: String(state?.ficheEte ?? ''),
+		automne: String(state?.ficheAutomne ?? ''),
+		vitalite: String(state?.ficheVitalite ?? ''),
+		souffle: String(state?.ficheSouffle ?? ''),
+		resilience: String(state?.ficheResilience ?? '')
+	};
+
+	return template.replace(/\{([^}]+)\}/g, (match, token) => {
+		const normalizedToken = normalizePlaceholderToken(token);
+		return Object.hasOwn(valuesByToken, normalizedToken) ? valuesByToken[normalizedToken] : match;
+	});
+}
+
+function refreshFicheSummaryPlaceholders(state) {
+	document.querySelectorAll('.fiche-bloc-item .desc[data-summary-template]').forEach(desc => {
+		const template = desc.dataset.summaryTemplate ?? '';
+		desc.textContent = replaceSummaryPlaceholders(template, state);
+	});
 }
 
 function fillFicheFromData(data, saison, itemType) {
@@ -152,7 +187,10 @@ function fillFicheFromData(data, saison, itemType) {
 		const desc = document.createElement('span');
 		desc.className = 'desc';
 		desc.style.display = 'none';
-		desc.textContent = item.summary ?? item.description;
+		desc.dataset.summaryTemplate = item.summary ?? item.description ?? '';
+
+		const initialSummary = replaceSummaryPlaceholders(desc.dataset.summaryTemplate, personnage.state);
+		desc.textContent = initialSummary;
 
 		itemDiv.appendChild(input);
 		itemDiv.appendChild(label);
@@ -472,7 +510,7 @@ function refreshAmeliorationButtons(state = personnage.state) {
 	});
 }
 
-function createAmeliorationItem({ key, type, nom, meta, description, allowHtmlDescription = false }) {
+function createAmeliorationItem({ key, type, nom, meta, description }) {
 	const item = document.createElement('div');
 	item.className = 'ameliorations-item';
 
@@ -506,11 +544,7 @@ function createAmeliorationItem({ key, type, nom, meta, description, allowHtmlDe
 
 	const descriptionNode = document.createElement('div');
 	descriptionNode.className = 'ameliorations-item-description';
-	if (allowHtmlDescription) {
-		descriptionNode.innerHTML = description;
-	} else {
-		descriptionNode.textContent = description;
-	}
+	descriptionNode.innerHTML = description;
 	item.appendChild(descriptionNode);
 
 	return item;
@@ -575,8 +609,7 @@ function fillAmeliorationsEquipementsList() {
 			type: 'equipement',
 			nom: equipement.nom,
 			meta: `Categorie : ${equipement.categorie} • Saison : ${equipement.saison}`,
-			description: equipement.description,
-			allowHtmlDescription: true
+			description: equipement.description
 		}))
 	);
 }
