@@ -2,11 +2,35 @@
 
 /* Masquer les questions lors de l'impression */
 @media print {
+	@page {
+		size: A4 landscape;
+	}
+
+	html {
+		font-size: 70% !important;
+	}
 	body {
 		background: colors.$color-white !important;
 		margin: 0 !important;
-		font-size: smaller !important;
 	}
+
+	/* Harmonise aussi les contrôles natifs (checkbox/radio) en impression. */
+	input,
+	textarea,
+	select,
+	button {
+		font-size: 1rem !important;
+	}
+	input[type="checkbox"],
+	input[type="radio"] {
+		width: 0.9rem !important;
+		height: 0.9rem !important;
+	}
+
+	.saison-desc {
+		font-size: 0.9rem !important;
+	}
+
 	#character-builder {
 		display: none !important;
 	}
@@ -23,9 +47,13 @@
 	}
 	.fiche-bloc .fiche-bloc-item {
 		border: none !important;
-		padding: 0.5em 0 !important;
+		padding: 0.5rem 0 !important;
 	}
 	#fiche-magie .tableau-magie-talents {
-		font-size: 0.8em !important;
+		font-size: 0.8rem !important;
+	}
+
+	.fiche-bloc > div {
+		gap: 0 !important;
 	}
 }

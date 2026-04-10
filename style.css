@@ -1,10 +1,30 @@
 @charset "UTF-8";
 /* Masquer les questions lors de l'impression */
 @media print {
+  @page {
+    size: A4 landscape;
+  }
+  html {
+    font-size: 70% !important;
+  }
   body {
     background: #fff !important;
     margin: 0 !important;
-    font-size: smaller !important;
+  }
+  /* Harmonise aussi les contrôles natifs (checkbox/radio) en impression. */
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1rem !important;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+  .saison-desc {
+    font-size: 0.9rem !important;
   }
   #character-builder {
     display: none !important;
@@ -22,33 +42,36 @@
   }
   .fiche-bloc .fiche-bloc-item {
     border: none !important;
-    padding: 0.5em 0 !important;
+    padding: 0.5rem 0 !important;
   }
   #fiche-magie .tableau-magie-talents {
-    font-size: 0.8em !important;
+    font-size: 0.8rem !important;
+  }
+  .fiche-bloc > div {
+    gap: 0 !important;
   }
 }
-@media (max-width: 1650px) {
+@media screen and (max-width: 1650px) {
   html {
     font-size: 90% !important;
   }
 }
-@media (max-width: 1510px) {
+@media screen and (max-width: 1510px) {
   .tableau-magie-talents {
     font-size: 90% !important;
   }
 }
-@media (max-width: 1430px) {
+@media screen and (max-width: 1430px) {
   .tableau-magie-talents {
     font-size: 80% !important;
   }
 }
-@media (max-width: 1330px) {
+@media screen and (max-width: 1330px) {
   html {
     font-size: 100% !important;
   }
   body {
-    margin: 0.5em;
+    margin: 0.5rem;
     background: #fff !important;
   }
   #main-title {
@@ -101,13 +124,13 @@
   body.view-mode {
     background: #fff;
     margin: 0;
-    padding: 1em;
+    padding: 1rem;
   }
   body.view-mode #character-builder {
     display: none !important;
   }
   body.view-mode .page-actions {
-    padding: 0.75em 1em;
+    padding: 0.75rem 1rem;
     margin: 0;
     background: #fff;
   }
@@ -147,31 +170,31 @@
 
 body {
   font-family: Arial, sans-serif;
-  margin: 2em;
+  margin: 2rem;
   background: #e9ecf3;
 }
 
 h1 {
   margin-top: 0;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: #235a8a;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.7em;
+  letter-spacing: 0.02rem;
+  margin-bottom: 0.7rem;
 }
 
 h2 {
   margin-top: 0;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: #235a8a;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.7em;
+  letter-spacing: 0.02rem;
+  margin-bottom: 0.7rem;
 }
 
 h3 {
   margin-top: 0;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: #333;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.02rem;
 }
 
 #main-title-mobile {
@@ -181,8 +204,8 @@ h3 {
 .page-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75em;
-  margin-bottom: 1.25em;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -192,9 +215,9 @@ h3 {
   border: 1px solid #235a8a;
   background: #235a8a;
   color: #fff;
-  padding: 0.7em;
+  padding: 0.7rem;
   border-radius: 999px;
-  font-size: 0.7em;
+  font-size: 0.7rem;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -211,8 +234,8 @@ section {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background: #fff;
-  padding: 1.2em 1em;
-  margin-bottom: 1.5em;
+  padding: 1.2rem 1rem;
+  margin-bottom: 1.5rem;
   border: 1px solid #d3d7e3;
   transition: box-shadow 0.2s;
 }
@@ -220,8 +243,8 @@ section:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 section > div {
-  margin-bottom: 1em;
-  margin-top: 0.3em;
+  margin-bottom: 1rem;
+  margin-top: 0.3rem;
   color: #444;
 }
 section > div:last-child {
@@ -237,7 +260,7 @@ section > div:last-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1em;
+  gap: 1rem;
 }
 #collapsible-section > summary::-webkit-details-marker {
   display: none;
@@ -261,60 +284,60 @@ section > div:last-child {
 }
 
 .collapsible-section-hint {
-  font-size: 0.9em;
+  font-size: 0.9rem;
   color: #555;
   text-align: right;
 }
 
 .collapsible-section-content {
-  margin-top: 0.8em;
+  margin-top: 0.8rem;
 }
 
 #ameliorations-group {
   align-items: stretch;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1rem;
 }
 
 #ameliorations-scores-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(150px, 1fr));
-  gap: 0.6em;
-  margin-bottom: 1em;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
   background: #e9ecf3;
   border: 1px solid #d3d7e3;
   border-radius: 10px;
-  padding: 0.9em;
+  padding: 0.9rem;
   box-sizing: border-box;
 }
 
 .ameliorations-zone {
-  flex: 1 1 calc(25% - 0.75em);
+  flex: 1 1 calc(25% - 0.75rem);
   min-width: 220px;
   background: #e9ecf3;
   border: 1px solid #d3d7e3;
   border-radius: 10px;
-  padding: 0.9em;
+  padding: 0.9rem;
   box-sizing: border-box;
 }
 .ameliorations-zone h3 {
-  margin-bottom: 0.75em;
-  font-size: 1.05em;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
   color: #235a8a;
 }
 
 .ameliorations-zone-list {
   display: flex;
   flex-direction: column;
-  gap: 0.6em;
-  min-height: 2em;
+  gap: 0.6rem;
+  min-height: 2rem;
 }
 
 .ameliorations-item {
   background: #fff;
   border: 1px solid #d3d7e3;
   border-radius: 8px;
-  padding: 0.75em;
+  padding: 0.75rem;
 }
 .ameliorations-item.selected {
   border-color: #235a8a;
@@ -325,8 +348,8 @@ section > div:last-child {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.75em;
-  margin-bottom: 0.4em;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
 }
 
 .ameliorations-item-add-btn {
@@ -348,13 +371,13 @@ section > div:last-child {
 }
 
 .ameliorations-item-category {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   color: #555;
-  margin-bottom: 0.35em;
+  margin-bottom: 0.35rem;
 }
 
 .ameliorations-item-description {
-  font-size: 0.85em;
+  font-size: 0.85rem;
   color: #333;
 }
 
@@ -363,11 +386,11 @@ section > div:last-child {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 0.35em;
+  gap: 0.35rem;
   background: #fff;
   border: 1px solid #d3d7e3;
   border-radius: 8px;
-  padding: 0.55em 0.6em;
+  padding: 0.55rem 0.6rem;
 }
 .amelioration-score-row-item > span {
   font-weight: 600;
@@ -376,17 +399,17 @@ section > div:last-child {
 }
 
 .amelioration-score-input {
-  width: 2.6em;
+  width: 2.6rem;
   text-align: center;
-  padding: 0.2em;
+  padding: 0.2rem;
   border: 1px solid #d3d7e3;
   border-radius: 6px;
   background: #fff;
 }
 
 .amelioration-score-btn {
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.6rem;
+  height: 1.6rem;
   border: 1px solid #235a8a;
   border-radius: 999px;
   background: #235a8a;
@@ -401,7 +424,7 @@ section > div:last-child {
   border-style: solid;
   position: relative;
   border-radius: 8px;
-  padding: 0.5em;
+  padding: 0.5rem;
   transition: box-shadow 0.2s;
 }
 .option:hover {
@@ -430,7 +453,7 @@ section > div:last-child {
 .option .option-label {
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.5rem;
 }
 .option.selected {
   z-index: 1;
@@ -454,19 +477,19 @@ section > div:last-child {
   flex: 1 1 22%;
   min-width: 0;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .option.lignee label {
   color: #222;
 }
 .option.lignee .lignee-sexe {
-  font-size: 0.9em;
+  font-size: 0.9rem;
   color: #555;
   font-weight: normal;
 }
@@ -475,33 +498,33 @@ section > div:last-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 0.5em;
+  gap: 0.5rem;
 }
 .flex-group .option {
   flex: 1 1 20%;
   min-width: 0;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.5rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .flex-group .option input[type=checkbox] {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 
 .desc {
   display: block;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   color: #555;
-  margin-top: 0.2em;
+  margin-top: 0.2rem;
 }
 
 .pictogram-btn {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  top: 0.5rem;
+  right: 0.5rem;
   background: none;
   border: none;
   padding: 0;
@@ -513,28 +536,28 @@ section > div:last-child {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 0.5rem;
 }
 
 .don-separateur {
   border: none;
   border-top: 2px solid #bbb;
-  margin: 0.7em 0 0.3em 0;
+  margin: 0.7rem 0 0.3rem 0;
 }
 
 .don {
   color: #333;
-  font-size: 1em;
+  font-size: 1rem;
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 
 #fiche-personnage {
   display: flex;
   flex-direction: column;
-  gap: 1.2em;
+  gap: 1.2rem;
   background: #fff;
-  padding: 1.6em 1.8em;
+  padding: 1.6rem 1.8rem;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   font-family: "Georgia", serif;
@@ -543,7 +566,7 @@ section > div:last-child {
 .fiche-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 1em;
+  gap: 1rem;
   align-items: start;
 }
 .fiche-header > div {
@@ -556,7 +579,7 @@ section > div:last-child {
 .fiche-header-logo-row {
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 1rem;
 }
 
 .fiche-nom {
@@ -569,20 +592,20 @@ section > div:last-child {
 }
 
 .fiche-nom {
-  font-size: 2em;
-  margin-left: 1em;
+  font-size: 2rem;
+  margin-left: 1rem;
 }
 
 #fiche-nom-input {
   border-width: 1px;
   border-style: none none solid none;
-  font-size: 2em;
+  font-size: 2rem;
   width: 450px;
 }
 
 .fiche-valeurs,
 #fiche-essence-harmonie {
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
   border: 2px solid #d3d7e3;
   border-radius: 16px;
 }
@@ -625,22 +648,23 @@ section > div:last-child {
 }
 .fiche-sante td {
   border: 1px dotted #333;
-  padding: 0.3em 0.5em;
+  padding: 0.3rem 0.5rem;
   text-align: left;
 }
 
 .fiche-grid {
   display: grid;
   grid-template-columns: 2fr minmax(0, 30%);
-  gap: 1.2em;
+  gap: 1.2rem;
 }
 
 .fiche-saisons {
   display: grid;
   grid-template-columns: 5fr 1fr 5fr;
   grid-template-rows: 1fr 1fr;
-  row-gap: 2.5em;
+  row-gap: 2.5rem;
   position: relative;
+  padding: 0 30px;
 }
 
 .saisons-center {
@@ -661,13 +685,11 @@ section > div:last-child {
   border-radius: 100px;
   border-width: 2px;
   border-style: solid;
-  padding: 1em 0.5em;
   display: grid;
-  gap: 2em;
   grid-template-columns: 75px auto 75px;
 }
 .saison-block .saison-icon {
-  font-size: 2.8em;
+  font-size: 2.8rem;
   place-self: center;
 }
 .saison-block .saison-info {
@@ -748,11 +770,12 @@ section > div:last-child {
   text-align: left;
   place-self: center start;
 }
-.saison-left .saison-cercle {
-  transform: translateX(50%);
+.saison-left .saison-score {
+  transform: translateX(40%);
   grid-column: 3/span 1;
 }
 .saison-left .saison-icon {
+  transform: translateX(-40%);
   grid-column: 1/span 1;
 }
 
@@ -760,11 +783,12 @@ section > div:last-child {
   text-align: right;
   place-self: center end;
 }
-.saison-right .saison-cercle {
-  transform: translateX(-50%);
+.saison-right .saison-score {
+  transform: translateX(-40%);
   grid-column: 1/span 1;
 }
 .saison-right .saison-icon {
+  transform: translateX(40%);
   grid-column: 3/span 1;
 }
 .saison-right .saison-title {
@@ -784,27 +808,27 @@ section > div:last-child {
   left: -120px;
   top: 50%;
   transform: translateY(-50%);
-  margin-right: 0.8em;
+  margin-right: 0.8rem;
 }
 
 .saison-title {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.5rem;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-style: italic;
   font-weight: 600;
 }
 
 .saison-icon {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 .fiche-tableaux {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1rem;
   grid-row: span 2;
 }
 .fiche-tableaux h2 {
@@ -817,7 +841,7 @@ section > div:last-child {
 }
 .fiche-resonances th, .fiche-resonances td {
   border: 1px dotted #000;
-  padding: 0.3em 0.5em;
+  padding: 0.3rem 0.5rem;
   text-align: left;
 }
 .fiche-resonances th:nth-child(2),
@@ -848,7 +872,7 @@ section > div:last-child {
   border-width: 2px;
   border-style: solid;
   border-radius: 16px;
-  padding: 1em;
+  padding: 1rem;
 }
 #fiche-magie.hiver {
   background: #e3ecf7;
@@ -887,7 +911,7 @@ section > div:last-child {
 }
 #fiche-magie h5 {
   margin: 0;
-  font-size: 1.35em;
+  font-size: 1.35rem;
   text-align: center;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-style: italic;
@@ -903,17 +927,17 @@ section > div:last-child {
   box-sizing: border-box;
   border-radius: 6px;
   border: 1px solid #ccc;
-  padding: 0.5em;
+  padding: 0.5rem;
   font-family: inherit;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   resize: vertical;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 
 .fiche-blocs {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1rem;
 }
 
 .fiche-bloc {
@@ -923,12 +947,12 @@ section > div:last-child {
   border-width: 2px;
   border-style: solid;
   background: #fff;
-  padding: 1.7em 1em 0.9em;
+  padding: 1.7rem 1rem 0.9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
-  margin-top: 0.8em;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
 }
 .fiche-bloc.saison-hiver {
   border-color: #235a8a;
@@ -950,27 +974,27 @@ section > div:last-child {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
+  gap: 0.5rem;
   margin: 0;
-  padding: 0 0.9em;
+  padding: 0 0.9rem;
   background: #fff;
   border-radius: 999px;
-  font-size: 1.35em;
+  font-size: 1.35rem;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-style: italic;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 0 0 0.2em #fff;
+  box-shadow: 0 0 0 0.2rem #fff;
   z-index: 1;
 }
 .fiche-bloc > label .saison-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 999px;
-  font-size: 0.7em;
+  font-size: 0.7rem;
   font-style: normal;
   background: #fff;
 }
@@ -989,13 +1013,13 @@ section > div:last-child {
 .fiche-bloc > div {
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 .fiche-bloc .fiche-bloc-item {
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 0.5em 2em 0.5em 0.5em;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
   background: #fff;
   box-sizing: border-box;
   flex: 1 1 auto;
@@ -1008,8 +1032,8 @@ section > div:last-child {
 #fiche-champ-lexical {
   border-width: 2px 0;
   border-style: dotted none;
-  padding: 0.5em 0;
-  font-size: 1em;
+  padding: 0.5rem 0;
+  font-size: 1rem;
   flex-direction: column;
   align-items: center;
 }

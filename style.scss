@@ -12,31 +12,31 @@
 
 body {
 	font-family: Arial, sans-serif;
-	margin: 2em;
+	margin: 2rem;
 	background: colors.$color-bg-page;
 }
 
 h1 {
 	margin-top: 0;
-	font-size: 1.25em;
+	font-size: 1.25rem;
 	color: colors.$color-hiver;
-	letter-spacing: 0.02em;
-	margin-bottom: 0.7em;
+	letter-spacing: 0.02rem;
+	margin-bottom: 0.7rem;
 }
 
 h2 {
 	margin-top: 0;
-	font-size: 1.25em;
+	font-size: 1.25rem;
 	color: colors.$color-hiver;
-	letter-spacing: 0.02em;
-	margin-bottom: 0.7em;
+	letter-spacing: 0.02rem;
+	margin-bottom: 0.7rem;
 }
 
 h3 {
 	margin-top: 0;
-	font-size: 1.25em;
+	font-size: 1.25rem;
 	color: colors.$color-text-dark;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.02rem;
 }
 
 #main-title-mobile {
@@ -46,8 +46,8 @@ h3 {
 .page-actions {
 	display: flex;
 	justify-content: flex-end;
-	gap: 0.75em;
-	margin-bottom: 1.25em;
+	gap: 0.75rem;
+	margin-bottom: 1.25rem;
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -57,9 +57,9 @@ h3 {
 	border: 1px solid colors.$color-hiver;
 	background: colors.$color-hiver;
 	color: colors.$color-white;
-	padding: 0.7em;
+	padding: 0.7rem;
 	border-radius: 999px;
-	font-size: 0.7em;
+	font-size: 0.7rem;
 	cursor: pointer;
 	box-shadow: 0 2px 10px colors.$color-box-shadow;
 	
@@ -77,8 +77,8 @@ section {
 	border-radius: 12px;
 	box-shadow: 0 2px 8px colors.$color-box-shadow;
 	background: colors.$color-white;
-	padding: 1.2em 1em;
-	margin-bottom: 1.5em;
+	padding: 1.2rem 1rem;
+	margin-bottom: 1.5rem;
 	border: 1px solid colors.$color-border-section;
 	transition: box-shadow 0.2s;
 	&:hover {
@@ -86,8 +86,8 @@ section {
 	}
 	
 	&> div {
-		margin-bottom: 1em;
-		margin-top: 0.3em;
+		margin-bottom: 1rem;
+		margin-top: 0.3rem;
 		color: colors.$color-text-main;
 		
 		&:last-child {
@@ -107,7 +107,7 @@ section {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1em;
+		gap: 1rem;
 	}
 	
 	& > summary::-webkit-details-marker {
@@ -135,46 +135,46 @@ section {
 }
 
 .collapsible-section-hint {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	color: colors.$color-text-muted;
 	text-align: right;
 }
 
 .collapsible-section-content {
-	margin-top: 0.8em;
+	margin-top: 0.8rem;
 }
 
 #ameliorations-group {
 	align-items: stretch;
 	flex-wrap: wrap;
-	gap: 1em;
+	gap: 1rem;
 }
 
 #ameliorations-scores-row {
 	display: grid;
 	grid-template-columns: repeat(5, minmax(150px, 1fr));
-	gap: 0.6em;
-	margin-bottom: 1em;
+	gap: 0.6rem;
+	margin-bottom: 1rem;
 	
 	background: colors.$color-bg-page;
 	border: 1px solid colors.$color-border-section;
 	border-radius: 10px;
-	padding: 0.9em;
+	padding: 0.9rem;
 	box-sizing: border-box;
 }
 
 .ameliorations-zone {
-	flex: 1 1 calc(25% - 0.75em);
+	flex: 1 1 calc(25% - 0.75rem);
 	min-width: 220px;
 	background: colors.$color-bg-page;
 	border: 1px solid colors.$color-border-section;
 	border-radius: 10px;
-	padding: 0.9em;
+	padding: 0.9rem;
 	box-sizing: border-box;
 	
 	h3 {
-		margin-bottom: 0.75em;
-		font-size: 1.05em;
+		margin-bottom: 0.75rem;
+		font-size: 1.05rem;
 		color: colors.$color-hiver;
 	}
 }
@@ -182,15 +182,15 @@ section {
 .ameliorations-zone-list {
 	display: flex;
 	flex-direction: column;
-	gap: 0.6em;
-	min-height: 2em;
+	gap: 0.6rem;
+	min-height: 2rem;
 }
 
 .ameliorations-item {
 	background: colors.$color-white;
 	border: 1px solid colors.$color-border-section;
 	border-radius: 8px;
-	padding: 0.75em;
+	padding: 0.75rem;
 	
 	&.selected {
 		border-color: colors.$color-hiver;
@@ -202,8 +202,8 @@ section {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	gap: 0.75em;
-	margin-bottom: 0.4em;
+	gap: 0.75rem;
+	margin-bottom: 0.4rem;
 }
 
 .ameliorations-item-add-btn {
@@ -226,13 +226,13 @@ section {
 }
 
 .ameliorations-item-category {
-	font-size: 0.80em;
+	font-size: 0.80rem;
 	color: colors.$color-text-muted;
-	margin-bottom: 0.35em;
+	margin-bottom: 0.35rem;
 }
 
 .ameliorations-item-description {
-	font-size: 0.85em;
+	font-size: 0.85rem;
 	color: colors.$color-text-dark;
 }
 
@@ -241,11 +241,11 @@ section {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	gap: 0.35em;
+	gap: 0.35rem;
 	background: colors.$color-white;
 	border: 1px solid colors.$color-border-section;
 	border-radius: 8px;
-	padding: 0.55em 0.6em;
+	padding: 0.55rem 0.6rem;
 	
 	& > span {
 		font-weight: 600;
@@ -255,17 +255,17 @@ section {
 }
 
 .amelioration-score-input {
-	width: 2.6em;
+	width: 2.6rem;
 	text-align: center;
-	padding: 0.2em;
+	padding: 0.2rem;
 	border: 1px solid colors.$color-border-section;
 	border-radius: 6px;
 	background: colors.$color-white;
 }
 
 .amelioration-score-btn {
-	width: 1.6em;
-	height: 1.6em;
+	width: 1.6rem;
+	height: 1.6rem;
 	border: 1px solid colors.$color-hiver;
 	border-radius: 999px;
 	background: colors.$color-hiver;
@@ -280,7 +280,7 @@ section {
 	border-style: solid;
 	position: relative;
 	border-radius: 8px;
-	padding: 0.5em;
+	padding: 0.5rem;
 	transition: box-shadow 0.2s;
 	&:hover {
 		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
@@ -310,7 +310,7 @@ section {
 	.option-label {
 		display:flex;
 		align-items:center;
-		gap:0.5em;
+		gap:0.5rem;
 	}
 	
 	&.selected {
@@ -336,20 +336,20 @@ section {
 		flex: 1 1 22%;
 		min-width: 0;
 		box-sizing: border-box;
-		padding: 0.5em;
+		padding: 0.5rem;
 		border: 1px solid colors.$color-border-gray;
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		margin-bottom: 0.5em;
+		margin-bottom: 0.5rem;
 		
 		label {
 			color: colors.$color-text-label;
 		}
 		
 		.lignee-sexe {
-			font-size: 0.9em;
+			font-size: 0.9rem;
 			color: colors.$color-text-muted;
 			font-weight: normal;
 		}
@@ -360,35 +360,35 @@ section {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	gap: 0.5em;
+	gap: 0.5rem;
 	
 	.option {
 		flex: 1 1 20%;
 		min-width: 0;
 		box-sizing: border-box;
-		padding: 0.5em;
+		padding: 0.5rem;
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		
 		input[type="checkbox"] {
-			margin-bottom: 0.5em;
+			margin-bottom: 0.5rem;
 		}
 	}
 }
 
 .desc {
 	display: block;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	color: colors.$color-text-muted;
-	margin-top: 0.2em;
+	margin-top: 0.2rem;
 }
 
 .pictogram-btn {
 	position: absolute;
-	top: 0.5em;
-	right: 0.5em;
+	top: 0.5rem;
+	right: 0.5rem;
 	background: none;
 	border: none;
 	padding: 0;
@@ -400,28 +400,28 @@ section {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 0.5em;
+	gap: 0.5rem;
 }
 
 .don-separateur {
 	border: none;
 	border-top: 2px solid colors.$color-border-separator;
-	margin: 0.7em 0 0.3em 0;
+	margin: 0.7rem 0 0.3rem 0;
 }
 
 .don {
 	color: colors.$color-text-dark;
-	font-size: 1em;
+	font-size: 1rem;
 	display: block;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 
 #fiche-personnage {
 	display: flex;
 	flex-direction: column;
-	gap: 1.2em;
+	gap: 1.2rem;
 	background: colors.$color-white;
-	padding: 1.6em 1.8em;
+	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
 	font-family: 'Georgia', serif;
@@ -430,7 +430,7 @@ section {
 .fiche-header {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	gap: 1em;
+	gap: 1rem;
 	align-items: start;
 	
 	& > div {
@@ -444,7 +444,7 @@ section {
 .fiche-header-logo-row {
 	display: flex;
 	align-items: center;
-	gap: 1em;
+	gap: 1rem;
 }
 
 .fiche-nom {
@@ -457,20 +457,20 @@ section {
 }
 
 .fiche-nom {
-	font-size: 2em;
-	margin-left: 1em; 
+	font-size: 2rem;
+	margin-left: 1rem; 
 }
 
 #fiche-nom-input {
 	border-width: 1px;
 	border-style: none none solid none;
-	font-size: 2em;
+	font-size: 2rem;
 	width: 450px;
 }
 
 .fiche-valeurs,
 #fiche-essence-harmonie { 
-	padding: 0.5em 1em;
+	padding: 0.5rem 1rem;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
 	
@@ -508,7 +508,7 @@ section {
 	
 	td { 
 		border: 1px dotted colors.$color-text-dark; 
-		padding: 0.3em 0.5em;
+		padding: 0.3rem 0.5rem;
 		text-align: left; 
 	}
 }
@@ -516,15 +516,16 @@ section {
 .fiche-grid {
 	display: grid;
 	grid-template-columns: 2fr minmax(0, 30%); 
-	gap: 1.2em; 
+	gap: 1.2rem; 
 }
 
 .fiche-saisons {
 	display: grid;
 	grid-template-columns: 5fr 1fr 5fr;
 	grid-template-rows: 1fr 1fr;
-	row-gap: 2.5em;
+	row-gap: 2.5rem;
 	position: relative;
+	padding: 0 30px;
 }
 
 .saisons-center {
@@ -544,13 +545,11 @@ section {
 	border-radius: 100px;
 	border-width: 2px;
 	border-style: solid;
-	padding: 1em 0.5em;
 	display: grid;
-	gap: 2em;
 	grid-template-columns: 75px auto 75px;
 	
 	.saison-icon {
-		font-size: 2.8em;
+		font-size: 2.8rem;
 		place-self: center;
 	}
 	
@@ -626,11 +625,12 @@ section {
 		text-align: left;
 		place-self: center start;
 	}
-	.saison-cercle {
-		transform: translateX(50%);
+	.saison-score {
+		transform: translateX(40%);
 		grid-column: 3 / span 1;
 	}
 	.saison-icon {
+		transform: translateX(-40%);
 		grid-column: 1 / span 1;
 	}
 }
@@ -640,11 +640,12 @@ section {
 		text-align: right;
 		place-self: center end;
 	}
-	.saison-cercle {
-		transform: translateX(-50%);
+	.saison-score {
+		transform: translateX(-40%);
 		grid-column: 1 / span 1;
 	}
 	.saison-icon {
+		transform: translateX(40%);
 		grid-column: 3 / span 1;
 	}
 	.saison-title {
@@ -665,28 +666,28 @@ section {
 		left: -120px;
 		top: 50%;
 		transform: translateY(-50%);
-		margin-right: 0.8em;
+		margin-right: 0.8rem;
 	}
 }
 
 .saison-title { 
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	display: flex;
 	align-items: center;
-	gap: 0.5em;
+	gap: 0.5rem;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	font-style: italic;
 	font-weight: 600;
 }
 
 .saison-icon { 
-	font-size: 1.3em; 
+	font-size: 1.3rem; 
 }
 
 .fiche-tableaux { 
 	display: flex;
 	flex-direction: column;
-	gap: 1em;
+	gap: 1rem;
 	grid-row: span 2;
 	
 	h2 {
@@ -701,7 +702,7 @@ section {
 	}
 	th, td { 
 		border: 1px dotted colors.$color-black; 
-		padding: 0.3em 0.5em;
+		padding: 0.3rem 0.5rem;
 		text-align: left; 
 	}
 	th:nth-child(2),
@@ -733,7 +734,7 @@ section {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 16px;
-	padding: 1em;
+	padding: 1rem;
 	
 	&.hiver {
 		background: colors.$color-hiver-lighter;
@@ -773,7 +774,7 @@ section {
 	
 	h5 {
 		margin: 0;
-		font-size: 1.35em;
+		font-size: 1.35rem;
 		text-align: center;
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 		font-style: italic;
@@ -791,18 +792,18 @@ section {
 		box-sizing: border-box;
 		border-radius: 6px;
 		border: 1px solid colors.$color-border-gray;
-		padding: 0.5em;
+		padding: 0.5rem;
 		font-family: inherit;
-		font-size: 0.8em;
+		font-size: 0.8rem;
 		resize: vertical;
-		margin-bottom: 0.5em;
+		margin-bottom: 0.5rem;
 	}
 }
 
 .fiche-blocs {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1em; 
+	gap: 1rem; 
 }
 
 .fiche-bloc {
@@ -812,12 +813,12 @@ section {
 	border-width: 2px;
 	border-style: solid;
 	background: colors.$color-white;
-	padding: 1.7em 1em 0.9em;
+	padding: 1.7rem 1rem 0.9rem;
 	display: flex; 
 	flex-direction: column;
 	align-items: center;
-	gap: 0.5em;
-	margin-top: 0.8em;
+	gap: 0.5rem;
+	margin-top: 0.8rem;
 	
 	&.saison-hiver { 
 		border-color: colors.$color-hiver; 
@@ -840,27 +841,27 @@ section {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5em;
+		gap: 0.5rem;
 		margin: 0;
-		padding: 0 0.9em;
+		padding: 0 0.9rem;
 		background: colors.$color-white;
 		border-radius: 999px;
-		font-size: 1.35em;
+		font-size: 1.35rem;
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 		font-style: italic;
 		font-weight: 600;
 		white-space: nowrap;
-		box-shadow: 0 0 0 0.2em colors.$color-white;
+		box-shadow: 0 0 0 0.2rem colors.$color-white;
 		z-index: 1;
 
 		.saison-icon {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			width: 1.6em;
-			height: 1.6em;
+			width: 1.6rem;
+			height: 1.6rem;
 			border-radius: 999px;
-			font-size: 0.7em;
+			font-size: 0.7rem;
 			font-style: normal;
 			background: colors.$color-white;
 		}
@@ -885,14 +886,14 @@ section {
 	& > div {
 		display: flex;
 		flex-direction: row;
-		gap: 0.5em;
+		gap: 0.5rem;
 		flex-wrap: wrap;
 	}
 	
 	.fiche-bloc-item {
 		border: 1px solid colors.$color-border-gray;
 		border-radius: 6px;
-		padding: 0.5em 2em 0.5em 0.5em;
+		padding: 0.5rem 2rem 0.5rem 0.5rem;
 		background: colors.$color-white;
 		box-sizing: border-box;
 		flex: 1 1 auto;
@@ -907,8 +908,8 @@ section {
 #fiche-champ-lexical {
 	border-width: 2px 0;
 	border-style: dotted none;
-	padding: 0.5em 0;
-	font-size: 1em;
+	padding: 0.5rem 0;
+	font-size: 1rem;
 	flex-direction: column;
 	align-items: center;
 	
