@@ -16,6 +16,14 @@ body {
 	background: colors.$color-bg-page;
 }
 
+h1 {
+	margin-top: 0;
+	font-size: 1.25em;
+	color: colors.$color-hiver;
+	letter-spacing: 0.02em;
+	margin-bottom: 0.7em;
+}
+
 h2 {
 	margin-top: 0;
 	font-size: 1.25em;
@@ -29,6 +37,10 @@ h3 {
 	font-size: 1.25em;
 	color: colors.$color-text-dark;
 	letter-spacing: 0.02em;
+}
+
+#main-title-mobile {
+	display: none;
 }
 
 .page-actions {
@@ -692,13 +704,23 @@ section {
 		padding: 0.3em 0.5em;
 		text-align: left; 
 	}
+	th:nth-child(2),
+	th:nth-child(3),
+	td:nth-child(2),
+	td:nth-child(3) {
+		width: 1%;
+		white-space: nowrap;
+	}
 	input {
+		width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
 		border-width: 1px;
 		border-style: none none solid none;
 	}
 	.resonnance-point, .resonnance-niveau {
 		text-align: center;
-		width: 45px; 
+		width: 4ch;
 	}
 }
 

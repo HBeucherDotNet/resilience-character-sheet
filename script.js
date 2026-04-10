@@ -258,10 +258,10 @@ function getTextStateFields() {
 function getTextStateValues() {
 	const values = {};
 	getTextStateFields()
-	.filter(field => field.value !== '')
-	.forEach(field => {
-		values[field.id] = field.value;
-	});
+		.filter(field => field.value !== '')
+		.forEach(field => {
+			values[field.id] = field.value;
+		});
 	return values;
 }
 
@@ -682,6 +682,37 @@ function initStateFromHash() {
 	window.addEventListener('hashchange', restoreStateFromHash);
 }
 
+function isElementVisible(element) {
+	if (!element) return false;
+	if (typeof element.checkVisibility === 'function') {
+		return element.checkVisibility();
+	}
+
+	const style = window.getComputedStyle(element);
+	return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+}
+
+function syncCollapsibleSectionWithSummaryVisibility() {
+	const details = document.getElementById('collapsible-section');
+	const summary = details?.querySelector('summary');
+	if (!details) return;
+
+	details.open = !isElementVisible(summary);
+}
+
+function bindResponsiveCollapsibleSection() {
+	syncCollapsibleSectionWithSummaryVisibility();
+
+	const details = document.getElementById('collapsible-section');
+	const summary = details?.querySelector('summary');
+	if (!summary) return;
+
+	const resizeObserver = new ResizeObserver(() => {
+		syncCollapsibleSectionWithSummaryVisibility();
+	});
+	resizeObserver.observe(summary);
+}
+
 window.addEventListener('DOMContentLoaded', function() {
 
 	fillFicheFromData(competences, 'printemps', 'competence');
@@ -701,8 +732,5 @@ window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
-	
-	// force l'ouverture du bloc ameliorations si le résumé est invisible (ex: sur mobile)
-	const summaryVisible = document.querySelector('#collapsible-section summary').checkVisibility();
-	document.getElementById('collapsible-section').open = !summaryVisible;
+	bindResponsiveCollapsibleSection();
 });

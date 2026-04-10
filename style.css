@@ -28,15 +28,38 @@
     font-size: 0.8em !important;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1650px) {
+  html {
+    font-size: 90% !important;
+  }
+}
+@media (max-width: 1510px) {
+  .tableau-magie-talents {
+    font-size: 90% !important;
+  }
+}
+@media (max-width: 1430px) {
+  .tableau-magie-talents {
+    font-size: 80% !important;
+  }
+}
+@media (max-width: 1330px) {
+  html {
+    font-size: 100% !important;
+  }
   body {
     margin: 0.5em;
     background: #fff !important;
   }
+  #main-title {
+    display: none !important;
+  }
+  #main-title-mobile {
+    display: block !important;
+  }
   .page-actions {
     display: none !important;
   }
-  #character-builder > h2,
   #character-builder > section:not(#ameliorations-section) {
     display: none !important;
   }
@@ -128,6 +151,14 @@ body {
   background: #e9ecf3;
 }
 
+h1 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #235a8a;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.7em;
+}
+
 h2 {
   margin-top: 0;
   font-size: 1.25em;
@@ -141,6 +172,10 @@ h3 {
   font-size: 1.25em;
   color: #333;
   letter-spacing: 0.02em;
+}
+
+#main-title-mobile {
+  display: none;
 }
 
 .page-actions {
@@ -785,13 +820,23 @@ section > div:last-child {
   padding: 0.3em 0.5em;
   text-align: left;
 }
+.fiche-resonances th:nth-child(2),
+.fiche-resonances th:nth-child(3),
+.fiche-resonances td:nth-child(2),
+.fiche-resonances td:nth-child(3) {
+  width: 1%;
+  white-space: nowrap;
+}
 .fiche-resonances input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   border-width: 1px;
   border-style: none none solid none;
 }
 .fiche-resonances .resonnance-point, .fiche-resonances .resonnance-niveau {
   text-align: center;
-  width: 45px;
+  width: 4ch;
 }
 
 #fiche-blessures {

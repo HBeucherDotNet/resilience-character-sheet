@@ -1,16 +1,45 @@
 @use "colors";
 
-@media (max-width: 768px) {
+@media (max-width: 1650px) {
+	html {
+		font-size: 90% !important;
+	}
+}
+
+@media (max-width: 1510px) {
+	.tableau-magie-talents {
+		font-size: 90% !important;
+	}
+}
+
+@media (max-width: 1430px) {
+	.tableau-magie-talents {
+		font-size: 80% !important;
+	}
+}
+
+@media (max-width: 1330px) {
+	html {
+		font-size: 100% !important;
+	}
+
 	body {
 		margin: 0.5em;
 		background: colors.$color-white !important;
+	}
+	
+	#main-title {
+		display: none !important;
+	}
+
+	#main-title-mobile {
+		display: block !important;
 	}
 	
 	.page-actions {
 		display: none !important;
 	}
 	
-	#character-builder > h2,
 	#character-builder > section:not(#ameliorations-section) {
 		display: none !important;
 	}
