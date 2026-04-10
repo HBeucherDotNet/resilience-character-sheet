@@ -5,32 +5,31 @@
 	@page {
 		size: A4 landscape;
 	}
-
+	
 	html {
 		font-size: 70% !important;
 	}
+
 	body {
 		background: colors.$color-white !important;
 		margin: 0 !important;
 	}
 
-	/* Harmonise aussi les contrôles natifs (checkbox/radio) en impression. */
-	input,
-	textarea,
-	select,
-	button {
-		font-size: 1rem !important;
-	}
 	input[type="checkbox"],
 	input[type="radio"] {
 		width: 0.9rem !important;
 		height: 0.9rem !important;
 	}
 
+	input[type="text"] {
+		border-width: 0px !important;
+		border-style: none !important;
+	}
+	
 	.saison-desc {
 		font-size: 0.9rem !important;
 	}
-
+	
 	#character-builder {
 		display: none !important;
 	}
@@ -49,10 +48,28 @@
 		border: none !important;
 		padding: 0.5rem 0 !important;
 	}
-	#fiche-magie .tableau-magie-talents {
-		font-size: 0.8rem !important;
+
+	.saison-block {
+		grid-template-columns: 50px auto 50px !important;
 	}
 
+	.saison-cercle {
+		width: 50px !important;
+		height: 50px !important;
+	}
+
+	#fiche-magie {
+		textarea {
+			font-size: 0.9rem !important;
+			border: none !important;
+			padding: 0 !important;
+		}
+		
+		.tableau-magie-talents {
+			font-size: 0.8rem !important;
+		}
+	}
+	
 	.fiche-bloc > div {
 		gap: 0 !important;
 	}

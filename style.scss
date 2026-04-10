@@ -470,14 +470,25 @@ section {
 	gap: 1rem;
 	align-items: start;
 	
-	.fiche-nom {
-		grid-column: 2 / span 3;
+	.logo-nom {
+		grid-column: 1 / span 4;
 		align-self: center;
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		flex-direction: row;
 	}
 	
 	.header-saison {
 		grid-column: 5 / span 2;
 		align-items: center;
+	}
+
+	input {
+		border-width: 1px;
+		border-style: none none solid none;
+		width: 250px;
+		font-size: 1em; // hérite de la taille de la fiche-header
 	}
 }
 
@@ -490,12 +501,6 @@ section {
 
 .fiche-logo { 
 	width: 180px;
-}
-
-#fiche-nom-input {
-	border-width: 1px;
-	border-style: none none solid none;
-	font-size: 1em; // hérite de la taille de la fiche-header
 }
 
 .fiche-valeurs { 
@@ -841,7 +846,6 @@ section {
 			width: 1.6rem;
 			height: 1.6rem;
 			border-radius: 999px;
-			font-size: 0.7rem;
 			font-style: normal;
 			background: colors.$color-white;
 		}

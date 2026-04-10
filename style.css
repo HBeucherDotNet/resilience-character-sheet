@@ -11,17 +11,14 @@
     background: #fff !important;
     margin: 0 !important;
   }
-  /* Harmonise aussi les contrôles natifs (checkbox/radio) en impression. */
-  input,
-  textarea,
-  select,
-  button {
-    font-size: 1rem !important;
-  }
   input[type=checkbox],
   input[type=radio] {
     width: 0.9rem !important;
     height: 0.9rem !important;
+  }
+  input[type=text] {
+    border-width: 0px !important;
+    border-style: none !important;
   }
   .saison-desc {
     font-size: 0.9rem !important;
@@ -44,6 +41,18 @@
     border: none !important;
     padding: 0.5rem 0 !important;
   }
+  .saison-block {
+    grid-template-columns: 50px auto 50px !important;
+  }
+  .saison-cercle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  #fiche-magie textarea {
+    font-size: 0.9rem !important;
+    border: none !important;
+    padding: 0 !important;
+  }
   #fiche-magie .tableau-magie-talents {
     font-size: 0.8rem !important;
   }
@@ -54,6 +63,16 @@
 @media screen and (max-width: 1650px) {
   html {
     font-size: 90% !important;
+  }
+  .saison-block {
+    grid-template-columns: 50px auto 50px !important;
+  }
+  .saison-block .saison-icon {
+    font-size: 2rem !important;
+  }
+  .saison-cercle {
+    width: 50px !important;
+    height: 50px !important;
   }
 }
 @media screen and (max-width: 1510px) {
@@ -641,13 +660,23 @@ section > div:last-child {
   gap: 1rem;
   align-items: start;
 }
-.fiche-header .fiche-nom {
-  grid-column: 2/span 3;
+.fiche-header .logo-nom {
+  grid-column: 1/span 4;
   align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: row;
 }
 .fiche-header .header-saison {
   grid-column: 5/span 2;
   align-items: center;
+}
+.fiche-header input {
+  border-width: 1px;
+  border-style: none none solid none;
+  width: 250px;
+  font-size: 1em;
 }
 
 .logo-name-saison {
@@ -659,12 +688,6 @@ section > div:last-child {
 
 .fiche-logo {
   width: 180px;
-}
-
-#fiche-nom-input {
-  border-width: 1px;
-  border-style: none none solid none;
-  font-size: 1em;
 }
 
 .fiche-valeurs {
@@ -1003,7 +1026,6 @@ section > div:last-child {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 999px;
-  font-size: 0.7rem;
   font-style: normal;
   background: #fff;
 }

@@ -4,6 +4,19 @@
 	html {
 		font-size: 90% !important;
 	}
+
+	.saison-block {
+		grid-template-columns: 50px auto 50px !important;
+		
+		.saison-icon{
+			font-size: 2rem !important;
+		}
+	}
+
+	.saison-cercle {
+		width: 50px !important;
+		height: 50px !important;
+	}
 }
 
 @media screen and (max-width: 1510px) {
