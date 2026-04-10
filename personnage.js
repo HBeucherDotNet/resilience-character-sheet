@@ -10,6 +10,20 @@ const saisonsEnum = {
 	automne: 4
 };
 
+function getVoixTitle(saison) {
+	if (!saison) return '';
+
+	switch (saison.value) {
+		case 'hiver': return 'Voix de l’Hiver ❄️';
+		case 'printemps': return 'Voix du Printemps 🌱';
+		case 'ete': return 'Voix de l’Été ☀️';
+		case 'automne': return 'Voix de l’Automne 🍁';
+		case 'temps': return 'Voix du Temps ⏳';
+		case 'rupture': return 'Voix de la Rupture 💀';
+		default: return '';
+	}
+}
+
 function getLabelFromSelectedInput(input) {
 	if (!input) return '';
 	const label = input.closest('.option')?.querySelector('label');
@@ -203,7 +217,7 @@ export class Personnage {
 		this.state.scoreModSouffle = toInteger(scoreModSouffle);
 		this._syncSelectionArrays();
 
-		this.state.ficheSaison = getLabelFromSelectedInput(this.state.saison);
+		this.state.ficheSaison = getVoixTitle(this.state.saison);
 		this.state.ficheEssence = getTextContentFromClosest(this.state.saison, '.label-essence');
 		this.state.ficheAnatheme = getTextContentFromClosest(this.state.saison, '.label-anatheme');
 		this.state.ficheFamille = getLabelFromSelectedInput(this.state.famille);

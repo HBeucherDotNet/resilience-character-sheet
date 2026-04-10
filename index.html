@@ -1545,16 +1545,14 @@
 	</div>
 	
 	<div id="fiche-personnage">
-		<div class="fiche-header-logo-row">
+		<div class="fiche-header logo-name-saison">
 			<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
-			<div class="fiche-nom">Nom :</div>
-			<input type="text" id="fiche-nom-input" placeholder="Entrez le nom du personnage">
+			<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Entrez le nom du personnage"></div>
+			<div class="fiche-valeurs saison-border header-saison">
+				<span id="fiche-saison"></span>
+			</div>
 		</div>
 		<div class="fiche-header">
-			<div class="fiche-valeurs">
-				<div>Saison : <span id="fiche-saison"></span></div>
-				<div>Taille : <span>5</span></div>
-			</div>
 			<div class="fiche-valeurs">
 				<div>Famille : <span id="fiche-famille"></span></div>
 				<div>Lignée : <span id="fiche-lignee"></span></div>
@@ -1563,7 +1561,15 @@
 				<div>Âge : <span id="fiche-age"></span></div>
 				<div>Rôle : <span id="fiche-role"></span></div>
 			</div>
-			<div id="fiche-essence-harmonie">
+			<div class="fiche-valeurs">
+				<div>Résilience : <span id="fiche-resilience"></span></div>
+				<div>Taille : <span>5</span></div>
+			</div>
+			<div class="fiche-valeurs">
+				<div>Vitalité : <span id="fiche-vitalite"></span></div>
+				<div>Blessures : <input type="text" id="fiche-blessures" class="resonnance-point"></div>
+			</div>
+			<div class="fiche-valeurs saison-border">
 				<div>Essence : <span id="fiche-essence"></span></div>
 				<div>Harmonie : <input type="text" id="fiche-harmonie" class="resonnance-point"></td></div>
 			</div>
@@ -1571,15 +1577,6 @@
 				<div>Anathème : <span id="fiche-anatheme"></span></div>
 				<div>Rupture : <input type="text" id="fiche-rupture" class="resonnance-point"></td></div>
 			</div>
-			<table class="fiche-sante">
-				<tr>
-					<td>Vitalité : <span id="fiche-vitalite"></span></td>
-					<td>Résilience : <span id="fiche-resilience"></span></td>
-				</tr>
-				<tr>
-					<td colspan="2">Blessures : <input type="text" id="fiche-blessures" class="resonnance-point"></td>
-				</tr>
-			</table>
 		</div>
 		<div class="fiche-grid">
 			<div class="fiche-saisons">
@@ -1651,7 +1648,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="fiche-magie">
+				<div id="fiche-magie" class="saison-border saison-background">
 					<h5>Magie</h5>
 					<label>Talisman :</label>
 					<textarea id="fiche-talisman" rows="2" cols="30"></textarea>
@@ -1882,7 +1879,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="fiche-champ-lexical">
+		<div id="fiche-champ-lexical" class="saison-border saison-background">
 			<div class="champ-lexical" id="mots-hiver">
 				<div>Eau</div>
 				<div>Chair</div>

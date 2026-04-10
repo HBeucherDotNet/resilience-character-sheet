@@ -425,51 +425,84 @@ section {
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
 	font-family: 'Georgia', serif;
+	
+	&.hiver {
+		.saison-border { border-color: colors.$color-hiver; }
+		.saison-background { background: colors.$color-hiver-lighter; }
+		#mots-hiver { display: flex; }
+		#fiche-magie-hiver { display: table; }
+	}
+	&.printemps {
+		.saison-border { border-color: colors.$color-printemps; }
+		.saison-background { background: colors.$color-printemps-lighter; }
+		#mots-printemps { display: flex; }
+		#fiche-magie-printemps { display: table; }
+	}
+	&.ete {
+		.saison-border { border-color: colors.$color-ete; }
+		.saison-background { background: colors.$color-ete-lighter; }
+		#mots-ete { display: flex; }
+		#fiche-magie-ete { display: table; }
+	}
+	&.automne {
+		.saison-border { border-color: colors.$color-automne; }
+		.saison-background { background: colors.$color-automne-lighter; }
+		#mots-automne { display: flex; }
+		#fiche-magie-automne { display: table; }
+	}
+	&.temps {
+		.saison-border { border-color: colors.$color-temps; }
+		.saison-background { background: colors.$color-temps-lighter; }
+		#mots-temps { display: flex; }
+		#fiche-magie-temps { display: table; }
+	}
+	&.rupture {
+		.saison-border { border-color: colors.$color-rupture; }
+		.saison-background { background: colors.$color-rupture-lighter; }
+		#mots-rupture { display: flex; }
+		#fiche-magie-rupture { display: table; }
+	}
 }
 
 .fiche-header {
 	display: grid;
-	grid-template-columns: repeat(7, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	gap: 1rem;
 	align-items: start;
 	
-	& > div {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
+	.fiche-nom {
+		grid-column: 2 / span 3;
+		align-self: center;
+	}
+	
+	.header-saison {
+		grid-column: 5 / span 2;
+		align-items: center;
 	}
 }
 
-.fiche-header-logo-row {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-}
-
-.fiche-nom {
-	margin: 0;
-	align-self: center;
+.logo-name-saison {
+	font-size: 2rem;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+	font-style: italic;
+	font-weight: 600;
 }
 
 .fiche-logo { 
 	width: 180px;
 }
 
-.fiche-nom {
-	font-size: 2rem;
-	margin-left: 1rem; 
-}
-
 #fiche-nom-input {
 	border-width: 1px;
 	border-style: none none solid none;
-	font-size: 2rem;
-	width: 450px;
+	font-size: 1em; // hérite de la taille de la fiche-header
 }
 
-.fiche-valeurs,
-#fiche-essence-harmonie { 
+.fiche-valeurs { 
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
 	padding: 0.5rem 1rem;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
@@ -498,18 +531,6 @@ section {
 	}
 	&.rupture {
 		border-color: colors.$color-rupture;
-	}
-}
-
-.fiche-sante { 
-	padding: 0;
-	grid-column: span 2;
-	border-collapse: collapse; 
-	
-	td { 
-		border: 1px dotted colors.$color-text-dark; 
-		padding: 0.3rem 0.5rem;
-		text-align: left; 
 	}
 }
 
@@ -725,52 +746,11 @@ section {
 	}
 }
 
-#fiche-blessures {
-	border-width: 1px;
-	border-style: none none solid none;
-}
-
 #fiche-magie {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 16px;
 	padding: 1rem;
-	
-	&.hiver {
-		background: colors.$color-hiver-lighter;
-		border-color: colors.$color-hiver-light;
-		#fiche-magie-hiver {
-			display: table;
-		}
-	}
-	&.printemps {
-		background: colors.$color-printemps-lighter;
-		border-color: colors.$color-printemps-light;
-		#fiche-magie-printemps {
-			display: table;
-		}
-	}
-	&.ete {
-		background: colors.$color-ete-lighter;
-		border-color: colors.$color-ete-light;
-		#fiche-magie-ete {
-			display: table;
-		}
-	}
-	&.automne {
-		background: colors.$color-automne-lighter;
-		border-color: colors.$color-automne-light;
-		#fiche-magie-automne {
-			display: table;
-		}
-	}
-	&.temps {
-		background: colors.$color-temps-lighter;
-		border-color: colors.$color-temps-light;
-		#fiche-magie-temps {
-			display: table;
-		}
-	}
 	
 	h5 {
 		margin: 0;
@@ -781,7 +761,7 @@ section {
 		font-weight: 600;
 	}
 	
-	.tableau-magie-talents{
+	.tableau-magie-talents {
 		width: 100%;
 		border-collapse: collapse;
 		display: none;		
@@ -853,7 +833,7 @@ section {
 		white-space: nowrap;
 		box-shadow: 0 0 0 0.2rem colors.$color-white;
 		z-index: 1;
-
+		
 		.saison-icon {
 			display: inline-flex;
 			align-items: center;
@@ -866,19 +846,19 @@ section {
 			background: colors.$color-white;
 		}
 	}
-
+	
 	&.saison-hiver > label {
 		color: colors.$color-hiver;
 	}
-
+	
 	&.saison-printemps > label {
 		color: colors.$color-printemps;
 	}
-
+	
 	&.saison-ete > label {
 		color: colors.$color-ete;
 	}
-
+	
 	&.saison-automne > label {
 		color: colors.$color-automne;
 	}
@@ -898,7 +878,7 @@ section {
 		box-sizing: border-box;
 		flex: 1 1 auto;
 		position: relative;
-
+		
 		label {
 			margin-right: 5px;
 		}
@@ -923,46 +903,6 @@ section {
 			flex-basis: 16%;
 			flex-shrink: 0;
 			text-align: center;
-		}
-	}
-	
-	&.hiver {
-		border-color: colors.$color-hiver;
-		background-color: colors.$color-hiver-lighter;
-		#mots-hiver {
-			display: flex;
-		}
-	}
-	
-	&.printemps {
-		border-color: colors.$color-printemps;
-		background-color: colors.$color-printemps-lighter;
-		#mots-printemps {
-			display: flex;
-		}
-	}
-	
-	&.ete {
-		border-color: colors.$color-ete;
-		background-color: colors.$color-ete-lighter;
-		#mots-ete {
-			display: flex;
-		}
-	}
-	
-	&.automne {
-		border-color: colors.$color-automne;
-		background-color: colors.$color-automne-lighter;
-		#mots-automne {
-			display: flex;
-		}
-	}
-	
-	&.temps {
-		border-color: colors.$color-temps;
-		background-color: colors.$color-temps-lighter;
-		#mots-temps {
-			display: flex;
 		}
 	}
 }

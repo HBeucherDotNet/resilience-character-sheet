@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Variables de couleurs
 $color-bg-page: #e9ecf3;
 $color-border-section: #d3d7e3;
@@ -14,26 +16,26 @@ $color-box-shadow: rgba(0, 0, 0, 0.1);
 $color-box-shadow-hover: rgba(0, 0, 0, 0.15);
 
 // couleurs saisonnières
-$color-hiver-lighter: #e3ecf7;
-$color-hiver-light: #b3cbe6;
 $color-hiver: #235a8a;
+$color-hiver-light: color.adjust($color-hiver, $lightness: 20%);
+$color-hiver-lighter: color.adjust($color-hiver, $lightness: 55%);
 
-$color-printemps-lighter: #e6f7e3;
-$color-printemps-light: #b6e6b3;
 $color-printemps: #2c7a4b;
+$color-printemps-light: color.adjust($color-printemps, $lightness: 20%);
+$color-printemps-lighter: color.adjust($color-printemps, $lightness: 55%);
 
-$color-ete-lighter: #f7f5e3;
-$color-ete-light: #e6e3b3;
 $color-ete: #bfa600;
+$color-ete-light: color.adjust($color-ete, $lightness: 20%);
+$color-ete-lighter: color.adjust($color-ete, $lightness: 55%);
 
-$color-automne-lighter: #f7e3e3;
-$color-automne-light: #e6b3b3;
 $color-automne: #a13a3a;
+$color-automne-light: color.adjust($color-automne, $lightness: 20%);
+$color-automne-lighter: color.adjust($color-automne, $lightness: 50%);
 
-$color-temps-lighter: #f5f5f5;
-$color-temps-light: #cccccc;
-$color-temps: #235a8a;
+$color-temps: #999;
+$color-temps-light: color.adjust($color-temps, $lightness: 20%);
+$color-temps-lighter: color.adjust($color-temps, $lightness: 35%);
 
-$color-rupture-lighter: #e3e0f0;
-$color-rupture-light: #b3a3d6;
 $color-rupture: #7d5fa3;
+$color-rupture-light: color.adjust($color-rupture, $lightness: 20%);
+$color-rupture-lighter: color.adjust($color-rupture, $lightness: 55%);

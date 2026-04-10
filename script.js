@@ -89,9 +89,8 @@ function renderPersonnage(state) {
 	document.getElementById('fiche-souffle').textContent = state.ficheSouffle;
 	document.getElementById('fiche-resilience').textContent = state.ficheResilience;
 
-	document.getElementById('fiche-essence-harmonie').className = state.saisonClass;
-	document.getElementById('fiche-champ-lexical').className = state.saisonClass;
-	document.getElementById('fiche-magie').className = state.saisonClass;
+	document.getElementById('fiche-personnage').className = state.saisonClass;
+
 	refreshFicheSummaryPlaceholders(state);
 
 	renderCompetences(state);
