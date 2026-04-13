@@ -59,6 +59,11 @@
 	}
 
 	#fiche-magie {
+		.fiche-magie-actions,
+		.sort-dialog {
+			display: none !important;
+		}
+
 		textarea {
 			font-size: 0.9rem !important;
 			border: none !important;

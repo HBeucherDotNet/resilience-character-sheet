@@ -73,6 +73,87 @@ function bindAmeliorationScoreControls() {
 	});
 }
 
+function bindSortDialog() {
+	const dialog = document.getElementById('sort-dialog');
+	const openButton = document.getElementById('open-sort-dialog-btn');
+	const form = dialog?.querySelector('form');
+	const scoreInputs = form ? Array.from(form.querySelectorAll('.amelioration-score-input')) : [];
+	const talentSelect = document.getElementById('sort-talent-select');
+
+	if (!dialog || !openButton || !form) return;
+
+	function buildTalentOptionLabel(talentCheckbox) {
+		const rowElement = talentCheckbox.closest('tr');
+		const firstCellLabel = rowElement?.querySelector('td:first-child label');
+		const category = firstCellLabel?.textContent?.trim() || '';
+		const action = talentCheckbox.parentElement?.textContent?.trim() || '';
+
+		if (!category && !action) return '';
+		if (!category) return action;
+		if (!action) return category;
+		return `${category} - ${action}`;
+	}
+
+	function populateTalentSelect() {
+		if (!talentSelect) return;
+
+		talentSelect.innerHTML = '';
+		const checkedTalents = Array.from(document.querySelectorAll('input.talent:checked'));
+
+		if (checkedTalents.length === 0) {
+			const option = document.createElement('option');
+			option.value = '';
+			option.textContent = 'Aucun talent coché';
+			option.selected = true;
+			talentSelect.appendChild(option);
+			talentSelect.disabled = true;
+			return;
+		}
+
+		talentSelect.disabled = false;
+		checkedTalents.forEach(checkbox => {
+			const option = document.createElement('option');
+			option.value = checkbox.id;
+			option.textContent = buildTalentOptionLabel(checkbox);
+			talentSelect.appendChild(option);
+		});
+	}
+
+	openButton.addEventListener('click', () => {
+		if (dialog.open) return;
+
+		populateTalentSelect();
+
+		if (typeof dialog.showModal === 'function') {
+			dialog.showModal();
+			return;
+		}
+
+		dialog.setAttribute('open', 'open');
+	});
+
+	dialog.addEventListener('click', event => {
+		// With <dialog>, backdrop clicks target the dialog element itself.
+		// This avoids false positives with native <select> popups that can render outside bounds.
+		if (event.target !== dialog) return;
+
+		if (typeof dialog.close === 'function') {
+			dialog.close('dismiss');
+		} else {
+			dialog.removeAttribute('open');
+		}
+	});
+
+	form.addEventListener('reset', () => {
+		window.requestAnimationFrame(() => {
+			scoreInputs.forEach(input => {
+				input.dispatchEvent(new Event('input', { bubbles: true }));
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+			});
+		});
+	});
+}
+
 function renderPersonnage(state) {
 	document.getElementById('fiche-saison').textContent = state.ficheSaison;
 	document.getElementById('fiche-essence').textContent = state.ficheEssence;
@@ -820,5 +901,6 @@ window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
+	bindSortDialog();
 	bindResponsiveCollapsibleSection();
 });

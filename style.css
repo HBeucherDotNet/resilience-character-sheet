@@ -48,6 +48,10 @@
     width: 50px !important;
     height: 50px !important;
   }
+  #fiche-magie .fiche-magie-actions,
+  #fiche-magie .sort-dialog {
+    display: none !important;
+  }
   #fiche-magie textarea {
     font-size: 0.9rem !important;
     border: none !important;
@@ -961,6 +965,11 @@ section > div:last-child {
   font-style: italic;
   font-weight: 600;
 }
+#fiche-magie .fiche-magie-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0 1rem;
+}
 #fiche-magie .tableau-magie-talents {
   width: 100%;
   border-collapse: collapse;
@@ -976,6 +985,89 @@ section > div:last-child {
   font-size: 0.8rem;
   resize: vertical;
   margin-bottom: 0.5rem;
+}
+
+.sort-dialog {
+  border: none;
+  border-radius: 18px;
+  padding: 0;
+  width: min(100%, 36rem);
+  max-width: 36rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+.sort-dialog::backdrop {
+  background: rgba(24, 37, 58, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.sort-dialog-form {
+  padding: 1.25rem;
+}
+
+.sort-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sort-dialog-header h6 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #235a8a;
+}
+.sort-dialog-header p {
+  margin: 0.3rem 0 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.sort-dialog-close-btn {
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sort-dialog-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sort-dialog-talent-select-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.sort-dialog-talent-select-row label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.sort-dialog-talent-select {
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  color: #333;
+  background: #fff;
+}
+
+.sort-dialog-row-item span {
+  flex-grow: 1;
+}
+
+.sort-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .fiche-blocs {

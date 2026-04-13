@@ -780,6 +780,12 @@ section {
 		font-style: italic;
 		font-weight: 600;
 	}
+
+	.fiche-magie-actions {
+		display: flex;
+		justify-content: center;
+		margin: 0.75rem 0 1rem;
+	}
 	
 	.tableau-magie-talents {
 		width: 100%;
@@ -798,6 +804,95 @@ section {
 		resize: vertical;
 		margin-bottom: 0.5rem;
 	}
+}
+
+.sort-dialog {
+	border: none;
+	border-radius: 18px;
+	padding: 0;
+	width: min(100%, 36rem);
+	max-width: 36rem;
+	box-shadow: 0 20px 50px colors.$color-box-shadow-hover;
+	background: colors.$color-white;
+
+	&::backdrop {
+		background: rgba(24, 37, 58, 0.45);
+		backdrop-filter: blur(2px);
+	}
+}
+
+.sort-dialog-form {
+	padding: 1.25rem;
+}
+
+.sort-dialog-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1rem;
+
+	h6 {
+		margin: 0;
+		font-size: 1.2rem;
+		color: colors.$color-hiver;
+	}
+
+	p {
+		margin: 0.3rem 0 0;
+		color: colors.$color-text-muted;
+		font-size: 0.95rem;
+	}
+}
+
+.sort-dialog-close-btn {
+	border: none;
+	background: transparent;
+	color: colors.$color-text-muted;
+	font-size: 1.75rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+}
+
+.sort-dialog-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.sort-dialog-talent-select-row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+
+	label {
+		font-size: 0.9rem;
+		color: colors.$color-text-muted;
+	}
+}
+
+.sort-dialog-talent-select {
+	border: 1px solid colors.$color-border-section;
+	border-radius: 8px;
+	padding: 0.45rem 0.6rem;
+	font: inherit;
+	color: colors.$color-text-dark;
+	background: colors.$color-white;
+}
+
+.sort-dialog-row-item {
+	span {
+		flex-grow: 1;
+	}
+}
+
+.sort-dialog-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	margin-top: 1rem;
+	flex-wrap: wrap;
 }
 
 .fiche-blocs {
