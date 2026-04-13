@@ -1,0 +1,162 @@
+export const lignees = {
+	"amphiose": { 
+		"sexe": "mâle ou femelle",
+		"famille": "Squelette",
+		"environnement": "plaines et collines",
+		"modeDeVie": "alizé",
+		"personnalite": "éminence",
+		"don": "amphibie",
+		"description": "Les Amphioses sont dérivées des amphibiens : grenouilles, crapauds et salamandres. Les lamproies, myxines et sangsues peuvent aussi être à l’origine d’Amphioses. Leur corps, petit et rond, est surmonté d’une tête large et presque sans cou. Leur peau porte de nombreuses couleurs très vives et le mucus qui la couvre protège des sautes de températures. Les Amphioses sont généralement curieuses et aiment le mouvement, l’animation, sauf quand il s’agit de veiller sur leur ponte. Elles sont généralement considérées comme de bonnes éclaireuses, guides et chanteuses.",
+		"exemplesNoms": "(inspiration langues d’Amazonie) : ajurú, ára, katoma, kuña, michī, narki, pyhare, ruka, tuicha, warekena, yvaga, zuruahá"
+	},
+	"arachéen": {
+		"sexe": "mâle ou femelle",
+		"famille": "Chitine",
+		"environnement": "montagnes et canyons",
+		"modeDeVie": "alizé",
+		"personnalite": "éminence",
+		"don": "venin",
+		"description": "Les Arachéens ont pour origine les araignées, scorpions, opilions et autres arachnides. Les limules font aussi partie des inspirations pour les Arachéens. Leur corps voûté, ployant sous la chitine, est soutenu par trois paires de pattes, libérant une paire de pinces leur tenant lieu de mains. Ils utilisent leurs pédipalpes, des appendices placés autour de leur bouche, pour aider ces pinces lors des manipulations fines. Les Arachéens sont des êtres souvent solitaires car considérés comme inquiétants voire effrayants par les autres. Toutefois, ils sont les amis les plus fidèles et dévoués possibles, si l’on fait l’effort de surmonter les préjugés les entourant.",
+		"exemplesNoms": "(inspiration Aymara et Quechua) : alaxpacha, allpa, aruma, hatun, kala, kuntur, nina, qari, qucha, sunqu, uraqi, uru"
+	},
+	"aviaire": {
+		"sexe": "mâle ou femelle",
+		"famille": "Squelette",
+		"environnement": "îles et littoral",
+		"modeDeVie": "nomade",
+		"personnalite": "leader",
+		"don": "charisme",
+		"description": "Les Aviaires peuvent tenir de n'importe quel oiseau, mais aussi des raies, requins et poissons cartilagineux. Ils sont souvent plutôt petits, sauf ceux tenant du condor ou de l'albatros. Leur corps est couvert de plumes, leurs jambes finissent en serres, plus ou moins acérées et palmées, leur tête arbore un bec pouvant servir d'outil à l'occasion. Sous leurs bras, des plumes qu'ils peuvent déployer en ailes, lorsqu'ils n'ont pas besoin de leurs mains pour autre chose. Les Aviaires aiment les climats chauds et venteux et s'adaptent à toutes sortes de tailles de communauté. On les dit généralement enjoués et serviables, sauf lorsqu’ils ont une couvée à élever.",
+		"exemplesNoms": "(inspiration Hindi et Tamoul) : achamba, bhaai, devi, kamala, kishore, indra, nalini, panee, priyanka, pidkkum, sari, theriyum"
+	},
+	"bryose": {
+		"sexe": "asexué",
+		"famille": "Cellulose",
+		"environnement": "plaines et collines",
+		"modeDeVie": "troglodytes",
+		"personnalite": "portefaix",
+		"don": "grimper",
+		"description": "Les Bryoses sont des lichens, des mousses ou des fougères se construisant un habitat mobile de sable, de graviers et de pierres. Elles peuvent aussi avoir pour origine des algues, coraux ou foraminifères. Elles sont l’incarnation parfaite de l’idée que le corps est le véhicule terrestre de l’esprit. Cette construction minérale qu’elles animent est très solide et facile à dissimuler dans l’environnement, mais long à régénérer. Les Bryoses préfèrent souvent la discrétion et la prudence à l’action directe et brutale. Chaque Bryose abrite un Bryodé, un oiseau en symbiose avec elle qui s’agite et piaille pour transmettre ses émotions, facilitant les échanges avec les autres Lignées.",
+		"exemplesNoms": "(inspiration Arabe et Persan) : akeem, alya, charbel, fathi, gulzar, hala, kubra, marwa, nour, raja, salman, sherazade"
+	},
+	"céphope": {
+		"sexe": "mâle ou femelle",
+		"famille": "Souple",
+		"environnement": "rivières, lacs et marais",
+		"modeDeVie": "alizé",
+		"personnalite": "leader",
+		"don": "ecran",
+		"description": "Les Céphopes sont issus des poulpes, calamars, nautiles et autres octopus. Leurs tentacules fonctionnent généralement par paires, parfois fusionnés, équivalant concrètement à quatre membres très mobiles. Les autres sont principalement des supports, pour la communication ou le déplacement. Si leur posture est verticale au repos, ils se déplacent souvent à quatre pattes, notamment lorsqu’ils doivent fuir ou chasser. Prudents et peureux s’ils sont isolés, les Céphopes deviennent sanguinaires lorsqu’ils ont l’avantage. Malgré une mauvaise réputation due à leur facilité à manipuler les autres, les Céphopes sont sociables et se mêlent facilement aux autres Lignées.",
+		"exemplesNoms": "(inspiration Mongol et Kazakh) : adilet, batu, erasyl, ganbold, gerel, nurasyl, sheker, solongo, timur, tsegsteg, uyanga, zarina"
+	},
+	"mammalien": {
+		"sexe": "mâle ou femelle",
+		"famille": "Squelette",
+		"environnement": "montagnes et canyons",
+		"modeDeVie": "sédentaire",
+		"personnalite": "sage",
+		"don": "fabrique",
+		"description": "Les Mammaliens sont la Lignée majoritaire à Kiwandoto. Ils ont une très grande diversité morphologique, pouvant tenir de n’importe quel mammifère, y compris marin comme les phoques et les cétacés. Ainsi, si certains sont identiques aux humains, d’autres auront un faciès canin ou une allure dérivée d’un cerf. Certains portent même une trompe similaire à celle des éléphants. Quoiqu’il en soit, les Mammaliens sont toujours parfaitement bipèdes, avec des mains bien découpées et agiles. Ils sont connus pour vivre dans des communautés assez vastes et leurs aptitudes corporelles très diverses leur permettent d’être présents dans n’importe quel environnement.",
+		"exemplesNoms": "(inspiration Japonais et Coréen) : akiko, fuyuko, gyeong, hoshi, hwan, iseul, kazuyo, noboru, oshiro, seok, takuma, yukiko"
+	},
+	"mycon": {
+		"sexe": "plurisexué",
+		"famille": "Cellulose",
+		"environnement": "rivières, lacs et marais",
+		"modeDeVie": "sédentaire",
+		"personnalite": "sage",
+		"don": "empathie",
+		"description": "Les Mycons sont des superorganismes, des colonies de champignons, de blob et/ou d’éponges d’espèces différentes, chacune assurant la fonction d'un organe ou d'une partie d'un membre de ce corps anthropoïde, aux deux jambes qui glissent sur le sol sans se lever. Les couleurs, formes et textures changeantes sculptant leur corps aux membres très longs peuvent être très artistiques. Leurs mouvements sont lents mais précis, à l'image de leur réflexion. Les Mycons sont d'excellents dirigeants et traitent tous les êtres avec égalité et justice. Ils n'aiment pas la solitude, ni la violence, synonyme d'incapacité à trouver une solution par la réflexion.",
+		"exemplesNoms": "(inspiration langues Inuit et Same) : albmi, beaivi, biegga, goahti, ijirak, inushkuk, kallik, mánnu, nilak, siida, uki, yura"
+	},
+	"nacrisse": {
+		"sexe": "hermaphrodite",
+		"famille": "Souple",
+		"environnement": "montagnes et canyons",
+		"modeDeVie": "troglodyte",
+		"personnalite": "sage",
+		"don": "electroréception",
+		"description": "Les Nacrisses descendent des mollusques, comme les escargots, limaces et coquillages. Courbées sous leur coquille pour la majorité, elles avancent sur un unique pied puissant et massif. Quatre longs tentacules, deux portant des yeux et deux servant de bras, sortent de leur caparaçon de calcaire. Le reste est généralement à l’abri, sauf dans les moments de repos et de confiance, typiquement pour se nourrir ou se reproduire. Les Nacrisses sont en effet des êtres plutôt timides, voire craintives. Pourtant, elles ont le goût de la connaissance et aiment apprendre de nouvelles choses. Elles sont ainsi souvent les gardiennes de l’histoire de leurs communautés.",
+		"exemplesNoms": "(inspiration langues Celtiques, Slaves et Germaniques) : alric, balder, erik, fenrir, georg, götz, freyja, ingvar, odinson, siegfried, solveig, swanhildr"
+	},
+	"ophidie": {
+		"sexe": "mâle ou femelle",
+		"famille": "Squelette",
+		"environnement": "rivières, lacs et marais",
+		"modeDeVie": "troglodyte",
+		"personnalite": "portefaix",
+		"don": "thermoception",
+		"description": "Les Ophidies sont des êtres de grande taille, tenant du lézard, du crocodile ou du serpent. Les tortues marines et poissons osseux sont également des sources d’inspiration pour les Ophidies. Elles se tiennent sur deux pattes arrières, la queue faisant balancier, libérant une paire de bras puissants. Les Ophidies apprécient l'air chaud et humide, les points d'eau fiables, y compris marécageux. Elles vivent généralement dans de petites communautés, dépassant rarement la famille directe, mais se mélangent très volontiers avec les autres Lignées, car cela les protège pendant la ponte. Elles sont d’excellentes chasseuses et guerrières, compensant leur réputation de sournoiserie ou de froides calculatrices.",
+		"exemplesNoms": "(inspiration langues Aborigènes) : alinta, allora, alkawari, bunggu, gamuru, gawuul, kareela, koa, mawukara, myaree, walo, wiltja"
+	},
+	"orthocète": {
+		"sexe": "mâle ou femelle",
+		"famille": "Chitine",
+		"environnement": "plaines et collines",
+		"modeDeVie": "sédentaire",
+		"personnalite": "leader",
+		"don": "messages",
+		"description": "Les Orthocètes ont pour origine les fourmis, termites, abeilles et tous les insectes sociaux ou grégaires tels que les criquets, charançons et gendarmes. Les crabes, écrevisses et autres animaux marins décapodes sont également des inspirations possibles. Leur buste redressé est propulsé par leurs robustes pattes arrières, accompagné des pattes médianes. À l'arrêt, celles-ci, dégagées, servent d’outils. Les Orthocètes sont petits, vifs et industrieux. Selon leur ascendance, ils peuvent préférer les tribus réduites ou au contraire se perdre dans la masse et maintenir des communautés nombreuses. Dans tous les cas, leur justice est à l’image de leur mentalité : sévère, rigide et peu encline au pardon.",
+		"exemplesNoms": "(inspiration Grec et Latin) : amphitryon, athènes, cérès, coryphée, gnomon, hécate, lares, nérée, quercus, tulli, urbs, zenais"
+	},
+	"pollinien": {
+		"sexe": "hermaphrodite",
+		"famille": "Cellulose",
+		"environnement": "îles et littoral",
+		"modeDeVie": "alizé",
+		"personnalite": "éminence",
+		"don": "flair",
+		"description": "Les Polliniens sont pratiquement les seules fleurs restantes sur Kiwandoto. Ils sont issus des herbacées comme les pissenlits, les céréales, mais aussi des lotus et roseaux. Malheureusement, la corolle et les pétales cascadant autour de leur tête leur servent avant tout de récepteur sensoriel, très peu pour produire du pollen, encore moins du nectar. Les Polliniens ont des yeux monochromes, surplombant un corps fin, presque fragile. Des feuilles couvrent les racines leur servant de jambes, et deux tiges munies de feuilles préhensiles, font office de mains. Les Polliniens se mélangent peu aux autres Lignées, mais quand ils le font, ce sont des atouts inestimables pour les communautés.",
+		"exemplesNoms": "(inspiration langues Bantoues et Malgaches) : amina, arinoa, diera, furaha, hirasoa, mosi, nuru, onja, reniala, simba, subira, zawadi"
+	},
+	"saprosite": {
+		"sexe": "hermaphrodite",
+		"famille": "Souple",
+		"environnement": "îles et littoral",
+		"modeDeVie": "sédentaire",
+		"personnalite": "éminence",
+		"don": "amphibie",
+		"description": "Les Saprosites tiennent des lombrics, arénicoles, nématodes et autres annélides, mais aussi des limaces de mer, comme si cinq d'entre eux s'étaient associés pour former un genre de cheval. Ils se déplacent à quatre pattes mais, à l’arrêt, ils se redressent, prenant appui sur leur queue pour libérer leurs bras terminés par des sortes de ventouses. Les Saprosites sont extrêmement doux et chaleureux, tout en étant facilement apeurés. Ils pardonnent aisément et n'usent que rarement de violence physique, préférant l'exclusion et l'ignorance pour les fautifs. Ils se plaisent en général dans les communautés très mixtes, avec des habitations et infrastructures fixes et fiables.",
+		"exemplesNoms": "(inspiration Nahuatl et langues d’Amérique centrale) : anci, chicahua, coatl, eleuia, huitzilli, meztli, papan, quauhtli, tlalli, techuih, xolotl, yaotl"
+	},
+	"scutige": {
+		"sexe": "mâle ou femelle",
+		"famille": "Chitine",
+		"environnement": "îles et littoral",
+		"modeDeVie": "troglodyte",
+		"personnalite": "sage",
+		"don": "sonar",
+		"description": "Les Scutiges sont une Lignée descendant les iules, mille-pattes et scolopendre, ainsi que des crevettes, puces de mer et autres décapodes et isopodes dont les cloportes. Elles ont un corps excessivement long, se redressant comme un accent grave, reposant ainsi sur lui-même. Une paire de pattes plus longue leur sert de bras, complété par les antennes ou les mandibules pour la motricité fine. Les Scutiges sont grandes et lourdes, ce qui les oblige à se déplacer lentement, malgré leurs nombreuses pattes. Sous leur aspect effrayant, les Scutiges sont en fait pacifiques, voire même peureuses. Elles favorisent les communautés mixtes, dans lesquelles elles s'occupent souvent des troupeaux.",
+		"exemplesNoms": "(inspiration Chinois et langues d’Asie du Sud-Est) : anong, arthit, bopha, feng, guanyu, kun-lun, phirun, shufen, thaksin, veasna, xiuying, zhang"
+	},
+	"spicule": {
+		"sexe": "mâle ou femelle",
+		"famille": "Souple",
+		"environnement": "plaines et collines",
+		"modeDeVie": "nomade",
+		"personnalite": "portefaix",
+		"don": "hypnose",
+		"description": "Les Spicules sont typiquement issues des étoiles de mer, parfois de l’ophiure, du concombre de mer ou de l’oursin. Les méduses et autres cnidaires en font également partie. Quoiqu’il en soit, leur morphologie comporte cinq parties égales, avec un visage au point de jonction de ces cinq membres, à mi-hauteur de leur stature et au centre de leur corps. Leurs yeux sont répartis aux extrémités des bras et du membre supérieur. Les Spicules rejoignent souvent des communautés se mettant au service d’autres tribus. Elles ont une réputation d’être lentes par fainéantise, et de faire de l’excellent travail par perfectionnisme. Les Spicules sont également frugales et se sentent à l’aise même dans des conditions très difficiles.",
+		"exemplesNoms": "(inspiration langues Polynésiennes et Indonésiennes) : alon, diwata, eko, harta, kidlat, ligaya, marikit, mawar, ratu, sitti, utari, wibawa"
+	},
+	"syrphide": {
+		"sexe": "unisexe",
+		"famille": "Chitine",
+		"environnement": "rivières, lacs et marais",
+		"modeDeVie": "nomade",
+		"personnalite": "portefaix",
+		"don": "terrier",
+		"description": "Les Syrphides peuvent provenir de n'importe quels insectes solitaires : papillon, punaise, mouche, libellule, mante, scarabée, phasmes ou même les nèpes et dytiques pour les membres les plus aquatiques. Elles se déplacent en utilisant à la fois leurs robustes pattes arrières et leurs ailes. Leur membres médians, atrophiés, servent d’outils de secours. Au-delà de cela, la diversité de leur apparence est phénoménale : couleurs, longueur et forme des antennes, des mandibules, du corps…chaque Syrphide est une oeuvre unique. Les Syrphides sont affables, espiègles, romantiques, étourdies...d’où une réputation de personnes peu fiables, volages, à cadrer.",
+		"exemplesNoms": "(inspiration langues Africaines) : adama, amara, binta, diara, fanta, kofi, mariama, nana, sadio, samba, yaya, zainab"
+	},
+	"xylose": {
+		"sexe": "hermaphrodite",
+		"famille": "Cellulose",
+		"environnement": "montagnes et canyons",
+		"modeDeVie": "nomade",
+		"personnalite": "leader",
+		"don": "réserves",
+		"description": "Les Xyloses sont originaires des arbres et arbustes, parfois des hydres et anémones. Leur apparence est anthropomorphe, avec une chevelure de feuilles ou d’aiguilles, et une écorce très variable. Les Xylose ont un simili-visage avec des yeux monochromes et une bouche s’ouvrant dans l’écorce de leur tronc. Leurs sens sont assurés par leur feuillage. En plus de leurs bras, elles utilisent des lianes qui participent à la manipulation fine des objets. Les Xyloses voyagent souvent mais sont très protectrices du territoire qu’elles occupent sur le moment. Leur parole est sacrée et elles ont la réputation de ne jamais baisser les bras devant les difficultés.",
+		"exemplesNoms": "(inspiration langues Amérindiennes) : amarok, cheyenne, eyota, huyana, kwanita, nashoba, ozalie, poloma, sahale, tallulah, waban, yuma"
+	}
+};
