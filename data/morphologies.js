@@ -32,25 +32,25 @@ export const morphologies = {
 	mucus: {
 		nom: "Mucus ❄️",
 		categorie: "cuirasse",
-		summary: "Réduit les Dégâts de {Hiver} contre une Agression de la Saison Hiver",
+		summary: "-{Hiver} dégâts contre une Agression de la Saison Hiver",
 		description: "Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure."
 	},
 	urticant: {
 		nom: "Urticant 🌱",
 		categorie: "cuirasse",
-		summary: "Réduit les Dégâts de {Printemps} contre une Agression de la Saison Printemps",
+		summary: "-{Printemps} dégâts contre une Agression de la Saison Printemps",
 		description: "Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure."
 	},
 	bourre: {
 		nom: "Bourre ☀️",
 		categorie: "cuirasse",
-		summary: "Réduit les Dégâts de {Été} contre une Agression de la Saison Été",
+		summary: "-{Été} dégâts contre une Agression de la Saison Été",
 		description: "Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure."
 	},
 	carapace: {
 		nom: "Carapace 🍁",
 		categorie: "cuirasse",
-		summary: "Réduit les Dégâts de {Automne} contre une Agression de la Saison Automne",
+		summary: "-{Automne} dégâts contre une Agression de la Saison Automne",
 		description: "Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure."
 	},	
 	ventouses: {

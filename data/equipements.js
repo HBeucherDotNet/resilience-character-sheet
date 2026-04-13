@@ -38,28 +38,28 @@ export const equipements = {
 		nom: "Jambières ❄️",
 		categorie: "armure",
 		saison: "hiver",
-		summary: "Réduit les Dégâts de {Hiver} contre une Agression de la Saison Hiver",
+		summary: "-{Hiver} dégâts contre une Agression de la Saison Hiver",
 		description: "Guêtres, cuissardes et jupe, couvrant les membres inférieurs.<br/>Une Jambières s’utilise pour réduire les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison Hiver."
 	},
 	brassards: {
 		nom: "Brassards 🌱",
 		categorie: "armure",
 		saison: "printemps",
-		summary: "Réduit les Dégâts de {Printemps} contre une Agression de la Saison Printemps",
+		summary: "-{Printemps} dégâts contre une Agression de la Saison Printemps",
 		description: "Épaulières couvrant les membres supérieurs.<br/>Une Brassards s’utilise pour réduire les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison Printemps."
 	},
 	casque: {
 		nom: "Casque ☀️",
 		categorie: "armure",
 		saison: "ete",
-		summary: "Réduit les Dégâts de {Été} contre une Agression de la Saison Été",
+		summary: "-{Été} dégâts contre une Agression de la Saison Été",
 		description: "D’os, cuir, bois, métal ou textile, couvre la tête, le visage et la gorge.<br/>Un Casque s’utilise pour réduire les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison Été."
 	},
 	plastron: {
 		nom: "Plastron 🍁",
 		categorie: "armure",
 		saison: "automne",
-		summary: "Réduit les Dégâts de {Automne} contre une Agression de la Saison Automne",
+		summary: "-{Automne} dégâts contre une Agression de la Saison Automne",
 		description: "D’os, cuir, bois, métal ou textile, couvre le tronc et l’abdomen.<br/>Un Plastron s’utilise pour réduire les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison Automne."
 	},
 	survie: {
