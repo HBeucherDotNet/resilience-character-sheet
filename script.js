@@ -1,6 +1,7 @@
 import { HashCodec } from './hashCodec.js';
 import { Personnage } from './personnage.js';
 import { bindViewModeActions, updateViewModeUi } from './viewMode.js';
+import { lignees } from './data/lignees.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
 import { equipements } from './data/equipements.js';
@@ -613,6 +614,93 @@ function fillAmeliorationsEquipementsList() {
 	);
 }
 
+function initLignees() {
+	const lignéesList = document.getElementById('lignées-list');
+	if (!lignéesList) return;
+
+	Object.entries(lignees).forEach(([key, lignee]) => {
+		const saison = dons[lignee.don]?.saison;
+
+		const option = document.createElement('div');
+		option.className = `option lignee ${lignee.famille} ${saison}`;
+		option.style.display = 'none';
+
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'lire-plus pictogram-btn';
+		button.setAttribute('aria-label', 'Afficher la description');
+		button.innerHTML = createQuestionMarkSvg(couleurs[saison] || couleurs.temps);
+
+		const checkbox = document.createElement('input');
+		checkbox.type = 'checkbox';
+		checkbox.name = 'lignee';
+		checkbox.value = key;
+		checkbox.id = `lignee-${key}`;
+		checkbox.dataset.don = lignee.don;
+		
+		const label = document.createElement('label');
+		label.setAttribute('for', checkbox.id);
+		label.textContent = lignee.nom;
+
+		const sexe = document.createElement('span');
+		sexe.className = 'lignee-sexe';
+		sexe.textContent = `(${lignee.sexe})`;
+
+		const optionLabel = document.createElement('span');
+		optionLabel.className = 'option-label';
+		optionLabel.appendChild(checkbox);
+		optionLabel.appendChild(label);
+		optionLabel.appendChild(sexe);
+
+		option.appendChild(optionLabel);
+
+		const desc = document.createElement('div');
+		desc.className = 'desc';
+
+		const shortDesc = document.createElement('span');
+		shortDesc.className = 'short';
+		shortDesc.textContent = lignee.summary;
+
+		const longDesc = document.createElement('span');
+		longDesc.className = 'long';
+		longDesc.style.display = 'none';
+		longDesc.textContent = lignee.description;
+
+		const ul = document.createElement('ul');
+		const liEnv = document.createElement('li');
+		liEnv.textContent = `Environnement préféré : ${lignee.environnement}`;
+		const liVie = document.createElement('li');
+		liVie.textContent = `Mode de vie favori : ${lignee.modeDeVie}`;
+		const liPerso = document.createElement('li');
+		liPerso.textContent = `Personnalité majoritaire : ${lignee.personnalite}`;
+		const liNoms = document.createElement('li');
+		liNoms.textContent = `Exemples de noms ${lignee.exemplesNoms}`;
+
+		ul.appendChild(liEnv);
+		ul.appendChild(liVie);
+		ul.appendChild(liPerso);
+		ul.appendChild(liNoms);
+		longDesc.appendChild(ul);
+
+		const hr = document.createElement('hr');
+		hr.className = 'don-separateur';
+
+		const donSpan = document.createElement('span');
+		donSpan.className = 'don';
+		donSpan.textContent = `Don : ${dons[lignee.don]?.nom} (${dons[lignee.don]?.categorie})`;
+
+		desc.appendChild(shortDesc);
+		desc.appendChild(longDesc);
+		desc.appendChild(hr);
+		desc.appendChild(donSpan);
+		option.appendChild(desc);
+
+		option.appendChild(button);
+
+		lignéesList.appendChild(option);
+	});
+}
+
 function initBindings() {
 	bindViewModeActions();
 
@@ -727,6 +815,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	fillAmeliorationsEquipementsList();
 	fillAmeliorationsMorphologiesList();
 
+	initLignees();
 	updateViewModeUi();
 	initBindings();
 	initStateFromHash();

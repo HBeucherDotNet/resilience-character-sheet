@@ -289,28 +289,38 @@ section {
 	&.hiver {
 		background: colors.$color-hiver-lighter;
 		border-color: colors.$color-hiver-light;
+		order: 1;
 	}
 	&.printemps {
 		background: colors.$color-printemps-lighter;
 		border-color: colors.$color-printemps-light;
+		order: 2;
 	}
 	&.ete {
 		background: colors.$color-ete-lighter;
 		border-color: colors.$color-ete-light;
+		order: 3;
 	}
 	&.automne {
 		background: colors.$color-automne-lighter;
 		border-color: colors.$color-automne-light;
+		order: 4;
 	}
 	&.temps {
 		background: colors.$color-temps-lighter;
 		border-color: colors.$color-temps-light;
+		order: 5;
 	}
 	
 	.option-label {
 		display:flex;
 		align-items:center;
 		gap:0.5rem;
+		
+		label {
+			color: colors.$color-text-main;
+			font-weight: 600;
+		}
 	}
 	
 	&.selected {
@@ -344,15 +354,21 @@ section {
 		align-items: flex-start;
 		margin-bottom: 0.5rem;
 		
-		label {
-			color: colors.$color-text-label;
-		}
-		
 		.lignee-sexe {
 			font-size: 0.9rem;
 			color: colors.$color-text-muted;
 			font-weight: normal;
 		}
+	}
+}
+
+#armement-group,
+#cuirasse-group,
+#mains-group,
+#peau-group
+{
+	.temps {
+		order: -1;
 	}
 }
 
@@ -482,7 +498,7 @@ section {
 		grid-column: 5 / span 2;
 		align-items: center;
 	}
-
+	
 	input {
 		border-width: 1px;
 		border-style: none none solid none;

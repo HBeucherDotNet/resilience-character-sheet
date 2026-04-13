@@ -188,7 +188,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
   margin: 2rem;
   background: #e9ecf3;
 }
@@ -452,27 +452,36 @@ section > div:last-child {
 .option.hiver {
   background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
   border-color: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  order: 1;
 }
 .option.printemps {
   background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
   border-color: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  order: 2;
 }
 .option.ete {
   background: rgb(255, 249.9607329843, 216.5);
   border-color: rgb(255, 226.5968586387, 38);
+  order: 3;
 }
 .option.automne {
   background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
   border-color: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  order: 4;
 }
 .option.temps {
   background: rgb(242.25, 242.25, 242.25);
   border-color: #cccccc;
+  order: 5;
 }
 .option .option-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+.option .option-label label {
+  color: #444;
+  font-weight: 600;
 }
 .option.selected {
   z-index: 1;
@@ -504,13 +513,17 @@ section > div:last-child {
   align-items: flex-start;
   margin-bottom: 0.5rem;
 }
-.option.lignee label {
-  color: #222;
-}
 .option.lignee .lignee-sexe {
   font-size: 0.9rem;
   color: #555;
   font-weight: normal;
+}
+
+#armement-group .temps,
+#cuirasse-group .temps,
+#mains-group .temps,
+#peau-group .temps {
+  order: -1;
 }
 
 .flex-group {
@@ -579,7 +592,6 @@ section > div:last-child {
   padding: 1.6rem 1.8rem;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  font-family: "Georgia", serif;
 }
 #fiche-personnage.hiver .saison-border {
   border-color: #235a8a;
