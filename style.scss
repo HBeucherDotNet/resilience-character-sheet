@@ -11,7 +11,7 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: sans-serif;
 	margin: 2rem;
 	background: colors.$color-bg-page;
 }
@@ -424,7 +424,6 @@ section {
 	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
-	font-family: 'Georgia', serif;
 	
 	&.hiver {
 		.saison-border { border-color: colors.$color-hiver; }
