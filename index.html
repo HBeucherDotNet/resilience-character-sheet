@@ -1391,37 +1391,48 @@
 								<div class="sort-dialog-talent-select-row">
 									<label for="sort-talent-select">Talent utilisé</label>
 									<select id="sort-talent-select" class="sort-dialog-talent-select"></select>
+									<label>Effets possibles :</label>
 									<ul id="sort-talent-effets"></ul>
 								</div>
 								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Nombre de graines</span>
+									<span>Graines récoltées</span>
+									<span id="sort-graines-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
 									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="-1">-</button>
 									<input type="text" id="sort-graines" class="amelioration-score-input" value="0" inputmode="numeric">
 									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="1">+</button>
+									<span id="sort-graines-result">graines</span>
 								</div>
 								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Aire d'effet</span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-1">-</button>
+									<span>❄️ Aire d'effet</span>
+									<span id="sort-aire-effet-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-souffle">-</button>
 									<input type="text" id="sort-aire-effet" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="1">+</button>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="souffle">+</button>
+									<span id="sort-aire-effet-result">mètres de rayon</span>
 								</div>
 								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Portée</span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-1">-</button>
+									<span>🌱 Portée</span>
+									<span id="sort-portee-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-souffle">-</button>
 									<input type="text" id="sort-portee" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="1">+</button>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="souffle">+</button>
+									<span id="sort-portee-result">x 10 mètres</span>
 								</div>
 								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Puissance</span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-1">-</button>
+									<span>☀️ Puissance</span>
+									<span id="sort-puissance-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-souffle">-</button>
 									<input type="text" id="sort-puissance" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="1">+</button>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="souffle">+</button>
+									<span id="sort-puissance-result"></span>
 								</div>
 								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Durée</span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-1">-</button>
+									<span>🍁 Durée</span>
+									<span id="sort-duree-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-souffle">-</button>
 									<input type="text" id="sort-duree" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="1">+</button>
+									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="souffle">+</button>
+									<span id="sort-duree-result">heures ou tours</span>
 								</div>
 							</div>
 							<div class="sort-dialog-actions">
