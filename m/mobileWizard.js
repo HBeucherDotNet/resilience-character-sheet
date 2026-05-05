@@ -48,9 +48,6 @@ function refreshGroupDetail(groupElement) {
 	}
 
 	const selectedOption = findSelectedOption(groupElement);
-	options.forEach(option => {
-		option.classList.toggle('mobile-step-option-active', option === selectedOption);
-	});
 
 	detailPanel.replaceChildren(buildDetailContent(selectedOption));
 }
