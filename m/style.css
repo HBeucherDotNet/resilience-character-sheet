@@ -1,0 +1,193 @@
+/* Mobile-only overrides for /m/index.html */
+
+:root {
+	--mobile-page-padding: 0.75rem;
+	--mobile-card-radius: 12px;
+	--mobile-card-border: rgba(0, 0, 0, 0.14);
+	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+body {
+	margin: 0;
+	padding: var(--mobile-page-padding);
+	max-width: none;
+	min-width: 0;
+}
+
+#character-builder {
+	min-height: 100vh;
+	padding-bottom: 5.5rem;
+}
+
+#main-title {
+	display: none;
+}
+
+#main-title-mobile {
+	display: block;
+	margin-top: 0.25rem;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.page-actions {
+	display: none !important;
+}
+
+.mobile-step-nav {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 19;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.86));
+	backdrop-filter: blur(3px);
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-step-title {
+	text-align: center;
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
+.page-action-btn {
+	font-size: 0.88rem;
+	padding: 0.42rem 0.6rem;
+	border-radius: 999px;
+	text-decoration: none;
+}
+
+section {
+	margin-bottom: 0.85rem;
+	padding: 0.65rem;
+	border-radius: var(--mobile-card-radius);
+	border: 1px solid var(--mobile-card-border);
+	box-shadow: var(--mobile-shadow);
+}
+
+#character-builder > section {
+	display: none !important;
+}
+
+#character-builder > section.mobile-step-active {
+	display: block !important;
+	min-height: calc(100vh - 7.5rem);
+}
+
+.flex-group {
+	display: grid;
+	grid-template-columns: 108px minmax(0, 1fr);
+	gap: 0.45rem;
+	align-items: start;
+}
+
+.option {
+	grid-column: 1;
+	padding: 0.45rem;
+	border-radius: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.option .lire-plus,
+.option .desc,
+.option .don,
+.option .don-separateur {
+	display: none !important;
+}
+
+.option .option-label {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-weight: 600;
+	min-height: 1.9rem;
+	font-size: 0.92rem;
+}
+
+.option .option-label input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+}
+
+.option .option-label label {
+	cursor: pointer;
+	line-height: 1.2;
+	word-break: break-word;
+}
+
+.mobile-step-option-active {
+	border-color: rgba(33, 93, 153, 0.45);
+	box-shadow: 0 0 0 2px rgba(58, 122, 210, 0.18);
+}
+
+.mobile-step-detail {
+	grid-column: 2;
+	grid-row: 1 / span 20;
+	padding: 0.6rem;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 12px;
+	background: linear-gradient(180deg, #ffffff, #f6f8fb);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+	line-height: 1.35;
+	position: static;
+	min-height: 12rem;
+}
+
+.mobile-step-detail-heading {
+	margin: 0 0 0.45rem;
+	font-size: 0.98rem;
+}
+
+.mobile-step-detail .long {
+	display: inline;
+}
+
+.option .desc {
+	line-height: 1.35;
+}
+
+.personnage-layout {
+	display: grid;
+	gap: 0.7rem;
+}
+
+#fiche-personnage {
+	display: none !important;
+}
+
+#fiche-personnage textarea,
+#fiche-personnage input,
+#fiche-personnage select,
+#fiche-personnage button {
+	font-size: 16px;
+}
+
+.sort-dialog-content {
+	width: min(96vw, 640px);
+	max-height: 88vh;
+}
+
+#fiche-talents {
+	overflow-x: auto;
+}
+
+#fiche-talents table {
+	min-width: 640px;
+}
+
+.mobile-step-nav .page-action-btn {
+	width: auto;
+	white-space: nowrap;
+}
