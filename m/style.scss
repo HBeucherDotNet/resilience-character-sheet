@@ -109,15 +109,15 @@ section {
 	line-height: 1.35;
 	position: static;
 	min-height: 12rem;
+
+	.option-label{
+		margin: 0 0 0.45rem;
+		font-size: 0.98rem;
+	}
 	
 	.long {
-		display: inline;
+		display: inline !important;
 	}
-}
-
-.mobile-step-detail-heading {
-	margin: 0 0 0.45rem;
-	font-size: 0.98rem;
 }
 
 .personnage-layout {

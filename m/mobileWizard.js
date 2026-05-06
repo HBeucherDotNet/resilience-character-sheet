@@ -1,30 +1,14 @@
-function getOptionTitle(optionElement) {
-	const label = optionElement.querySelector('.option-label label');
-	return label ? label.textContent.trim() : 'Option';
-}
-
 function buildDetailContent(optionElement) {
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
 
-	const title = document.createElement('h3');
-	title.className = 'mobile-step-detail-heading';
-	title.textContent = getOptionTitle(optionElement);
-	detail.appendChild(title);
-
-	const desc = optionElement.querySelector('.desc');
-	if (desc) {
-		const clone = desc.cloneNode(true);
-		const longText = clone.querySelector('.long');
-		const shortText = clone.querySelector('.short');
-
-		if (longText) {
-			longText.style.display = 'inline';
-			if (shortText) shortText.style.display = 'none';
+	Array.from(optionElement.childNodes).forEach(node => {
+		const clone = node.cloneNode(true);
+		if (clone instanceof Element) {
+			clone.querySelectorAll('input').forEach(input => input.remove());
 		}
-
 		detail.appendChild(clone);
-	}
+	});
 
 	return detail;
 }
