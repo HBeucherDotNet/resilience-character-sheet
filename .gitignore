@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Local Sass cache (if used by tools)
+.sass-cache/
+
+# Optional source maps (keep out of repo if you use prod builds)
+*.map
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
