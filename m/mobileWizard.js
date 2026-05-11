@@ -2,8 +2,6 @@ function buildDetailContent(optionElement) {
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
 
-console.log(optionElement.childNodes);
-
 	Array.from(optionElement.childNodes).forEach(node => {
 		const clone = node.cloneNode(true);
 		if (clone instanceof Element) {
@@ -44,7 +42,7 @@ function setupGroup(groupElement) {
 	if (groupElement.querySelector('.mobile-step-detail')) return;
 
 	const detailPanel = document.createElement('aside');
-	detailPanel.className = 'mobile-step-detail';
+	detailPanel.className = 'mobile-step-detail step-text';
 	detailPanel.setAttribute('aria-live', 'polite');
 	groupElement.appendChild(detailPanel);
 
@@ -64,17 +62,6 @@ function setupGroup(groupElement) {
 		if (!(event.target instanceof HTMLInputElement)) return;
 		if (!event.target.closest('.option')) return;
 		renderDetail();
-	});
-
-	groupElement.addEventListener('click', event => {
-		const option = event.target instanceof Element ? event.target.closest('.option') : null;
-		if (!option) return;
-
-		const input = option.querySelector('input');
-		if (!input) return;
-
-		// The main builder script applies checkbox exclusivity rules; this just updates the panel promptly.
-		queueMicrotask(renderDetail);
 	});
 	observer.observe(groupElement, { childList: true, subtree: true });
 
@@ -120,10 +107,9 @@ function setupSteps() {
 
 	sections.forEach(section => {
 		section.classList.add('mobile-step');
-		const group = section.querySelector('.flex-group');
-		if (group) {
-			setupGroup(group.parentNode);
-		}
+		section.querySelectorAll('.flex-group').forEach(group => {
+			setupGroup(group);
+		});
 	});
 
 	const nav = document.getElementById('mobile-step-nav');
