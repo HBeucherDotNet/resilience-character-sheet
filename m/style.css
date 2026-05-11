@@ -90,6 +90,10 @@ section h2 {
   padding-bottom: 5.5rem;
 }
 
+#ameliorations-section {
+  display: none !important;
+}
+
 #main-title {
   display: none;
 }

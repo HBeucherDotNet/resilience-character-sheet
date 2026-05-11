@@ -73,6 +73,7 @@ function setupSteps() {
 	if (!builder) return;
 
 	const sections = Array.from(builder.querySelectorAll(':scope > section'));
+	const visibleSections = sections.filter(section => section.id !== 'ameliorations-section');
 	const morphologyGroupConfig = [
 		{ id: 'armement-group', label: 'Morphologies - Armement' },
 		{ id: 'cuirasse-group', label: 'Morphologies - Cuirasse' },
@@ -80,7 +81,7 @@ function setupSteps() {
 		{ id: 'peau-group', label: 'Morphologies - Peau' }
 	];
 
-	const steps = sections.flatMap(section => {
+	const steps = visibleSections.flatMap(section => {
 		const heading = section.querySelector('h2')?.textContent?.trim() || 'Etape';
 		const isMorphologySection = heading === 'Morphologies';
 
@@ -105,7 +106,7 @@ function setupSteps() {
 
 	if (steps.length === 0) return;
 
-	sections.forEach(section => {
+	visibleSections.forEach(section => {
 		section.classList.add('mobile-step');
 		section.querySelectorAll('.flex-group').forEach(group => {
 			setupGroup(group);
@@ -122,7 +123,7 @@ function setupSteps() {
 	let currentStepIndex = 0;
 
 	function setMorphologyGroupVisibility(activeStep) {
-		const morphologySection = sections.find(section => section.querySelector('h2')?.textContent?.trim() === 'Morphologies');
+		const morphologySection = visibleSections.find(section => section.querySelector('h2')?.textContent?.trim() === 'Morphologies');
 		if (!morphologySection) return;
 
 		const groups = morphologyGroupConfig
