@@ -39,33 +39,64 @@ function refreshGroupDetail(groupElement) {
 }
 
 function setupGroup(groupElement) {
-	if (groupElement.querySelector('.mobile-step-detail')) return;
+	let detailPanel = groupElement.querySelector('.mobile-step-detail');
+	if (!detailPanel) {
+		detailPanel = document.createElement('aside');
+		detailPanel.className = 'mobile-step-detail step-text';
+		detailPanel.setAttribute('aria-live', 'polite');
+		groupElement.appendChild(detailPanel);
+	}
 
-	const detailPanel = document.createElement('aside');
-	detailPanel.className = 'mobile-step-detail step-text';
-	detailPanel.setAttribute('aria-live', 'polite');
-	groupElement.appendChild(detailPanel);
+	let isActive = false;
+	let isObserving = false;
 
 	const observer = new MutationObserver(mutations => {
+		if (!isActive) return;
 		const hasExternalMutation = mutations.some(mutation => !mutation.target.closest('.mobile-step-detail'));
 		if (!hasExternalMutation) return;
 		renderDetail();
 	});
 
-	function renderDetail() {
-		observer.disconnect();
-		refreshGroupDetail(groupElement);
+	function startObserver() {
+		if (isObserving) return;
 		observer.observe(groupElement, { childList: true, subtree: true });
+		isObserving = true;
+	}
+
+	function stopObserver() {
+		if (!isObserving) return;
+		observer.disconnect();
+		isObserving = false;
+	}
+
+	function renderDetail() {
+		const shouldResume = isObserving;
+		if (shouldResume) stopObserver();
+		refreshGroupDetail(groupElement);
+		if (shouldResume) startObserver();
 	}
 
 	groupElement.addEventListener('change', event => {
+		if (!isActive) return;
 		if (!(event.target instanceof HTMLInputElement)) return;
 		if (!event.target.closest('.option')) return;
 		renderDetail();
 	});
-	observer.observe(groupElement, { childList: true, subtree: true });
 
-	renderDetail();
+	return {
+		setActive(nextActive) {
+			if (isActive === nextActive) return;
+			isActive = nextActive;
+
+			if (isActive) {
+				startObserver();
+				renderDetail();
+				return;
+			}
+
+			stopObserver();
+		}
+	};
 }
 
 function setupSteps() {
@@ -74,16 +105,20 @@ function setupSteps() {
 
 	const sections = Array.from(builder.querySelectorAll(':scope > section'));
 	const visibleSections = sections.filter(section => section.id !== 'ameliorations-section');
+	const morphologySection = builder.querySelector('#morphologies-section');
 	const morphologyGroupConfig = [
 		{ id: 'armement-group', label: 'Morphologies - Armement' },
 		{ id: 'cuirasse-group', label: 'Morphologies - Cuirasse' },
 		{ id: 'mains-group', label: 'Morphologies - Mains' },
 		{ id: 'peau-group', label: 'Morphologies - Peau' }
 	];
+	const morphologyGroups = morphologyGroupConfig
+		.map(config => morphologySection?.querySelector(`#${config.id}`))
+		.filter(Boolean);
 
 	const steps = visibleSections.flatMap(section => {
 		const heading = section.querySelector('h2')?.textContent?.trim() || 'Etape';
-		const isMorphologySection = heading === 'Morphologies';
+		const isMorphologySection = section === morphologySection;
 
 		if (!isMorphologySection) {
 			return [{ section, title: heading }];
@@ -105,11 +140,15 @@ function setupSteps() {
 	});
 
 	if (steps.length === 0) return;
+	const groupControllers = new Map();
 
 	visibleSections.forEach(section => {
 		section.classList.add('mobile-step');
 		section.querySelectorAll('.flex-group').forEach(group => {
-			setupGroup(group);
+			const controller = setupGroup(group);
+			if (controller) {
+				groupControllers.set(group, controller);
+			}
 		});
 	});
 
@@ -123,23 +162,34 @@ function setupSteps() {
 	let currentStepIndex = 0;
 
 	function setMorphologyGroupVisibility(activeStep) {
-		const morphologySection = visibleSections.find(section => section.querySelector('h2')?.textContent?.trim() === 'Morphologies');
 		if (!morphologySection) return;
 
-		const groups = morphologyGroupConfig
-			.map(config => morphologySection.querySelector(`#${config.id}`))
-			.filter(Boolean);
-
-		groups.forEach(group => {
+		morphologyGroups.forEach(group => {
 			const isActiveGroup = activeStep?.morphologyGroup === group;
 			group.style.setProperty('display', isActiveGroup ? 'flex' : 'none', 'important');
+		});
+	}
+
+	function syncActiveGroupObservers(activeStep) {
+		const activeGroups = new Set();
+
+		if (activeStep?.morphologyGroup) {
+			activeGroups.add(activeStep.morphologyGroup);
+		} else {
+			activeStep?.section?.querySelectorAll('.flex-group').forEach(group => {
+				activeGroups.add(group);
+			});
+		}
+
+		groupControllers.forEach((controller, group) => {
+			controller.setActive(activeGroups.has(group));
 		});
 	}
 
 	function renderStep() {
 		const activeStep = steps[currentStepIndex];
 
-		sections.forEach(section => {
+		visibleSections.forEach(section => {
 			section.classList.remove('mobile-step-active');
 		});
 
@@ -150,6 +200,7 @@ function setupSteps() {
 		});
 
 		setMorphologyGroupVisibility(activeStep);
+		syncActiveGroupObservers(activeStep);
 
 		title.textContent = activeStep?.title || 'Etape';
 		prevButton.disabled = currentStepIndex === 0;
