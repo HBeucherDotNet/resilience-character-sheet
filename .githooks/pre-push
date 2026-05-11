@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+echo "[pre-push] Running Sass production build..."
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "[pre-push] npm is not available in PATH."
+  echo "[pre-push] Push aborted. Install Node.js/npm first."
+  exit 1
+fi
+
+npm run --silent sass:build:prod
+
+CSS_STATUS=$(git status --porcelain -- ':(glob)**/*.css' ':(glob)**/*.css.map')
+
+if [ -n "$CSS_STATUS" ]; then
+  echo "[pre-push] Sass build changed CSS artifacts."
+  echo "[pre-push] Commit these files before pushing:"
+  git status --short -- ':(glob)**/*.css' ':(glob)**/*.css.map'
+  exit 1
+fi
+
+echo "[pre-push] OK"

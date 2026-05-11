@@ -3,15 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Résilience - Création de Voix</title>
-	<link rel="stylesheet" href="style.css">
-	<script type="module" src="script.js"></script>
+	<base href="../">
+	<title>Résilience - Création de Voix (Mobile)</title>
+	<link rel="stylesheet" href="./m/style.css">
+	<script type="module" src="./script.js"></script>
+	<script type="module" src="./m/mobileWizard.js"></script>
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
+	<header class="mobile-brand-banner" aria-label="Bandeau de marque">
+		<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
+		<span class="mobile-brand-title">Création de personnage</span>
+	</header>
 	<div class="page-actions" aria-label="Actions de partage">
+		<a href="./index.html" class="page-action-btn">Version desktop</a>
 		<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
 		<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+	</div>
+	<div id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
+		<button type="button" id="mobile-step-prev" class="page-action-btn page-action-btn-secondary">◄◄</button>
+		<span id="mobile-step-title" class="mobile-step-title"></span>
+		<button type="button" id="mobile-step-next" class="page-action-btn">►►</button>
 	</div>
 	<div id="character-builder">
 		<h1 id="main-title">Résilience - Création de Voix</h1>
@@ -21,14 +33,8 @@
 		
 		<section>
 			<h2>Saison</h2>
-			<div class="flex-group" id="saison-group">
+			<div class="flex-group three-columns-grid" id="saison-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="saison" value="hiver" id="saison-hiver">
 						<label for="saison-hiver">Hiver</label>
@@ -44,12 +50,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="saison" value="printemps" id="saison-printemps">
 						<label for="saison-printemps">Printemps</label>
@@ -65,12 +65,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="saison" value="ete" id="saison-ete">
 						<label for="saison-ete">Été</label>
@@ -86,12 +80,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="saison" value="automne" id="saison-automne">
 						<label for="saison-automne">Automne</label>
@@ -107,12 +95,6 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="saison" value="temps" id="saison-temps">
 						<label for="saison-temps">Temps</label>
@@ -136,12 +118,6 @@
 			<h2>Famille</h2>
 			<div class="flex-group" id="famille-group">
 				<div class="option ete" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline">
 						<label for="famille-squelette">Squelette</label>
@@ -154,12 +130,6 @@
 					</span>
 				</div>
 				<div class="option printemps" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose">
 						<label for="famille-cellulose">Cellulose</label>
@@ -172,12 +142,6 @@
 					</span>
 				</div>
 				<div class="option automne" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette">
 						<label for="famille-chitine">Chitine</label>
@@ -190,12 +154,6 @@
 					</span>
 				</div>
 				<div class="option hiver" style="position:relative;">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme">
 						<label for="famille-souple">Souple</label>
@@ -226,12 +184,12 @@
 		
 		<section>
 			<h2>Morphologies</h2>
-			<div>
+			<div class="step-text temps">
 				Les Morphologies sont les atouts physiques innés du personnage. Elles sont intégrées à son corps, à sa biologie, et peuvent s'abîmer avec le temps.<br/>
 				Elles sont de cinq types : Armement, Cuirasse, Mains et Peau, plus les Matières.
 			</div>
-			<div class="flex-group" id="armement-group">
-				<div class="option temps">
+			<div class="flex-group grid-with-header" id="armement-group">
+				<div class="step-text temps">
 					<span class="option-label">
 						<label for="saison-temps">Armement</label>
 					</span>
@@ -277,7 +235,7 @@
 				</div>
 			</div>
 			<div class="flex-group" id="cuirasse-group">
-				<div class="option temps">
+				<div class="step-text temps">
 					<span class="option-label">
 						<label for="saison-temps">Cuirasse</label>
 					</span>
@@ -323,7 +281,7 @@
 				</div>
 			</div>
 			<div class="flex-group" id="mains-group">
-				<div class="option temps">
+				<div class="step-text temps">
 					<span class="option-label">
 						<label for="saison-temps">Mains</label>
 					</span>
@@ -369,7 +327,7 @@
 				</div>
 			</div>
 			<div class="flex-group" id="peau-group">
-				<div class="option temps">
+				<div class="step-text temps">
 					<span class="option-label">
 						<label for="saison-temps">Peau</label>
 					</span>
@@ -420,15 +378,9 @@
 		
 		<section>
 			<h2>Environnement</h2>
-			<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
+			<div class="step-text">Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
 			<div class="flex-group" id="environnement-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres">
 						<label for="environnement-riviere-lacs-marais">Rivières, lacs et marais</label>
@@ -441,12 +393,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards">
 						<label for="environnement-iles-littoral">Îles et littoral</label>
@@ -459,12 +405,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque">
 						<label for="environnement-plaines-collines">Plaines et collines</label>
@@ -477,12 +417,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron">
 						<label for="environnement-montagnes-canyons">Montagnes et canyons</label>
@@ -495,22 +429,16 @@
 					</span>
 				</div>
 			</div>
-			<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
+			<div class="step-text more-info">Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
 		</section>
 		
 		<!-------------------- MODE DE VIE -------------------->
 		
 		<section>
 			<h2>Mode de vie</h2>
-			<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
+			<div class="step-text">Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
 			<div class="flex-group" id="mode-de-vie-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie">
 						<label for="mode-de-vie-alize">Alizé</label>
@@ -523,12 +451,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience">
 						<label for="mode-de-vie-troglodyte">Troglodyte</label>
@@ -541,12 +463,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer">
 						<label for="mode-de-vie-sedentaire">Sédentaire</label>
@@ -559,12 +475,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection">
 						<label for="mode-de-vie-nomade">Nomade</label>
@@ -583,15 +493,9 @@
 		
 		<section>
 			<h2>Philosophie</h2>
-			<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
+			<div class="step-text">Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
 			<div class="flex-group" id="philosophie-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe">
 						<label for="philosophie-inne">Inné</label>
@@ -604,12 +508,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape">
 						<label for="philosophie-appris">Appris</label>
@@ -622,12 +520,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure">
 						<label for="philosophie-chitine">Entraide</label>
@@ -640,12 +532,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier">
 						<label for="philosophie-construit">Construit</label>
@@ -663,15 +549,9 @@
 		
 		<section>
 			<h2>Relation à la Rupture</h2>
-			<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
+			<div class="step-text">Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
 			<div class="flex-group" id="relation-rupture-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee">
 						<label for="relation-rupture-dompter">Dompter</label>
@@ -684,12 +564,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance">
 						<label for="relation-rupture-etudier">Étudier</label>
@@ -702,12 +576,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte">
 						<label for="relation-rupture-purifier">Purifier</label>
@@ -720,12 +588,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue">
 						<label for="relation-rupture-composer">Composer</label>
@@ -744,22 +606,18 @@
 		
 		<section>
 			<h2>Rôle</h2>
-			<div>Le Rôle est la place du personnage dans le monde, son métier et sa façon de se rendre utile aux siens. Cela détermine ses Compétence : ce que le personnage sait faire, ce qu’il a appris par l’expérience et la pratique. Tous les noms de Rôle sont épicènes, pouvant désigner n’importe quel individu.<br/>
-				<br/>
+			<div class="step-text">
+				Le Rôle est la place du personnage dans le monde, son métier et sa façon de se rendre utile aux siens. Cela détermine ses Compétence : ce que le personnage sait faire, ce qu’il a appris par l’expérience et la pratique.
+			</div>
+			<div class="step-text more-info">
 				Le Rôle d’un personnage détermine sa Compétence de Rôle, associée à une Saison, qu’il reçoit automatiquement.<br/>
-				Il reçoit gratuitement une Compétence parmi les quatre proposées par son Rôle.
+				Il reçoit gratuitement une Compétence parmi les quatre autres compétences proposées par son Rôle.
 			</div>
 			<div class="flex-group" id="role-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="role" value="guide" id="role-guide" data-competence="guide">
-						<label for="role-guide">Guide</label> (nourrir et prévenir)
+						<label for="role-guide">Guide</label> <span class="role-tagline">(nourrir et prévenir)</span>
 					</span>
 					<span class="desc">
 						<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
@@ -774,15 +632,9 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" data-competence="sibylle">
-						<label for="role-sibylle">Sibylle</label> (connaître et purifier)
+						<label for="role-sibylle">Sibylle</label> <span class="role-tagline">(connaître et purifier)</span>
 					</span>
 					<span class="desc">
 						<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
@@ -797,15 +649,9 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="role" value="matrice" id="role-matrice" data-competence="matrice">
-						<label for="role-matrice">Matrice</label> (unir et échanger)
+						<label for="role-matrice">Matrice</label> <span class="role-tagline">(unir et échanger)</span>
 					</span>
 					<span class="desc">
 						<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
@@ -818,15 +664,9 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="role" value="artisan" id="role-artisan" data-competence="artisan">
-						<label for="role-artisan">Artisan</label> (construire et innover)
+						<label for="role-artisan">Artisan</label> <span class="role-tagline">(construire et innover)</span>
 					</span>
 					<span class="desc">
 						<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
@@ -847,12 +687,6 @@
 			<h2>Âge</h2>
 			<div class="flex-group" id="role-group">
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="age" value="jeune" id="age-jeune">
 						<label for="age-jeune">Jeune</label>
@@ -863,12 +697,6 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="age" value="adulte" id="age-adulte">
 						<label for="age-adulte">Adulte</label>
@@ -879,12 +707,6 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="age" value="mur" id="age-mur">
 						<label for="age-mur">Mûr</label>
@@ -895,12 +717,6 @@
 					</span>
 				</div>
 				<div class="option temps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#3a7ad2" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#3a7ad2">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="age" value="age" id="age-age">
 						<label for="age-age">Âgé</label>
@@ -917,17 +733,11 @@
 		
 		<section>
 			<h2>Personnalité</h2>
-			<div>Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
+			<div class="step-text">Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
 				Cette personnalité définit aussi ce qui est cher au personnage, et son point faible vis-à-vis de la corruption de la Rupture.
 			</div>
 			<div class="flex-group" id="role-group">
 				<div class="option hiver">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#235a8a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#235a8a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence">
 						<label for="personnalite-eminence">Éminence</label>
@@ -940,12 +750,6 @@
 					</span>
 				</div>
 				<div class="option printemps">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#2c7a4b" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2c7a4b">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix">
 						<label for="personnalite-portefaix">Portefaix</label>
@@ -959,12 +763,6 @@
 					</span>
 				</div>
 				<div class="option ete">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#bfa600" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#bfa600">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader">
 						<label for="personnalite-leader">Leader</label>
@@ -978,12 +776,6 @@
 					</span>
 				</div>
 				<div class="option automne">
-					<button type="button" class="lire-plus pictogram-btn" aria-label="Lire plus">
-						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="11" cy="11" r="10" stroke="#a13a3a" stroke-width="2" fill="#fff"/>
-							<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#a13a3a">?</text>
-						</svg>
-					</button>
 					<span class="option-label">
 						<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage">
 						<label for="personnalite-sage">Sage</label>

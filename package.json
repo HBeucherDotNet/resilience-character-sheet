@@ -1,0 +1,13 @@
+{
+  "name": "resilience-character-sheet",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "sass:watch": "sass --watch --style=expanded .:.",
+    "sass:build": "sass --style=expanded .:.",
+    "sass:build:prod": "sass --style=expanded --no-source-map .:."
+  },
+  "devDependencies": {
+    "sass": "^1.93.0"
+  }
+}
