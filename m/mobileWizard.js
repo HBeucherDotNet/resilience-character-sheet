@@ -6,6 +6,8 @@ function buildDetailContent(optionElement) {
 		const clone = node.cloneNode(true);
 		if (clone instanceof Element) {
 			clone.querySelectorAll('input').forEach(input => input.remove());
+			clone.querySelectorAll('button').forEach(button => button.remove());
+			if (clone.matches('button')) return;
 		}
 		detail.appendChild(clone);
 	});
@@ -81,12 +83,42 @@ function setupSteps() {
 	const builder = document.getElementById('character-builder');
 	if (!builder) return;
 
-	const steps = Array.from(builder.querySelectorAll(':scope > section'));
+	const sections = Array.from(builder.querySelectorAll(':scope > section'));
+	const morphologyGroupConfig = [
+		{ id: 'armement-group', label: 'Morphologies - Armement' },
+		{ id: 'cuirasse-group', label: 'Morphologies - Cuirasse' },
+		{ id: 'mains-group', label: 'Morphologies - Mains' },
+		{ id: 'peau-group', label: 'Morphologies - Peau' }
+	];
+
+	const steps = sections.flatMap(section => {
+		const heading = section.querySelector('h2')?.textContent?.trim() || 'Etape';
+		const isMorphologySection = heading === 'Morphologies';
+
+		if (!isMorphologySection) {
+			return [{ section, title: heading }];
+		}
+
+		const morphologySteps = morphologyGroupConfig
+			.map(config => {
+				const group = section.querySelector(`#${config.id}`);
+				if (!group) return null;
+				return {
+					section,
+					title: config.label,
+					morphologyGroup: group
+				};
+			})
+			.filter(Boolean);
+
+		return morphologySteps.length > 0 ? morphologySteps : [{ section, title: heading }];
+	});
+
 	if (steps.length === 0) return;
 
-	steps.forEach(step => {
-		step.classList.add('mobile-step');
-		const group = step.querySelector('.flex-group');
+	sections.forEach(section => {
+		section.classList.add('mobile-step');
+		const group = section.querySelector('.flex-group');
 		if (group) {
 			setupGroup(group);
 		}
@@ -101,15 +133,38 @@ function setupSteps() {
 
 	let currentStepIndex = 0;
 
+	function setMorphologyGroupVisibility(activeStep) {
+		const morphologySection = sections.find(section => section.querySelector('h2')?.textContent?.trim() === 'Morphologies');
+		if (!morphologySection) return;
+
+		const groups = morphologyGroupConfig
+			.map(config => morphologySection.querySelector(`#${config.id}`))
+			.filter(Boolean);
+
+		groups.forEach(group => {
+			const isActiveGroup = activeStep?.morphologyGroup === group;
+			group.style.setProperty('display', isActiveGroup ? 'grid' : 'none', 'important');
+		});
+	}
+
 	function renderStep() {
-		steps.forEach((step, index) => {
-			const isActive = index === currentStepIndex;
-			step.classList.toggle('mobile-step-active', isActive);
-			step.style.setProperty('display', isActive ? 'block' : 'none', 'important');
+		const activeStep = steps[currentStepIndex];
+
+		sections.forEach(section => {
+			section.style.setProperty('display', 'none', 'important');
+			section.classList.remove('mobile-step-active');
 		});
 
-		const heading = steps[currentStepIndex]?.querySelector('h2')?.textContent?.trim() || 'Etape';
-		title.textContent = heading;
+		steps.forEach((step, index) => {
+			const isActive = index === currentStepIndex;
+			if (!isActive) return;
+			step.section.classList.add('mobile-step-active');
+			step.section.style.setProperty('display', 'block', 'important');
+		});
+
+		setMorphologyGroupVisibility(activeStep);
+
+		title.textContent = activeStep?.title || 'Etape';
 		prevButton.disabled = currentStepIndex === 0;
 		nextButton.disabled = currentStepIndex === steps.length - 1;
 		window.scrollTo({ top: 0, behavior: 'smooth' });

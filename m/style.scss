@@ -468,6 +468,11 @@ h3 {
 			color: colors.$color-text-main;
 			font-weight: 600;
 		}
+
+		.lignee-sexe,
+		.role-tagline {
+			display: none;
+		}
 	}
 
 	.lire-plus,
@@ -1239,4 +1244,28 @@ h3 {
 			text-align: center;
 		}
 	}
+}
+
+/* Wizard MVP variant: options on two rows, detail panel below */
+.flex-group {
+	display: grid !important;
+	grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+	gap: 0.5rem !important;
+	align-items: start !important;
+}
+
+.flex-group .option {
+	grid-column: span 2;
+	order: 1;
+	flex: initial !important;
+	width: auto !important;
+	min-width: 0 !important;
+	margin: 0 !important;
+}
+
+.flex-group .mobile-step-detail {
+	order: 10;
+	grid-column: 1 / -1;
+	grid-row: 3;
+	margin-top: 0.15rem;
 }
