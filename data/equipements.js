@@ -94,28 +94,28 @@ export const equipements = {
 		nom: "Écharpe ❄️",
 		categorie: "vetement",
 		saison: "hiver",
-		summary: "Dons : Coquille, Écran, Électroréception, Mimétisme, Régénération et Terrier",
-		description: "Long ruban servant contre le soleil, la pluie ou le vent.<br/>Une Écharpe s’utilise quand les Dons Coquille, Écran, Électroréception, Mimétisme, Régénération ou Terrier seraient pertinents."
+		summary: "Dons : Amphibie, Écran, Électroréception, Hypnose, Mimétisme et Transe",
+		description: "Long ruban servant contre le soleil, la pluie ou le vent.<br/>Une Écharpe s’utilise quand les Dons Amphibie, Écran, Électroréception, Hypnose, Mimétisme, ou Transe seraient pertinents."
 	},
 	cape: {
 		nom: "Cape 🌱",
 		categorie: "vetement",
 		saison: "printemps",
-		summary: "Dons : Empathie, Grimper, Préhenseurs, Sonar, Symbiose et Transe",
-		description: "Imperméable, munie d’une capuche et pouvant couvrir tout le corps.<br/>Une Cape s’utilise quand les Dons Empathie, Grimper, Préhenseurs, Sonar, Symbiose et Transe seraient pertinents."
+		summary: "Dons : Empathie, Flair, Grimper, Régénération, Réserves et Symbiose",
+		description: "Imperméable, munie d’une capuche et pouvant couvrir tout le corps.<br/>Une Cape s’utilise quand les Dons Empathie, Flair, Grimper, Régénération, Réserves ou Symbiose seraient pertinents."
 	},
 	parure: {
 		nom: "Parure ☀️",
 		categorie: "vetement",
 		saison: "ete",
-		summary: "Dons : Adrénaline, Albinos, Amphibie, Réserves, Signaux et Thermoception",
-		description: "Coiffe, ornements et étoffes de couleurs vives.<br/>Une Parure s’utilise quand les Dons Adrénaline, Albinos, Amphibie, Réserves, Signaux et Thermoception seraient pertinents."
+		summary: "Dons : Adrénaline, Albinos, Bond, Charisme, Fabrique et Thermoception",
+		description: "Coiffe, ornements et étoffes de couleurs vives.<br/>Une Parure s’utilise quand les Dons Adrénaline, Albinos, Bond, Charisme, Fabrique ou Thermoception seraient pertinents."
 	},
 	tablier: {
 		nom: "Tablier 🍁",
 		categorie: "vetement",
 		saison: "automne",
-		summary: "Dons : Bond, Exosquelette, Hibernation, Présence, Pistage et Venin",
-		description: "Blouse ou cotte solide, facile à laver et garnie de poches.<br/>Un Tablier s’utilise quand les Dons Bond, Exosquelette, Hibernation, Présence, Pistage et Venin seraient pertinents."
+		summary: "Dons : Exosquelette, Hibernation, Messages, Sonar, Terrier et Venin",
+		description: "Blouse ou cotte solide, facile à laver et garnie de poches.<br/>Un Tablier s’utilise quand les Dons Exosquelette, Hibernation, Messages, Sonar, Terrier ou Venin seraient pertinents."
 	},
 };
