@@ -2,6 +2,8 @@ function buildDetailContent(optionElement) {
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
 
+console.log(optionElement.childNodes);
+
 	Array.from(optionElement.childNodes).forEach(node => {
 		const clone = node.cloneNode(true);
 		if (clone instanceof Element) {
@@ -120,7 +122,7 @@ function setupSteps() {
 		section.classList.add('mobile-step');
 		const group = section.querySelector('.flex-group');
 		if (group) {
-			setupGroup(group);
+			setupGroup(group.parentNode);
 		}
 	});
 
@@ -143,7 +145,7 @@ function setupSteps() {
 
 		groups.forEach(group => {
 			const isActiveGroup = activeStep?.morphologyGroup === group;
-			group.style.setProperty('display', isActiveGroup ? 'grid' : 'none', 'important');
+			group.style.setProperty('display', isActiveGroup ? 'flex' : 'none', 'important');
 		});
 	}
 
@@ -151,7 +153,6 @@ function setupSteps() {
 		const activeStep = steps[currentStepIndex];
 
 		sections.forEach(section => {
-			section.style.setProperty('display', 'none', 'important');
 			section.classList.remove('mobile-step-active');
 		});
 
@@ -159,7 +160,6 @@ function setupSteps() {
 			const isActive = index === currentStepIndex;
 			if (!isActive) return;
 			step.section.classList.add('mobile-step-active');
-			step.section.style.setProperty('display', 'block', 'important');
 		});
 
 		setMorphologyGroupVisibility(activeStep);

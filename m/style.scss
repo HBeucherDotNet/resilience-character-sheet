@@ -1,7 +1,5 @@
 @use "../colors";
 
-
-
 /* Mobile-only overrides for /m/index.html */
 
 :root {
@@ -9,6 +7,10 @@
 	--mobile-card-radius: 12px;
 	--mobile-card-border: rgba(0, 0, 0, 0.14);
 	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+html {
+	font-size: 14px;
 }
 
 body {
@@ -51,6 +53,16 @@ section {
 	display: none !important;
 }
 
+.mobile-step {
+	display: none;
+	gap: 0.5rem;
+	flex-direction: column;
+
+	&.mobile-step-active {
+		display: flex !important;
+	}
+}
+
 .mobile-step-nav {
 	position: fixed;
 	left: 0;
@@ -86,37 +98,63 @@ section {
 	text-decoration: none;
 }
 
-#character-builder > section.mobile-step-active {
-	display: block !important;
-	min-height: calc(100vh - 7.5rem);
+.flex-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: start;
+	
+	&.three-columns-grid {
+		.option {
+			flex: 1 1 20%;
+		}
+	}
+	
+	.option {
+		flex: 1 1 40%;
+	}
 }
 
-.flex-group {
-	display: grid;
-	grid-template-columns: 108px minmax(0, 1fr);
-	gap: 0.45rem;
-	align-items: start;
+#lignées-list {
+	width: 100%;
+}
+
+.step-text {
+	padding: 0.6rem;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 12px;
+	background: linear-gradient(180deg, #ffffff, #f6f8fb);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+	flex-basis: 100%;
+
+	&.more-info {
+		font-size: 0.8rem;
+		color: colors.$color-text-muted;
+		order: 99;
+	}
 }
 
 .mobile-step-detail {
-	grid-column: 2;
-	grid-row: 1 / span 20;
 	padding: 0.6rem;
 	border: 1px solid rgba(0, 0, 0, 0.12);
 	border-radius: 12px;
 	background: linear-gradient(180deg, #ffffff, #f6f8fb);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 	line-height: 1.35;
-	position: static;
-	min-height: 12rem;
-
-	.option-label{
+	
+	.option-label {
 		margin: 0 0 0.45rem;
 		font-size: 0.98rem;
 	}
 	
 	.long {
 		display: inline !important;
+	}
+	
+	.lignee-sexe {
+		margin-left: 5px;
+		font-size: 0.8rem;
+		color: colors.$color-text-muted;
 	}
 }
 
@@ -445,7 +483,7 @@ h3 {
 		display:flex;
 		align-items:center;
 		gap:0.5rem;
-
+		
 		justify-content: center;
 		font-weight: 600;
 		min-height: 2.6rem;
@@ -468,20 +506,20 @@ h3 {
 			color: colors.$color-text-main;
 			font-weight: 600;
 		}
-
+		
 		.lignee-sexe,
 		.role-tagline {
 			display: none;
 		}
 	}
-
+	
 	.lire-plus,
 	.desc,
 	.don,
 	.don-separateur {
 		display: none !important;
 	}
-
+	
 	.desc {
 		line-height: 1.35;
 	}
@@ -511,25 +549,6 @@ h3 {
 			background: linear-gradient(180deg, colors.$color-white, colors.$color-temps-light) !important;
 		}
 	}
-	
-	&.lignee {
-		flex: 1 1 22%;
-		min-width: 0;
-		box-sizing: border-box;
-		padding: 0.5rem;
-		border: 1px solid colors.$color-border-gray;
-		border-radius: 8px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		margin-bottom: 0.5rem;
-		
-		.lignee-sexe {
-			font-size: 0.9rem;
-			color: colors.$color-text-muted;
-			font-weight: normal;
-		}
-	}
 }
 
 #armement-group,
@@ -539,28 +558,6 @@ h3 {
 {
 	.temps {
 		order: -1;
-	}
-}
-
-.flex-group {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	gap: 0.5rem;
-	
-	.option {
-		flex: 1 1 20%;
-		min-width: 0;
-		box-sizing: border-box;
-		padding: 0.5rem;
-		border-radius: 8px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		
-		input[type="checkbox"] {
-			margin-bottom: 0.5rem;
-		}
 	}
 }
 
@@ -582,46 +579,10 @@ h3 {
 	z-index: 2;
 }
 
-.flex-group#lignées-list {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-}
-
 .don-separateur {
 	border: none;
 	border-top: 2px solid colors.$color-border-separator;
 	margin: 0.7rem 0 0.3rem 0;
-}
-
-/* Wizard MVP: keep this block at the end to override legacy layout rules above. */
-#character-builder > section {
-	display: none !important;
-}
-
-#character-builder > section.mobile-step-active {
-	display: block !important;
-}
-
-.flex-group {
-	display: grid !important;
-	grid-template-columns: 108px minmax(0, 1fr) !important;
-	gap: 0.45rem !important;
-	align-items: start !important;
-}
-
-.flex-group .option {
-	grid-column: 1;
-	flex: initial !important;
-	width: auto !important;
-	min-width: 0 !important;
-	margin: 0 !important;
-}
-
-.flex-group .mobile-step-detail {
-	grid-column: 2;
-	grid-row: 1 / span 20;
 }
 
 .don {
@@ -1246,26 +1207,7 @@ h3 {
 	}
 }
 
-/* Wizard MVP variant: options on two rows, detail panel below */
-.flex-group {
-	display: grid !important;
-	grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-	gap: 0.5rem !important;
-	align-items: start !important;
-}
 
-.flex-group .option {
-	grid-column: span 2;
-	order: 1;
-	flex: initial !important;
-	width: auto !important;
-	min-width: 0 !important;
-	margin: 0 !important;
-}
 
-.flex-group .mobile-step-detail {
-	order: 10;
-	grid-column: 1 / -1;
-	grid-row: 3;
-	margin-top: 0.15rem;
-}
+
+

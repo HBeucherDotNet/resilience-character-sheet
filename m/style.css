@@ -7,6 +7,10 @@
   --mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   margin: 0;
   padding: var(--mobile-page-padding);
@@ -46,6 +50,15 @@ section h2 {
   display: none !important;
 }
 
+.mobile-step {
+  display: none;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+.mobile-step.mobile-step-active {
+  display: flex !important;
+}
+
 .mobile-step-nav {
   position: fixed;
   left: 0;
@@ -80,29 +93,44 @@ section h2 {
   text-decoration: none;
 }
 
-#character-builder > section.mobile-step-active {
-  display: block !important;
-  min-height: calc(100vh - 7.5rem);
+.flex-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: start;
+}
+.flex-group.three-columns-grid .option {
+  flex: 1 1 20%;
+}
+.flex-group .option {
+  flex: 1 1 40%;
 }
 
-.flex-group {
-  display: grid;
-  grid-template-columns: 108px minmax(0, 1fr);
-  gap: 0.45rem;
-  align-items: start;
+#lignées-list {
+  width: 100%;
+}
+
+.step-text {
+  padding: 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #f6f8fb);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  flex-basis: 100%;
+}
+.step-text.more-info {
+  font-size: 0.8rem;
+  color: #555;
+  order: 99;
 }
 
 .mobile-step-detail {
-  grid-column: 2;
-  grid-row: 1/span 20;
   padding: 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 12px;
   background: linear-gradient(180deg, #ffffff, #f6f8fb);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
   line-height: 1.35;
-  position: static;
-  min-height: 12rem;
 }
 .mobile-step-detail .option-label {
   margin: 0 0 0.45rem;
@@ -110,6 +138,11 @@ section h2 {
 }
 .mobile-step-detail .long {
   display: inline !important;
+}
+.mobile-step-detail .lignee-sexe {
+  margin-left: 5px;
+  font-size: 0.8rem;
+  color: #555;
 }
 
 .personnage-layout {
@@ -466,49 +499,12 @@ h3 {
   border-color: #999 !important;
   background: linear-gradient(180deg, #fff, #cccccc) !important;
 }
-.option.lignee {
-  flex: 1 1 22%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-.option.lignee .lignee-sexe {
-  font-size: 0.9rem;
-  color: #555;
-  font-weight: normal;
-}
 
 #armement-group .temps,
 #cuirasse-group .temps,
 #mains-group .temps,
 #peau-group .temps {
   order: -1;
-}
-
-.flex-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-.flex-group .option {
-  flex: 1 1 20%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5rem;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.flex-group .option input[type=checkbox] {
-  margin-bottom: 0.5rem;
 }
 
 .desc {
@@ -529,46 +525,10 @@ h3 {
   z-index: 2;
 }
 
-.flex-group#lignées-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
 .don-separateur {
   border: none;
   border-top: 2px solid #bbb;
   margin: 0.7rem 0 0.3rem 0;
-}
-
-/* Wizard MVP: keep this block at the end to override legacy layout rules above. */
-#character-builder > section {
-  display: none !important;
-}
-
-#character-builder > section.mobile-step-active {
-  display: block !important;
-}
-
-.flex-group {
-  display: grid !important;
-  grid-template-columns: 108px minmax(0, 1fr) !important;
-  gap: 0.45rem !important;
-  align-items: start !important;
-}
-
-.flex-group .option {
-  grid-column: 1;
-  flex: initial !important;
-  width: auto !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-}
-
-.flex-group .mobile-step-detail {
-  grid-column: 2;
-  grid-row: 1/span 20;
 }
 
 .don {
@@ -1198,30 +1158,6 @@ h3 {
   flex-basis: 16%;
   flex-shrink: 0;
   text-align: center;
-}
-
-/* Wizard MVP variant: options on two rows, detail panel below */
-.flex-group {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  gap: 0.5rem !important;
-  align-items: start !important;
-}
-
-.flex-group .option {
-  grid-column: span 2;
-  order: 1;
-  flex: initial !important;
-  width: auto !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-}
-
-.flex-group .mobile-step-detail {
-  order: 10;
-  grid-column: 1/-1;
-  grid-row: 3;
-  margin-top: 0.15rem;
 }
 
 /*# sourceMappingURL=style.css.map */
