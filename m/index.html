@@ -12,22 +12,31 @@
 </head>
 <body>
 	<header class="mobile-brand-banner" aria-label="Bandeau de marque">
-		<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
-		<span class="mobile-brand-title">Création de personnage</span>
+		<div class="mobile-brand-main">
+			<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
+			<span class="mobile-brand-title">Création de personnage</span>
+		</div>
+		<details class="mobile-header-menu">
+			<summary class="mobile-header-menu-toggle" aria-label="Ouvrir le menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</summary>
+			<div class="page-actions" aria-label="Actions de partage">
+				<button type="button" id="return-to-form-btn" class="page-action-btn page-action-btn-secondary" hidden>Revenir au formulaire</button>
+				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
+				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+			</div>
+		</details>
 	</header>
-	<div class="page-actions" aria-label="Actions de partage">
-		<a href="./index.html" class="page-action-btn">Version desktop</a>
-		<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
-		<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
-	</div>
-	<div id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
+	<nav id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
 		<button type="button" id="mobile-step-prev" class="page-action-btn page-action-btn-secondary">◄◄</button>
 		<span id="mobile-step-title" class="mobile-step-title"></span>
 		<button type="button" id="mobile-step-next" class="page-action-btn">►►</button>
-	</div>
+	</nav>
+	
 	<div id="character-builder">
 		<h1 id="main-title">Résilience - Création de Voix</h1>
-		<h1 id="main-title-mobile">Résilience - Attributs</h1>
 		
 		<!-------------------- SAISONS -------------------->
 		
@@ -875,12 +884,9 @@
 	</div>
 	
 	<div id="fiche-personnage">
-		<div class="fiche-header logo-name-saison">
-			<div class="logo-nom">
-				<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
-				<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Nom du personnage"></div>
-				<div class="fiche-quatuor">Quatuor : <input type="text" id="fiche-quatuor-input" placeholder="Nom du Quatuor"></div>
-			</div>
+		<div class="fiche-header-flex logo-name-saison">
+			<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Nom du personnage"></div>
+			<div class="fiche-quatuor">Quatuor : <input type="text" id="fiche-quatuor-input" placeholder="Nom du Quatuor"></div>
 			<div class="fiche-valeurs saison-border header-saison">
 				<span id="fiche-saison"></span>
 			</div>
@@ -911,370 +917,368 @@
 				<div>Rupture : <input type="text" id="fiche-rupture" class="resonnance-point"></td></div>
 			</div>
 		</div>
-		<div class="fiche-grid">
-			<div class="fiche-saisons">
-				<div class="saisons-center saison-temps">
-					<div class="saison-title">Souffle <span class="saison-icon">⏳</span></div>
-					<div class="saison-cercle saison-central">
-						<span id="fiche-souffle"></span>
+		<div class="fiche-saisons">
+			<div class="saison-block saison-hiver saison-left">
+				<div class="saison-icon">❄️</div>
+				<div class="saison-info">
+					<div class="saison-title">Hiver</div>
+					<div class="saison-desc">
+						Coordonner, Instinct, Mimer<br>
+						Modifier, Mouvement, Profiter
 					</div>
 				</div>
-				<div class="saison-block saison-hiver saison-left">
-					<div class="saison-cercle saison-icon">❄️</div>
-					<div class="saison-info">
-						<div class="saison-title">Hiver</div>
-						<div class="saison-desc">
-							Coordonner, Instinct, Mimer<br>
-							Modifier, Mouvement, Profiter
-						</div>
+				<div class="saison-cercle saison-score"><span id="fiche-hiver"></span></div>
+			</div>
+			<div class="saison-block saison-printemps saison-right">
+				<div class="saison-cercle saison-score"><span id="fiche-printemps"></span></div>
+				<div class="saison-info">
+					<div class="saison-title">Printemps</div>
+					<div class="saison-desc">
+						Apaiser, Éviter, Fausser <br>
+						Cacher, Trouver, Vérité
 					</div>
-					<div class="saison-cercle saison-score"><span id="fiche-hiver"></span></div>
 				</div>
-				<div class="saison-block saison-printemps saison-right">
-					<div class="saison-cercle saison-score"><span id="fiche-printemps"></span></div>
-					<div class="saison-info">
-						<div class="saison-title">Printemps</div>
-						<div class="saison-desc">
-							Apaiser, Éviter, Fausser <br>
-							Cacher, Trouver, Vérité
-						</div>
+				<div class="saison-icon">🌱</div>
+			</div>
+			<div class="saison-block saison-automne saison-left">
+				<div class="saison-icon">🍁</div>
+				<div class="saison-info">
+					<div class="saison-title">Automne</div>
+					<div class="saison-desc">
+						Acquérir, Concevoir, Détruire<br>
+						Logique, Protéger, Réparer
 					</div>
-					<div class="saison-cercle saison-icon">🌱</div>
 				</div>
-				<div class="saison-block saison-automne saison-left">
-					<div class="saison-cercle saison-icon">🍁</div>
-					<div class="saison-info">
-						<div class="saison-title">Automne</div>
-						<div class="saison-desc">
-							Acquérir, Concevoir, Détruire<br>
-							Logique, Protéger, Réparer
-						</div>
+				<div class="saison-cercle saison-score"><span id="fiche-automne"></span></div>
+			</div>
+			<div class="saison-block saison-ete saison-right">
+				<div class="saison-cercle saison-score"><span id="fiche-ete"></span></div>
+				<div class="saison-info">
+					<div class="saison-title">Été</div>
+					<div class="saison-desc">
+						Beau, Inspirer, Interagir<br>
+						Rassembler, Sacrifier, Vitesse
 					</div>
-					<div class="saison-cercle saison-score"><span id="fiche-automne"></span></div>
 				</div>
-				<div class="saison-block saison-ete saison-right">
-					<div class="saison-cercle saison-score"><span id="fiche-ete"></span></div>
-					<div class="saison-info">
-						<div class="saison-title">Été</div>
-						<div class="saison-desc">
-							Beau, Inspirer, Interagir<br>
-							Rassembler, Sacrifier, Vitesse
-						</div>
-					</div>
-					<div class="saison-cercle saison-icon">☀️</div>
+				<div class="saison-icon">☀️</div>
+			</div>
+			<div class="saisons-center saison-temps">
+				<div class="saison-title">Souffle <span class="saison-icon">⏳</span></div>
+				<div class="saison-cercle saison-central">
+					<span id="fiche-souffle"></span>
 				</div>
 			</div>
-			<div class="fiche-tableaux">
-				<h2>Résonances</h2>
-				<div class="fiche-resonances">
-					<table>
-						<thead>
-							<tr><th>Nom</th><th>Points</th><th>Niveau</th><th>Nature</th></tr>
-						</thead>
-						<tbody>
-							<tr><td><input type="text" id="resonance-1"></td><td><input type="text" id="resonance-pt-1" class="resonnance-point"></td><td><input type="text" id="resonance-niv-1" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-1"></td></tr>
-							<tr><td><input type="text" id="resonance-2"></td><td><input type="text" id="resonance-pt-2" class="resonnance-point"></td><td><input type="text" id="resonance-niv-2" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-2"></td></tr>
-							<tr><td><input type="text" id="resonance-3"></td><td><input type="text" id="resonance-pt-3" class="resonnance-point"></td><td><input type="text" id="resonance-niv-3" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-3"></td></tr>
-							<tr><td><input type="text" id="resonance-4"></td><td><input type="text" id="resonance-pt-4" class="resonnance-point"></td><td><input type="text" id="resonance-niv-4" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-4"></td></tr>
-							<tr><td><input type="text" id="resonance-5"></td><td><input type="text" id="resonance-pt-5" class="resonnance-point"></td><td><input type="text" id="resonance-niv-5" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-5"></td></tr>
-							<tr><td><input type="text" id="resonance-6"></td><td><input type="text" id="resonance-pt-6" class="resonnance-point"></td><td><input type="text" id="resonance-niv-6" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-6"></td></tr>
-						</tbody>
-					</table>
+		</div>
+		<div class="fiche-tableaux">
+			<h2>Résonances</h2>
+			<div class="fiche-resonances">
+				<table>
+					<thead>
+						<tr><th>Nom</th><th>Points</th><th>Niveau</th><th>Nature</th></tr>
+					</thead>
+					<tbody>
+						<tr><td><input type="text" id="resonance-1"></td><td><input type="text" id="resonance-pt-1" class="resonnance-point"></td><td><input type="text" id="resonance-niv-1" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-1"></td></tr>
+						<tr><td><input type="text" id="resonance-2"></td><td><input type="text" id="resonance-pt-2" class="resonnance-point"></td><td><input type="text" id="resonance-niv-2" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-2"></td></tr>
+						<tr><td><input type="text" id="resonance-3"></td><td><input type="text" id="resonance-pt-3" class="resonnance-point"></td><td><input type="text" id="resonance-niv-3" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-3"></td></tr>
+						<tr><td><input type="text" id="resonance-4"></td><td><input type="text" id="resonance-pt-4" class="resonnance-point"></td><td><input type="text" id="resonance-niv-4" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-4"></td></tr>
+						<tr><td><input type="text" id="resonance-5"></td><td><input type="text" id="resonance-pt-5" class="resonnance-point"></td><td><input type="text" id="resonance-niv-5" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-5"></td></tr>
+						<tr><td><input type="text" id="resonance-6"></td><td><input type="text" id="resonance-pt-6" class="resonnance-point"></td><td><input type="text" id="resonance-niv-6" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-6"></td></tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="fiche-magie" class="saison-border saison-background">
+				<h5>Magie</h5>
+				<div class="fiche-magie-actions">
+					<button type="button" id="open-sort-dialog-btn" class="page-action-btn">Outil de lancement</button>
 				</div>
-				<div id="fiche-magie" class="saison-border saison-background">
-					<h5>Magie</h5>
-					<div class="fiche-magie-actions">
-						<button type="button" id="open-sort-dialog-btn" class="page-action-btn">Outil de lancement</button>
-					</div>
-					<label>Talisman :</label>
-					<textarea id="fiche-talisman" rows="2" cols="30"></textarea>
-					<label>Liturgie :</label>
-					<textarea id="fiche-liturgie" rows="2" cols="30"></textarea>
-					<label>Talents :</label>
-					<table id="fiche-magie-hiver" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="eau">Eau</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="chair">Chair</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="vie">Vie</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="reve">Rêve</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="vide">Vide</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-printemps" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="air">Air</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="sens">Sens</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="savoir">Savoir</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="illusion">Illusion</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="rythme">Rythme</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-ete" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="feu">Feu</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="alchimie">Alchimie</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="passion">Passion</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="esprit">Esprit</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="lumiere">Lumière</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-automne" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="terre">Terre</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="force">Force</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="technique">Technique</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="creation">Création</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="gravite">Gravité</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-temps" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="temps-présent">Présent</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="passe">Passé</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="futur">Futur</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="cycle">Cycle</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="eternite">Éternité</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<dialog id="sort-dialog" class="sort-dialog" aria-labelledby="sort-dialog-title">
-						<form method="dialog" class="sort-dialog-form">
-							<div class="sort-dialog-header">
-								<div>
-									<h6 id="sort-dialog-title">Lancement de sort</h6>
-									<p>Renseignez les paramètres du sort.</p>
-								</div>
-								<button type="submit" class="sort-dialog-close-btn" value="close" aria-label="Fermer la modale">×</button>
+				<label>Talisman :</label>
+				<textarea id="fiche-talisman" rows="2" cols="30"></textarea>
+				<label>Liturgie :</label>
+				<textarea id="fiche-liturgie" rows="2" cols="30"></textarea>
+				<label>Talents :</label>
+				<table id="fiche-magie-hiver" class="tableau-magie-talents">
+					<tbody>
+						<tr>
+							<td><label><input type="checkbox" id="eau">Eau</label></td>
+							<td><label><input type="checkbox" class="talent" id="eau-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="eau-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="eau-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="eau-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="chair">Chair</label></td>
+							<td><label><input type="checkbox" class="talent" id="chair-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="chair-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="chair-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="chair-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="vie">Vie</label></td>
+							<td><label><input type="checkbox" class="talent" id="vie-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="vie-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="vie-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="vie-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="reve">Rêve</label></td>
+							<td><label><input type="checkbox" class="talent" id="reve-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="reve-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="reve-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="reve-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="vide">Vide</label></td>
+							<td><label><input type="checkbox" class="talent" id="vide-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="vide-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="vide-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="vide-modeler">Modeler</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="fiche-magie-printemps" class="tableau-magie-talents">
+					<tbody>
+						<tr>
+							<td><label><input type="checkbox" id="air">Air</label></td>
+							<td><label><input type="checkbox" class="talent" id="air-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="air-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="air-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="air-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="sens">Sens</label></td>
+							<td><label><input type="checkbox" class="talent" id="sens-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="sens-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="sens-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="sens-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="savoir">Savoir</label></td>
+							<td><label><input type="checkbox" class="talent" id="savoir-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="savoir-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="savoir-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="savoir-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="illusion">Illusion</label></td>
+							<td><label><input type="checkbox" class="talent" id="illusion-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="illusion-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="illusion-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="illusion-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="rythme">Rythme</label></td>
+							<td><label><input type="checkbox" class="talent" id="rythme-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="rythme-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="rythme-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="rythme-modeler">Modeler</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="fiche-magie-ete" class="tableau-magie-talents">
+					<tbody>
+						<tr>
+							<td><label><input type="checkbox" id="feu">Feu</label></td>
+							<td><label><input type="checkbox" class="talent" id="feu-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="feu-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="feu-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="feu-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="alchimie">Alchimie</label></td>
+							<td><label><input type="checkbox" class="talent" id="alchimie-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="alchimie-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="alchimie-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="alchimie-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="passion">Passion</label></td>
+							<td><label><input type="checkbox" class="talent" id="passion-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="passion-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="passion-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="passion-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="esprit">Esprit</label></td>
+							<td><label><input type="checkbox" class="talent" id="esprit-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="esprit-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="esprit-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="esprit-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="lumiere">Lumière</label></td>
+							<td><label><input type="checkbox" class="talent" id="lumiere-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="lumiere-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="lumiere-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="lumiere-modeler">Modeler</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="fiche-magie-automne" class="tableau-magie-talents">
+					<tbody>
+						<tr>
+							<td><label><input type="checkbox" id="terre">Terre</label></td>
+							<td><label><input type="checkbox" class="talent" id="terre-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="terre-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="terre-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="terre-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="force">Force</label></td>
+							<td><label><input type="checkbox" class="talent" id="force-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="force-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="force-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="force-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="technique">Technique</label></td>
+							<td><label><input type="checkbox" class="talent" id="technique-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="technique-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="technique-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="technique-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="creation">Création</label></td>
+							<td><label><input type="checkbox" class="talent" id="creation-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="creation-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="creation-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="creation-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="gravite">Gravité</label></td>
+							<td><label><input type="checkbox" class="talent" id="gravite-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="gravite-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="gravite-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="gravite-modeler">Modeler</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="fiche-magie-temps" class="tableau-magie-talents">
+					<tbody>
+						<tr>
+							<td><label><input type="checkbox" id="temps-présent">Présent</label></td>
+							<td><label><input type="checkbox" class="talent" id="temps-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="temps-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="temps-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="temps-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="passe">Passé</label></td>
+							<td><label><input type="checkbox" class="talent" id="passe-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="passe-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="passe-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="passe-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="futur">Futur</label></td>
+							<td><label><input type="checkbox" class="talent" id="futur-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="futur-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="futur-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="futur-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="cycle">Cycle</label></td>
+							<td><label><input type="checkbox" class="talent" id="cycle-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="cycle-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="cycle-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="cycle-modeler">Modeler</label></td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox" id="eternite">Éternité</label></td>
+							<td><label><input type="checkbox" class="talent" id="eternite-connaitre">Connaître</label></td>
+							<td><label><input type="checkbox" class="talent" id="eternite-alterer">Altérer</label></td>
+							<td><label><input type="checkbox" class="talent" id="eternite-invoquer">Invoquer</label></td>
+							<td><label><input type="checkbox" class="talent" id="eternite-modeler">Modeler</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<dialog id="sort-dialog" class="sort-dialog" aria-labelledby="sort-dialog-title">
+					<form method="dialog" class="sort-dialog-form">
+						<div class="sort-dialog-header">
+							<div>
+								<h6 id="sort-dialog-title">Lancement de sort</h6>
+								<p>Renseignez les paramètres du sort.</p>
 							</div>
-							<div class="sort-dialog-fields">
-								<div class="sort-dialog-talent-select-row">
-									<label for="sort-talent-select">Talent utilisé</label>
-									<select id="sort-talent-select" class="sort-dialog-talent-select"></select>
-									<label>Effets possibles :</label>
-									<ul id="sort-talent-effets"></ul>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Graines récoltées</span>
-									<span id="sort-graines-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="-1">-</button>
-									<input type="text" id="sort-graines" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="1">+</button>
-									<span id="sort-graines-result">graines</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>❄️ Aire d'effet</span>
-									<span id="sort-aire-effet-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-aire-effet" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="souffle">+</button>
-									<span id="sort-aire-effet-result">mètres de rayon</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>🌱 Portée</span>
-									<span id="sort-portee-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-portee" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="souffle">+</button>
-									<span id="sort-portee-result">x 10 mètres</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>☀️ Puissance</span>
-									<span id="sort-puissance-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-puissance" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="souffle">+</button>
-									<span id="sort-puissance-result"></span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>🍁 Durée</span>
-									<span id="sort-duree-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-duree" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="souffle">+</button>
-									<span id="sort-duree-result">heures ou tours</span>
-								</div>
+							<button type="submit" class="sort-dialog-close-btn" value="close" aria-label="Fermer la modale">×</button>
+						</div>
+						<div class="sort-dialog-fields">
+							<div class="sort-dialog-talent-select-row">
+								<label for="sort-talent-select">Talent utilisé</label>
+								<select id="sort-talent-select" class="sort-dialog-talent-select"></select>
+								<label>Effets possibles :</label>
+								<ul id="sort-talent-effets"></ul>
 							</div>
-							<div class="sort-dialog-actions">
-								<button type="reset" class="page-action-btn page-action-btn-secondary">Réinitialiser</button>
-								<button type="submit" class="page-action-btn" value="close">Fermer</button>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>Graines récoltées</span>
+								<span id="sort-graines-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="-1">-</button>
+								<input type="text" id="sort-graines" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="1">+</button>
+								<span id="sort-graines-result">graines</span>
 							</div>
-						</form>
-					</dialog>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>❄️ Aire d'effet</span>
+								<span id="sort-aire-effet-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-aire-effet" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="souffle">+</button>
+								<span id="sort-aire-effet-result">mètres de rayon</span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>🌱 Portée</span>
+								<span id="sort-portee-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-portee" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="souffle">+</button>
+								<span id="sort-portee-result">x 10 mètres</span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>☀️ Puissance</span>
+								<span id="sort-puissance-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-puissance" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="souffle">+</button>
+								<span id="sort-puissance-result"></span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>🍁 Durée</span>
+								<span id="sort-duree-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-duree" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="souffle">+</button>
+								<span id="sort-duree-result">heures ou tours</span>
+							</div>
+						</div>
+						<div class="sort-dialog-actions">
+							<button type="reset" class="page-action-btn page-action-btn-secondary">Réinitialiser</button>
+							<button type="submit" class="page-action-btn" value="close">Fermer</button>
+						</div>
+					</form>
+				</dialog>
+			</div>
+		</div>
+		<div class="fiche-blocs">
+			<div class="fiche-bloc saison-hiver">
+				<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
+				<div id="fiche-morphologies">
+					<!-- Généré dynamiquement depuis data/morphologies.js -->
 				</div>
 			</div>
-			<div class="fiche-blocs">
-				<div class="fiche-bloc saison-hiver">
-					<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
-					<div id="fiche-morphologies">
-						<!-- Généré dynamiquement depuis data/morphologies.js -->
-					</div>
+			<div class="fiche-bloc saison-printemps">
+				<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
+				<div id="fiche-competences">
+					<!-- Généré dynamiquement depuis data/competences.js -->
 				</div>
-				<div class="fiche-bloc saison-printemps">
-					<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
-					<div id="fiche-competences">
-						<!-- Généré dynamiquement depuis data/competences.js -->
-					</div>
+			</div>
+			<div class="fiche-bloc saison-automne">
+				<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
+				<div id="fiche-equipements">
+					<!-- Généré dynamiquement depuis data/equipements.js -->
 				</div>
-				<div class="fiche-bloc saison-automne">
-					<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
-					<div id="fiche-equipements">
-						<!-- Généré dynamiquement depuis data/equipements.js -->
-					</div>
-				</div>
-				<div class="fiche-bloc saison-ete">
-					<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>
-					<div id="fiche-dons">
-						<!-- Généré dynamiquement depuis data/dons.js -->
-					</div>
+			</div>
+			<div class="fiche-bloc saison-ete">
+				<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>
+				<div id="fiche-dons">
+					<!-- Généré dynamiquement depuis data/dons.js -->
 				</div>
 			</div>
 		</div>

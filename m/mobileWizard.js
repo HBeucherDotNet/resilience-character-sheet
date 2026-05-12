@@ -1,5 +1,3 @@
-import { updateViewModeUi } from '../viewMode.js';
-
 function buildDetailContent(optionElement) {
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
@@ -159,28 +157,61 @@ function setupSteps() {
 	const prevButton = document.getElementById('mobile-step-prev');
 	const nextButton = document.getElementById('mobile-step-next');
 	const title = document.getElementById('mobile-step-title');
+	const headerMenu = document.querySelector('.mobile-header-menu');
+	const returnToFormButton = document.getElementById('return-to-form-btn');
+	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
+	const shareViewLinkButton = document.getElementById('share-view-link-btn');
 
 	if (!nav || !prevButton || !nextButton || !title) return;
 
 	let currentStepIndex = 0;
 	const defaultNextLabel = nextButton.textContent || '►►';
 
+	function closeHeaderMenu() {
+		if (!(headerMenu instanceof HTMLDetailsElement)) return;
+		headerMenu.open = false;
+	}
+
+	function isSheetModeEnabled() {
+		return document.body.classList.contains('mobile-sheet-mode');
+	}
+
+	function syncSheetModeUi() {
+		const isSheetMode = isSheetModeEnabled();
+		document.body.classList.toggle('mobile-sheet-mode', isSheetMode);
+
+		if (returnToFormButton) {
+			returnToFormButton.hidden = !isSheetMode;
+			returnToFormButton.setAttribute('aria-pressed', String(isSheetMode));
+		}
+
+		if (shareViewLinkButton) {
+			shareViewLinkButton.hidden = isSheetMode;
+		}
+	}
+
+	function exitCharacterSheetView() {
+		if (!isSheetModeEnabled()) return;
+		document.body.classList.remove('mobile-sheet-mode');
+		syncSheetModeUi();
+		closeHeaderMenu();
+		renderStep();
+	}
+
 	function isPersonalityStep(step) {
 		return step?.section === personalitySection;
 	}
 
 	function openCharacterSheetView() {
-		if (document.body.classList.contains('view-mode')) return;
+		if (isSheetModeEnabled()) return;
 
 		groupControllers.forEach(controller => {
 			controller.setActive(false);
 		});
 
-		const searchParams = new URLSearchParams(window.location.search);
-		searchParams.set('view', '1');
-		const search = searchParams.toString();
-		history.replaceState(null, '', `${window.location.pathname}${search ? `?${search}` : ''}${window.location.hash}`);
-		updateViewModeUi();
+		document.body.classList.add('mobile-sheet-mode');
+		syncSheetModeUi();
+		closeHeaderMenu();
 
 		window.requestAnimationFrame(() => {
 			document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
@@ -243,6 +274,22 @@ function setupSteps() {
 		renderStep();
 	});
 
+	returnToFormButton?.addEventListener('click', () => {
+		exitCharacterSheetView();
+	});
+
+	toggleViewModeButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+		if (isSheetModeEnabled()) {
+			document.body.classList.remove('mobile-sheet-mode');
+			syncSheetModeUi();
+		}
+	}, true);
+
+	shareViewLinkButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+	});
+
 	nextButton.addEventListener('click', () => {
 		const activeStep = steps[currentStepIndex];
 		if (isPersonalityStep(activeStep)) {
@@ -255,6 +302,7 @@ function setupSteps() {
 		renderStep();
 	});
 
+	syncSheetModeUi();
 	renderStep();
 }
 
