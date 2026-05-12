@@ -1,3 +1,5 @@
+import { updateViewModeUi } from '../viewMode.js';
+
 function buildDetailContent(optionElement) {
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
@@ -106,6 +108,7 @@ function setupSteps() {
 	const sections = Array.from(builder.querySelectorAll(':scope > section'));
 	const visibleSections = sections.filter(section => section.id !== 'ameliorations-section');
 	const morphologySection = builder.querySelector('#morphologies-section');
+	const personalitySection = builder.querySelector('#personnalite-section');
 	const morphologyGroupConfig = [
 		{ id: 'armement-group', label: 'Morphologies - Armement' },
 		{ id: 'cuirasse-group', label: 'Morphologies - Cuirasse' },
@@ -160,6 +163,29 @@ function setupSteps() {
 	if (!nav || !prevButton || !nextButton || !title) return;
 
 	let currentStepIndex = 0;
+	const defaultNextLabel = nextButton.textContent || '►►';
+
+	function isPersonalityStep(step) {
+		return step?.section === personalitySection;
+	}
+
+	function openCharacterSheetView() {
+		if (document.body.classList.contains('view-mode')) return;
+
+		groupControllers.forEach(controller => {
+			controller.setActive(false);
+		});
+
+		const searchParams = new URLSearchParams(window.location.search);
+		searchParams.set('view', '1');
+		const search = searchParams.toString();
+		history.replaceState(null, '', `${window.location.pathname}${search ? `?${search}` : ''}${window.location.hash}`);
+		updateViewModeUi();
+
+		window.requestAnimationFrame(() => {
+			document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
+		});
+	}
 
 	function setMorphologyGroupVisibility(activeStep) {
 		if (!morphologySection) return;
@@ -188,6 +214,8 @@ function setupSteps() {
 
 	function renderStep() {
 		const activeStep = steps[currentStepIndex];
+		const isLastStep = currentStepIndex === steps.length - 1;
+		const isPersonalityActive = isPersonalityStep(activeStep);
 
 		visibleSections.forEach(section => {
 			section.classList.remove('mobile-step-active');
@@ -204,7 +232,8 @@ function setupSteps() {
 
 		title.textContent = activeStep?.title || 'Etape';
 		prevButton.disabled = currentStepIndex === 0;
-		nextButton.disabled = currentStepIndex === steps.length - 1;
+		nextButton.textContent = isPersonalityActive ? 'Voir la fiche' : defaultNextLabel;
+		nextButton.disabled = isLastStep && !isPersonalityActive;
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
@@ -215,6 +244,12 @@ function setupSteps() {
 	});
 
 	nextButton.addEventListener('click', () => {
+		const activeStep = steps[currentStepIndex];
+		if (isPersonalityStep(activeStep)) {
+			openCharacterSheetView();
+			return;
+		}
+
 		if (currentStepIndex >= steps.length - 1) return;
 		currentStepIndex += 1;
 		renderStep();

@@ -1223,6 +1223,195 @@ section {
 	}
 }
 
+body.view-mode {
+	#character-builder,
+	#mobile-step-nav {
+		display: none !important;
+	}
+
+	.page-actions {
+		display: flex !important;
+		position: static;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0 0 0.75rem;
+	}
+
+	#fiche-personnage {
+		display: flex !important;
+		gap: 0.9rem;
+		padding: 0.85rem;
+		margin-bottom: 1rem;
+		border-radius: 14px;
+	}
+
+	.fiche-header {
+		grid-template-columns: 1fr;
+		gap: 0.65rem;
+
+		.logo-nom,
+		.header-saison {
+			grid-column: auto;
+		}
+
+		.logo-nom {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+
+		input {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+
+	.logo-name-saison {
+		font-size: 1.2rem;
+	}
+
+	.fiche-logo {
+		width: 104px;
+	}
+
+	.fiche-valeurs {
+		padding: 0.5rem 0.7rem;
+		border-radius: 12px;
+	}
+
+	.fiche-grid {
+		grid-template-columns: 1fr;
+		gap: 0.85rem;
+	}
+
+	.fiche-saisons {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		row-gap: 0.65rem;
+		padding: 0;
+	}
+
+	.saisons-center {
+		position: static;
+		grid-column: auto;
+		grid-row: auto;
+		transform: none;
+		place-self: stretch;
+
+		.saison-title {
+			position: static;
+			transform: none;
+			justify-content: center;
+			margin: 0 0 0.4rem;
+		}
+	}
+
+	.saison-block {
+		grid-template-columns: 52px minmax(0, 1fr) 52px;
+		border-radius: 20px;
+		padding: 0.35rem 0;
+
+		&.saison-hiver,
+		&.saison-printemps,
+		&.saison-ete,
+		&.saison-automne {
+			grid-column-start: auto;
+		}
+
+		.saison-icon {
+			font-size: 1.7rem;
+		}
+	}
+
+	.saison-cercle {
+		width: 52px;
+		height: 52px;
+		font-size: 1.25rem;
+	}
+
+	.saison-title {
+		font-size: 0.98rem;
+	}
+
+	.saison-desc {
+		font-size: 0.74rem;
+		line-height: 1.25;
+	}
+
+	.saison-left,
+	.saison-right {
+		.saison-score,
+		.saison-icon {
+			transform: none;
+		}
+
+		.saison-info {
+			text-align: left;
+			place-self: center;
+		}
+	}
+
+	.fiche-tableaux,
+	.fiche-resonances,
+	#fiche-magie,
+	#fiche-talents {
+		overflow-x: auto;
+	}
+
+	.fiche-resonances table,
+	#fiche-magie .tableau-magie-talents,
+	#fiche-talents table {
+		min-width: 560px;
+	}
+
+	.fiche-blocs {
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.fiche-bloc {
+		flex: 1 1 100%;
+		padding: 1.5rem 0.8rem 0.85rem;
+
+		& > div {
+			flex-direction: column;
+		}
+
+		.fiche-bloc-item {
+			width: 100%;
+			padding-right: 0.5rem;
+
+			input,
+			.lire-plus.pictogram-btn {
+				display: none;
+			}
+
+			.desc {
+				display: block !important;
+				margin-top: 0.35rem;
+			}
+
+			&:not(:has(input:checked)) {
+				display: none;
+			}
+		}
+	}
+
+	#fiche-champ-lexical {
+		font-size: 0.85rem;
+
+		.champ-lexical {
+			justify-content: center;
+			gap: 0.35rem 0.6rem;
+
+			div {
+				flex-basis: calc(33.333% - 0.6rem);
+			}
+		}
+	}
+}
+
 
 
 
