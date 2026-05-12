@@ -668,17 +668,8 @@ section {
 	flex-direction: column;
 	background: colors.$color-white;
 	padding: 0;
-
-	gap: 1rem;
-	margin-bottom: 1rem;
+	gap: 0.65rem;
 	background: colors.$color-white;
-	
-	textarea,
-	input,
-	select,
-	button {
-		font-size: 16px;
-	}
 	
 	&.hiver {
 		.saison-border { border-color: colors.$color-hiver; }
@@ -772,10 +763,15 @@ section {
 }
 
 .logo-name-saison {
-	font-size: 2rem;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	font-style: italic;
 	font-weight: 600;
+	font-size: 1.05rem;
+
+	input {
+		width: 100%;
+		box-sizing: border-box;
+	}
 }
 
 .fiche-logo { 
@@ -787,7 +783,7 @@ section {
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
 	
@@ -847,23 +843,9 @@ section {
 }
 
 .saison-block {
-	border-radius: 100px;
-	border-width: 2px;
-	border-style: solid;
-	display: grid;
-	grid-template-columns: 75px auto 75px;
-	
-	.saison-icon {
-		font-size: 2.8rem;
-		place-self: center;
-	}
-	
+
 	.saison-info {
 		grid-column: 2 / span 1;
-	}
-	
-	.saison-cercle {
-		place-self: center;
 	}
 	
 	&.saison-hiver { 
@@ -910,6 +892,41 @@ section {
 	align-items: center;
 	justify-content: center;
 	flex: 0 0 80px;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+
+	span {
+		position: relative;
+		z-index: 1;
+	}
+
+	&::before {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.95rem;
+		opacity: 0.30;
+		pointer-events: none;
+	}
+}
+
+.saison-hiver .saison-score::before {
+	content: "❄️";
+}
+
+.saison-printemps .saison-score::before {
+	content: "🌱";
+}
+
+.saison-ete .saison-score::before {
+	content: "☀️";
+}
+
+.saison-automne .saison-score::before {
+	content: "🍁";
 }
 
 .saison-cercle {
@@ -1358,6 +1375,8 @@ body.mobile-sheet-mode {
 			text-align: center;
 			font-size: 1rem;
 			font-weight: 700;
+			width: 100%;
+			box-sizing: content-box;
 			
 			&:has(#fiche-saison:empty) {
 				display: none;
@@ -1381,11 +1400,7 @@ body.mobile-sheet-mode {
 			background: transparent;
 		}
 	}
-	
-	.logo-name-saison {
-		font-size: 1.05rem;
-	}
-	
+		
 	.fiche-logo {
 		width: 88px;
 		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
@@ -1468,9 +1483,11 @@ body.mobile-sheet-mode {
 		align-items: center;
 		gap: 0.65rem;
 		border-width: 1px;
-		border-radius: 22px;
-		padding: 0.75rem 0.8rem;
+		border-style: solid;
+		border-radius: var(--mobile-card-radius);
+		padding: 0.75rem;
 		box-shadow: 0 10px 20px rgba(20, 36, 62, 0.08);
+		display: grid;
 		
 		&.saison-hiver,
 		&.saison-printemps,
@@ -1478,13 +1495,7 @@ body.mobile-sheet-mode {
 		&.saison-automne {
 			grid-column-start: auto;
 		}
-		
-		.saison-icon {
-			font-size: 1.55rem;
-			transform: none;
-			grid-column: auto;
-		}
-		
+
 		.saison-score {
 			transform: none;
 			grid-column: auto;
@@ -1509,23 +1520,7 @@ body.mobile-sheet-mode {
 		opacity: 0.88;
 	}
 	
-	.saison-left,
-	.saison-right {
-		.saison-score,
-		.saison-icon {
-			transform: none;
-		}
-		
-		.saison-info {
-			text-align: left;
-			place-self: center;
-		}
-		
-		.saison-title {
-			justify-content: flex-start;
-			text-align: left;
-		}
-	}
+	
 	
 	.fiche-tableaux {
 		gap: 0.85rem;
