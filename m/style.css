@@ -185,13 +185,6 @@ section h2 {
 .mobile-step-detail {
   order: 50;
 }
-.mobile-step-detail .option-label {
-  margin: 0 0 0.45rem;
-  font-size: 0.98rem;
-}
-.mobile-step-detail .long {
-  display: inline !important;
-}
 .mobile-step-detail .lignee-sexe {
   margin-left: 5px;
   font-size: 0.8rem;
