@@ -4,9 +4,9 @@
 
 :root {
 	--mobile-page-padding: 0.75rem;
-	--mobile-card-radius: 12px;
+	--mobile-card-radius: 10px;
 	--mobile-card-border: rgba(0, 0, 0, 0.15);
-	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 	--color-hiver: #{colors.$color-hiver};
 	--color-printemps: #{colors.$color-printemps};
 	--color-ete: #{colors.$color-ete};
@@ -712,17 +712,8 @@ section {
 .fiche-header {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
-	gap: 1rem;
+	gap: 0.6rem;
 	align-items: start;
-	
-	.logo-nom {
-		grid-column: 1 / span 4;
-		align-self: center;
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-		flex-direction: row;
-	}
 	
 	input {
 		border-width: 1px;
@@ -797,19 +788,6 @@ section {
 	row-gap: 2.5rem;
 	position: relative;
 	padding: 0 30px;
-}
-
-.saisons-center {
-	grid-column: 2 / 3;
-	grid-row: 1 / 3;
-	place-self: center;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-	
-	.saison-cercle { border-color: colors.$color-temps; }
 }
 
 .saison-block {
@@ -946,22 +924,6 @@ section {
 	}
 }
 
-.saisons-center {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-	
-	.saison-title {
-		position: absolute;
-		left: -120px;
-		top: 50%;
-		transform: translateY(-50%);
-		margin-right: 0.8rem;
-	}
-}
-
 .saison-title { 
 	font-size: 1.2rem;
 	display: flex;
@@ -1013,7 +975,7 @@ section {
 	}
 	.resonnance-point, .resonnance-niveau {
 		text-align: center;
-		width: 4ch;
+		width: 3ch;
 	}
 }
 
@@ -1337,7 +1299,7 @@ body.mobile-sheet-mode {
 		.header-saison {
 			align-items: center;
 			width: 100%;
-			box-sizing: content-box;
+			box-sizing: border-box;
 		}
 		
 		input {
@@ -1407,47 +1369,12 @@ body.mobile-sheet-mode {
 		}
 	}
 	
-	.fiche-grid {
-		grid-template-columns: 1fr;
-		gap: 1rem;
-	}
-	
 	.fiche-saisons {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto;
 		gap: 0.65rem;
 		padding: 0;
 		align-items: stretch;
-	}
-	
-	.saisons-center {
-		position: relative;
-		grid-column: 1 / -1;
-		grid-row: auto;
-		left: auto;
-		top: auto;
-		transform: none;
-		place-self: stretch;
-		padding: 1rem 1rem 0.9rem;
-		border-radius: 24px;
-		background: linear-gradient(135deg, rgba(58, 122, 210, 0.18), rgba(255, 255, 255, 0.96));
-		box-shadow: 0 12px 28px rgba(29, 63, 110, 0.12);
-		
-		.saison-title {
-			position: static;
-			transform: none;
-			justify-content: center;
-			margin: 0 0 0.55rem;
-			font-size: 0.95rem;
-		}
-		
-		.saison-cercle {
-			margin: 0 auto;
-			width: 74px;
-			height: 74px;
-			font-size: 1.7rem;
-			box-shadow: 0 10px 24px rgba(20, 56, 98, 0.16);
-		}
 	}
 	
 	.saison-block {
@@ -1473,6 +1400,29 @@ body.mobile-sheet-mode {
 			grid-column: auto;
 		}
 	}
+		
+	.saisons-center {
+		z-index: 2;
+		grid-template-columns: auto 48px;
+		grid-template-rows: auto auto;
+		grid-column: -1 / 1;
+		grid-row: auto;
+
+		.saison-title {
+			grid-column: 1 / span 1;
+			grid-row: 1 / span 1;
+		}
+
+		.saison-desc {
+			grid-column: 1 / span 1;
+			grid-row: 2 / span 1;
+		}
+
+		.saison-cercle {
+			grid-column: 2 / span 1;
+			grid-row: 1 / span 2;
+		}
+	}
 	
 	.saison-cercle {
 		width: 48px;
@@ -1492,8 +1442,6 @@ body.mobile-sheet-mode {
 		opacity: 0.88;
 	}
 	
-	
-	
 	.fiche-tableaux {
 		gap: 0.85rem;
 		
@@ -1511,12 +1459,10 @@ body.mobile-sheet-mode {
 		overflow-x: auto;
 	}
 	
-	.fiche-resonances,
 	#fiche-magie {
 		padding: 0.85rem;
 		border-radius: 20px;
-		background: rgba(255, 255, 255, 0.82);
-		box-shadow: 0 10px 24px rgba(28, 44, 69, 0.08);
+		box-shadow: var(--mobile-shadow);
 	}
 	
 	.fiche-resonances {
@@ -1543,12 +1489,6 @@ body.mobile-sheet-mode {
 			font-weight: 700;
 			color: colors.$color-text-main;
 		}
-	}
-	
-	.fiche-resonances table,
-	#fiche-magie .tableau-magie-talents,
-	#fiche-talents table {
-		min-width: 560px;
 	}
 	
 	.fiche-blocs {
