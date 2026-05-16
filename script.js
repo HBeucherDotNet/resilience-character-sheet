@@ -133,10 +133,9 @@ function bindSortDialog() {
 	};
 
 	function buildTalentOptionLabel(talentCheckbox) {
-		const rowElement = talentCheckbox.closest('tr');
-		const firstCellLabel = rowElement?.querySelector('td:first-child label');
-		const category = firstCellLabel?.textContent?.trim() || '';
-		const action = talentCheckbox.parentElement?.textContent?.trim() || '';
+		const { categoryLabel, actionLabel } = getTalentContextLabels(talentCheckbox);
+		const category = categoryLabel || '';
+		const action = actionLabel || '';
 
 		if (!category && !action) return '';
 		if (!category) return action;
@@ -166,6 +165,23 @@ function bindSortDialog() {
 		if (delta <= 0) return 0;
 
 		return Math.ceil(delta / souffleValue);
+	}
+
+	function getTalentContextLabels(talentCheckbox) {
+		const domainCard = talentCheckbox.closest('.magie-domaine-card');
+		if (domainCard) {
+			return {
+				categoryLabel: domainCard.querySelector('.magie-domaine-name')?.textContent?.trim() || '',
+				actionLabel: talentCheckbox.closest('label')?.querySelector('.magie-talent-label')?.textContent?.trim() || ''
+			};
+		}
+
+		const rowElement = talentCheckbox.closest('tr');
+		const firstCellLabel = rowElement?.querySelector('td:first-child label');
+		return {
+			categoryLabel: firstCellLabel?.textContent?.trim() || '',
+			actionLabel: talentCheckbox.parentElement?.textContent?.trim() || ''
+		};
 	}
 
 	function getGrainesSelectionnees() {
@@ -300,10 +316,9 @@ function bindSortDialog() {
 	}
 
 	function getTalentSortKeys(talentCheckbox) {
-		const rowElement = talentCheckbox.closest('tr');
-		const firstCellLabel = rowElement?.querySelector('td:first-child label');
-		const categoryKey = normalizePlaceholderToken(firstCellLabel?.textContent ?? '');
-		const actionKey = normalizePlaceholderToken(talentCheckbox.parentElement?.textContent ?? '');
+		const { categoryLabel, actionLabel } = getTalentContextLabels(talentCheckbox);
+		const categoryKey = normalizePlaceholderToken(categoryLabel);
+		const actionKey = normalizePlaceholderToken(actionLabel);
 
 		return { categoryKey, actionKey };
 	}
