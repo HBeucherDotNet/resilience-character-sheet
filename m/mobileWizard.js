@@ -160,6 +160,7 @@ function setupSteps() {
 	const headerMenu = document.querySelector('.mobile-header-menu');
 	const returnToFormButton = document.getElementById('return-to-form-btn');
 	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
+	const openSortDialogButton = document.getElementById('open-sort-dialog-btn');
 	const shareViewLinkButton = document.getElementById('share-view-link-btn');
 
 	if (!nav || !prevButton || !nextButton || !title) return;
@@ -287,6 +288,10 @@ function setupSteps() {
 	}, true);
 
 	shareViewLinkButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+	});
+
+	openSortDialogButton?.addEventListener('click', () => {
 		closeHeaderMenu();
 	});
 

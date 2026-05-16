@@ -91,10 +91,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 0.24rem;
-	border: 1px solid rgba(35, 90, 138, 0.16);
-	border-radius: 999px;
-	background: rgba(255, 255, 255, 0.94);
-	box-shadow: 0 6px 18px rgba(32, 54, 84, 0.12);
 	cursor: pointer;
 	
 	&::-webkit-details-marker {
@@ -875,6 +871,10 @@ section {
 
 .saison-automne .saison-score::before {
 	content: "🍁";
+}
+
+.saison-temps .saison-score::before {
+	content: "⏳";
 }
 
 .saison-cercle {
