@@ -1263,7 +1263,7 @@ body.mobile-sheet-mode .fiche-header-flex input {
   font-size: 1em;
 }
 body.mobile-sheet-mode .fiche-header {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.65rem;
   align-items: stretch;
 }
@@ -1282,6 +1282,11 @@ body.mobile-sheet-mode .fiche-header input {
   width: 100%;
   max-width: 100%;
   background: transparent;
+}
+@media (max-width: 569px) {
+  body.mobile-sheet-mode .fiche-header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 body.mobile-sheet-mode .fiche-logo {
   width: 88px;
