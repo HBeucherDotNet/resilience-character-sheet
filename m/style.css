@@ -119,6 +119,15 @@ h3 {
   letter-spacing: 0.02rem;
 }
 
+h5 {
+  margin: 0;
+  font-size: 1.35rem;
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
 section {
   margin: 0;
   padding: 0;
@@ -156,6 +165,13 @@ section h2 {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
   box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 .page-actions .page-action-btn {
   width: 100%;
@@ -205,6 +221,20 @@ section h2 {
   padding: 0.42rem 0.6rem;
   border-radius: 999px;
   text-decoration: none;
+}
+
+.page-action-btn {
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  padding: 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.page-action-btn:hover {
+  filter: brightness(1.2);
 }
 
 .flex-group {
@@ -261,30 +291,6 @@ section h2 {
 }
 #fiche-talents table {
   min-width: 640px;
-}
-
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.page-action-btn {
-  border: 1px solid #235a8a;
-  background: #235a8a;
-  color: #fff;
-  padding: 0.7rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-.page-action-btn:hover {
-  filter: brightness(1.2);
 }
 
 .page-action-btn-secondary {
@@ -906,21 +912,11 @@ section h2 {
   grid-column: 1/span 1;
 }
 
-.saison-right .saison-info {
+.saison-right {
   text-align: right;
-  place-self: center end;
-}
-.saison-right .saison-score {
-  transform: translateX(-40%);
-  grid-column: 1/span 1;
-}
-.saison-right .saison-icon {
-  transform: translateX(40%);
-  grid-column: 3/span 1;
 }
 .saison-right .saison-title {
   justify-content: flex-end;
-  text-align: right;
 }
 
 .saison-title {
@@ -980,14 +976,6 @@ section h2 {
   border-style: solid;
   border-radius: 16px;
   padding: 1rem;
-}
-#fiche-magie h5 {
-  margin: 0;
-  font-size: 1.35rem;
-  text-align: center;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-  font-style: italic;
-  font-weight: 600;
 }
 #fiche-magie .fiche-magie-actions {
   display: flex;
@@ -1216,100 +1204,6 @@ section h2 {
   flex-wrap: wrap;
 }
 
-.fiche-blocs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.fiche-bloc {
-  flex: 1 1 40%;
-  position: relative;
-  border-radius: 8px;
-  border-width: 2px;
-  border-style: solid;
-  background: #fff;
-  padding: 1.7rem 1rem 0.9rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-.fiche-bloc.saison-hiver {
-  border-color: #235a8a;
-}
-.fiche-bloc.saison-printemps {
-  border-color: #2c7a4b;
-}
-.fiche-bloc.saison-ete {
-  border-color: #bfa600;
-}
-.fiche-bloc.saison-automne {
-  border-color: #a13a3a;
-}
-.fiche-bloc > label {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -52%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 0;
-  padding: 0 0.9rem;
-  background: #fff;
-  border-radius: 999px;
-  font-size: 1.35rem;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-  font-style: italic;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 0 0 0.2rem #fff;
-  z-index: 1;
-}
-.fiche-bloc > label .saison-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 999px;
-  font-style: normal;
-  background: #fff;
-}
-.fiche-bloc.saison-hiver > label {
-  color: #235a8a;
-}
-.fiche-bloc.saison-printemps > label {
-  color: #2c7a4b;
-}
-.fiche-bloc.saison-ete > label {
-  color: #bfa600;
-}
-.fiche-bloc.saison-automne > label {
-  color: #a13a3a;
-}
-.fiche-bloc > div {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.fiche-bloc .fiche-bloc-item {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 0.5rem 2rem 0.5rem 0.5rem;
-  background: #fff;
-  box-sizing: border-box;
-  flex: 1 1 auto;
-  position: relative;
-}
-.fiche-bloc .fiche-bloc-item label {
-  margin-right: 5px;
-}
-
 #fiche-champ-lexical {
   border-width: 2px 0;
   border-style: dotted none;
@@ -1515,53 +1409,97 @@ body.mobile-sheet-mode #fiche-magie label {
   color: #444;
 }
 body.mobile-sheet-mode .fiche-blocs {
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 1rem;
 }
+body.mobile-sheet-mode .fiche-bloc.saison-hiver {
+  --fiche-bloc-color: #235a8a;
+  --fiche-bloc-color-soft: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+}
+body.mobile-sheet-mode .fiche-bloc.saison-printemps {
+  --fiche-bloc-color: #2c7a4b;
+  --fiche-bloc-color-soft: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+}
+body.mobile-sheet-mode .fiche-bloc.saison-ete {
+  --fiche-bloc-color: #bfa600;
+  --fiche-bloc-color-soft: rgb(255, 249.9607329843, 216.5);
+}
+body.mobile-sheet-mode .fiche-bloc.saison-automne {
+  --fiche-bloc-color: #a13a3a;
+  --fiche-bloc-color-soft: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+}
 body.mobile-sheet-mode .fiche-bloc {
   flex: 1 1 100%;
-  padding: 1.35rem 0.85rem 0.9rem;
-  align-items: stretch;
-  border-width: 1px;
+  position: relative;
+  border-radius: 8px;
+  border: 2px solid var(--fiche-bloc-color);
   border-radius: 22px;
-  box-shadow: 0 10px 24px rgba(26, 43, 66, 0.08);
-}
-body.mobile-sheet-mode .fiche-bloc > div {
+  background: #fff;
+  padding: 1.35rem 0.85rem 0.9rem;
+  display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  align-items: stretch;
+  box-shadow: var(--mobile-shadow);
 }
 body.mobile-sheet-mode .fiche-bloc > label {
-  position: static;
-  transform: none;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 0.3rem;
-  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0 0.5rem;
+  background: #fff;
+  font-size: 1.2rem;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  white-space: nowrap;
   box-shadow: none;
-  font-size: 1rem;
+  z-index: 1;
+  color: var(--fiche-bloc-color);
 }
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item {
-  width: 100%;
+body.mobile-sheet-mode .fiche-bloc > label .saison-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  font-style: normal;
+  background: #fff;
+}
+body.mobile-sheet-mode .fiche-bloc .atout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item {
   padding: 0.7rem 0.75rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--mobile-card-radius);
+  border: 1px solid #ccc;
 }
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item input,
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item .lire-plus.pictogram-btn {
-  display: none;
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item label {
+  margin-right: 5px;
 }
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item .desc {
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item .desc {
   display: block !important;
-  margin-top: 0.45rem;
-  font-size: 0.8rem;
-  line-height: 1.35;
-  color: #555;
 }
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item .desc .long {
-  display: inline !important;
-}
-body.mobile-sheet-mode .fiche-bloc .fiche-bloc-item:not(:has(input:checked)) {
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item input,
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item .lire-plus.pictogram-btn {
   display: none;
+}
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item:has(input:checked) {
+  background: var(--fiche-bloc-color-soft);
+  border-color: var(--fiche-bloc-color);
+  box-shadow: var(--mobile-shadow);
 }
 body.mobile-sheet-mode #fiche-champ-lexical {
   padding: 0.9rem 0;
