@@ -42,6 +42,7 @@ const sortDialogController = createSortDialogController({
 	normalizePlaceholderToken,
 	resolveScoreStep
 });
+const lastScoreButtonClickByElement = new WeakMap();
 
 function getCheckedFicheBlocKeys(containerSelector, itemSelector, dataKey) {
 	return Array.from(document.querySelectorAll(`${containerSelector} ${itemSelector} input:checked`))
@@ -227,7 +228,16 @@ function syncMobileViewModePresentation() {
 
 function bindAmeliorationScoreControls() {
 	document.querySelectorAll('.amelioration-score-btn').forEach(button => {
-		button.addEventListener('click', () => {
+		button.addEventListener('click', event => {
+			if (window.matchMedia('(pointer: coarse)').matches) {
+				const lastHandledAt = lastScoreButtonClickByElement.get(button) ?? -Infinity;
+				if ((event.timeStamp - lastHandledAt) < 180) {
+					event.preventDefault();
+					return;
+				}
+				lastScoreButtonClickByElement.set(button, event.timeStamp);
+			}
+
 			const targetId = button.dataset.scoreTarget;
 			const step = resolveScoreStep(button.dataset.scoreStep ?? '0');
 			const input = targetId ? document.getElementById(targetId) : null;

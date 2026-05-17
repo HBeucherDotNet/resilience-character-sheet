@@ -1162,15 +1162,8 @@ section h2 {
 
 .sort-dialog-row-indicator {
   min-height: 1.6rem;
-  display: inline-grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
   align-content: center;
-  justify-content: flex-start;
-  justify-self: start;
-  gap: 0.12rem;
   font-size: 1.1rem;
-  overflow: hidden;
 }
 
 .sort-dialog-row-indicator-seed {
