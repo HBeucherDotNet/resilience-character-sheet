@@ -2,6 +2,7 @@
 /* Mobile-only overrides for /m/index.html */
 :root {
   --mobile-page-padding: 0.75rem;
+  --mobile-header-height: 3.6rem;
   --mobile-card-radius: 10px;
   --mobile-card-border: rgba(0, 0, 0, 0.15);
   --mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -29,6 +30,8 @@ body {
   z-index: 100;
   position: sticky;
   top: 0;
+  min-height: var(--mobile-header-height);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,6 +67,7 @@ body {
 .mobile-header-menu {
   position: relative;
   margin-left: auto;
+  z-index: 130;
 }
 .mobile-header-menu[open] .mobile-header-menu-toggle {
   background: #235a8a;
@@ -73,6 +77,9 @@ body {
 }
 .mobile-header-menu[open] .page-actions {
   display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .mobile-header-menu-toggle {
@@ -151,33 +158,52 @@ section h2 {
   display: none;
 }
 
+.page-action-btn {
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  padding: 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  white-space: nowrap;
+  width: auto;
+}
+.page-action-btn:hover {
+  filter: brightness(1.2);
+}
+
+.page-action-btn-secondary {
+  background: #fff;
+  color: #235a8a;
+}
+
 .page-actions {
-  display: none !important;
-  position: absolute;
-  top: calc(100% + 0.5rem);
+  position: fixed;
+  left: 0;
   right: 0;
-  min-width: min(18rem, 100vw - 1.5rem);
-  padding: 0.55rem;
+  width: 100vw;
+  max-width: 100vw;
+  top: var(--mobile-header-height);
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem 0.85rem;
   flex-direction: column;
   gap: 0.45rem;
-  border: 1px solid rgba(35, 90, 138, 0.12);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 0 0 var(--mobile-card-radius) var(--mobile-card-radius);
+  background: #fff;
   box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  transform: translateY(-1rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 120;
 }
 .page-actions .page-action-btn {
   width: 100%;
-  padding: 0.7rem 0.85rem;
-  font-size: 0.82rem;
-  text-align: center;
 }
 
 .mobile-step {
@@ -205,36 +231,11 @@ section h2 {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
 }
-.mobile-step-nav .page-action-btn {
-  width: auto;
-  white-space: nowrap;
-}
 
 .mobile-step-title {
   text-align: center;
   font-size: 0.9rem;
   font-weight: 700;
-}
-
-.page-action-btn {
-  font-size: 0.88rem;
-  padding: 0.42rem 0.6rem;
-  border-radius: 999px;
-  text-decoration: none;
-}
-
-.page-action-btn {
-  border: 1px solid #235a8a;
-  background: #235a8a;
-  color: #fff;
-  padding: 0.7rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-.page-action-btn:hover {
-  filter: brightness(1.2);
 }
 
 .flex-group {
@@ -293,11 +294,6 @@ section h2 {
   min-width: 640px;
 }
 
-.page-action-btn-secondary {
-  background: #fff;
-  color: #235a8a;
-}
-
 #collapsible-section h2 {
   margin-bottom: 0;
 }
@@ -329,14 +325,12 @@ section h2 {
 #collapsible-section[open] > summary::after {
   content: "−";
 }
-
-.collapsible-section-hint {
+#collapsible-section .collapsible-section-hint {
   font-size: 0.9rem;
   color: #555;
   text-align: right;
 }
-
-.collapsible-section-content {
+#collapsible-section .collapsible-section-content {
   margin-top: 0.8rem;
 }
 
@@ -353,7 +347,7 @@ section h2 {
   margin-bottom: 1rem;
   background: #e9ecf3;
   border: 1px solid #d3d7e3;
-  border-radius: 10px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.9rem;
   box-sizing: border-box;
 }
@@ -363,7 +357,7 @@ section h2 {
   min-width: 220px;
   background: #e9ecf3;
   border: 1px solid #d3d7e3;
-  border-radius: 10px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.9rem;
   box-sizing: border-box;
 }
@@ -383,7 +377,7 @@ section h2 {
 .ameliorations-item {
   background: #fff;
   border: 1px solid #d3d7e3;
-  border-radius: 8px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.75rem;
 }
 .ameliorations-item.selected {
@@ -435,7 +429,7 @@ section h2 {
   gap: 0.35rem;
   background: #fff;
   border: 1px solid #d3d7e3;
-  border-radius: 8px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.55rem 0.6rem;
 }
 
@@ -444,7 +438,7 @@ section h2 {
   text-align: center;
   padding: 0.2rem;
   border: 1px solid #d3d7e3;
-  border-radius: 6px;
+  border-radius: var(--mobile-card-radius);
   background: #fff;
 }
 
@@ -469,7 +463,7 @@ section h2 {
   border-width: 1px;
   border-style: solid;
   position: relative;
-  border-radius: 8px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.5rem;
   transition: box-shadow 0.2s;
   grid-column: 1;
@@ -741,15 +735,13 @@ section h2 {
   align-items: flex-start;
   padding: 0.5rem;
   border: 2px solid #d3d7e3;
+  border-radius: var(--mobile-card-radius);
 }
 .fiche-valeurs > label {
   display: block;
   margin: 0 0 0.35rem;
   color: #333;
   font-weight: 700;
-}
-.fiche-valeurs {
-  border-radius: 16px;
 }
 .fiche-valeurs input {
   border-width: 1px;
@@ -889,7 +881,7 @@ section h2 {
 .saison-cercle {
   width: 75px;
   height: 75px;
-  border-radius: 50%;
+  border-radius: 999px;
   border: 2px solid #888;
   background: #fff;
   display: flex;
@@ -966,7 +958,7 @@ section h2 {
 #fiche-magie {
   border-width: 2px;
   border-style: solid;
-  border-radius: 16px;
+  border-radius: var(--mobile-card-radius);
   padding: 1rem;
 }
 #fiche-magie .fiche-magie-actions {
@@ -1078,7 +1070,7 @@ section h2 {
 #fiche-magie textarea {
   width: 100%;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: var(--mobile-card-radius);
   border: 1px solid #ccc;
   padding: 0.5rem;
   font-family: inherit;
@@ -1089,7 +1081,7 @@ section h2 {
 
 .sort-dialog {
   border: none;
-  border-radius: 18px;
+  border-radius: var(--mobile-card-radius);
   padding: 0;
   width: min(100%, 38rem);
   max-width: 38rem;
@@ -1149,7 +1141,7 @@ section h2 {
 
 .sort-dialog-talent-select {
   border: 1px solid #d3d7e3;
-  border-radius: 8px;
+  border-radius: var(--mobile-card-radius);
   padding: 0.45rem 0.6rem;
   font: inherit;
   color: #333;
@@ -1234,8 +1226,7 @@ body.mobile-sheet-mode .mobile-header-menu[open] .page-actions {
   display: flex !important;
 }
 body.mobile-sheet-mode .mobile-header-menu .page-actions {
-  z-index: 25;
-  min-width: min(18rem, 100vw - 1.5rem);
+  z-index: 140;
 }
 body.mobile-sheet-mode .fiche-header-flex {
   display: flex;
@@ -1375,7 +1366,7 @@ body.mobile-sheet-mode #fiche-talents {
 }
 body.mobile-sheet-mode #fiche-magie {
   padding: 0.85rem;
-  border-radius: 20px;
+  border-radius: var(--mobile-card-radius);
   box-shadow: var(--mobile-shadow);
 }
 body.mobile-sheet-mode .fiche-resonances table {
@@ -1422,9 +1413,8 @@ body.mobile-sheet-mode .fiche-bloc.saison-automne {
 body.mobile-sheet-mode .fiche-bloc {
   flex: 1 1 100%;
   position: relative;
-  border-radius: 8px;
   border: 2px solid var(--fiche-bloc-color);
-  border-radius: 22px;
+  border-radius: var(--mobile-card-radius);
   background: #fff;
   padding: 1.35rem 0.85rem 0.9rem;
   display: flex;
@@ -1553,7 +1543,6 @@ body.mobile-sheet-mode.view-mode #fiche-magie .magie-domaine-card {
   gap: 0.32rem;
   padding: 0.55rem 0 0.75rem;
   border: none;
-  border-radius: 0;
   background: transparent;
   box-shadow: none;
 }
@@ -1581,7 +1570,6 @@ body.mobile-sheet-mode.view-mode #fiche-magie .magie-talent-chip {
   justify-content: flex-start;
   padding: 0;
   border: none;
-  border-radius: 0;
   background: transparent;
   box-shadow: none;
   cursor: default;
