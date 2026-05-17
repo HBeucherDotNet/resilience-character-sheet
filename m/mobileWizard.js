@@ -173,26 +173,32 @@ function setupSteps() {
 		headerMenu.open = false;
 	}
 
+	function isReadOnlyViewModeEnabled() {
+		return document.body.classList.contains('view-mode');
+	}
+
 	function isSheetModeEnabled() {
-		return document.body.classList.contains('mobile-sheet-mode');
+		return document.body.classList.contains('mobile-sheet-mode') || isReadOnlyViewModeEnabled();
 	}
 
 	function syncSheetModeUi() {
-		const isSheetMode = isSheetModeEnabled();
-		document.body.classList.toggle('mobile-sheet-mode', isSheetMode);
+		const hasEditableSheetMode = document.body.classList.contains('mobile-sheet-mode');
+		const isReadOnlyViewMode = isReadOnlyViewModeEnabled();
+		const shouldShowSheet = hasEditableSheetMode || isReadOnlyViewMode;
+		document.body.classList.toggle('mobile-sheet-mode', shouldShowSheet);
 
 		if (returnToFormButton) {
-			returnToFormButton.hidden = !isSheetMode;
-			returnToFormButton.setAttribute('aria-pressed', String(isSheetMode));
+			returnToFormButton.hidden = !hasEditableSheetMode || isReadOnlyViewMode;
+			returnToFormButton.setAttribute('aria-pressed', String(hasEditableSheetMode));
 		}
 
 		if (shareViewLinkButton) {
-			shareViewLinkButton.hidden = isSheetMode;
+			shareViewLinkButton.hidden = shouldShowSheet;
 		}
 	}
 
 	function exitCharacterSheetView() {
-		if (!isSheetModeEnabled()) return;
+		if (!document.body.classList.contains('mobile-sheet-mode') || isReadOnlyViewModeEnabled()) return;
 		document.body.classList.remove('mobile-sheet-mode');
 		syncSheetModeUi();
 		closeHeaderMenu();
@@ -281,11 +287,21 @@ function setupSteps() {
 
 	toggleViewModeButton?.addEventListener('click', () => {
 		closeHeaderMenu();
-		if (isSheetModeEnabled()) {
-			document.body.classList.remove('mobile-sheet-mode');
-			syncSheetModeUi();
-		}
 	}, true);
+
+	document.addEventListener('viewmodechange', event => {
+		syncSheetModeUi();
+		closeHeaderMenu();
+
+		if (event.detail?.isViewMode) {
+			window.requestAnimationFrame(() => {
+				document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
+			});
+			return;
+		}
+
+		renderStep();
+	});
 
 	shareViewLinkButton?.addEventListener('click', () => {
 		closeHeaderMenu();

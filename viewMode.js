@@ -16,6 +16,9 @@ function buildUrlForViewMode(enabled) {
 function updateViewModeUi() {
 	const isViewMode = isViewModeEnabled();
 	document.body.classList.toggle('view-mode', isViewMode);
+	document.dispatchEvent(new CustomEvent('viewmodechange', {
+		detail: { isViewMode }
+	}));
 
 	const toggleButton = document.getElementById('toggle-view-mode-btn');
 	if (toggleButton) {

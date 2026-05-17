@@ -89,6 +89,142 @@ function resolveScoreStep(rawStep) {
 	return Number.isFinite(numericStep) ? numericStep : 0;
 }
 
+function getMagicDomainScoreForSaison(state, saisonValue) {
+	const scoreMap = {
+		hiver: state?.ficheHiver,
+		printemps: state?.fichePrintemps,
+		ete: state?.ficheEte,
+		automne: state?.ficheAutomne,
+		temps: state?.ficheSouffle
+	};
+
+	const score = Number.parseInt(String(scoreMap[saisonValue] ?? '0'), 10);
+	return Number.isFinite(score) ? score : 0;
+}
+
+function getMagicDomainCheckboxesForSaison(saisonValue) {
+	const table = saisonValue ? document.getElementById(`fiche-magie-${saisonValue}`) : null;
+	if (!table) return [];
+
+	return Array.from(
+		table.querySelectorAll(
+			'tbody tr td:first-child input[type="checkbox"]:not(.talent), .magie-domaine-toggle input[type="checkbox"]:not(.talent)'
+		)
+	);
+}
+
+function syncMagicDomains(state = personnage.state) {
+	const allDomainCheckboxes = Array.from(
+		document.querySelectorAll(
+			'#fiche-magie .tableau-magie-talents td:first-child input[type="checkbox"]:not(.talent), #fiche-magie .tableau-magie-talents .magie-domaine-toggle input[type="checkbox"]:not(.talent)'
+		)
+	);
+
+	allDomainCheckboxes.forEach(checkbox => {
+		checkbox.disabled = true;
+		checkbox.checked = false;
+	});
+
+	const saisonValue = state?.saison?.value ?? '';
+	const unlockedDomainCount = Math.max(0, getMagicDomainScoreForSaison(state, saisonValue) - 1);
+	getMagicDomainCheckboxesForSaison(saisonValue)
+		.slice(0, unlockedDomainCount)
+		.forEach(checkbox => {
+			checkbox.checked = true;
+		});
+
+	syncMobileViewModePresentation();
+}
+
+function isMobileReadOnlyViewActive() {
+	return document.body.classList.contains('view-mode') && document.body.classList.contains('mobile-sheet-mode');
+}
+
+function resolveMagicDomainDataKey(card) {
+	const labelToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-name')?.textContent ?? '');
+	if (sorts[labelToken]) return labelToken;
+
+	const inputToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-toggle input[type="checkbox"]')?.id ?? '');
+	if (sorts[inputToken]) return inputToken;
+
+	const tokenParts = inputToken.split('-').filter(Boolean);
+	for (let index = tokenParts.length - 1; index >= 0; index -= 1) {
+		if (sorts[tokenParts[index]]) {
+			return tokenParts[index];
+		}
+	}
+
+	return '';
+}
+
+function resolveMagicTalentKey(input) {
+	const tokenParts = normalizePlaceholderToken(input.id ?? '').split('-').filter(Boolean);
+	return tokenParts[tokenParts.length - 1] ?? '';
+}
+
+function buildMagicTalentDescription(descriptions) {
+	const list = document.createElement('ul');
+	list.className = 'magie-talent-description';
+
+	descriptions.forEach(text => {
+		const item = document.createElement('li');
+		item.textContent = text;
+		list.appendChild(item);
+	});
+
+	return list;
+}
+
+function syncMobileViewModePresentation() {
+	const magicCards = Array.from(document.querySelectorAll('#fiche-magie .magie-domaine-card'));
+	const isReadOnlyView = isMobileReadOnlyViewActive();
+
+	magicCards.forEach(card => {
+		card.hidden = false;
+
+		const domainToggle = card.querySelector('.magie-domaine-toggle');
+		if (domainToggle) {
+			domainToggle.hidden = false;
+		}
+
+		card.querySelectorAll('.magie-talent-chip').forEach(chip => {
+			chip.hidden = false;
+			chip.querySelector('.magie-talent-description')?.remove();
+		});
+
+		if (!isReadOnlyView) return;
+
+		const domainKey = resolveMagicDomainDataKey(card);
+		if (!domainKey || !sorts[domainKey]) {
+			card.hidden = true;
+			return;
+		}
+
+		let hasVisibleTalent = false;
+		card.querySelectorAll('.magie-talent-chip').forEach(chip => {
+			const talentInput = chip.querySelector('input.talent');
+			if (!talentInput?.checked) {
+				chip.hidden = true;
+				return;
+			}
+
+			const talentKey = resolveMagicTalentKey(talentInput);
+			const descriptions = Array.isArray(sorts[domainKey]?.[talentKey]) ? sorts[domainKey][talentKey] : [];
+			if (descriptions.length === 0) {
+				chip.hidden = true;
+				return;
+			}
+
+			chip.appendChild(buildMagicTalentDescription(descriptions));
+			hasVisibleTalent = true;
+		});
+
+		if (!hasVisibleTalent) {
+			card.hidden = true;
+		}
+	});
+}
+
 function bindAmeliorationScoreControls() {
 	document.querySelectorAll('.amelioration-score-btn').forEach(button => {
 		button.addEventListener('click', () => {
@@ -547,6 +683,12 @@ function initBindings() {
 		});
 	});
 
+	document.querySelectorAll('#fiche-magie input[type="checkbox"]').forEach(input => {
+		input.addEventListener('change', syncMobileViewModePresentation);
+	});
+
+	document.addEventListener('viewmodechange', syncMobileViewModePresentation);
+
 	hashStateSync.bindAutoHashSync();
 }
 
@@ -597,6 +739,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(ficheRenderer.renderPersonnage);
+	personnage.subscribe(syncMagicDomains);
 
 	fillAmeliorationsCompetencesList();
 	fillAmeliorationsDonsList();
@@ -608,6 +751,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
+	syncMobileViewModePresentation();
 	sortDialogController.bindSortDialog();
 	bindResponsiveCollapsibleSection();
 });
