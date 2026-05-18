@@ -1,18 +1,17 @@
 @use "colors";
+@use "optionCards";
 @use "print.scss";
 @use "mobile";
 
 :root {
+	--mobile-card-radius: 10px;
+
 	--color-hiver: #{colors.$color-hiver};
 	--color-printemps: #{colors.$color-printemps};
 	--color-ete: #{colors.$color-ete};
 	--color-automne: #{colors.$color-automne};
 	--color-temps: #{colors.$color-temps};
 }
-
-// input[type="checkbox"] {
-//     accent-color: red;
-// }
 
 body {
 	font-family: sans-serif;
@@ -187,16 +186,7 @@ section {
 }
 
 .ameliorations-item {
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 8px;
-	padding: 0.75rem;
-	cursor: pointer;
-	
-	&.selected {
-		border-color: colors.$color-hiver;
-		box-shadow: 0 2px 10px colors.$color-box-shadow;
-	}
+	@include optionCards.option-card-light();
 }
 
 .ameliorations-item-header {
@@ -294,41 +284,7 @@ section {
 }
 
 .option {
-	border-width: 1px;
-	border-style: solid;
-	position: relative;
-	border-radius: 8px;
-	padding: 0.5rem;
-	transition: box-shadow 0.2s;
-	&:hover {
-		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
-	}
-	
-	&.hiver {
-		background: colors.$color-hiver-lighter;
-		border-color: colors.$color-hiver-light;
-		order: 1;
-	}
-	&.printemps {
-		background: colors.$color-printemps-lighter;
-		border-color: colors.$color-printemps-light;
-		order: 2;
-	}
-	&.ete {
-		background: colors.$color-ete-lighter;
-		border-color: colors.$color-ete-light;
-		order: 3;
-	}
-	&.automne {
-		background: colors.$color-automne-lighter;
-		border-color: colors.$color-automne-light;
-		order: 4;
-	}
-	&.temps {
-		background: colors.$color-temps-lighter;
-		border-color: colors.$color-temps-light;
-		order: 5;
-	}
+	@include optionCards.option-card-seasonal(0.5rem, $includeOrder: true);
 	
 	.option-label {
 		display:flex;
@@ -341,31 +297,11 @@ section {
 		}
 	}
 	
-	&.selected {
-		z-index: 1;
-		&.hiver {
-			border-color: colors.$color-hiver !important;
-		}
-		&.printemps {
-			border-color: colors.$color-printemps !important;
-		}
-		&.ete {
-			border-color: colors.$color-ete !important;
-		}
-		&.automne {
-			border-color: colors.$color-automne !important;
-		}
-		&.temps {
-			border-color: colors.$color-temps !important;
-		}
-	}
-	
 	&.lignee {
 		flex: 1 1 22%;
 		min-width: 0;
 		box-sizing: border-box;
 		padding: 0.5rem;
-		border: 1px solid colors.$color-border-gray;
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
@@ -1024,13 +960,8 @@ section {
 	}
 	
 	.fiche-bloc-item {
-		border: 1px solid colors.$color-border-gray;
-		border-radius: 6px;
-		padding: 0.5rem 2rem 0.5rem 0.5rem;
-		background: colors.$color-white;
-		box-sizing: border-box;
+		@include optionCards.option-card-light(0.5rem 2rem 0.5rem 0.5rem);
 		flex: 1 1 auto;
-		position: relative;
 		
 		label {
 			margin-right: 5px;

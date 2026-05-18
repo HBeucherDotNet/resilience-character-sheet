@@ -450,11 +450,7 @@ function selectUnique(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
-		const option = cb.closest('.option');
-		if (option) option.classList.remove('selected');
 	});
-	const selectedOption = el.closest('.option');
-	if (selectedOption && el.checked) selectedOption.classList.add('selected');
 }
 
 function updateLignees() {
@@ -555,7 +551,6 @@ function refreshAmeliorationButtons(state = personnage.state) {
 		const { ameliorationType, ameliorationKey } = checkbox.dataset;
 		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
 		checkbox.checked = isAdded;
-		checkbox.closest('.ameliorations-item')?.classList.toggle('selected', isAdded);
 	});
 }
 

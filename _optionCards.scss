@@ -1,0 +1,105 @@
+@use 'colors';
+
+@mixin option-card-base($padding) {
+	border: 1px solid colors.$color-border-section;
+	border-radius: var(--mobile-card-radius);
+	padding: $padding;
+	position: relative;
+	box-sizing: border-box;
+	background: colors.$color-white;
+	transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
+	}
+
+	input[type="checkbox"] {
+		accent-color: var(--option-card-strong-bg);
+	}
+}
+
+@mixin option-card-saison-vars($includeOrder: false) {
+	&.hiver {
+		--option-card-soft-bg: #{colors.$color-hiver-lighter};
+		--option-card-soft-border: #{colors.$color-hiver-light};
+		--option-card-strong-bg: #{colors.$color-hiver-light};
+		--option-card-strong-border: #{colors.$color-hiver};
+
+		@if $includeOrder {
+			order: 1;
+		}
+	}
+
+	&.printemps {
+		--option-card-soft-bg: #{colors.$color-printemps-lighter};
+		--option-card-soft-border: #{colors.$color-printemps-light};
+		--option-card-strong-bg: #{colors.$color-printemps-light};
+		--option-card-strong-border: #{colors.$color-printemps};
+
+		@if $includeOrder {
+			order: 2;
+		}
+	}
+
+	&.ete {
+		--option-card-soft-bg: #{colors.$color-ete-lighter};
+		--option-card-soft-border: #{colors.$color-ete-light};
+		--option-card-strong-bg: #{colors.$color-ete-light};
+		--option-card-strong-border: #{colors.$color-ete};
+
+		@if $includeOrder {
+			order: 3;
+		}
+	}
+
+	&.automne {
+		--option-card-soft-bg: #{colors.$color-automne-lighter};
+		--option-card-soft-border: #{colors.$color-automne-light};
+		--option-card-strong-bg: #{colors.$color-automne-light};
+		--option-card-strong-border: #{colors.$color-automne};
+
+		@if $includeOrder {
+			order: 4;
+		}
+	}
+
+	&.temps {
+		--option-card-soft-bg: #{colors.$color-temps-lighter};
+		--option-card-soft-border: #{colors.$color-temps-light};
+		--option-card-strong-bg: #{colors.$color-temps-light};
+		--option-card-strong-border: #{colors.$color-temps};
+
+		@if $includeOrder {
+			order: 5;
+		}
+	}
+}
+
+@mixin option-card-seasonal($padding, $includeOrder: false, $selectedStrongBg: false) {
+	@include option-card-base($padding);
+	@include option-card-saison-vars($includeOrder);
+	background: var(--option-card-soft-bg);
+	border-color: var(--option-card-soft-border);
+
+	&:has(input:checked) {
+		border-color: var(--option-card-strong-border) !important;
+
+		@if $selectedStrongBg {
+			background: var(--option-card-strong-bg) !important;
+		}
+	}
+}
+
+@mixin option-card-light($padding: 0.75rem) {
+	@include option-card-base($padding);
+	@include option-card-saison-vars();
+	background: colors.$color-white;
+	border-color: colors.$color-border-section;
+
+	&:has(input:checked) {
+		border-color: var(--option-card-strong-border);
+		background: var(--option-card-soft-bg);
+		box-shadow: 0 2px 10px colors.$color-box-shadow;
+	}
+}

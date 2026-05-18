@@ -91,7 +91,7 @@
 		display: none !important;
 	}
 	
-	.ameliorations-item.selected {
+	.ameliorations-item:has(input:checked) {
 		order: -1;
 	}
 }
