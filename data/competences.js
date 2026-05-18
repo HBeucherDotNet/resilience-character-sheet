@@ -2,36 +2,42 @@ export const competences = {
 	athletisme: {
 		nom: 'Athlétisme',
 		role: 'commune',
+		saison: 'temps',
 		description: 'Sauter, courir, nager, lancer, escalader et tenir en équilibre. Conflits armés.',
 		summary: 'Sauter, courir, nager, lancer, escalader et tenir en équilibre. Conflits armés'
 	},
 	rupture: {
 		nom: 'Rupture',
 		role: 'commune',
+		saison: 'temps',
 		description: 'La corruption de la Rupture, ses pouvoirs, la Pourprine et son travail, les Vecteurs de Rupture.',
 		summary: 'connaissance de la Rupture. Travail de la Pourprine'
 	},
 	sociabilite: {
 		nom: 'Sociabilité',
 		role: 'commune',
+		saison: 'temps',
 		description: 'Awalé, gestion des relations sociales, créer des liens, influencer une personne. Conflits verbaux.',
 		summary: 'Relations sociales, créer des liens, influencer une personne. Conflits verbaux'
 	},
 	spectacle: {
 		nom: 'Spectacle',
 		role: 'commune',
+		saison: 'temps',
 		description: 'Danse, chant, musique, mime, comédie, acrobaties, prestidigitation, jonglage. Influencer des groupes.',
 		summary: 'Danse, chant, musique, mime, comédie, acrobaties, prestidigitation, jonglage. Influencer des groupes'
 	},
 	exploration: {
 		nom: 'Exploration ❄️',
 		role: 'guide',
+		saison: 'hiver',
 		description: 'Orientation par les astres, lecture des courants, trouver les points d’eau. Cartographie, analyse du paysage et de la météo. Communication à distance et signalisation.',
 		summary: 'orientation, cartographie, météo, trouver de l’eau, risques naturels. Communication à distance et signalisation'
 	},
 	chasse: {
 		nom: 'Chasse ❄️',
 		role: 'guide',
+		saison: 'hiver',
 		description: 'Zoologie, chasse, pêche, piège, pistage et discrétion.',
 		summary: 'Zoologie, chasse, pêche, piège, pistage et discrétion'
 	},

@@ -4,20 +4,7 @@ import { equipements } from './equipements.js';
 import { morphologies } from './morphologies.js';
 
 function normalizeAmeliorationSaison(saison) {
-	return ['hiver', 'printemps', 'ete', 'automne', 'temps'].includes(saison) ? saison : 'temps';
-}
-
-function getCompetenceAmeliorationSaison(competence) {
-	if (competence.saison) return competence.saison;
-
-	const roleSeasonMap = {
-		guide: 'hiver',
-		sibylle: 'printemps',
-		matrice: 'ete',
-		artisan: 'automne'
-	};
-
-	return roleSeasonMap[competence.role] || 'temps';
+	return ['hiver', 'printemps', 'ete', 'automne', 'temps', 'rupture'].includes(saison) ? saison : 'temps';
 }
 
 export const ameliorationSectionConfigs = [
@@ -29,7 +16,7 @@ export const ameliorationSectionConfigs = [
 			nom: morphologie.nom,
 			meta: `Categorie : ${morphologie.categorie}`,
 			description: morphologie.description,
-			saison: morphologie.saison ?? 'temps'
+			saison: normalizeAmeliorationSaison(morphologie.saison)
 		}))
 	},
 	{
@@ -40,7 +27,7 @@ export const ameliorationSectionConfigs = [
 			nom: competence.nom,
 			meta: `Rôle : ${competence.role}`,
 			description: competence.description,
-			saison: normalizeAmeliorationSaison(getCompetenceAmeliorationSaison(competence))
+			saison: normalizeAmeliorationSaison(competence.saison)
 		}))
 	},
 	{
