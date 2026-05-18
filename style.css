@@ -354,6 +354,7 @@ section > div:last-child {
   border: 1px solid #d3d7e3;
   border-radius: 8px;
   padding: 0.75rem;
+  cursor: pointer;
 }
 .ameliorations-item.selected {
   border-color: #235a8a;
@@ -366,6 +367,23 @@ section > div:last-child {
   justify-content: space-between;
   gap: 0.75rem;
   margin-bottom: 0.4rem;
+}
+
+.ameliorations-item-option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+.ameliorations-item-option-label strong {
+  line-height: 1.3;
+}
+
+.ameliorations-item-checkbox {
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
 }
 
 .ameliorations-item-add-btn {
@@ -595,9 +613,6 @@ section > div:last-child {
 #fiche-personnage.hiver .saison-background {
   background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
 }
-#fiche-personnage.hiver #mots-hiver {
-  display: flex;
-}
 #fiche-personnage.hiver #fiche-magie-hiver {
   display: table;
 }
@@ -606,9 +621,6 @@ section > div:last-child {
 }
 #fiche-personnage.printemps .saison-background {
   background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-}
-#fiche-personnage.printemps #mots-printemps {
-  display: flex;
 }
 #fiche-personnage.printemps #fiche-magie-printemps {
   display: table;
@@ -619,9 +631,6 @@ section > div:last-child {
 #fiche-personnage.ete .saison-background {
   background: rgb(255, 249.9607329843, 216.5);
 }
-#fiche-personnage.ete #mots-ete {
-  display: flex;
-}
 #fiche-personnage.ete #fiche-magie-ete {
   display: table;
 }
@@ -631,9 +640,6 @@ section > div:last-child {
 #fiche-personnage.automne .saison-background {
   background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
 }
-#fiche-personnage.automne #mots-automne {
-  display: flex;
-}
 #fiche-personnage.automne #fiche-magie-automne {
   display: table;
 }
@@ -642,9 +648,6 @@ section > div:last-child {
 }
 #fiche-personnage.temps .saison-background {
   background: rgb(242.25, 242.25, 242.25);
-}
-#fiche-personnage.temps #mots-temps {
-  display: flex;
 }
 #fiche-personnage.temps #fiche-magie-temps {
   display: table;
@@ -1191,7 +1194,7 @@ section > div:last-child {
   align-items: center;
 }
 #fiche-champ-lexical .champ-lexical {
-  display: none;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;

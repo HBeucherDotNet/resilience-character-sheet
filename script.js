@@ -2,12 +2,17 @@ import { Personnage } from './personnage.js';
 import { bindViewModeActions, updateViewModeUi } from './viewMode.js';
 import { createFicheRenderer, createQuestionMarkSvg, normalizePlaceholderToken } from './lib/ficheRenderer.js';
 import { createHashStateSync } from './lib/hashState.js';
+import { createOptionCard, renderOptionGroup } from './lib/optionCard.js';
 import { createSortDialogController } from './lib/sortDialog.js';
 import { lignees } from './data/lignees.js';
+import { ligneeOptionConfigs } from './data/ligneeSections.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
 import { equipements } from './data/equipements.js';
 import { morphologies } from './data/morphologies.js';
+import { ameliorationSectionConfigs } from './data/ameliorationSections.js';
+import { champLexicalWordsBySaison } from './data/champLexical.js';
+import { morphologyGroupConfig, optionSectionConfigs } from './data/optionSections.js';
 import { sorts } from './data/sorts.js';
 
 // Couleurs par saison
@@ -31,6 +36,7 @@ const symbols = {
 const personnage = new Personnage();
 const ficheRenderer = createFicheRenderer({
 	couleurs,
+	champLexicalWordsBySaison,
 	getState: () => personnage.state,
 	onStateRendered: state => refreshAmeliorationButtons(state)
 });
@@ -266,6 +272,129 @@ function getCssColorVar(varName, fallback) {
 	return value || fallback;
 }
 
+function isMobilePage() {
+	return Boolean(document.getElementById('mobile-step-nav'));
+}
+
+function getMobileOptionDetailTargetSelector() {
+	return isMobilePage() ? '.mobile-step-detail' : '';
+}
+
+function shouldUseCollapsedOptionDetails() {
+	return !isMobilePage();
+}
+
+function createMorphologyGroupIntroNode(title, description) {
+	if (isMobilePage()) {
+		const intro = document.createElement('div');
+		intro.className = 'step-text temps';
+
+		const optionLabel = document.createElement('span');
+		optionLabel.className = 'option-label';
+
+		const label = document.createElement('label');
+		label.textContent = title;
+		optionLabel.appendChild(label);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc temps-desc';
+
+		const shortNode = document.createElement('span');
+		shortNode.className = 'short';
+		shortNode.textContent = description;
+		desc.appendChild(shortNode);
+
+		intro.appendChild(optionLabel);
+		intro.appendChild(desc);
+		return intro;
+	}
+
+	const intro = document.createElement('div');
+	intro.className = 'option temps';
+
+	const optionLabel = document.createElement('span');
+	optionLabel.className = 'option-label';
+
+	const label = document.createElement('label');
+	label.textContent = title;
+	optionLabel.appendChild(label);
+
+	const desc = document.createElement('span');
+	desc.className = 'desc temps-desc';
+
+	const shortNode = document.createElement('span');
+	shortNode.className = 'short';
+	shortNode.textContent = description;
+	desc.appendChild(shortNode);
+
+	intro.appendChild(optionLabel);
+	intro.appendChild(desc);
+	return intro;
+}
+
+function renderMorphologyOptionGroups() {
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
+
+	Object.entries(morphologyGroupConfig).forEach(([groupName, groupConfig]) => {
+		const container = document.getElementById(`${groupName}-group`);
+		if (!container) return;
+
+		const optionNodes = groupConfig.options.map(optionConfig => {
+			return createOptionCard({
+				name: groupName,
+				value: optionConfig.key,
+				id: `${groupName}-${optionConfig.key}`,
+				label: optionConfig.label,
+				saison: optionConfig.saison,
+				dataset: { morphologie: optionConfig.key },
+				shortText: optionConfig.shortText,
+				detailTargetSelector
+			});
+		});
+
+		renderOptionGroup(container, [
+			createMorphologyGroupIntroNode(groupConfig.title, groupConfig.description),
+			...optionNodes
+		]);
+	});
+}
+
+function renderConfiguredOptionSections() {
+	const collapsedDetails = shouldUseCollapsedOptionDetails();
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
+
+	optionSectionConfigs.forEach(sectionConfig => {
+		const container = sectionConfig.containerSelector
+			? document.querySelector(sectionConfig.containerSelector)
+			: document.getElementById(sectionConfig.containerId);
+		if (!container) return;
+
+		const optionNodes = sectionConfig.options.map(optionConfig => createOptionCard({
+			name: sectionConfig.name,
+			value: optionConfig.value,
+			id: optionConfig.id,
+			label: optionConfig.label,
+			labelSuffixHtml: optionConfig.labelSuffixHtml,
+			saison: optionConfig.saison,
+			dataset: optionConfig.dataset,
+			shortText: optionConfig.shortText,
+			shortHtml: optionConfig.shortHtml,
+			longText: optionConfig.longText,
+			longHtml: optionConfig.longHtml,
+			descHtml: optionConfig.descHtml,
+			longHidden: collapsedDetails,
+			donHtml: optionConfig.donHtml,
+			donPlacement: sectionConfig.donPlacement,
+			descClasses: sectionConfig.descClassesByValue?.[optionConfig.value] ?? [],
+			detailTargetSelector,
+			showReadMoreButton: collapsedDetails && Boolean(optionConfig.longText || optionConfig.longHtml || optionConfig.descHtml?.includes('class="long"')),
+			readMoreSvg: createQuestionMarkSvg(couleurs[optionConfig.saison] || couleurs.temps)
+		}));
+
+		renderOptionGroup(container, optionNodes);
+	});
+}
+
 window.toggleDesc = function(btn) {
 	// Cherche le sibling .desc dans le parent
 	let desc = null;
@@ -428,81 +557,39 @@ function refreshAmeliorationButtons(state = personnage.state) {
 		checkbox.checked = isAdded;
 		checkbox.closest('.ameliorations-item')?.classList.toggle('selected', isAdded);
 	});
-
-	document.querySelectorAll('.ameliorations-item-add-btn').forEach(button => {
-		const { ameliorationType, ameliorationKey } = button.dataset;
-		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
-		if(isAdded) {
-			button.textContent = '-';
-			button.closest('.ameliorations-item')?.classList.add('selected');
-		} else {
-			button.textContent = '+';
-			button.closest('.ameliorations-item')?.classList.remove('selected');
-		}
-		button.setAttribute('aria-pressed', String(isAdded));
-	});
 }
 
-function createAmeliorationItem({ key, type, nom, meta, description, selectionControl = 'button' }) {
-	const item = document.createElement('div');
-	item.className = 'ameliorations-item';
+function createAmeliorationItem({ key, type, nom, meta, description, saison = 'temps' }) {
+	const item = createOptionCard({
+		value: key,
+		id: `amelioration-${type}-${key}`,
+		label: nom,
+		saison,
+		extraClasses: ['ameliorations-item']
+	});
 
-	const header = document.createElement('div');
-	header.className = 'ameliorations-item-header';
+	const checkbox = item.querySelector('input[type="checkbox"]');
+	const optionLabel = item.querySelector('.option-label');
+	if (!checkbox || !optionLabel) return item;
 
-	if (selectionControl === 'checkbox' && key && type) {
-		const titleLabel = document.createElement('label');
-		titleLabel.className = 'option-label ameliorations-item-option-label';
+	checkbox.classList.add('ameliorations-item-checkbox');
+	checkbox.dataset.ameliorationType = type;
+	checkbox.dataset.ameliorationKey = key;
+	checkbox.setAttribute('aria-label', `Selectionner ${nom}`);
+	checkbox.addEventListener('change', () => {
+		toggleAmeliorationInPersonnage(type, key);
+	});
 
-		const checkbox = document.createElement('input');
-		checkbox.type = 'checkbox';
-		checkbox.className = 'ameliorations-item-checkbox';
-		checkbox.dataset.ameliorationType = type;
-		checkbox.dataset.ameliorationKey = key;
-		checkbox.setAttribute('aria-label', `Selectionner ${nom}`);
-		checkbox.addEventListener('change', () => {
-			toggleAmeliorationInPersonnage(type, key);
-		});
-
-		const title = document.createElement('strong');
-		title.textContent = nom;
-
-		titleLabel.appendChild(checkbox);
-		titleLabel.appendChild(title);
-		header.appendChild(titleLabel);
-
-		item.addEventListener('click', event => {
-			if (event.target.closest('input, label, button, a')) return;
-			checkbox.click();
-		});
-	} else {
-		const title = document.createElement('strong');
-		title.textContent = nom;
-		header.appendChild(title);
-
-		if (key && type) {
-			const addButton = document.createElement('button');
-			addButton.type = 'button';
-			addButton.className = 'ameliorations-item-add-btn';
-			addButton.textContent = '+';
-			addButton.dataset.ameliorationType = type;
-			addButton.dataset.ameliorationKey = key;
-			addButton.setAttribute('aria-label', `Ajouter ${nom}`);
-			addButton.addEventListener('click', () => toggleAmeliorationInPersonnage(type, key));
-			header.appendChild(addButton);
-		}
-	}
-
-	item.appendChild(header);
+	optionLabel.classList.add('ameliorations-item-option-label');
 
 	if (meta) {
-		const metaNode = document.createElement('div');
+		const metaNode = document.createElement('span');
 		metaNode.className = 'ameliorations-item-category';
 		metaNode.textContent = meta;
 		item.appendChild(metaNode);
 	}
 
-	const descriptionNode = document.createElement('div');
+	const descriptionNode = document.createElement('span');
 	descriptionNode.className = 'ameliorations-item-description';
 	descriptionNode.innerHTML = description;
 	item.appendChild(descriptionNode);
@@ -522,144 +609,43 @@ function fillAmeliorationsList(containerId, items) {
 	container.appendChild(fragment);
 }
 
-function fillAmeliorationsMorphologiesList() {
-	fillAmeliorationsList(
-		'ameliorations-morphologies-list',
-		Object.entries(morphologies).map(([key, morphologie]) => ({
-			key,
-			type: 'morphologie',
-			nom: morphologie.nom,
-			meta: `Categorie : ${morphologie.categorie}`,
-			description: morphologie.description,
-			selectionControl: 'checkbox'
-		}))
-	);
-}
-
-function fillAmeliorationsCompetencesList() {
-	fillAmeliorationsList(
-		'ameliorations-competences-list', 
-		Object.entries(competences).map(([key, competence]) => ({
-			key,
-			type: 'competence',
-			nom: competence.nom,
-			meta: `Rôle : ${competence.role}`,
-			description: competence.description
-		}))
-	);
-}
-
-function fillAmeliorationsDonsList() {
-	fillAmeliorationsList(
-		'ameliorations-dons-list',
-		Object.entries(dons).map(([key, don]) => ({
-			key,
-			type: 'don',
-			nom: don.nom,
-			meta: don.saison ? `Categorie : ${don.categorie} • Saison : ${don.saison}` : `Categorie : ${don.categorie}`,
-			description: don.description
-		}))
-	);
-}
-
-function fillAmeliorationsEquipementsList() {
-	fillAmeliorationsList(
-		'ameliorations-equipements-list',
-		Object.entries(equipements).map(([key, equipement]) => ({
-			key,
-			type: 'equipement',
-			nom: equipement.nom,
-			meta: `Categorie : ${equipement.categorie} • Saison : ${equipement.saison}`,
-			description: equipement.description
-		}))
-	);
+function fillAmeliorationsSections() {
+	ameliorationSectionConfigs.forEach(sectionConfig => {
+		fillAmeliorationsList(sectionConfig.containerId, sectionConfig.items);
+	});
 }
 
 function initLignees() {
 	const lignéesList = document.getElementById('lignées-list');
 	if (!lignéesList) return;
 
-	Object.entries(lignees).forEach(([key, lignee]) => {
-		const saison = dons[lignee.don]?.saison;
+	const collapsedDetails = shouldUseCollapsedOptionDetails();
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
+	const optionNodes = ligneeOptionConfigs.map(optionConfig => {
+		const option = createOptionCard({
+			name: 'lignee',
+			value: optionConfig.value,
+			id: optionConfig.id,
+			label: optionConfig.label,
+			labelSuffixHtml: optionConfig.labelSuffixHtml,
+			saison: optionConfig.saison,
+			dataset: optionConfig.dataset,
+			shortText: optionConfig.shortText,
+			longHtml: optionConfig.longHtml,
+			donHtml: optionConfig.donHtml,
+			longHidden: collapsedDetails,
+			detailTargetSelector,
+			showReadMoreButton: collapsedDetails,
+			readMoreSvg: createQuestionMarkSvg(couleurs[optionConfig.saison] || couleurs.temps),
+			readMoreLabel: 'Afficher la description',
+			extraClasses: optionConfig.extraClasses
+		});
 
-		const option = document.createElement('div');
-		option.className = `option lignee ${lignee.famille} ${saison}`;
 		option.style.display = 'none';
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher la description');
-		button.innerHTML = createQuestionMarkSvg(couleurs[saison] || couleurs.temps);
-
-		const checkbox = document.createElement('input');
-		checkbox.type = 'checkbox';
-		checkbox.name = 'lignee';
-		checkbox.value = key;
-		checkbox.id = `lignee-${key}`;
-		checkbox.dataset.don = lignee.don;
-		
-		const label = document.createElement('label');
-		label.setAttribute('for', checkbox.id);
-		label.textContent = lignee.nom;
-
-		const sexe = document.createElement('span');
-		sexe.className = 'lignee-sexe';
-		sexe.textContent = `(${lignee.sexe})`;
-
-		const optionLabel = document.createElement('span');
-		optionLabel.className = 'option-label';
-		optionLabel.appendChild(checkbox);
-		optionLabel.appendChild(label);
-		optionLabel.appendChild(sexe);
-
-		option.appendChild(optionLabel);
-
-		const desc = document.createElement('div');
-		desc.className = 'desc';
-
-		const shortDesc = document.createElement('span');
-		shortDesc.className = 'short';
-		shortDesc.textContent = lignee.summary;
-
-		const longDesc = document.createElement('span');
-		longDesc.className = 'long';
-		longDesc.style.display = 'none';
-		longDesc.textContent = lignee.description;
-
-		const ul = document.createElement('ul');
-		const liEnv = document.createElement('li');
-		liEnv.textContent = `Environnement préféré : ${lignee.environnement}`;
-		const liVie = document.createElement('li');
-		liVie.textContent = `Mode de vie favori : ${lignee.modeDeVie}`;
-		const liPerso = document.createElement('li');
-		liPerso.textContent = `Personnalité majoritaire : ${lignee.personnalite}`;
-		const liNoms = document.createElement('li');
-		liNoms.textContent = `Exemples de noms ${lignee.exemplesNoms}`;
-
-		ul.appendChild(liEnv);
-		ul.appendChild(liVie);
-		ul.appendChild(liPerso);
-		ul.appendChild(liNoms);
-		longDesc.appendChild(ul);
-
-		const hr = document.createElement('hr');
-		hr.className = 'don-separateur';
-
-		const donSpan = document.createElement('span');
-		donSpan.className = 'don';
-		donSpan.textContent = `Don : ${dons[lignee.don]?.nom} (${dons[lignee.don]?.categorie})`;
-
-		desc.appendChild(shortDesc);
-		desc.appendChild(longDesc);
-		desc.appendChild(hr);
-		desc.appendChild(donSpan);
-		option.appendChild(desc);
-
-		option.appendChild(button);
-
-		lignéesList.appendChild(option);
+		return option;
 	});
+
+	renderOptionGroup(lignéesList, optionNodes);
 }
 
 function initBindings() {
@@ -776,6 +762,8 @@ function bindResponsiveCollapsibleSection() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+	renderConfiguredOptionSections();
+	renderMorphologyOptionGroups();
 
 	ficheRenderer.fillFicheFromData(competences, 'printemps', 'competence');
 	ficheRenderer.fillFicheFromData(dons, 'ete', 'don');
@@ -786,12 +774,10 @@ window.addEventListener('DOMContentLoaded', function() {
 	personnage.subscribe(ficheRenderer.renderPersonnage);
 	personnage.subscribe(syncMagicDomains);
 
-	fillAmeliorationsCompetencesList();
-	fillAmeliorationsDonsList();
-	fillAmeliorationsEquipementsList();
-	fillAmeliorationsMorphologiesList();
+	fillAmeliorationsSections();
 
 	initLignees();
+	document.dispatchEvent(new Event('optiongroupsrendered'));
 	updateViewModeUi();
 	initBindings();
 	initStateFromHash();

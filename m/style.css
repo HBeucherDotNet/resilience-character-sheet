@@ -339,9 +339,17 @@ section h2 {
 }
 
 #ameliorations-group {
+  flex-direction: column;
   align-items: stretch;
-  flex-wrap: wrap;
-  gap: 1rem;
+}
+#ameliorations-group .option {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#ameliorations-group .option .option-label {
+  min-height: unset;
 }
 
 #ameliorations-scores-row {
@@ -377,6 +385,7 @@ section h2 {
   border: 1px solid #d3d7e3;
   border-radius: var(--mobile-card-radius);
   padding: 0.75rem;
+  cursor: pointer;
 }
 .ameliorations-item.selected {
   border-color: #235a8a;
@@ -389,6 +398,11 @@ section h2 {
   justify-content: space-between;
   gap: 0.75rem;
   margin-bottom: 0.4rem;
+}
+
+.ameliorations-item-checkbox {
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
 }
 
 .ameliorations-item-add-btn {
@@ -609,9 +623,6 @@ section h2 {
 #fiche-personnage.hiver .saison-background {
   background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
 }
-#fiche-personnage.hiver #mots-hiver {
-  display: grid;
-}
 #fiche-personnage.hiver #fiche-magie-hiver {
   display: flex;
 }
@@ -624,9 +635,6 @@ section h2 {
 }
 #fiche-personnage.printemps .saison-background {
   background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-}
-#fiche-personnage.printemps #mots-printemps {
-  display: grid;
 }
 #fiche-personnage.printemps #fiche-magie-printemps {
   display: flex;
@@ -641,9 +649,6 @@ section h2 {
 #fiche-personnage.ete .saison-background {
   background: rgb(255, 249.9607329843, 216.5);
 }
-#fiche-personnage.ete #mots-ete {
-  display: grid;
-}
 #fiche-personnage.ete #fiche-magie-ete {
   display: flex;
 }
@@ -657,9 +662,6 @@ section h2 {
 #fiche-personnage.automne .saison-background {
   background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
 }
-#fiche-personnage.automne #mots-automne {
-  display: grid;
-}
 #fiche-personnage.automne #fiche-magie-automne {
   display: flex;
 }
@@ -672,9 +674,6 @@ section h2 {
 }
 #fiche-personnage.temps .saison-background {
   background: rgb(242.25, 242.25, 242.25);
-}
-#fiche-personnage.temps #mots-temps {
-  display: grid;
 }
 #fiche-personnage.temps #fiche-magie-temps {
   display: flex;
@@ -1186,7 +1185,7 @@ section h2 {
   font-size: 0.85rem;
 }
 #fiche-champ-lexical .champ-lexical {
-  display: none;
+  display: grid;
   text-align: center;
   gap: 1rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1551,10 +1550,6 @@ body.mobile-ameliorations-mode #collapsible-section > summary::after {
 }
 body.mobile-ameliorations-mode #ameliorations-scores-row {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-body.mobile-ameliorations-mode #ameliorations-group {
-  flex-direction: column;
-  gap: 0.75rem;
 }
 body.mobile-ameliorations-mode .ameliorations-zone {
   min-width: 0;

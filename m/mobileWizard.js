@@ -1,4 +1,8 @@
 function buildDetailContent(optionElement) {
+	if (typeof optionElement?._buildDetailContent === 'function') {
+		return optionElement._buildDetailContent();
+	}
+
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
 
@@ -402,4 +406,4 @@ function setupSteps() {
 	renderStep();
 }
 
-setupSteps();
+document.addEventListener('optiongroupsrendered', setupSteps, { once: true });

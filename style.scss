@@ -462,31 +462,26 @@ section {
 	&.hiver {
 		.saison-border { border-color: colors.$color-hiver; }
 		.saison-background { background: colors.$color-hiver-lighter; }
-		#mots-hiver { display: flex; }
 		#fiche-magie-hiver { display: table; }
 	}
 	&.printemps {
 		.saison-border { border-color: colors.$color-printemps; }
 		.saison-background { background: colors.$color-printemps-lighter; }
-		#mots-printemps { display: flex; }
 		#fiche-magie-printemps { display: table; }
 	}
 	&.ete {
 		.saison-border { border-color: colors.$color-ete; }
 		.saison-background { background: colors.$color-ete-lighter; }
-		#mots-ete { display: flex; }
 		#fiche-magie-ete { display: table; }
 	}
 	&.automne {
 		.saison-border { border-color: colors.$color-automne; }
 		.saison-background { background: colors.$color-automne-lighter; }
-		#mots-automne { display: flex; }
 		#fiche-magie-automne { display: table; }
 	}
 	&.temps {
 		.saison-border { border-color: colors.$color-temps; }
 		.saison-background { background: colors.$color-temps-lighter; }
-		#mots-temps { display: flex; }
 		#fiche-magie-temps { display: table; }
 	}
 	&.rupture {
@@ -1052,7 +1047,7 @@ section {
 	align-items: center;
 	
 	.champ-lexical {
-		display: none;
+		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;

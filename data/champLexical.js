@@ -1,0 +1,72 @@
+export const champLexicalWordsBySaison = {
+	hiver: [
+		'Eau',
+		'Chair',
+		'Vie',
+		'Reve',
+		'Vide',
+		'Adaptation',
+		'Coordonner',
+		'Instinct',
+		'Mimer',
+		'Modifier',
+		'Mouvement',
+		'Profiter'
+	],
+	printemps: [
+		'Vent',
+		'Sens',
+		'Savoir',
+		'Illusion',
+		'Rythme',
+		'Curiosite',
+		'Apaiser',
+		'Eviter',
+		'Fausser',
+		'Cacher',
+		'Trouver',
+		'Verite'
+	],
+	ete: [
+		'Feu',
+		'Alchimie',
+		'Passion',
+		'Esprit',
+		'Lumiere',
+		'Emotion',
+		'Beau',
+		'Inspirer',
+		'Interagir',
+		'Rassembler',
+		'Sacrifier',
+		'Vitesse'
+	],
+	automne: [
+		'Terre',
+		'Force',
+		'Technique',
+		'Creation',
+		'Gravite',
+		'Prevoyance',
+		'Acquerir',
+		'Concevoir',
+		'Detruire',
+		'Logique',
+		'Proteger',
+		'Reparer'
+	],
+	temps: [
+		'Present',
+		'Passe',
+		'Futur',
+		'Cycle',
+		'Eternel',
+		'Cooperation',
+		'Devoir',
+		'Evolution',
+		'Destin',
+		'Mesure',
+		'Alea',
+		'Universel'
+	]
+};
