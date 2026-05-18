@@ -399,7 +399,7 @@ section > div:last-child {
 
 .amelioration-score-row-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto auto auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto;
   align-items: center;
   gap: 0.35rem;
   background: #fff;

@@ -150,6 +150,10 @@ section h2 {
   padding-bottom: 5.5rem;
 }
 
+.help-modale {
+  display: none;
+}
+
 #ameliorations-section {
   display: none !important;
 }
@@ -344,18 +348,12 @@ section h2 {
   display: grid;
   grid-template-columns: repeat(5, minmax(150px, 1fr));
   gap: 0.6rem;
-  margin-bottom: 1rem;
-  background: #e9ecf3;
-  border: 1px solid #d3d7e3;
-  border-radius: var(--mobile-card-radius);
-  padding: 0.9rem;
-  box-sizing: border-box;
 }
 
 .ameliorations-zone {
   flex: 1 1 calc(25% - 0.75rem);
   min-width: 220px;
-  background: #e9ecf3;
+  background: #fff;
   border: 1px solid #d3d7e3;
   border-radius: var(--mobile-card-radius);
   padding: 0.9rem;
@@ -424,7 +422,7 @@ section h2 {
 
 .amelioration-score-row-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto auto auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto;
   align-items: center;
   gap: 0.35rem;
   background: #fff;
@@ -612,7 +610,7 @@ section h2 {
   background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
 }
 #fiche-personnage.hiver #mots-hiver {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.hiver #fiche-magie-hiver {
   display: flex;
@@ -628,7 +626,7 @@ section h2 {
   background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
 }
 #fiche-personnage.printemps #mots-printemps {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.printemps #fiche-magie-printemps {
   display: flex;
@@ -644,7 +642,7 @@ section h2 {
   background: rgb(255, 249.9607329843, 216.5);
 }
 #fiche-personnage.ete #mots-ete {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.ete #fiche-magie-ete {
   display: flex;
@@ -660,7 +658,7 @@ section h2 {
   background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
 }
 #fiche-personnage.automne #mots-automne {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.automne #fiche-magie-automne {
   display: flex;
@@ -676,7 +674,7 @@ section h2 {
   background: rgb(242.25, 242.25, 242.25);
 }
 #fiche-personnage.temps #mots-temps {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.temps #fiche-magie-temps {
   display: flex;
@@ -692,7 +690,7 @@ section h2 {
   background: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
 }
 #fiche-personnage.rupture #mots-rupture {
-  display: flex;
+  display: grid;
 }
 #fiche-personnage.rupture #fiche-magie-rupture {
   display: flex;
@@ -1184,21 +1182,14 @@ section h2 {
 #fiche-champ-lexical {
   border-width: 2px 0;
   border-style: dotted none;
-  padding: 0.5rem 0;
-  font-size: 1rem;
-  flex-direction: column;
-  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.85rem;
 }
 #fiche-champ-lexical .champ-lexical {
   display: none;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-#fiche-champ-lexical .champ-lexical div {
-  flex-basis: 16%;
-  flex-shrink: 0;
   text-align: center;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 body.mobile-sheet-mode {
@@ -1473,21 +1464,109 @@ body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item:has(input:c
   border-color: var(--fiche-bloc-color);
   box-shadow: var(--mobile-shadow);
 }
-body.mobile-sheet-mode #fiche-champ-lexical {
-  padding: 0.9rem 0;
-  font-size: 0.8rem;
-  border-width: 1px 0;
+
+body.mobile-ameliorations-mode #fiche-personnage,
+body.mobile-ameliorations-mode #mobile-step-nav,
+body.mobile-ameliorations-mode #character-builder > section:not(#ameliorations-section) {
+  display: none !important;
 }
-body.mobile-sheet-mode #fiche-champ-lexical .champ-lexical {
-  justify-content: center;
-  gap: 0.35rem 0.6rem;
+body.mobile-ameliorations-mode #character-builder {
+  min-height: auto;
+  padding-bottom: 1rem;
 }
-body.mobile-sheet-mode #fiche-champ-lexical .champ-lexical div {
-  flex-basis: auto;
-  padding: 0.32rem 0.55rem;
+body.mobile-ameliorations-mode #ameliorations-section {
+  display: block !important;
+  position: relative;
+}
+body.mobile-ameliorations-mode #ameliorations-section::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(19, 41, 72, 0.38);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+  z-index: 149;
+}
+body.mobile-ameliorations-mode .help-modale {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: calc(var(--mobile-header-height) + 1rem);
+  transform: translateX(-50%);
+  width: min(100vw - 1.5rem, 32rem);
+  box-sizing: border-box;
+  padding: 1rem 1rem 0.9rem;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 20px 42px rgba(20, 36, 62, 0.24);
+  z-index: 150;
+}
+body.mobile-ameliorations-mode .help-modale h2 {
+  display: block;
+  margin: 0 2rem 0.45rem 0;
+  font-size: 1.05rem;
+  color: #235a8a;
+}
+body.mobile-ameliorations-mode .help-modale p {
+  margin: 0;
+  color: #333;
+  line-height: 1.4;
+}
+body.mobile-ameliorations-mode .help-modale p + p {
+  margin-top: 0.55rem;
+}
+body.mobile-ameliorations-mode .help-modale-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  color: #235a8a;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+body.mobile-ameliorations-mode.mobile-ameliorations-help-open #ameliorations-section::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.mobile-ameliorations-mode.mobile-ameliorations-help-open .help-modale {
+  display: block;
+}
+body.mobile-ameliorations-mode #collapsible-section {
+  border: 1px solid #d3d7e3;
+  border-radius: 18px;
+  padding: 0.85rem;
+  background: #fff;
+  box-shadow: var(--mobile-shadow);
+}
+body.mobile-ameliorations-mode #collapsible-section > summary::after {
+  display: none;
+}
+body.mobile-ameliorations-mode #ameliorations-scores-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body.mobile-ameliorations-mode #ameliorations-group {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+body.mobile-ameliorations-mode .ameliorations-zone {
+  min-width: 0;
+  width: 100%;
+}
+body.mobile-ameliorations-mode .mobile-header-menu .page-actions {
+  z-index: 140;
+}
+@media (max-width: 479px) {
+  body.mobile-ameliorations-mode #ameliorations-scores-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 body.mobile-sheet-mode.view-mode .fiche-blocs {

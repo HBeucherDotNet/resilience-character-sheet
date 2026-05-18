@@ -24,6 +24,7 @@
 			</summary>
 			<div class="page-actions" aria-label="Actions de partage">
 				<button type="button" id="return-to-form-btn" class="page-action-btn page-action-btn-secondary" hidden>Revenir au formulaire</button>
+				<button type="button" id="open-ameliorations-btn" class="page-action-btn page-action-btn-secondary">Ouvrir les ameliorations</button>
 				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
 				<button type="button" id="open-sort-dialog-btn" class="page-action-btn">Lancer un sort</button>
 				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
@@ -821,15 +822,16 @@
 		<!-------------------- AMELIORATIONS -------------------->
 		
 		<section id="ameliorations-section">
-			<details id="collapsible-section">
-				<summary>
-					<div>
-						<h2>Améliorations</h2>
-						Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête. Tout cela se fait en dépensant des points d'Harmonie.
-					</div>
-				</summary>
-				<div class="collapsible-section-content">
-					<div id="ameliorations-scores-row">
+			<div id="help-modale-ameliorations" class="help-modale">
+				<button type="button" class="help-modale-close" aria-label="Fermer l'aide des améliorations">×</button>
+				<h2>Améliorations</h2>
+				<p>Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête.</p>
+				<p>Tout cela se fait en dépensant des points d'Harmonie.</p>
+			</div>
+			<div class="collapsible-section-content">				
+				<div class="flex-group" id="ameliorations-group">
+					<div id="ameliorations-scores-row" class="ameliorations-zone">
+						<h3>Saisons</h3>
 						<div class="amelioration-score-row-item">
 							<span>Hiver</span>
 							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="-1">-</button>
@@ -861,26 +863,24 @@
 							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="1">+</button>
 						</div>
 					</div>
-					<div class="flex-group" id="ameliorations-group">
-						<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
-							<h3>Morphologies</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-competences-zone">
-							<h3>Compétences</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-dons-zone">
-							<h3>Dons</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-equipements-zone">
-							<h3>Équipements</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
-						</div>
+					<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
+						<h3>Morphologies</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-competences-zone">
+						<h3>Compétences</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-dons-zone">
+						<h3>Dons</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-equipements-zone">
+						<h3>Équipements</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
 					</div>
 				</div>
-			</details>
+			</div>
 		</section>
 	</div>
 	

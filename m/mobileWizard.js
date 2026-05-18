@@ -158,7 +158,11 @@ function setupSteps() {
 	const nextButton = document.getElementById('mobile-step-next');
 	const title = document.getElementById('mobile-step-title');
 	const headerMenu = document.querySelector('.mobile-header-menu');
+	const ameliorationsSection = builder.querySelector('#ameliorations-section');
+	const ameliorationsHelpModal = document.getElementById('help-modale-ameliorations');
+	const ameliorationsHelpModalCloseButton = ameliorationsHelpModal?.querySelector('.help-modale-close');
 	const returnToFormButton = document.getElementById('return-to-form-btn');
+	const openAmeliorationsButton = document.getElementById('open-ameliorations-btn');
 	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
 	const openSortDialogButton = document.getElementById('open-sort-dialog-btn');
 	const shareViewLinkButton = document.getElementById('share-view-link-btn');
@@ -177,6 +181,23 @@ function setupSteps() {
 		return document.body.classList.contains('view-mode');
 	}
 
+	function isAmeliorationsModeEnabled() {
+		return document.body.classList.contains('mobile-ameliorations-mode');
+	}
+
+	function isAmeliorationsHelpModalOpen() {
+		return document.body.classList.contains('mobile-ameliorations-help-open');
+	}
+
+	function openAmeliorationsHelpModal() {
+		if (!ameliorationsHelpModal) return;
+		document.body.classList.add('mobile-ameliorations-help-open');
+	}
+
+	function closeAmeliorationsHelpModal() {
+		document.body.classList.remove('mobile-ameliorations-help-open');
+	}
+
 	function isSheetModeEnabled() {
 		return document.body.classList.contains('mobile-sheet-mode') || isReadOnlyViewModeEnabled();
 	}
@@ -184,22 +205,34 @@ function setupSteps() {
 	function syncSheetModeUi() {
 		const hasEditableSheetMode = document.body.classList.contains('mobile-sheet-mode');
 		const isReadOnlyViewMode = isReadOnlyViewModeEnabled();
+		const hasAmeliorationsMode = isAmeliorationsModeEnabled() && !isReadOnlyViewMode;
 		const shouldShowSheet = hasEditableSheetMode || isReadOnlyViewMode;
 		document.body.classList.toggle('mobile-sheet-mode', shouldShowSheet);
 
 		if (returnToFormButton) {
-			returnToFormButton.hidden = !hasEditableSheetMode || isReadOnlyViewMode;
-			returnToFormButton.setAttribute('aria-pressed', String(hasEditableSheetMode));
+			returnToFormButton.hidden = !(hasEditableSheetMode || hasAmeliorationsMode) || isReadOnlyViewMode;
+			returnToFormButton.setAttribute('aria-pressed', String(hasEditableSheetMode || hasAmeliorationsMode));
+		}
+
+		if (openAmeliorationsButton) {
+			openAmeliorationsButton.hidden = shouldShowSheet || hasAmeliorationsMode || isReadOnlyViewMode || !ameliorationsSection;
 		}
 
 		if (shareViewLinkButton) {
-			shareViewLinkButton.hidden = shouldShowSheet;
+			shareViewLinkButton.hidden = shouldShowSheet || hasAmeliorationsMode;
 		}
 	}
 
-	function exitCharacterSheetView() {
-		if (!document.body.classList.contains('mobile-sheet-mode') || isReadOnlyViewModeEnabled()) return;
+	function exitSpecialMobileMode() {
+		if (isReadOnlyViewModeEnabled()) return;
+
+		const wasInSheetMode = document.body.classList.contains('mobile-sheet-mode');
+		const wasInAmeliorationsMode = isAmeliorationsModeEnabled();
+		if (!wasInSheetMode && !wasInAmeliorationsMode) return;
+
 		document.body.classList.remove('mobile-sheet-mode');
+		document.body.classList.remove('mobile-ameliorations-mode');
+		closeAmeliorationsHelpModal();
 		syncSheetModeUi();
 		closeHeaderMenu();
 		renderStep();
@@ -216,12 +249,32 @@ function setupSteps() {
 			controller.setActive(false);
 		});
 
+		closeAmeliorationsHelpModal();
+		document.body.classList.remove('mobile-ameliorations-mode');
 		document.body.classList.add('mobile-sheet-mode');
 		syncSheetModeUi();
 		closeHeaderMenu();
 
 		window.requestAnimationFrame(() => {
 			document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
+		});
+	}
+
+	function openAmeliorationsView() {
+		if (!ameliorationsSection || isReadOnlyViewModeEnabled()) return;
+
+		groupControllers.forEach(controller => {
+			controller.setActive(false);
+		});
+
+		document.body.classList.remove('mobile-sheet-mode');
+		document.body.classList.add('mobile-ameliorations-mode');
+		openAmeliorationsHelpModal();
+		syncSheetModeUi();
+		closeHeaderMenu();
+
+		window.requestAnimationFrame(() => {
+			ameliorationsSection.scrollIntoView({ block: 'start' });
 		});
 	}
 
@@ -282,7 +335,21 @@ function setupSteps() {
 	});
 
 	returnToFormButton?.addEventListener('click', () => {
-		exitCharacterSheetView();
+		exitSpecialMobileMode();
+	});
+
+	ameliorationsHelpModalCloseButton?.addEventListener('click', () => {
+		closeAmeliorationsHelpModal();
+	});
+
+	ameliorationsHelpModal?.addEventListener('click', event => {
+		if (event.target === ameliorationsHelpModal) {
+			closeAmeliorationsHelpModal();
+		}
+	});
+
+	openAmeliorationsButton?.addEventListener('click', () => {
+		openAmeliorationsView();
 	});
 
 	toggleViewModeButton?.addEventListener('click', () => {
@@ -290,6 +357,8 @@ function setupSteps() {
 	}, true);
 
 	document.addEventListener('viewmodechange', event => {
+		document.body.classList.remove('mobile-ameliorations-mode');
+		closeAmeliorationsHelpModal();
 		syncSheetModeUi();
 		closeHeaderMenu();
 
@@ -309,6 +378,12 @@ function setupSteps() {
 
 	openSortDialogButton?.addEventListener('click', () => {
 		closeHeaderMenu();
+	});
+
+	document.addEventListener('keydown', event => {
+		if (event.key === 'Escape' && isAmeliorationsHelpModalOpen()) {
+			closeAmeliorationsHelpModal();
+		}
 	});
 
 	nextButton.addEventListener('click', () => {

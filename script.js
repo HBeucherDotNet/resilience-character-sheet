@@ -422,6 +422,13 @@ function toggleAmeliorationInPersonnage(type, key) {
 }
 
 function refreshAmeliorationButtons(state = personnage.state) {
+	document.querySelectorAll('.ameliorations-item-checkbox').forEach(checkbox => {
+		const { ameliorationType, ameliorationKey } = checkbox.dataset;
+		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
+		checkbox.checked = isAdded;
+		checkbox.closest('.ameliorations-item')?.classList.toggle('selected', isAdded);
+	});
+
 	document.querySelectorAll('.ameliorations-item-add-btn').forEach(button => {
 		const { ameliorationType, ameliorationKey } = button.dataset;
 		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
@@ -436,27 +443,54 @@ function refreshAmeliorationButtons(state = personnage.state) {
 	});
 }
 
-function createAmeliorationItem({ key, type, nom, meta, description }) {
+function createAmeliorationItem({ key, type, nom, meta, description, selectionControl = 'button' }) {
 	const item = document.createElement('div');
 	item.className = 'ameliorations-item';
 
 	const header = document.createElement('div');
 	header.className = 'ameliorations-item-header';
 
-	const title = document.createElement('strong');
-	title.textContent = nom;
-	header.appendChild(title);
+	if (selectionControl === 'checkbox' && key && type) {
+		const titleLabel = document.createElement('label');
+		titleLabel.className = 'option-label ameliorations-item-option-label';
 
-	if (key && type) {
-		const addButton = document.createElement('button');
-		addButton.type = 'button';
-		addButton.className = 'ameliorations-item-add-btn';
-		addButton.textContent = '+';
-		addButton.dataset.ameliorationType = type;
-		addButton.dataset.ameliorationKey = key;
-		addButton.setAttribute('aria-label', `Ajouter ${nom}`);
-		addButton.addEventListener('click', () => toggleAmeliorationInPersonnage(type, key));
-		header.appendChild(addButton);
+		const checkbox = document.createElement('input');
+		checkbox.type = 'checkbox';
+		checkbox.className = 'ameliorations-item-checkbox';
+		checkbox.dataset.ameliorationType = type;
+		checkbox.dataset.ameliorationKey = key;
+		checkbox.setAttribute('aria-label', `Selectionner ${nom}`);
+		checkbox.addEventListener('change', () => {
+			toggleAmeliorationInPersonnage(type, key);
+		});
+
+		const title = document.createElement('strong');
+		title.textContent = nom;
+
+		titleLabel.appendChild(checkbox);
+		titleLabel.appendChild(title);
+		header.appendChild(titleLabel);
+
+		item.addEventListener('click', event => {
+			if (event.target.closest('input, label, button, a')) return;
+			checkbox.click();
+		});
+	} else {
+		const title = document.createElement('strong');
+		title.textContent = nom;
+		header.appendChild(title);
+
+		if (key && type) {
+			const addButton = document.createElement('button');
+			addButton.type = 'button';
+			addButton.className = 'ameliorations-item-add-btn';
+			addButton.textContent = '+';
+			addButton.dataset.ameliorationType = type;
+			addButton.dataset.ameliorationKey = key;
+			addButton.setAttribute('aria-label', `Ajouter ${nom}`);
+			addButton.addEventListener('click', () => toggleAmeliorationInPersonnage(type, key));
+			header.appendChild(addButton);
+		}
 	}
 
 	item.appendChild(header);
@@ -496,7 +530,8 @@ function fillAmeliorationsMorphologiesList() {
 			type: 'morphologie',
 			nom: morphologie.nom,
 			meta: `Categorie : ${morphologie.categorie}`,
-			description: morphologie.description
+			description: morphologie.description,
+			selectionControl: 'checkbox'
 		}))
 	);
 }
