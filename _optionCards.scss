@@ -17,6 +17,17 @@
 	input[type="checkbox"] {
 		accent-color: var(--option-card-strong-bg);
 	}
+
+	.option-label {
+		display:flex;
+		align-items:center;
+		gap:0.5rem;
+		
+		label {
+			color: colors.$color-text-main;
+			font-weight: 600;
+		}
+	}
 }
 
 @mixin option-card-saison-vars($includeOrder: false) {
@@ -95,7 +106,7 @@
 	@include option-card-base($padding);
 	@include option-card-saison-vars();
 	background: colors.$color-white;
-	border-color: colors.$color-border-section;
+	border-color: var(--option-card-strong-border);
 
 	&:has(input:checked) {
 		border-color: var(--option-card-strong-border);
