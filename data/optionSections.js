@@ -159,7 +159,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'jambieres' },
 				shortText: 'Ces environnements sont riches en eau potable. Ils attirent donc des proies faciles pour la chasse et permettent, s’ils sont bien gérés, la culture et l’élevage.',
 				longText: 'Cependant, les eaux stagnantes sont propices au développement de maladies, car elles favorisent le développement de parasites tout en affaiblissant le système immunitaire des communautés vivant à leur proximité.',
-				donHtml: 'Le personnage pourrait posséder des Jambières ❄️.'
+				donHtml: 'Le personnage pourrait posséder des Jambières ❄️'
 			},
 			{
 				value: 'iles-littoral',
@@ -169,7 +169,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'brassards' },
 				shortText: 'Ces environnements bénéficient de l’influence de l’océan qui temporise les fluctuations de températures. Par ailleurs, la nourriture y est plutôt abondante et facile à récolter.',
 				longText: 'En revanche, ce sont des milieux souvent pauvres en eau douce, exposés à la fois aux dangers terrestres et maritimes. De plus, beaucoup d’animaux marins tendent des embuscades, se confondant avec les rochers, et beaucoup utilisent des venins mortels.',
-				donHtml: 'Le personnage pourrait posséder des Brassards 🌱.'
+				donHtml: 'Le personnage pourrait posséder des Brassards 🌱'
 			},
 			{
 				value: 'plaines-collines',
@@ -179,7 +179,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'casque' },
 				shortText: 'Ces environnements permettent de voir loin et de voyager facilement. Les échanges sont donc plus aisés, ce qui signifie que des communautés peuvent s’installer avec peu de moyens et échanger avec celles alentour.',
 				longText: 'En revanche, si ces lieux permettent d’anticiper les dangers, aussi bien les attaques que les intempéries, cela signifie aussi que ses habitants y sont plus exposés, ce qui pèse lourdement sur leur moral.',
-				donHtml: 'Le personnage pourrait posséder un Casque ☀️.'
+				donHtml: 'Le personnage pourrait posséder un Casque ☀️'
 			},
 			{
 				value: 'montagnes-canyons',
@@ -189,7 +189,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'plastron' },
 				shortText: 'Ces environnements clos, difficiles d’accès ont l’avantage d’offrir un bon isolement face aux bandits et pillards, et une protection relative aux aléas climatiques.',
 				longText: 'Ces lieux permettent donc de faire des abris sûrs et solides. Cependant, ils viennent avec des dangers supplémentaires : éboulements, crevasses, avalanches. Ces dangers sont impressionnants mais assez prévisibles dans l’ensemble.',
-				donHtml: 'Le personnage pourrait posséder un Plastron 🍁.'
+				donHtml: 'Le personnage pourrait posséder un Plastron 🍁'
 			}
 		]
 	},
@@ -205,7 +205,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'survie' },
 				shortText: 'Les Alizés n’ont aucune attache, acceptant les variations et déplacements erratiques de la météo.',
 				longText: 'Les troupeaux et les oracles les guident vers des alliés, des abris ou des météos favorables, répondant à leurs besoins du moment. Les Alizés errent en permanence, devant garder leur cap et faire de chaque changement une opportunité.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Survie ❄️.'
+				donHtml: 'Le personnage pourrait posséder des Outils de Survie ❄️'
 			},
 			{
 				value: 'troglodyte',
@@ -215,7 +215,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'sapience' },
 				shortText: 'Les Troglodytes vivent presque coupés du monde, dans des grottes cachées, des vallées secrètes, ou canyons inaccessibles.',
 				longText: 'Leurs échanges rarissimes leur apprennent à tirer le meilleur parti de leur environnement. Les Troglodytes doivent connaître et comprendre leur milieu de vie à la perfection pour ne jamais manquer de rien.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Sapience 🌱.'
+				donHtml: 'Le personnage pourrait posséder des Outils de Sapience 🌱'
 			},
 			{
 				value: 'sedentaire',
@@ -225,7 +225,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'foyer' },
 				shortText: 'Les Sédentaires s’établissent dans un lieu offrant au moins une ressource pérenne, telle que l’eau, un abri ou un sol fertile.',
 				longText: 'Ils construisent de quoi la faire fructifier et échangent pour le reste. Les Sédentaires doivent plus que tout maintenir leur unité et la bonne entente face à l’adversité tant interne qu’externe.',
-				donHtml: 'Le personnage pourrait posséder des Outils du Foyer ☀️.'
+				donHtml: 'Le personnage pourrait posséder des Outils du Foyer ☀️'
 			},
 			{
 				value: 'nomade',
@@ -235,7 +235,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'confection' },
 				shortText: 'Les Nomades voyagent entre les communautés sédentaires et des points habitables, exploités puis abandonnés le temps qu’ils se régénèrent.',
 				longText: 'Les Nomades entretiennent les échanges et voies de communication. Ils doivent souvent réparer les infrastructures et habitations, de la route où aider les communautés qu’ils visitent.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Confection 🍁.'
+				donHtml: 'Le personnage pourrait posséder des Outils de Confection 🍁'
 			}
 		]
 	},
@@ -251,7 +251,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'echarpe' },
 				shortText: 'Le personnage considère que puisqu’aucune connaissance ne peut être complète et aucune technologie totalement fiable, le plus sage est d’apprivoiser au mieux ses qualités naturelles.',
 				longText: 'Connaître ses atouts permet de faire face à toutes les situations, en improvisant à partir de la confiance en soi ainsi bâtie.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Écharpe ❄️.'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Écharpe ❄️'
 			},
 			{
 				value: 'appris',
@@ -261,7 +261,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'cape' },
 				shortText: 'Le personnage estime que dans chaque problème réside sa propre solution.',
 				longText: 'Aussi, étudier le monde et ses peuples permet de développer des connaissances éclectiques pour parer à toutes les situations. Cela demande d’embrasser chaque expérience et d’en tirer des leçons, afin d’apprivoiser le monde.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Cape 🌱.'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Cape 🌱'
 			},
 			{
 				value: 'chitine',
@@ -271,7 +271,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'parure' },
 				shortText: 'Le personnage sait que personne n’est parfait, qu’aucun expert ne saurait être infaillible, qu’il aura toujours besoin des autres et les autres de lui.',
 				longText: 'En travaillant ensemble avec sincérité et confiance, la synergie dépasse la somme des individus.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Parure ☀️.'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Parure ☀️'
 			},
 			{
 				value: 'construit',
@@ -281,7 +281,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'tablier' },
 				shortText: 'Le personnage pense que la technologie, incarnation du contrôle de la matière, est la clé qui permet de surmonter les épreuves de la vie.',
 				longText: 'Un bon outil compense les faiblesses naturelles, permet d’aller dans l’inconnu ou de faire progresser les savoirs.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement un Tablier 🍁.'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement un Tablier 🍁'
 			}
 		]
 	},
