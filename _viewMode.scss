@@ -10,7 +10,7 @@ body.view-mode {
 			pointer-events: none;
 		}
 	}
-
+	
 	.fiche-bloc {
 		.fiche-bloc-item {
 			border: none !important;
@@ -59,6 +59,75 @@ body.view-mode {
 			border: none;
 			border-radius: 0;
 			box-shadow: none;
+		}
+		
+		#fiche-magie {
+			.tableau-magie-talents {
+				border-collapse: separate;
+				border-spacing: 0 0.7rem;
+				
+				input {
+					display: none !important;
+				}
+				
+				tbody {
+					display: block;
+				}
+				
+				tr[hidden] {
+					display: none !important;
+				}
+				
+				tr {
+					& + tr {
+						border-top: 1px solid colors.$color-border-section;
+					}
+				}
+				
+				td {
+					padding: 0;
+					border: none;
+
+					&:not(:has(input:checked)) .magie-talent-label {
+						background: colors.$color-border-cercle !important;
+					}
+				}
+				
+				td[hidden] {
+					display: none !important;
+				}
+				
+				.magie-talent-label {
+					pointer-events: auto;
+					cursor: pointer;
+					display: inline-block;
+					padding: 0.5rem;
+					border-radius: 999px;
+					background: var(--character-season-strong-border);
+					box-shadow: var(--mobile-shadow);
+					text-align: center;
+					font-size: 0.75rem;
+					font-weight: 700;
+					line-height: 1.15;
+					white-space: normal;
+					box-sizing: border-box;
+					color: colors.$color-white;
+				}
+				
+				.magie-talent-description {
+					margin: 0;
+					padding-left: 0;
+					color: colors.$color-text-dark;
+					font-size: 0.85rem;
+					font-weight: 400;
+					line-height: 1.2;
+					list-style-type: none;
+					
+					li + li {
+						margin-top: 0.2rem;
+					}
+				}
+			}
 		}
 	}
 	
@@ -156,7 +225,7 @@ body.view-mode {
 				box-sizing: border-box;
 				color: colors.$color-white;
 			}
-
+			
 			input:checked + .magie-talent-label {
 				color: colors.$color-white;
 			}

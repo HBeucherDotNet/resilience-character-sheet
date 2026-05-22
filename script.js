@@ -33,6 +33,8 @@ const symbols = {
 	rupture: '💀'
 };
 
+const persistedCharacterTextFieldSelector = 'input[type="text"], textarea';
+
 const personnage = new Personnage();
 const ficheRenderer = createFicheRenderer({
 	couleurs,
@@ -40,7 +42,10 @@ const ficheRenderer = createFicheRenderer({
 	getState: () => personnage.state,
 	onStateRendered: state => refreshAmeliorationButtons(state)
 });
-const hashStateSync = createHashStateSync();
+const hashStateSync = createHashStateSync({
+	getHashState: () => personnage.getPersistedHashState(),
+	onStateRestored: syncPersonnageFromDom
+});
 const sortDialogController = createSortDialogController({
 	getState: () => personnage.state,
 	symbols,
@@ -53,6 +58,26 @@ const lastScoreButtonClickByElement = new WeakMap();
 function getCheckedFicheBlocKeys(containerSelector, itemSelector, dataKey) {
 	return Array.from(document.querySelectorAll(`${containerSelector} ${itemSelector} input:checked`))
 		.map(input => input.closest(itemSelector)?.dataset[dataKey] || '')
+		.filter(Boolean);
+}
+
+function isPersistedCharacterTextField(field) {
+	return Boolean(field?.id) && !field.closest('#sort-dialog');
+}
+
+function getPersistedCharacterTextValues() {
+	const values = {};
+	Array.from(document.querySelectorAll(persistedCharacterTextFieldSelector))
+		.filter(isPersistedCharacterTextField)
+		.forEach(field => {
+			values[field.id] = field.value;
+		});
+	return values;
+}
+
+function getCheckedMagicTalentIds() {
+	return Array.from(document.querySelectorAll('#fiche-magie input.talent:checked'))
+		.map(input => input.id)
 		.filter(Boolean);
 }
 
@@ -79,7 +104,9 @@ function syncPersonnageFromDom() {
 		competencesAjoutees: getCheckedFicheBlocKeys('#fiche-competences', '.fiche-bloc-item', 'competence'),
 		donsAjoutes: getCheckedFicheBlocKeys('#fiche-dons', '.fiche-bloc-item', 'don'),
 		equipementsAjoutes: getCheckedFicheBlocKeys('#fiche-equipements', '.fiche-bloc-item', 'equipement'),
-		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.fiche-bloc-item', 'morphologie')
+		morphologiesAjoutees: getCheckedFicheBlocKeys('#fiche-morphologies', '.fiche-bloc-item', 'morphologie'),
+		magicTalentIds: getCheckedMagicTalentIds(),
+		textValues: getPersistedCharacterTextValues()
 	});
 }
 
@@ -140,11 +167,20 @@ function syncMagicDomains(state = personnage.state) {
 			checkbox.checked = true;
 		});
 
+	syncDesktopViewModePresentation();
 	syncMobileViewModePresentation();
 }
 
 function isMobileReadOnlyViewActive() {
 	return document.body.classList.contains('view-mode') && document.body.classList.contains('mobile-sheet-mode');
+}
+
+function isDesktopReadOnlyViewActive() {
+	return document.body.classList.contains('view-mode') && !document.body.classList.contains('mobile-sheet-mode');
+	}
+
+function isMagicTalentDialogModeEnabled() {
+	return isMobileReadOnlyViewActive() || isDesktopReadOnlyViewActive();
 }
 
 function resolveMagicDomainDataKey(card) {
@@ -180,6 +216,69 @@ function buildMagicTalentDescription(descriptions) {
 	});
 
 	return list;
+}
+
+function ensureDesktopMagicTalentLabel(talentInput) {
+	const label = talentInput?.closest('label');
+	if (!label) return null;
+
+	const existingLabel = label.querySelector('.magie-talent-label');
+	if (existingLabel) return existingLabel;
+
+	const labelText = label.textContent.trim();
+	label.textContent = '';
+	label.appendChild(talentInput);
+
+	const textNode = document.createElement('span');
+	textNode.className = 'magie-talent-label';
+	textNode.textContent = labelText;
+	label.appendChild(textNode);
+
+	return textNode;
+}
+
+function syncDesktopViewModePresentation() {
+	const magicTables = Array.from(document.querySelectorAll('#fiche-magie .tableau-magie-talents'));
+	const isReadOnlyView = isDesktopReadOnlyViewActive();
+
+	magicTables.forEach(table => {
+		const rows = Array.from(table.querySelectorAll('tbody tr'));
+		rows.forEach(row => {
+			row.hidden = false;
+			const cells = Array.from(row.querySelectorAll('td'));
+			cells.forEach(cell => {
+				cell.hidden = false;
+			});
+
+			if (!isReadOnlyView) return;
+
+			const domainInput = row.querySelector('td:first-child input[type="checkbox"]:not(.talent)');
+			const domainKey = normalizePlaceholderToken(domainInput?.id ?? '');
+			if (!domainInput?.checked || !sorts[domainKey]) {
+				row.hidden = true;
+				return;
+			}
+
+			let hasVisibleTalent = false;
+			cells.slice(1).forEach(cell => {
+				const talentInput = cell.querySelector('input.talent');
+
+				ensureDesktopMagicTalentLabel(talentInput);
+				const talentKey = resolveMagicTalentKey(talentInput);
+				const descriptions = Array.isArray(sorts[domainKey]?.[talentKey]) ? sorts[domainKey][talentKey] : [];
+				if (descriptions.length === 0) {
+					cell.hidden = true;
+					return;
+				}
+
+				hasVisibleTalent = true;
+			});
+
+			if (!hasVisibleTalent) {
+				row.hidden = true;
+			}
+		});
+	});
 }
 
 function syncMobileViewModePresentation() {
@@ -263,10 +362,13 @@ function bindAmeliorationScoreControls() {
 			input.dispatchEvent(new Event('change', { bubbles: true }));
 		});
 	});
+}
 
-	document.querySelectorAll('.amelioration-score-input').forEach(input => {
-		input.addEventListener('input', syncPersonnageFromDom);
-		input.addEventListener('change', syncPersonnageFromDom);
+function bindPersistedCharacterTextSync() {
+	document.querySelectorAll(persistedCharacterTextFieldSelector).forEach(field => {
+		if (!isPersistedCharacterTextField(field)) return;
+		field.addEventListener('input', syncPersonnageFromDom);
+		field.addEventListener('change', syncPersonnageFromDom);
 	});
 }
 
@@ -742,6 +844,7 @@ function initBindings() {
 	});
 
 	bindAmeliorationScoreControls();
+	bindPersistedCharacterTextSync();
 
 	document.querySelectorAll('.lire-plus.pictogram-btn').forEach(div => {
 		div.addEventListener('click', () => toggleDesc(div));
@@ -779,6 +882,10 @@ function initBindings() {
 	});
 
 	document.querySelectorAll('#fiche-magie input[type="checkbox"]').forEach(input => {
+		if (input.classList.contains('talent')) {
+			input.addEventListener('change', syncPersonnageFromDom);
+		}
+		input.addEventListener('change', syncDesktopViewModePresentation);
 		input.addEventListener('change', syncMobileViewModePresentation);
 	});
 
@@ -787,20 +894,21 @@ function initBindings() {
 			? event.target.closest('.magie-talent-label')
 			: null;
 		if (!(label instanceof HTMLElement)) return;
-		if (!isMobileReadOnlyViewActive()) return;
+		if (!isMagicTalentDialogModeEnabled()) return;
 
 		event.preventDefault();
 		event.stopPropagation();
 
-		const talentInput = label.closest('.magie-talent-chip')?.querySelector('input.talent');
+		const talentInput = label.closest('.magie-talent-chip, td, label')?.querySelector('input.talent');
 		if (!talentInput?.checked) return;
 
 		sortDialogController.openSortDialog({ talentId: talentInput.id });
 	});
 
-	document.addEventListener('viewmodechange', syncMobileViewModePresentation);
-
-	hashStateSync.bindTextFieldHashSync();
+	document.addEventListener('viewmodechange', () => {
+		syncDesktopViewModePresentation();
+		syncMobileViewModePresentation();
+	});
 }
 
 function initStateFromHash() {

@@ -93,6 +93,60 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-personnage {
   border-radius: 0;
   box-shadow: none;
 }
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents {
+  border-collapse: separate;
+  border-spacing: 0 0.7rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents input {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tbody {
+  display: block;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr[hidden] {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr + tr {
+  border-top: 1px solid #d3d7e3;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td {
+  padding: 0;
+  border: none;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td:not(:has(input:checked)) .magie-talent-label {
+  background: #888 !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hidden] {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-label {
+  pointer-events: auto;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background: var(--character-season-strong-border);
+  box-shadow: var(--mobile-shadow);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: normal;
+  box-sizing: border-box;
+  color: #fff;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-description {
+  margin: 0;
+  padding-left: 0;
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.2;
+  list-style-type: none;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-description li + li {
+  margin-top: 0.2rem;
+}
 body.view-mode.mobile-sheet-mode #fiche-blocs {
   gap: 0.85rem;
 }
