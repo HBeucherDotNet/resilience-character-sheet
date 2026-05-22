@@ -113,7 +113,7 @@ export const optionSectionConfigs = [
 				dataset: { don: 'adrenaline' },
 				shortText: 'La Famille Squelette regroupe tous les personnages ayant un squelette interne, quatre membres et une tête.',
 				longText: 'Ils peuvent tenir du mammifère et être couvert de poils, de l’oiseau, ou avoir plutôt une ascendance reptilienne voir un apparence directement inspirée des amphibiens, leur donnant une peau multicolore.',
-				donHtml: 'Don : Adrénaline ☀️'
+				donHtml: 'Don : Adrénaline&nbsp;☀️'
 			},
 			{
 				value: 'cellulose',
@@ -123,7 +123,7 @@ export const optionSectionConfigs = [
 				dataset: { don: 'symbiose' },
 				shortText: 'La Famille Cellulose contient tous les personnages issus du règne des végétaux ou des champignons.',
 				longText: 'Ces individus particulièrement étranges simulent des visages pour parvenir à communiquer avec les autres Familles. Dans leur incroyable diversité, ils ont trouvé le moyen d’avoir des morphologies relativement constantes, en apparence du moins.',
-				donHtml: 'Don : Symbiose 🌱'
+				donHtml: 'Don : Symbiose&nbsp;🌱'
 			},
 			{
 				value: 'chitine',
@@ -133,7 +133,7 @@ export const optionSectionConfigs = [
 				dataset: { don: 'exosquelette' },
 				shortText: 'La Famille Chitine comprend tous les personnages portant un exosquelette de chitine.',
 				longText: 'Leur apparence est très variée, pouvant avoir de six à plusieurs dizaines de membres, des pinces, des antennes, ou des ailes. Ces personnages peuvent donc aussi bien tenir de la fourmi de l’araignée, du mille-patte ou de la mante.',
-				donHtml: 'Don : Exosquelette 🍁'
+				donHtml: 'Don : Exosquelette&nbsp;🍁'
 			},
 			{
 				value: 'souple',
@@ -143,7 +143,7 @@ export const optionSectionConfigs = [
 				dataset: { don: 'mimetisme' },
 				shortText: 'La Famille Souple englobe tous les personnages tenant du mollusque.',
 				longText: 'Ils peuvent ainsi être inspirés très simplement des étoiles de mer, mais un poulpe est parfaitement envisageable. Les personnages les plus extravagants pourront avoir une coquille dans laquelle se réfugier, ou même tenir du ver de terre.',
-				donHtml: 'Don : Mimétisme ❄️'
+				donHtml: 'Don : Mimétisme&nbsp;❄️'
 			}
 		]
 	},
@@ -159,7 +159,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'jambieres' },
 				shortText: 'Ces environnements sont riches en eau potable. Ils attirent donc des proies faciles pour la chasse et permettent, s’ils sont bien gérés, la culture et l’élevage.',
 				longText: 'Cependant, les eaux stagnantes sont propices au développement de maladies, car elles favorisent le développement de parasites tout en affaiblissant le système immunitaire des communautés vivant à leur proximité.',
-				donHtml: 'Le personnage pourrait posséder des Jambières ❄️'
+				donHtml: 'Le personnage pourrait posséder des Jambières&nbsp;❄️'
 			},
 			{
 				value: 'iles-littoral',
@@ -169,7 +169,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'brassards' },
 				shortText: 'Ces environnements bénéficient de l’influence de l’océan qui temporise les fluctuations de températures. Par ailleurs, la nourriture y est plutôt abondante et facile à récolter.',
 				longText: 'En revanche, ce sont des milieux souvent pauvres en eau douce, exposés à la fois aux dangers terrestres et maritimes. De plus, beaucoup d’animaux marins tendent des embuscades, se confondant avec les rochers, et beaucoup utilisent des venins mortels.',
-				donHtml: 'Le personnage pourrait posséder des Brassards 🌱'
+				donHtml: 'Le personnage pourrait posséder des Brassards&nbsp;🌱'
 			},
 			{
 				value: 'plaines-collines',
@@ -179,7 +179,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'casque' },
 				shortText: 'Ces environnements permettent de voir loin et de voyager facilement. Les échanges sont donc plus aisés, ce qui signifie que des communautés peuvent s’installer avec peu de moyens et échanger avec celles alentour.',
 				longText: 'En revanche, si ces lieux permettent d’anticiper les dangers, aussi bien les attaques que les intempéries, cela signifie aussi que ses habitants y sont plus exposés, ce qui pèse lourdement sur leur moral.',
-				donHtml: 'Le personnage pourrait posséder un Casque ☀️'
+				donHtml: 'Le personnage pourrait posséder un Casque&nbsp;☀️'
 			},
 			{
 				value: 'montagnes-canyons',
@@ -189,7 +189,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'plastron' },
 				shortText: 'Ces environnements clos, difficiles d’accès ont l’avantage d’offrir un bon isolement face aux bandits et pillards, et une protection relative aux aléas climatiques.',
 				longText: 'Ces lieux permettent donc de faire des abris sûrs et solides. Cependant, ils viennent avec des dangers supplémentaires : éboulements, crevasses, avalanches. Ces dangers sont impressionnants mais assez prévisibles dans l’ensemble.',
-				donHtml: 'Le personnage pourrait posséder un Plastron 🍁'
+				donHtml: 'Le personnage pourrait posséder un Plastron&nbsp;🍁'
 			}
 		]
 	},
@@ -205,7 +205,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'survie' },
 				shortText: 'Les Alizés n’ont aucune attache, acceptant les variations et déplacements erratiques de la météo.',
 				longText: 'Les troupeaux et les oracles les guident vers des alliés, des abris ou des météos favorables, répondant à leurs besoins du moment. Les Alizés errent en permanence, devant garder leur cap et faire de chaque changement une opportunité.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Survie ❄️'
+				donHtml: 'Le personnage pourrait posséder des Outils de Survie&nbsp;❄️'
 			},
 			{
 				value: 'troglodyte',
@@ -215,7 +215,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'sapience' },
 				shortText: 'Les Troglodytes vivent presque coupés du monde, dans des grottes cachées, des vallées secrètes, ou canyons inaccessibles.',
 				longText: 'Leurs échanges rarissimes leur apprennent à tirer le meilleur parti de leur environnement. Les Troglodytes doivent connaître et comprendre leur milieu de vie à la perfection pour ne jamais manquer de rien.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Sapience 🌱'
+				donHtml: 'Le personnage pourrait posséder des Outils de Sapience&nbsp;🌱'
 			},
 			{
 				value: 'sedentaire',
@@ -225,7 +225,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'foyer' },
 				shortText: 'Les Sédentaires s’établissent dans un lieu offrant au moins une ressource pérenne, telle que l’eau, un abri ou un sol fertile.',
 				longText: 'Ils construisent de quoi la faire fructifier et échangent pour le reste. Les Sédentaires doivent plus que tout maintenir leur unité et la bonne entente face à l’adversité tant interne qu’externe.',
-				donHtml: 'Le personnage pourrait posséder des Outils du Foyer ☀️'
+				donHtml: 'Le personnage pourrait posséder des Outils du Foyer&nbsp;☀️'
 			},
 			{
 				value: 'nomade',
@@ -235,7 +235,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'confection' },
 				shortText: 'Les Nomades voyagent entre les communautés sédentaires et des points habitables, exploités puis abandonnés le temps qu’ils se régénèrent.',
 				longText: 'Les Nomades entretiennent les échanges et voies de communication. Ils doivent souvent réparer les infrastructures et habitations, de la route où aider les communautés qu’ils visitent.',
-				donHtml: 'Le personnage pourrait posséder des Outils de Confection 🍁'
+				donHtml: 'Le personnage pourrait posséder des Outils de Confection&nbsp;🍁'
 			}
 		]
 	},
@@ -251,7 +251,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'echarpe' },
 				shortText: 'Le personnage considère que puisqu’aucune connaissance ne peut être complète et aucune technologie totalement fiable, le plus sage est d’apprivoiser au mieux ses qualités naturelles.',
 				longText: 'Connaître ses atouts permet de faire face à toutes les situations, en improvisant à partir de la confiance en soi ainsi bâtie.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Écharpe ❄️'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Écharpe&nbsp;❄️'
 			},
 			{
 				value: 'appris',
@@ -261,7 +261,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'cape' },
 				shortText: 'Le personnage estime que dans chaque problème réside sa propre solution.',
 				longText: 'Aussi, étudier le monde et ses peuples permet de développer des connaissances éclectiques pour parer à toutes les situations. Cela demande d’embrasser chaque expérience et d’en tirer des leçons, afin d’apprivoiser le monde.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Cape 🌱'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Cape&nbsp;🌱'
 			},
 			{
 				value: 'chitine',
@@ -271,7 +271,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'parure' },
 				shortText: 'Le personnage sait que personne n’est parfait, qu’aucun expert ne saurait être infaillible, qu’il aura toujours besoin des autres et les autres de lui.',
 				longText: 'En travaillant ensemble avec sincérité et confiance, la synergie dépasse la somme des individus.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement une Parure ☀️'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement une Parure&nbsp;☀️'
 			},
 			{
 				value: 'construit',
@@ -281,7 +281,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'tablier' },
 				shortText: 'Le personnage pense que la technologie, incarnation du contrôle de la matière, est la clé qui permet de surmonter les épreuves de la vie.',
 				longText: 'Un bon outil compense les faiblesses naturelles, permet d’aller dans l’inconnu ou de faire progresser les savoirs.',
-				donHtml: 'Le personnage pourrait posséder comme Vêtement un Tablier 🍁'
+				donHtml: 'Le personnage pourrait posséder comme Vêtement un Tablier&nbsp;🍁'
 			}
 		]
 	},
@@ -297,7 +297,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'armearticulee' },
 				shortText: 'Le personnage a grandi dans un environnement où la Rupture était une force à dompter, où puiser avec sagesse, ou pas.',
 				longText: 'Cela pouvait être pour combattre le feu par le feu, par facilité ou par recherche de puissance. En tout cas, les Rongés y étaient fréquents, peut-être même les Parjures, s’ils n’y étaient pas vu comme des faibles.',
-				donHtml: 'Le personnage pourrait posséder une Arme Articulée ❄️ : garrot, harpon, fouet ou fléau'
+				donHtml: 'Le personnage pourrait posséder une Arme Articulée&nbsp;❄️ : garrot, harpon, fouet ou fléau'
 			},
 			{
 				value: 'etudier',
@@ -307,7 +307,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'armeadistance' },
 				shortText: 'Le personnage a grandi dans un environnement où la Rupture était un mystère à percer, une énigme à résoudre.',
 				longText: 'La comprendre était l’objectif, pour la détruire, la forger, ou même l’asservir. La Pourprine y était présente, peut-être des Parjures volontaires ou esclaves, ou des Séides et Chimères capturés pour études.',
-				donHtml: 'Le personnage pourrait posséder une Arme à Distance 🌱 : bolas, arc, arbalète, sarbacane, javelot, chakram, boomerang ou fronde'
+				donHtml: 'Le personnage pourrait posséder une Arme à Distance&nbsp;🌱 : bolas, arc, arbalète, sarbacane, javelot, chakram, boomerang ou fronde'
 			},
 			{
 				value: 'purifier',
@@ -317,7 +317,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'armecourte' },
 				shortText: 'Le personnage a grandi dans un environnement où la Rupture était un mal à abattre.',
 				longText: 'Que ce soit pour ramener un ancien monde idéalisé, fantasmé, ou simplement pour débarrasser le monde de son influence et en construire un nouveau, tout ce qui portait sa marque, même les Rongés, était détruit.',
-				donHtml: 'Le personnage pourrait posséder une Arme Courte ☀️ : tonfa, dague, serpe, épée, hache, masse ou ceste'
+				donHtml: 'Le personnage pourrait posséder une Arme Courte&nbsp;☀️ : tonfa, dague, serpe, épée, hache, masse ou ceste'
 			},
 			{
 				value: 'composer',
@@ -327,7 +327,7 @@ export const optionSectionConfigs = [
 				dataset: { equipement: 'armelongue' },
 				shortText: 'Le personnage a grandi dans un environnement où la Rupture était acceptée comme faisant partie du monde actuel.',
 				longText: 'Par résignation, fatalisme ou pragmatisme, elle n’était pas activement combattue, simplement contenue. Les gens géraient les dégâts qu’elle causait et cherchaient à s’en prémunir, sans imaginer l’éradiquer.',
-				donHtml: 'Le personnage pourrait posséder une Arme Longue 🍁 : trident, sasumata, lance, pic, vouge, claymore ou bâton.'
+				donHtml: 'Le personnage pourrait posséder une Arme Longue&nbsp;🍁 : trident, sasumata, lance, pic, vouge, claymore ou bâton.'
 			}
 		]
 	},
@@ -344,7 +344,7 @@ export const optionSectionConfigs = [
 				dataset: { competence: 'guide' },
 				shortText: 'Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.',
 				longText: 'Grâce à eux, leurs communautés ne s’égarent pas et anticipent les dangers naturels. Le cas échéant, ils savent comment fabriquer le nécessaire pour se protéger des aléas. Les Guides nourrissent les leurs grâce à la chasse et à la cueillette et savent également comment protéger les leurs et le matériel des intempéries.',
-				donHtml: '<ul><li>Compétence de Rôle : Exploration ❄️</li><li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li></ul>'
+				donHtml: '<ul><li>Compétence de Rôle : Exploration&nbsp;❄️</li><li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li></ul>'
 			},
 			{
 				value: 'sibylle',
@@ -355,7 +355,7 @@ export const optionSectionConfigs = [
 				dataset: { competence: 'sibylle' },
 				shortText: 'Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.',
 				longText: 'Maîtresses des rituels, elles organisent le passage de la vie à la mort, soignent les affections du corps et de l’âme et protègent contre les mauvais esprits. Les Sibylles oscillent entre pythies plongées dans les oracles et les secrets de l’invisible et sages dépositaires des savoirs ancestraux, permettant de faire revivre l’ancien monde au coeur de la Rupture.',
-				donHtml: '<ul><li>Compétence de Rôle : Sagesse 🌱</li><li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li></ul>'
+				donHtml: '<ul><li>Compétence de Rôle : Sagesse&nbsp;🌱</li><li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li></ul>'
 			},
 			{
 				value: 'matrice',
@@ -366,7 +366,7 @@ export const optionSectionConfigs = [
 				dataset: { competence: 'matrice' },
 				shortText: 'Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.',
 				longText: 'Elles mettent en place les structures sociales et les échanges, veillent aux troupeaux et aux récoltes. Les Matrices trouvent une place pour chaque membre de la communauté et organisent la gestion des ressources en fonction des besoins. Elles soudent les personnes entre elles, les communautés entre elles, dans une organisation dépassant leur existence.',
-				donHtml: '<ul><li>Compétence de Rôle : Civilisation ☀️</li><li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li></ul>'
+				donHtml: '<ul><li>Compétence de Rôle : Civilisation&nbsp;☀️</li><li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li></ul>'
 			},
 			{
 				value: 'artisan',
@@ -377,7 +377,7 @@ export const optionSectionConfigs = [
 				dataset: { competence: 'artisan' },
 				shortText: 'Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.',
 				longText: 'Ils savent comment transformer la matière brute pour en extraire de nouvelles ressources et matériaux afin d’en faire les objets du quotidien ou de modifier leur environnement. Face à l’inconnu et à l’imprévu, leur ingéniosité et inventivité leur permet de trouver et créer de nouvelles solutions.',
-				donHtml: '<ul><li>Compétence de Rôle : Ingénierie 🍁</li><li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li></ul>'
+				donHtml: '<ul><li>Compétence de Rôle : Ingénierie&nbsp;🍁</li><li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li></ul>'
 			}
 		]
 	},
