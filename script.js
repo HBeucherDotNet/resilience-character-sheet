@@ -194,9 +194,12 @@ function syncMobileViewModePresentation() {
 			domainToggle.hidden = false;
 		}
 
+		card.querySelectorAll('.magie-talent-description').forEach(description => {
+			description.remove();
+		});
+
 		card.querySelectorAll('.magie-talent-chip').forEach(chip => {
 			chip.hidden = false;
-			chip.querySelector('.magie-talent-description')?.remove();
 		});
 
 		if (!isReadOnlyView) return;
@@ -222,7 +225,7 @@ function syncMobileViewModePresentation() {
 				return;
 			}
 
-			chip.appendChild(buildMagicTalentDescription(descriptions));
+			chip.insertAdjacentElement('afterend', buildMagicTalentDescription(descriptions));
 			hasVisibleTalent = true;
 		});
 
@@ -777,6 +780,22 @@ function initBindings() {
 
 	document.querySelectorAll('#fiche-magie input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', syncMobileViewModePresentation);
+	});
+
+	document.getElementById('fiche-magie')?.addEventListener('click', event => {
+		const label = event.target instanceof Element
+			? event.target.closest('.magie-talent-label')
+			: null;
+		if (!(label instanceof HTMLElement)) return;
+		if (!isMobileReadOnlyViewActive()) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		const talentInput = label.closest('.magie-talent-chip')?.querySelector('input.talent');
+		if (!talentInput?.checked) return;
+
+		sortDialogController.openSortDialog({ talentId: talentInput.id });
 	});
 
 	document.addEventListener('viewmodechange', syncMobileViewModePresentation);

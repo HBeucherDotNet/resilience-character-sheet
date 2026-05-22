@@ -120,18 +120,14 @@ body.view-mode {
 			}
 			
 			.magie-talents-grid {
-				grid-template-columns: 1fr;
+				grid-template-columns: max-content minmax(0, 1fr);
 				gap: 0.55rem;
+				align-items: start;
 			}
 			
 			.magie-talent-chip {
-				display: grid;
-				grid-template-columns: minmax(0, max-content) 1fr;
-				column-gap: 0.75rem;
-				row-gap: 0.15rem;
+				display: block;
 				min-height: 0;
-				align-items: flex-start;
-				justify-content: flex-start;
 				padding: 0;
 				border: none;
 				background: transparent;
@@ -146,15 +142,29 @@ body.view-mode {
 			}
 			
 			.magie-talent-label {
-				text-align: left;
+				pointer-events: auto;
+				cursor: pointer;
+				padding: 0.5rem;
+				border-radius: 999px;
+				background: var(--character-season-strong-border);
+				box-shadow: var(--mobile-shadow);
+				text-align: center;
 				font-size: 0.7rem;
+				font-weight: 700;
 				line-height: 1.15;
-				white-space: nowrap;
+				white-space: normal;
+				box-sizing: border-box;
+				color: colors.$color-white;
+			}
+
+			input:checked + .magie-talent-label {
+				color: colors.$color-white;
 			}
 			
 			.magie-talent-description {
 				margin: 0;
 				padding-left: 0;
+				align-self: center;
 				color: colors.$color-text-dark;
 				font-size: 0.8rem;
 				font-weight: 400;
