@@ -46,6 +46,7 @@ Pour le style:
 
 - Modifier la source SCSS en priorite.
 - Ne jamais modifier le CSS compilé.
+- Ne jamais lancer de commande sass:build.
 - Conserver les noms de classes deja utilises par le JS (`mobile-step-*`, `.option`, etc.).
 
 ## 5) Checklist avant de terminer une tache

@@ -1,11 +1,18 @@
-import { HashCodec } from './hashCodec.js';
 import { Personnage } from './personnage.js';
 import { bindViewModeActions, updateViewModeUi } from './viewMode.js';
+import { createFicheRenderer, createQuestionMarkSvg, normalizePlaceholderToken } from './lib/ficheRenderer.js';
+import { createHashStateSync } from './lib/hashState.js';
+import { createOptionCard, renderOptionGroup } from './lib/optionCard.js';
+import { createSortDialogController } from './lib/sortDialog.js';
 import { lignees } from './data/lignees.js';
+import { ligneeOptionConfigs } from './data/ligneeSections.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
 import { equipements } from './data/equipements.js';
 import { morphologies } from './data/morphologies.js';
+import { ameliorationSectionConfigs } from './data/ameliorationSections.js';
+import { champLexicalWordsBySaison } from './data/champLexical.js';
+import { morphologyGroupConfig, optionSectionConfigs } from './data/optionSections.js';
 import { sorts } from './data/sorts.js';
 
 // Couleurs par saison
@@ -17,10 +24,31 @@ const couleurs = {
 	temps: getCssColorVar('--color-temps', '#3a7ad2')
 };
 
+const symbols = {
+	hiver: '❄️',
+	printemps: '🌱',
+	ete: '☀️',
+	automne: '🍁',
+	temps: '⏳',
+	rupture: '💀'
+};
+
 const personnage = new Personnage();
-const sortManagedInputIds = new Set(['sort-graines', 'sort-aire-effet', 'sort-portee', 'sort-puissance', 'sort-duree']);
-let sortGrainesUtilisees = 0;
-let handleSortDialogScoreStep = null;
+const ficheRenderer = createFicheRenderer({
+	couleurs,
+	champLexicalWordsBySaison,
+	getState: () => personnage.state,
+	onStateRendered: state => refreshAmeliorationButtons(state)
+});
+const hashStateSync = createHashStateSync();
+const sortDialogController = createSortDialogController({
+	getState: () => personnage.state,
+	symbols,
+	sorts,
+	normalizePlaceholderToken,
+	resolveScoreStep
+});
+const lastScoreButtonClickByElement = new WeakMap();
 
 function getCheckedFicheBlocKeys(containerSelector, itemSelector, dataKey) {
 	return Array.from(document.querySelectorAll(`${containerSelector} ${itemSelector} input:checked`))
@@ -68,15 +96,160 @@ function resolveScoreStep(rawStep) {
 	return Number.isFinite(numericStep) ? numericStep : 0;
 }
 
+function getMagicDomainScoreForSaison(state, saisonValue) {
+	const scoreMap = {
+		hiver: state?.ficheHiver,
+		printemps: state?.fichePrintemps,
+		ete: state?.ficheEte,
+		automne: state?.ficheAutomne,
+		temps: state?.ficheSouffle
+	};
+
+	const score = Number.parseInt(String(scoreMap[saisonValue] ?? '0'), 10);
+	return Number.isFinite(score) ? score : 0;
+}
+
+function getMagicDomainCheckboxesForSaison(saisonValue) {
+	const table = saisonValue ? document.getElementById(`fiche-magie-${saisonValue}`) : null;
+	if (!table) return [];
+
+	return Array.from(
+		table.querySelectorAll(
+			'tbody tr td:first-child input[type="checkbox"]:not(.talent), .magie-domaine-toggle input[type="checkbox"]:not(.talent)'
+		)
+	);
+}
+
+function syncMagicDomains(state = personnage.state) {
+	const allDomainCheckboxes = Array.from(
+		document.querySelectorAll(
+			'#fiche-magie .tableau-magie-talents td:first-child input[type="checkbox"]:not(.talent), #fiche-magie .tableau-magie-talents .magie-domaine-toggle input[type="checkbox"]:not(.talent)'
+		)
+	);
+
+	allDomainCheckboxes.forEach(checkbox => {
+		checkbox.disabled = true;
+		checkbox.checked = false;
+	});
+
+	const saisonValue = state?.saison?.value ?? '';
+	const unlockedDomainCount = Math.max(0, getMagicDomainScoreForSaison(state, saisonValue) - 1);
+	getMagicDomainCheckboxesForSaison(saisonValue)
+		.slice(0, unlockedDomainCount)
+		.forEach(checkbox => {
+			checkbox.checked = true;
+		});
+
+	syncMobileViewModePresentation();
+}
+
+function isMobileReadOnlyViewActive() {
+	return document.body.classList.contains('view-mode') && document.body.classList.contains('mobile-sheet-mode');
+}
+
+function resolveMagicDomainDataKey(card) {
+	const labelToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-name')?.textContent ?? '');
+	if (sorts[labelToken]) return labelToken;
+
+	const inputToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-toggle input[type="checkbox"]')?.id ?? '');
+	if (sorts[inputToken]) return inputToken;
+
+	const tokenParts = inputToken.split('-').filter(Boolean);
+	for (let index = tokenParts.length - 1; index >= 0; index -= 1) {
+		if (sorts[tokenParts[index]]) {
+			return tokenParts[index];
+		}
+	}
+
+	return '';
+}
+
+function resolveMagicTalentKey(input) {
+	const tokenParts = normalizePlaceholderToken(input.id ?? '').split('-').filter(Boolean);
+	return tokenParts[tokenParts.length - 1] ?? '';
+}
+
+function buildMagicTalentDescription(descriptions) {
+	const list = document.createElement('ul');
+	list.className = 'magie-talent-description';
+
+	descriptions.forEach(text => {
+		const item = document.createElement('li');
+		item.textContent = text;
+		list.appendChild(item);
+	});
+
+	return list;
+}
+
+function syncMobileViewModePresentation() {
+	const magicCards = Array.from(document.querySelectorAll('#fiche-magie .magie-domaine-card'));
+	const isReadOnlyView = isMobileReadOnlyViewActive();
+
+	magicCards.forEach(card => {
+		card.hidden = false;
+
+		const domainToggle = card.querySelector('.magie-domaine-toggle');
+		if (domainToggle) {
+			domainToggle.hidden = false;
+		}
+
+		card.querySelectorAll('.magie-talent-chip').forEach(chip => {
+			chip.hidden = false;
+			chip.querySelector('.magie-talent-description')?.remove();
+		});
+
+		if (!isReadOnlyView) return;
+
+		const domainKey = resolveMagicDomainDataKey(card);
+		if (!domainKey || !sorts[domainKey]) {
+			card.hidden = true;
+			return;
+		}
+
+		let hasVisibleTalent = false;
+		card.querySelectorAll('.magie-talent-chip').forEach(chip => {
+			const talentInput = chip.querySelector('input.talent');
+			if (!talentInput?.checked) {
+				chip.hidden = true;
+				return;
+			}
+
+			const talentKey = resolveMagicTalentKey(talentInput);
+			const descriptions = Array.isArray(sorts[domainKey]?.[talentKey]) ? sorts[domainKey][talentKey] : [];
+			if (descriptions.length === 0) {
+				chip.hidden = true;
+				return;
+			}
+
+			chip.appendChild(buildMagicTalentDescription(descriptions));
+			hasVisibleTalent = true;
+		});
+
+		if (!hasVisibleTalent) {
+			card.hidden = true;
+		}
+	});
+}
+
 function bindAmeliorationScoreControls() {
 	document.querySelectorAll('.amelioration-score-btn').forEach(button => {
-		button.addEventListener('click', () => {
+		button.addEventListener('click', event => {
+			if (window.matchMedia('(pointer: coarse)').matches) {
+				const lastHandledAt = lastScoreButtonClickByElement.get(button) ?? -Infinity;
+				if ((event.timeStamp - lastHandledAt) < 180) {
+					event.preventDefault();
+					return;
+				}
+				lastScoreButtonClickByElement.set(button, event.timeStamp);
+			}
+
 			const targetId = button.dataset.scoreTarget;
 			const step = resolveScoreStep(button.dataset.scoreStep ?? '0');
 			const input = targetId ? document.getElementById(targetId) : null;
 			if (!input || !Number.isFinite(step)) return;
 
-			if (handleSortDialogScoreStep?.(targetId, input, step)) {
+			if (sortDialogController.handleScoreStep(targetId, input, step)) {
 				return;
 			}
 
@@ -94,642 +267,132 @@ function bindAmeliorationScoreControls() {
 	});
 }
 
-function bindSortDialog() {
-	const dialog = document.getElementById('sort-dialog');
-	const openButton = document.getElementById('open-sort-dialog-btn');
-	const form = dialog?.querySelector('form');
-	const scoreInputs = form ? Array.from(form.querySelectorAll('.amelioration-score-input')) : [];
-	const talentSelect = document.getElementById('sort-talent-select');
-	const talentEffectsList = document.getElementById('sort-talent-effets');
-	const aireEffetInput = document.getElementById('sort-aire-effet');
-	const porteeInput = document.getElementById('sort-portee');
-	const puissanceInput = document.getElementById('sort-puissance');
-	const dureeInput = document.getElementById('sort-duree');
-	const grainesInput = document.getElementById('sort-graines');
-	const grainesIndicator = document.getElementById('sort-graines-indicator');
-	const aireEffetIndicator = document.getElementById('sort-aire-effet-indicator');
-	const porteeIndicator = document.getElementById('sort-portee-indicator');
-	const puissanceIndicator = document.getElementById('sort-puissance-indicator');
-	const dureeIndicator = document.getElementById('sort-duree-indicator');
-	const sortDialogButtons = form ? Array.from(form.querySelectorAll('.amelioration-score-btn')) : [];
-
-	if (!dialog || !openButton || !form) return;
-
-	const sortParameterConfigs = [
-		{ input: aireEffetInput, indicator: aireEffetIndicator },
-		{ input: porteeInput, indicator: porteeIndicator },
-		{ input: puissanceInput, indicator: puissanceIndicator },
-		{ input: dureeInput, indicator: dureeIndicator }
-	].filter(config => config.input);
-	let isSyncingSortDialog = false;
-
-	const saisonSymbols = {
-		hiver: '❄️',
-		printemps: '🌱',
-		ete: '☀️',
-		automne: '🍁',
-		temps: '⏳',
-		rupture: '💀'
-	};
-
-	function buildTalentOptionLabel(talentCheckbox) {
-		const rowElement = talentCheckbox.closest('tr');
-		const firstCellLabel = rowElement?.querySelector('td:first-child label');
-		const category = firstCellLabel?.textContent?.trim() || '';
-		const action = talentCheckbox.parentElement?.textContent?.trim() || '';
-
-		if (!category && !action) return '';
-		if (!category) return action;
-		if (!action) return category;
-		return `${category} - ${action}`;
-	}
-
-	function getSortInputValue(input) {
-		const value = Number.parseInt(input?.value ?? '0', 10);
-		return Number.isFinite(value) ? Math.max(0, value) : 0;
-	}
-
-	function getSortBaseValue(input) {
-		const value = Number.parseInt(input?.dataset.sortBase ?? input?.defaultValue ?? '0', 10);
-		return Number.isFinite(value) ? Math.max(0, value) : 0;
-	}
-
-	function getSortSouffleValue() {
-		const value = Number.parseInt(String(personnage.state.ficheSouffle ?? '0'), 10);
-		return Number.isFinite(value) ? Math.max(0, value) : 0;
-	}
-
-	function getSeedsUsedByInput(input, souffleValue = getSortSouffleValue()) {
-		if (!input || souffleValue <= 0) return 0;
-
-		const delta = getSortInputValue(input) - getSortBaseValue(input);
-		if (delta <= 0) return 0;
-
-		return Math.ceil(delta / souffleValue);
-	}
-
-	function getGrainesSelectionnees() {
-		return getSortInputValue(grainesInput);
-	}
-
-	function getMinAllowedValueForInput(input) {
-		if (!input) return 0;
-		if (input === grainesInput) return Math.max(0, updateSortGrainesUsed());
-		return getSortBaseValue(input);
-	}
-
-	function updateSortGrainesUsed() {
-		sortGrainesUtilisees = sortParameterConfigs.reduce(
-			(total, config) => total + getSeedsUsedByInput(config.input),
-			0
-		);
-
-		return sortGrainesUtilisees;
-	}
-
-	function getRemainingSeedsForInput(input) {
-		const usedByOthers = sortParameterConfigs.reduce((total, config) => {
-			if (config.input === input) return total;
-			return total + getSeedsUsedByInput(config.input);
-		}, 0);
-
-		return Math.max(0, getGrainesSelectionnees() - usedByOthers);
-	}
-
-	function getMaxAllowedValueForInput(input) {
-		if (input === grainesInput) return Number.POSITIVE_INFINITY;
-
-		const souffleValue = getSortSouffleValue();
-		const baseValue = getSortBaseValue(input);
-		if (souffleValue <= 0) return baseValue;
-
-		return baseValue + getRemainingSeedsForInput(input) * souffleValue;
-	}
-
-	function renderIndicatorSymbols(indicator, symbol, count) {
-		if (!indicator) return;
-
-		indicator.replaceChildren();
-		if (!symbol || count <= 0) return;
-
-		const fragment = document.createDocumentFragment();
-		for (let index = 0; index < count; index += 1) {
-			const seed = document.createElement('span');
-			seed.className = 'sort-dialog-row-indicator-seed';
-			seed.textContent = symbol;
-			fragment.appendChild(seed);
-		}
-
-		indicator.appendChild(fragment);
-	}
-
-	function renderSortDialogIndicators() {
-		const selectedCount = getGrainesSelectionnees();
-		const saisonKey = personnage.state.saison?.value ?? '';
-		const symbol = saisonSymbols[saisonKey] ?? '';
-		updateSortGrainesUsed();
-		const remainingSeeds = Math.max(0, selectedCount - sortGrainesUtilisees);
-
-		if (grainesIndicator) {
-			renderIndicatorSymbols(grainesIndicator, symbol, remainingSeeds);
-			grainesIndicator.dataset.usedSeeds = String(sortGrainesUtilisees);
-			grainesIndicator.dataset.remainingSeeds = String(remainingSeeds);
-			grainesIndicator.title = `${remainingSeeds} restante${remainingSeeds > 1 ? 's' : ''} • ${sortGrainesUtilisees}/${selectedCount} utilisees`;
-		}
-
-		sortParameterConfigs.forEach(config => {
-			if (!config.indicator) return;
-			const usedSeeds = getSeedsUsedByInput(config.input);
-			renderIndicatorSymbols(config.indicator, symbol, usedSeeds);
-			config.indicator.title = `${usedSeeds} graine${usedSeeds > 1 ? 's' : ''} utilisee${usedSeeds > 1 ? 's' : ''}`;
-		});
-
-		updateSortDialogButtonStates();
-	}
-
-	function updateSortDialogButtonStates() {
-		sortDialogButtons.forEach(button => {
-			const targetId = button.dataset.scoreTarget;
-			const input = targetId ? document.getElementById(targetId) : null;
-			if (!input || !sortManagedInputIds.has(targetId)) {
-				button.disabled = false;
-				return;
-			}
-
-			const step = resolveScoreStep(button.dataset.scoreStep ?? '0');
-			const currentValue = getSortInputValue(input);
-			const minValue = getMinAllowedValueForInput(input);
-			const maxValue = getMaxAllowedValueForInput(input);
-
-			let isDisabled = step === 0;
-			if (!isDisabled && step < 0) {
-				isDisabled = currentValue <= minValue;
-			}
-			if (!isDisabled && step > 0) {
-				isDisabled = currentValue >= maxValue;
-			}
-
-			button.disabled = isDisabled;
-		});
-	}
-
-	function normalizeSortDialogInput(changedInput = null) {
-		if (isSyncingSortDialog) return;
-		isSyncingSortDialog = true;
-
-		if (changedInput === grainesInput && grainesInput) {
-			const normalizedGraines = Math.max(updateSortGrainesUsed(), getSortInputValue(grainesInput));
-			if (String(normalizedGraines) !== grainesInput.value) {
-				grainesInput.value = String(normalizedGraines);
-			}
-		}
-
-		const changedConfig = sortParameterConfigs.find(config => config.input === changedInput);
-		if (changedConfig) {
-			const normalizedValue = Math.max(
-				getMinAllowedValueForInput(changedConfig.input),
-				Math.min(getSortInputValue(changedConfig.input), getMaxAllowedValueForInput(changedConfig.input))
-			);
-			if (String(normalizedValue) !== changedConfig.input.value) {
-				changedConfig.input.value = String(normalizedValue);
-			}
-		}
-
-		renderSortDialogIndicators();
-		isSyncingSortDialog = false;
-	}
-
-	function getTalentSortKeys(talentCheckbox) {
-		const rowElement = talentCheckbox.closest('tr');
-		const firstCellLabel = rowElement?.querySelector('td:first-child label');
-		const categoryKey = normalizePlaceholderToken(firstCellLabel?.textContent ?? '');
-		const actionKey = normalizePlaceholderToken(talentCheckbox.parentElement?.textContent ?? '');
-
-		return { categoryKey, actionKey };
-	}
-
-	function renderTalentEffects() {
-		if (!talentEffectsList) return;
-
-		talentEffectsList.innerHTML = '';
-
-		const selectedOption = talentSelect?.selectedOptions?.[0];
-		const categoryKey = selectedOption?.dataset.sortCategory ?? '';
-		const actionKey = selectedOption?.dataset.sortAction ?? '';
-		const effects = sorts?.[categoryKey]?.[actionKey] ?? [];
-
-		if (!categoryKey || !actionKey || effects.length === 0) {
-			const item = document.createElement('li');
-			item.textContent = 'Aucun effet défini pour ce talent.';
-			talentEffectsList.appendChild(item);
-			return;
-		}
-
-		effects.forEach(effect => {
-			const item = document.createElement('li');
-			item.textContent = effect;
-			talentEffectsList.appendChild(item);
-		});
-	}
-
-	function setSortDialogDefaultScores() {
-		const defaults = [
-			[aireEffetInput, personnage.state.ficheHiver],
-			[porteeInput, personnage.state.fichePrintemps],
-			[puissanceInput, personnage.state.ficheEte],
-			[dureeInput, personnage.state.ficheAutomne]
-		];
-
-		defaults.forEach(([input, value]) => {
-			if (!input) return;
-
-			const normalizedValue = String(value ?? '0');
-			input.dataset.sortBase = normalizedValue;
-			input.defaultValue = normalizedValue;
-			input.value = normalizedValue;
-			input.dispatchEvent(new Event('input', { bubbles: true }));
-			input.dispatchEvent(new Event('change', { bubbles: true }));
-		});
-
-		normalizeSortDialogInput();
-		renderSortDialogIndicators();
-	}
-
-	function populateTalentSelect() {
-		if (!talentSelect) return;
-
-		talentSelect.innerHTML = '';
-		const checkedTalents = Array.from(document.querySelectorAll('input.talent:checked'));
-
-		if (checkedTalents.length === 0) {
-			const option = document.createElement('option');
-			option.value = '';
-			option.textContent = 'Aucun talent coché';
-			option.selected = true;
-			talentSelect.appendChild(option);
-			talentSelect.disabled = true;
-			renderTalentEffects();
-			return;
-		}
-
-		talentSelect.disabled = false;
-		checkedTalents.forEach(checkbox => {
-			const { categoryKey, actionKey } = getTalentSortKeys(checkbox);
-			const option = document.createElement('option');
-			option.value = checkbox.id;
-			option.textContent = buildTalentOptionLabel(checkbox);
-			option.dataset.sortCategory = categoryKey;
-			option.dataset.sortAction = actionKey;
-			talentSelect.appendChild(option);
-		});
-
-		renderTalentEffects();
-	}
-
-	openButton.addEventListener('click', () => {
-		if (dialog.open) return;
-
-		setSortDialogDefaultScores();
-		populateTalentSelect();
-
-		if (typeof dialog.showModal === 'function') {
-
-	handleSortDialogScoreStep = (targetId, input, step) => {
-		if (!sortManagedInputIds.has(targetId)) return false;
-
-		const currentValue = getSortInputValue(input);
-			const minValue = getMinAllowedValueForInput(input);
-			const maxValue = getMaxAllowedValueForInput(input);
-		let nextValue = currentValue + step;
-
-			if (step > 0) {
-				nextValue = Math.min(nextValue, maxValue);
-		}
-			nextValue = Math.max(minValue, nextValue);
-
-		if (nextValue === currentValue) {
-			renderSortDialogIndicators();
-			return true;
-		}
-
-		input.value = String(nextValue);
-		input.dispatchEvent(new Event('input', { bubbles: true }));
-		input.dispatchEvent(new Event('change', { bubbles: true }));
-		return true;
-	};
-			dialog.showModal();
-			return;
-		}
-
-		dialog.setAttribute('open', 'open');
-	});
-
-	dialog.addEventListener('click', event => {
-		// With <dialog>, backdrop clicks target the dialog element itself.
-		// This avoids false positives with native <select> popups that can render outside bounds.
-		if (event.target !== dialog) return;
-
-		if (typeof dialog.close === 'function') {
-			dialog.close('dismiss');
-		} else {
-			dialog.removeAttribute('open');
-		}
-	});
-
-	talentSelect?.addEventListener('change', renderTalentEffects);
-	grainesInput?.addEventListener('input', () => normalizeSortDialogInput(grainesInput));
-	grainesInput?.addEventListener('change', () => normalizeSortDialogInput(grainesInput));
-	sortParameterConfigs.forEach(config => {
-		config.input.addEventListener('input', () => normalizeSortDialogInput(config.input));
-		config.input.addEventListener('change', () => normalizeSortDialogInput(config.input));
-	});
-
-	form.addEventListener('reset', () => {
-		window.requestAnimationFrame(() => {
-			setSortDialogDefaultScores();
-			scoreInputs.forEach(input => {
-				input.dispatchEvent(new Event('input', { bubbles: true }));
-				input.dispatchEvent(new Event('change', { bubbles: true }));
-			});
-			renderTalentEffects();
-			renderSortDialogIndicators();
-		});
-	});
-
-	dialog.addEventListener('close', () => {
-		handleSortDialogScoreStep = null;
-	});
-}
-
-function renderPersonnage(state) {
-	document.getElementById('fiche-saison').textContent = state.ficheSaison;
-	document.getElementById('fiche-essence').textContent = state.ficheEssence;
-	document.getElementById('fiche-anatheme').textContent = state.ficheAnatheme;
-	document.getElementById('fiche-famille').textContent = state.ficheFamille;
-	document.getElementById('fiche-lignee').textContent = state.ficheLignee;
-	document.getElementById('fiche-role').textContent = state.ficheRole;
-	document.getElementById('fiche-age').textContent = state.ficheAge;
-
-	document.getElementById('fiche-hiver').textContent = state.ficheHiver;
-	document.getElementById('fiche-printemps').textContent = state.fichePrintemps;
-	document.getElementById('fiche-ete').textContent = state.ficheEte;
-	document.getElementById('fiche-automne').textContent = state.ficheAutomne;
-	document.getElementById('fiche-vitalite').textContent = state.ficheVitalite;
-	document.getElementById('fiche-souffle').textContent = state.ficheSouffle;
-	document.getElementById('fiche-resilience').textContent = state.ficheResilience;
-
-	document.getElementById('fiche-personnage').className = state.saisonClass;
-
-	refreshFicheSummaryPlaceholders(state);
-
-	renderCompetences(state);
-	renderEquipements(state);
-	renderDons(state);
-	renderMorphologies(state);
-	refreshAmeliorationButtons(state);
-}
-
-function renderCompetences(state) {
-	document.querySelectorAll('#fiche-competences .fiche-bloc-item').forEach(div => {
-		div.style.display = 'none';
-	});
-
-	state.competencesSelectionnees.forEach(competenceKey => {
-		const competenceBloc = document.querySelector(`#fiche-competences .fiche-bloc-item[data-competence="${competenceKey}"]`);
-		if (competenceBloc) competenceBloc.style.display = '';
-	});
-}
-
-function createQuestionMarkSvg(color) {
-	return `
-		<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<circle cx="11" cy="11" r="10" stroke="${color}" stroke-width="2" fill="#fff"/>
-			<text x="11" y="15" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="${color}">?</text>
-		</svg>
-	`;
-}
-
-function normalizePlaceholderToken(token) {
-	return String(token ?? '')
-		.normalize('NFD')
-		.replace(/[\u0300-\u036f]/g, '')
-		.toLowerCase()
-		.trim();
-}
-
-function replaceSummaryPlaceholders(template, state) {
-	if (typeof template !== 'string') return '';
-
-	const valuesByToken = {
-		hiver: String(state?.ficheHiver ?? ''),
-		printemps: String(state?.fichePrintemps ?? ''),
-		ete: String(state?.ficheEte ?? ''),
-		automne: String(state?.ficheAutomne ?? ''),
-		vitalite: String(state?.ficheVitalite ?? ''),
-		souffle: String(state?.ficheSouffle ?? ''),
-		resilience: String(state?.ficheResilience ?? '')
-	};
-
-	return template.replace(/\{([^}]+)\}/g, (match, token) => {
-		const normalizedToken = normalizePlaceholderToken(token);
-		return Object.hasOwn(valuesByToken, normalizedToken) ? valuesByToken[normalizedToken] : match;
-	});
-}
-
-function refreshFicheSummaryPlaceholders(state) {
-	document.querySelectorAll('.fiche-bloc-item .desc[data-summary-template]').forEach(desc => {
-		const template = desc.dataset.summaryTemplate ?? '';
-		desc.textContent = replaceSummaryPlaceholders(template, state);
-	});
-}
-
-function fillFicheFromData(data, saison, itemType) {
-	const container = document.getElementById(`fiche-${itemType}s`);
-	if (!container) return;
-
-	container.innerHTML = '';
-	const fragment = document.createDocumentFragment();
-	const iconColor = couleurs[saison] || couleurs.temps;
-
-	Object.entries(data).forEach(([key, item]) => {
-		const itemDiv = document.createElement('div');
-		itemDiv.className = `fiche-bloc-item ${saison}`;
-		itemDiv.dataset[itemType] = key;
-
-		const input = document.createElement('input');
-		input.type = 'checkbox';
-		input.id = `${itemType}-${key}`;
-		input.name = `${itemType}-${key}`;
-		input.value = key;
-
-		const label = document.createElement('label');
-		label.setAttribute('for', input.id);
-		label.textContent = item.nom;
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher le résumé');
-		button.innerHTML = createQuestionMarkSvg(iconColor);
-
-		const desc = document.createElement('span');
-		desc.className = 'desc';
-		desc.style.display = 'none';
-		desc.dataset.summaryTemplate = item.summary ?? item.description ?? '';
-
-		const initialSummary = replaceSummaryPlaceholders(desc.dataset.summaryTemplate, personnage.state);
-		desc.textContent = initialSummary;
-
-		itemDiv.appendChild(input);
-		itemDiv.appendChild(label);
-		itemDiv.appendChild(button);
-		itemDiv.appendChild(desc);
-		fragment.appendChild(itemDiv);
-	});
-
-	container.appendChild(fragment);
-}
-
-function renderEquipements(state) {
-	document.querySelectorAll('#fiche-equipements .fiche-bloc-item').forEach(div => {
-		div.style.display = 'none';
-	});
-
-	state.equipementsSelectionnes.forEach(eqKey => {
-		const div = document.querySelector(`#fiche-equipements .fiche-bloc-item[data-equipement="${eqKey}"]`);
-		if (div) div.style.display = '';
-	});
-}
-
-function renderDons(state) {
-	document.querySelectorAll('#fiche-dons .fiche-bloc-item').forEach(div => {
-		div.style.display = 'none';
-	});
-
-	state.donsSelectionnes.forEach(donKey => {
-		const div = document.querySelector(`#fiche-dons .fiche-bloc-item[data-don="${donKey}"]`);
-		if (div) div.style.display = '';
-	});
-}
-
-function renderMorphologies(state) {
-	document.querySelectorAll('#fiche-morphologies .fiche-bloc-item').forEach(div => {
-		div.style.display = 'none';
-	});
-
-	state.morphologiesSelectionnees.forEach(morphKey => {
-		const div = document.querySelector(`#fiche-morphologies .fiche-bloc-item[data-morphologie="${morphKey}"]`);
-		if (div) div.style.display = '';
-	});
-}
-
 function getCssColorVar(varName, fallback) {
 	const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 	return value || fallback;
 }
 
-// Génération et restauration de l'état via hash
-function isPersistedHashField(field) {
-	return Boolean(field?.id) && !field.closest('#sort-dialog');
+function isMobilePage() {
+	return Boolean(document.getElementById('mobile-step-nav'));
 }
 
-function getCheckedInputs() {
-	return Array.from(document.querySelectorAll('input[type="checkbox"]'))
-		.filter(input => input.checked && isPersistedHashField(input))
-		.map(input => input.id);
+function getMobileOptionDetailTargetSelector() {
+	return isMobilePage() ? '.mobile-step-detail' : '';
 }
 
-function getChoiceInputs() {
-	return Array.from(document.querySelectorAll('input[type="checkbox"]')).filter(isPersistedHashField);
+function shouldUseCollapsedOptionDetails() {
+	return !isMobilePage();
 }
 
-function getTextStateFields() {
-	return Array.from(document.querySelectorAll('input[type="text"], textarea')).filter(isPersistedHashField);
+function createMorphologyGroupIntroNode(title, description) {
+	if (isMobilePage()) {
+		const intro = document.createElement('div');
+		intro.className = 'step-text temps';
+
+		const optionLabel = document.createElement('span');
+		optionLabel.className = 'option-label';
+
+		const label = document.createElement('label');
+		label.textContent = title;
+		optionLabel.appendChild(label);
+
+		const desc = document.createElement('span');
+		desc.className = 'desc temps-desc';
+
+		const shortNode = document.createElement('span');
+		shortNode.className = 'short';
+		shortNode.textContent = description;
+		desc.appendChild(shortNode);
+
+		intro.appendChild(optionLabel);
+		intro.appendChild(desc);
+		return intro;
+	}
+
+	const intro = document.createElement('div');
+	intro.className = 'option temps';
+
+	const optionLabel = document.createElement('span');
+	optionLabel.className = 'option-label';
+
+	const label = document.createElement('label');
+	label.textContent = title;
+	optionLabel.appendChild(label);
+
+	const desc = document.createElement('span');
+	desc.className = 'desc temps-desc';
+
+	const shortNode = document.createElement('span');
+	shortNode.className = 'short';
+	shortNode.textContent = description;
+	desc.appendChild(shortNode);
+
+	intro.appendChild(optionLabel);
+	intro.appendChild(desc);
+	return intro;
 }
 
-function getTextStateValues() {
-	const values = {};
-	getTextStateFields()
-		.filter(field => field.value !== '')
-		.forEach(field => {
-			values[field.id] = field.value;
+function renderMorphologyOptionGroups() {
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
+
+	Object.entries(morphologyGroupConfig).forEach(([groupName, groupConfig]) => {
+		const container = document.getElementById(`${groupName}-group`);
+		if (!container) return;
+
+		const optionNodes = groupConfig.options.map(optionConfig => {
+			return createOptionCard({
+				name: groupName,
+				value: optionConfig.key,
+				id: `${groupName}-${optionConfig.key}`,
+				label: optionConfig.label,
+				saison: optionConfig.saison,
+				dataset: { morphologie: optionConfig.key },
+				shortText: optionConfig.shortText,
+				detailTargetSelector
+			});
 		});
-	return values;
-}
 
-function setCheckedInputs(ids) {
-	const selectedIds = new Set(ids);
-	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-		input.checked = false;
-	});
-	
-	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-		if (selectedIds.has(input.id)) {
-			input.checked = true;
-			input.dispatchEvent(new Event('change', { bubbles: true }));
-		}
+		renderOptionGroup(container, [
+			createMorphologyGroupIntroNode(groupConfig.title, groupConfig.description),
+			...optionNodes
+		]);
 	});
 }
 
-function setTextStateValues(values) {
-	const fields = getTextStateFields();
-	fields.forEach(field => {
-		field.value = '';
-	});
-	
-	fields.forEach(field => {
-		if (Object.prototype.hasOwnProperty.call(values, field.id)) {
-			field.value = String(values[field.id] ?? '');
-			field.dispatchEvent(new Event('input', { bubbles: true }));
-			field.dispatchEvent(new Event('change', { bubbles: true }));
-		}
-	});
-}
+function renderConfiguredOptionSections() {
+	const collapsedDetails = shouldUseCollapsedOptionDetails();
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
 
-function debounce(fn, delay) {
-	let timer;
-	return (...args) => {
-		clearTimeout(timer);
-		timer = setTimeout(() => fn(...args), delay);
-	};
-}
+	optionSectionConfigs.forEach(sectionConfig => {
+		const container = sectionConfig.containerSelector
+			? document.querySelector(sectionConfig.containerSelector)
+			: document.getElementById(sectionConfig.containerId);
+		if (!container) return;
 
-let isRestoringState = false;
+		const optionNodes = sectionConfig.options.map(optionConfig => createOptionCard({
+			name: sectionConfig.name,
+			value: optionConfig.value,
+			id: optionConfig.id,
+			label: optionConfig.label,
+			labelSuffixHtml: optionConfig.labelSuffixHtml,
+			saison: optionConfig.saison,
+			dataset: optionConfig.dataset,
+			shortText: optionConfig.shortText,
+			shortHtml: optionConfig.shortHtml,
+			longText: optionConfig.longText,
+			longHtml: optionConfig.longHtml,
+			descHtml: optionConfig.descHtml,
+			longHidden: collapsedDetails,
+			donHtml: optionConfig.donHtml,
+			donPlacement: sectionConfig.donPlacement,
+			descClasses: sectionConfig.descClassesByValue?.[optionConfig.value] ?? [],
+			detailTargetSelector,
+			showReadMoreButton: collapsedDetails && Boolean(optionConfig.longText || optionConfig.longHtml || optionConfig.descHtml?.includes('class="long"')),
+			readMoreSvg: createQuestionMarkSvg(couleurs[optionConfig.saison] || couleurs.temps)
+		}));
 
-function updateHashFromState() {
-	if (isRestoringState) return;
-	const encoded = HashCodec.encode({
-		checkedIds: getCheckedInputs(),
-		textValues: getTextStateValues(),
-		allChoiceIds: getChoiceInputs().map(input => input.id)
+		renderOptionGroup(container, optionNodes);
 	});
-	const newUrl = `${window.location.pathname}${window.location.search}#${encoded}`;
-	history.replaceState(null, '', newUrl);
-}
-
-function bindAutoHashSync() {
-	document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-		input.addEventListener('change', updateHashFromState);
-	});
-
-	const debouncedUpdateHash = debounce(updateHashFromState, 1000);
-	document.querySelectorAll('input[type="text"], textarea').forEach(field => {
-		field.addEventListener('input', debouncedUpdateHash);
-		field.addEventListener('change', updateHashFromState);
-	});
-}
-
-function restoreStateFromHash() {
-	const hash = window.location.hash.replace(/^#/, '');
-	if (!hash) return;
-	const state = HashCodec.decode(hash, {
-		allChoiceIds: getChoiceInputs().map(input => input.id)
-	});
-	if (!state) return;
-	isRestoringState = true;
-	setCheckedInputs(state.checkedIds);
-	setTextStateValues(state.textValues);
-	isRestoringState = false;
 }
 
 window.toggleDesc = function(btn) {
@@ -787,11 +450,7 @@ function selectUnique(group, el) {
 	const checkboxes = document.querySelectorAll('input[name="' + group + '"]');
 	checkboxes.forEach(cb => {
 		if (cb !== el) cb.checked = false;
-		const option = cb.closest('.option');
-		if (option) option.classList.remove('selected');
 	});
-	const selectedOption = el.closest('.option');
-	if (selectedOption && el.checked) selectedOption.classList.add('selected');
 }
 
 function updateLignees() {
@@ -858,7 +517,7 @@ function getAddedAmeliorationsForType(type, state = personnage.state) {
 	}
 }
 
-function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
+function getFicheBlocCheckboxSelector(type, key) {
 	const selectorMap = {
 		competence: `#fiche-competences .fiche-bloc-item[data-competence="${key}"] input[type="checkbox"]`,
 		don: `#fiche-dons .fiche-bloc-item[data-don="${key}"] input[type="checkbox"]`,
@@ -866,75 +525,123 @@ function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
 		morphologie: `#fiche-morphologies .fiche-bloc-item[data-morphologie="${key}"] input[type="checkbox"]`
 	};
 
-	const checkbox = document.querySelector(selectorMap[type]);
+	return selectorMap[type] ?? '';
+}
+
+function getAmeliorationCheckboxSelector(type, key) {
+	return `.ameliorations-item-checkbox[data-amelioration-type="${type}"][data-amelioration-key="${key}"]`;
+}
+
+function resolveFicheBlocAmelioration(item) {
+	if (!item) return null;
+
+	const typeByDatasetKey = {
+		competence: 'competence',
+		don: 'don',
+		equipement: 'equipement',
+		morphologie: 'morphologie'
+	};
+
+	for (const [datasetKey, type] of Object.entries(typeByDatasetKey)) {
+		const key = item.dataset[datasetKey];
+		if (key) {
+			return { type, key };
+		}
+	}
+
+	return null;
+}
+
+let isSyncingAmeliorationSelection = false;
+
+function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
+	const checkbox = document.querySelector(getFicheBlocCheckboxSelector(type, key));
 	if (!checkbox || checkbox.checked === shouldBeChecked) return;
 
 	checkbox.checked = shouldBeChecked;
 	checkbox.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
-function toggleAmeliorationInPersonnage(type, key) {
+
+function syncAmeliorationCheckbox(type, key, shouldBeChecked) {
+	const checkbox = document.querySelector(getAmeliorationCheckboxSelector(type, key));
+	if (!checkbox || checkbox.checked === shouldBeChecked) return;
+
+	checkbox.checked = shouldBeChecked;
+	checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function setAmeliorationInPersonnage(type, key, shouldBeChecked) {
 	const isAdded = getAddedAmeliorationsForType(type).includes(key);
-	if (isAdded) {
+	if (shouldBeChecked === isAdded) return true;
+
+	if (!shouldBeChecked) {
 		const removed = personnage.removeAmelioration(type, key);
 		if (!removed) return;
-		syncFicheBlocCheckbox(type, key, false);
-		return;
+		return true;
 	}
 
 	const added = personnage.addAmelioration(type, key);
 	if (!added) return;
-	syncFicheBlocCheckbox(type, key, true);
+	return true;
+}
+
+function syncAmeliorationSelection(type, key, shouldBeChecked, source) {
+	if (isSyncingAmeliorationSelection) return;
+
+	isSyncingAmeliorationSelection = true;
+	setAmeliorationInPersonnage(type, key, shouldBeChecked);
+
+	if (source !== 'fiche') {
+		syncFicheBlocCheckbox(type, key, shouldBeChecked);
+	}
+
+	if (source !== 'amelioration') {
+		syncAmeliorationCheckbox(type, key, shouldBeChecked);
+	}
+
+	isSyncingAmeliorationSelection = false;
 }
 
 function refreshAmeliorationButtons(state = personnage.state) {
-	document.querySelectorAll('.ameliorations-item-add-btn').forEach(button => {
-		const { ameliorationType, ameliorationKey } = button.dataset;
+	document.querySelectorAll('.ameliorations-item-checkbox').forEach(checkbox => {
+		const { ameliorationType, ameliorationKey } = checkbox.dataset;
 		const isAdded = getAddedAmeliorationsForType(ameliorationType, state).includes(ameliorationKey);
-		if(isAdded) {
-			button.textContent = '-';
-			button.closest('.ameliorations-item')?.classList.add('selected');
-		} else {
-			button.textContent = '+';
-			button.closest('.ameliorations-item')?.classList.remove('selected');
-		}
-		button.setAttribute('aria-pressed', String(isAdded));
+		checkbox.checked = isAdded;
 	});
 }
 
-function createAmeliorationItem({ key, type, nom, meta, description }) {
-	const item = document.createElement('div');
-	item.className = 'ameliorations-item';
+function createAmeliorationItem({ key, type, nom, meta, description, saison = 'temps' }) {
+	const item = createOptionCard({
+		value: key,
+		id: `amelioration-${type}-${key}`,
+		label: nom,
+		saison,
+		extraClasses: ['ameliorations-item']
+	});
 
-	const header = document.createElement('div');
-	header.className = 'ameliorations-item-header';
+	const checkbox = item.querySelector('input[type="checkbox"]');
+	const optionLabel = item.querySelector('.option-label');
+	if (!checkbox || !optionLabel) return item;
 
-	const title = document.createElement('strong');
-	title.textContent = nom;
-	header.appendChild(title);
+	checkbox.classList.add('ameliorations-item-checkbox');
+	checkbox.dataset.ameliorationType = type;
+	checkbox.dataset.ameliorationKey = key;
+	checkbox.setAttribute('aria-label', `Selectionner ${nom}`);
+	checkbox.addEventListener('change', () => {
+		syncAmeliorationSelection(type, key, checkbox.checked, 'amelioration');
+	});
 
-	if (key && type) {
-		const addButton = document.createElement('button');
-		addButton.type = 'button';
-		addButton.className = 'ameliorations-item-add-btn';
-		addButton.textContent = '+';
-		addButton.dataset.ameliorationType = type;
-		addButton.dataset.ameliorationKey = key;
-		addButton.setAttribute('aria-label', `Ajouter ${nom}`);
-		addButton.addEventListener('click', () => toggleAmeliorationInPersonnage(type, key));
-		header.appendChild(addButton);
-	}
-
-	item.appendChild(header);
+	optionLabel.classList.add('ameliorations-item-option-label');
 
 	if (meta) {
-		const metaNode = document.createElement('div');
+		const metaNode = document.createElement('span');
 		metaNode.className = 'ameliorations-item-category';
 		metaNode.textContent = meta;
 		item.appendChild(metaNode);
 	}
 
-	const descriptionNode = document.createElement('div');
+	const descriptionNode = document.createElement('span');
 	descriptionNode.className = 'ameliorations-item-description';
 	descriptionNode.innerHTML = description;
 	item.appendChild(descriptionNode);
@@ -954,143 +661,43 @@ function fillAmeliorationsList(containerId, items) {
 	container.appendChild(fragment);
 }
 
-function fillAmeliorationsMorphologiesList() {
-	fillAmeliorationsList(
-		'ameliorations-morphologies-list',
-		Object.entries(morphologies).map(([key, morphologie]) => ({
-			key,
-			type: 'morphologie',
-			nom: morphologie.nom,
-			meta: `Categorie : ${morphologie.categorie}`,
-			description: morphologie.description
-		}))
-	);
-}
-
-function fillAmeliorationsCompetencesList() {
-	fillAmeliorationsList(
-		'ameliorations-competences-list', 
-		Object.entries(competences).map(([key, competence]) => ({
-			key,
-			type: 'competence',
-			nom: competence.nom,
-			meta: `Rôle : ${competence.role}`,
-			description: competence.description
-		}))
-	);
-}
-
-function fillAmeliorationsDonsList() {
-	fillAmeliorationsList(
-		'ameliorations-dons-list',
-		Object.entries(dons).map(([key, don]) => ({
-			key,
-			type: 'don',
-			nom: don.nom,
-			meta: don.saison ? `Categorie : ${don.categorie} • Saison : ${don.saison}` : `Categorie : ${don.categorie}`,
-			description: don.description
-		}))
-	);
-}
-
-function fillAmeliorationsEquipementsList() {
-	fillAmeliorationsList(
-		'ameliorations-equipements-list',
-		Object.entries(equipements).map(([key, equipement]) => ({
-			key,
-			type: 'equipement',
-			nom: equipement.nom,
-			meta: `Categorie : ${equipement.categorie} • Saison : ${equipement.saison}`,
-			description: equipement.description
-		}))
-	);
+function fillAmeliorationsSections() {
+	ameliorationSectionConfigs.forEach(sectionConfig => {
+		fillAmeliorationsList(sectionConfig.containerId, sectionConfig.items);
+	});
 }
 
 function initLignees() {
 	const lignéesList = document.getElementById('lignées-list');
 	if (!lignéesList) return;
 
-	Object.entries(lignees).forEach(([key, lignee]) => {
-		const saison = dons[lignee.don]?.saison;
+	const collapsedDetails = shouldUseCollapsedOptionDetails();
+	const detailTargetSelector = getMobileOptionDetailTargetSelector();
+	const optionNodes = ligneeOptionConfigs.map(optionConfig => {
+		const option = createOptionCard({
+			name: 'lignee',
+			value: optionConfig.value,
+			id: optionConfig.id,
+			label: optionConfig.label,
+			labelSuffixHtml: optionConfig.labelSuffixHtml,
+			saison: optionConfig.saison,
+			dataset: optionConfig.dataset,
+			shortText: optionConfig.shortText,
+			longHtml: optionConfig.longHtml,
+			donHtml: optionConfig.donHtml,
+			longHidden: collapsedDetails,
+			detailTargetSelector,
+			showReadMoreButton: collapsedDetails,
+			readMoreSvg: createQuestionMarkSvg(couleurs[optionConfig.saison] || couleurs.temps),
+			readMoreLabel: 'Afficher la description',
+			extraClasses: optionConfig.extraClasses
+		});
 
-		const option = document.createElement('div');
-		option.className = `option lignee ${lignee.famille} ${saison}`;
 		option.style.display = 'none';
-
-		const button = document.createElement('button');
-		button.type = 'button';
-		button.className = 'lire-plus pictogram-btn';
-		button.setAttribute('aria-label', 'Afficher la description');
-		button.innerHTML = createQuestionMarkSvg(couleurs[saison] || couleurs.temps);
-
-		const checkbox = document.createElement('input');
-		checkbox.type = 'checkbox';
-		checkbox.name = 'lignee';
-		checkbox.value = key;
-		checkbox.id = `lignee-${key}`;
-		checkbox.dataset.don = lignee.don;
-		
-		const label = document.createElement('label');
-		label.setAttribute('for', checkbox.id);
-		label.textContent = lignee.nom;
-
-		const sexe = document.createElement('span');
-		sexe.className = 'lignee-sexe';
-		sexe.textContent = `(${lignee.sexe})`;
-
-		const optionLabel = document.createElement('span');
-		optionLabel.className = 'option-label';
-		optionLabel.appendChild(checkbox);
-		optionLabel.appendChild(label);
-		optionLabel.appendChild(sexe);
-
-		option.appendChild(optionLabel);
-
-		const desc = document.createElement('div');
-		desc.className = 'desc';
-
-		const shortDesc = document.createElement('span');
-		shortDesc.className = 'short';
-		shortDesc.textContent = lignee.summary;
-
-		const longDesc = document.createElement('span');
-		longDesc.className = 'long';
-		longDesc.style.display = 'none';
-		longDesc.textContent = lignee.description;
-
-		const ul = document.createElement('ul');
-		const liEnv = document.createElement('li');
-		liEnv.textContent = `Environnement préféré : ${lignee.environnement}`;
-		const liVie = document.createElement('li');
-		liVie.textContent = `Mode de vie favori : ${lignee.modeDeVie}`;
-		const liPerso = document.createElement('li');
-		liPerso.textContent = `Personnalité majoritaire : ${lignee.personnalite}`;
-		const liNoms = document.createElement('li');
-		liNoms.textContent = `Exemples de noms ${lignee.exemplesNoms}`;
-
-		ul.appendChild(liEnv);
-		ul.appendChild(liVie);
-		ul.appendChild(liPerso);
-		ul.appendChild(liNoms);
-		longDesc.appendChild(ul);
-
-		const hr = document.createElement('hr');
-		hr.className = 'don-separateur';
-
-		const donSpan = document.createElement('span');
-		donSpan.className = 'don';
-		donSpan.textContent = `Don : ${dons[lignee.don]?.nom} (${dons[lignee.don]?.categorie})`;
-
-		desc.appendChild(shortDesc);
-		desc.appendChild(longDesc);
-		desc.appendChild(hr);
-		desc.appendChild(donSpan);
-		option.appendChild(desc);
-
-		option.appendChild(button);
-
-		lignéesList.appendChild(option);
+		return option;
 	});
+
+	renderOptionGroup(lignéesList, optionNodes);
 }
 
 function initBindings() {
@@ -1151,14 +758,37 @@ function initBindings() {
 		});
 	});
 
-	bindAutoHashSync();
+	document.querySelectorAll('.fiche-bloc-item').forEach(item => {
+		item.addEventListener('click', function(e) {
+			if (e.target.closest('.lire-plus.pictogram-btn, svg, input, label')) return;
+			const checkbox = item.querySelector('input[type="checkbox"]');
+			checkbox?.click();
+		});
+	});
+
+	document.querySelectorAll('.fiche-bloc-item input[type="checkbox"]').forEach(checkbox => {
+		checkbox.addEventListener('change', () => {
+			const amelioration = resolveFicheBlocAmelioration(checkbox.closest('.fiche-bloc-item'));
+			if (!amelioration) return;
+
+			syncAmeliorationSelection(amelioration.type, amelioration.key, checkbox.checked, 'fiche');
+		});
+	});
+
+	document.querySelectorAll('#fiche-magie input[type="checkbox"]').forEach(input => {
+		input.addEventListener('change', syncMobileViewModePresentation);
+	});
+
+	document.addEventListener('viewmodechange', syncMobileViewModePresentation);
+
+	hashStateSync.bindTextFieldHashSync();
 }
 
 function initStateFromHash() {
 	// Restaure l'état à l'ouverture si hash présent (déclenche les change events → updateFiche*)
-	restoreStateFromHash();
+	hashStateSync.restoreStateFromHash();
 	// Permet de restaurer si le hash change en cours de navigation
-	window.addEventListener('hashchange', restoreStateFromHash);
+	window.addEventListener('hashchange', hashStateSync.restoreStateFromHash);
 }
 
 function isElementVisible(element) {
@@ -1193,25 +823,28 @@ function bindResponsiveCollapsibleSection() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+	renderConfiguredOptionSections();
+	renderMorphologyOptionGroups();
 
-	fillFicheFromData(competences, 'printemps', 'competence');
-	fillFicheFromData(dons, 'ete', 'don');
-	fillFicheFromData(equipements, 'automne', 'equipement');
-	fillFicheFromData(morphologies, 'hiver', 'morphologie');
+	ficheRenderer.fillFicheFromData(competences, 'printemps', 'competence');
+	ficheRenderer.fillFicheFromData(dons, 'ete', 'don');
+	ficheRenderer.fillFicheFromData(equipements, 'automne', 'equipement');
+	ficheRenderer.fillFicheFromData(morphologies, 'hiver', 'morphologie');
 
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
-	personnage.subscribe(renderPersonnage);
+	personnage.subscribe(ficheRenderer.renderPersonnage);
+	personnage.subscribe(syncMagicDomains);
+	personnage.subscribe(hashStateSync.updateHashFromState);
 
-	fillAmeliorationsCompetencesList();
-	fillAmeliorationsDonsList();
-	fillAmeliorationsEquipementsList();
-	fillAmeliorationsMorphologiesList();
+	fillAmeliorationsSections();
 
 	initLignees();
+	document.dispatchEvent(new Event('optiongroupsrendered'));
 	updateViewModeUi();
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
-	bindSortDialog();
+	syncMobileViewModePresentation();
+	sortDialogController.bindSortDialog();
 	bindResponsiveCollapsibleSection();
 });

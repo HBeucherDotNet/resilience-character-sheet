@@ -1,3 +1,49 @@
+#fiche-personnage.hiver {
+  --character-season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --character-season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-border: #235a8a;
+}
+#fiche-personnage.printemps {
+  --character-season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --character-season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-border: #2c7a4b;
+}
+#fiche-personnage.ete {
+  --character-season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --character-season-soft-border: rgb(255, 226.5968586387, 38);
+  --character-season-strong-bg: rgb(255, 226.5968586387, 38);
+  --character-season-strong-border: #bfa600;
+}
+#fiche-personnage.automne {
+  --character-season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --character-season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-border: #a13a3a;
+}
+#fiche-personnage.temps {
+  --character-season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --character-season-soft-border: #cccccc;
+  --character-season-strong-bg: #cccccc;
+  --character-season-strong-border: #999;
+}
+#fiche-personnage.rupture {
+  --character-season-soft-bg: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
+  --character-season-soft-border: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-bg: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-border: #7d5fa3;
+}
+#fiche-personnage .saison-border {
+  border-color: var(--character-season-strong-bg);
+}
+#fiche-personnage .saison-border.rupture {
+  border-color: #7d5fa3;
+}
+#fiche-personnage .saison-background {
+  background: var(--character-season-soft-bg);
+}
+
 /* Masquer les questions lors de l'impression */
 @media print {
   @page {
@@ -63,3 +109,5 @@
     gap: 0 !important;
   }
 }
+
+/*# sourceMappingURL=print.css.map */

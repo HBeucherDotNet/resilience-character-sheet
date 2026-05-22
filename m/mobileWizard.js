@@ -1,6 +1,8 @@
-import { updateViewModeUi } from '../viewMode.js';
-
 function buildDetailContent(optionElement) {
+	if (typeof optionElement?._buildDetailContent === 'function') {
+		return optionElement._buildDetailContent();
+	}
+
 	const detail = document.createElement('div');
 	detail.className = 'mobile-step-detail-content';
 
@@ -159,31 +161,149 @@ function setupSteps() {
 	const prevButton = document.getElementById('mobile-step-prev');
 	const nextButton = document.getElementById('mobile-step-next');
 	const title = document.getElementById('mobile-step-title');
+	const headerMenu = document.querySelector('.mobile-header-menu');
+	const ameliorationsSection = builder.querySelector('#ameliorations-section');
+	const ameliorationsHelpModal = document.getElementById('help-modale-ameliorations');
+	const ameliorationsHelpModalCloseButton = ameliorationsHelpModal?.querySelector('.help-modale-close');
+	const returnToFormButton = document.getElementById('return-to-form-btn');
+	const openAmeliorationsButton = document.getElementById('open-ameliorations-btn');
+	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
+	const openSortDialogButton = document.getElementById('open-sort-dialog-btn');
+	const shareViewLinkButton = document.getElementById('share-view-link-btn');
 
 	if (!nav || !prevButton || !nextButton || !title) return;
 
 	let currentStepIndex = 0;
 	const defaultNextLabel = nextButton.textContent || '►►';
+	const lastButtonClickByElement = new WeakMap();
+
+	function closeHeaderMenu() {
+		if (!(headerMenu instanceof HTMLDetailsElement)) return;
+		headerMenu.open = false;
+	}
+
+	function shouldIgnoreDuplicatedButtonClick(button, event) {
+		if (!window.matchMedia('(pointer: coarse)').matches) return false;
+
+		const lastHandledAt = lastButtonClickByElement.get(button) ?? -Infinity;
+		if ((event.timeStamp - lastHandledAt) < 180) {
+			event.preventDefault();
+			return true;
+		}
+
+		lastButtonClickByElement.set(button, event.timeStamp);
+		return false;
+	}
+
+	document.addEventListener('click', event => {
+		if (!(event.target instanceof Element)) return;
+
+		const button = event.target.closest('button');
+		if (!(button instanceof HTMLButtonElement)) return;
+
+		if (!shouldIgnoreDuplicatedButtonClick(button, event)) return;
+
+		event.stopImmediatePropagation();
+	}, true);
+
+	function isReadOnlyViewModeEnabled() {
+		return document.body.classList.contains('view-mode');
+	}
+
+	function isAmeliorationsModeEnabled() {
+		return document.body.classList.contains('mobile-ameliorations-mode');
+	}
+
+	function isAmeliorationsHelpModalOpen() {
+		return document.body.classList.contains('mobile-ameliorations-help-open');
+	}
+
+	function openAmeliorationsHelpModal() {
+		if (!ameliorationsHelpModal) return;
+		document.body.classList.add('mobile-ameliorations-help-open');
+	}
+
+	function closeAmeliorationsHelpModal() {
+		document.body.classList.remove('mobile-ameliorations-help-open');
+	}
+
+	function isSheetModeEnabled() {
+		return document.body.classList.contains('mobile-sheet-mode') || isReadOnlyViewModeEnabled();
+	}
+
+	function syncSheetModeUi() {
+		const hasEditableSheetMode = document.body.classList.contains('mobile-sheet-mode');
+		const isReadOnlyViewMode = isReadOnlyViewModeEnabled();
+		const hasAmeliorationsMode = isAmeliorationsModeEnabled() && !isReadOnlyViewMode;
+		const shouldShowSheet = hasEditableSheetMode || isReadOnlyViewMode;
+		document.body.classList.toggle('mobile-sheet-mode', shouldShowSheet);
+
+		if (returnToFormButton) {
+			returnToFormButton.hidden = !(hasEditableSheetMode || hasAmeliorationsMode) || isReadOnlyViewMode;
+			returnToFormButton.setAttribute('aria-pressed', String(hasEditableSheetMode || hasAmeliorationsMode));
+		}
+
+		if (openAmeliorationsButton) {
+			openAmeliorationsButton.hidden = shouldShowSheet || hasAmeliorationsMode || isReadOnlyViewMode || !ameliorationsSection;
+		}
+
+		if (shareViewLinkButton) {
+			shareViewLinkButton.hidden = shouldShowSheet || hasAmeliorationsMode;
+		}
+	}
+
+	function exitSpecialMobileMode() {
+		if (isReadOnlyViewModeEnabled()) return;
+
+		const wasInSheetMode = document.body.classList.contains('mobile-sheet-mode');
+		const wasInAmeliorationsMode = isAmeliorationsModeEnabled();
+		if (!wasInSheetMode && !wasInAmeliorationsMode) return;
+
+		document.body.classList.remove('mobile-sheet-mode');
+		document.body.classList.remove('mobile-ameliorations-mode');
+		closeAmeliorationsHelpModal();
+		syncSheetModeUi();
+		closeHeaderMenu();
+		renderStep();
+	}
 
 	function isPersonalityStep(step) {
 		return step?.section === personalitySection;
 	}
 
 	function openCharacterSheetView() {
-		if (document.body.classList.contains('view-mode')) return;
+		if (isSheetModeEnabled()) return;
 
 		groupControllers.forEach(controller => {
 			controller.setActive(false);
 		});
 
-		const searchParams = new URLSearchParams(window.location.search);
-		searchParams.set('view', '1');
-		const search = searchParams.toString();
-		history.replaceState(null, '', `${window.location.pathname}${search ? `?${search}` : ''}${window.location.hash}`);
-		updateViewModeUi();
+		closeAmeliorationsHelpModal();
+		document.body.classList.remove('mobile-ameliorations-mode');
+		document.body.classList.add('mobile-sheet-mode');
+		syncSheetModeUi();
+		closeHeaderMenu();
 
 		window.requestAnimationFrame(() => {
 			document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
+		});
+	}
+
+	function openAmeliorationsView() {
+		if (!ameliorationsSection || isReadOnlyViewModeEnabled()) return;
+
+		groupControllers.forEach(controller => {
+			controller.setActive(false);
+		});
+
+		document.body.classList.remove('mobile-sheet-mode');
+		document.body.classList.add('mobile-ameliorations-mode');
+		openAmeliorationsHelpModal();
+		syncSheetModeUi();
+		closeHeaderMenu();
+
+		window.requestAnimationFrame(() => {
+			ameliorationsSection.scrollIntoView({ block: 'start' });
 		});
 	}
 
@@ -243,6 +363,58 @@ function setupSteps() {
 		renderStep();
 	});
 
+	returnToFormButton?.addEventListener('click', () => {
+		exitSpecialMobileMode();
+	});
+
+	ameliorationsHelpModalCloseButton?.addEventListener('click', () => {
+		closeAmeliorationsHelpModal();
+	});
+
+	ameliorationsHelpModal?.addEventListener('click', event => {
+		if (event.target === ameliorationsHelpModal) {
+			closeAmeliorationsHelpModal();
+		}
+	});
+
+	openAmeliorationsButton?.addEventListener('click', () => {
+		openAmeliorationsView();
+	});
+
+	toggleViewModeButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+	}, true);
+
+	document.addEventListener('viewmodechange', event => {
+		document.body.classList.remove('mobile-ameliorations-mode');
+		closeAmeliorationsHelpModal();
+		syncSheetModeUi();
+		closeHeaderMenu();
+
+		if (event.detail?.isViewMode) {
+			window.requestAnimationFrame(() => {
+				document.getElementById('fiche-personnage')?.scrollIntoView({ block: 'start' });
+			});
+			return;
+		}
+
+		renderStep();
+	});
+
+	shareViewLinkButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+	});
+
+	openSortDialogButton?.addEventListener('click', () => {
+		closeHeaderMenu();
+	});
+
+	document.addEventListener('keydown', event => {
+		if (event.key === 'Escape' && isAmeliorationsHelpModalOpen()) {
+			closeAmeliorationsHelpModal();
+		}
+	});
+
 	nextButton.addEventListener('click', () => {
 		const activeStep = steps[currentStepIndex];
 		if (isPersonalityStep(activeStep)) {
@@ -255,7 +427,8 @@ function setupSteps() {
 		renderStep();
 	});
 
+	syncSheetModeUi();
 	renderStep();
 }
 
-setupSteps();
+document.addEventListener('optiongroupsrendered', setupSteps, { once: true });

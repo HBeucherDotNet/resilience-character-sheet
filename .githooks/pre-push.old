@@ -1,6 +1,20 @@
 #!/bin/sh
 set -e
 
+SHOULD_RUN=false
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    SHOULD_RUN=true
+    break
+  fi
+done
+
+if [ "$SHOULD_RUN" != "true" ]; then
+  echo "[pre-push] Skipping checks for non-main push."
+  exit 0
+fi
+
 echo "[pre-push] Running Sass production build..."
 
 if ! command -v npm >/dev/null 2>&1; then

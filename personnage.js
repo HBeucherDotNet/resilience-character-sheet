@@ -2,6 +2,7 @@ import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
 import { equipements } from './data/equipements.js';
 import { morphologies } from './data/morphologies.js';
+import { saisons } from './data/saisons.js';
 
 const saisonsEnum = {
 	hiver: 1,
@@ -11,29 +12,29 @@ const saisonsEnum = {
 };
 
 function getVoixTitle(saison) {
-	if (!saison) return '';
+	return getSaisonData(saison).title;
+}
 
-	switch (saison.value) {
-		case 'hiver': return 'Voix de l’Hiver ❄️';
-		case 'printemps': return 'Voix du Printemps 🌱';
-		case 'ete': return 'Voix de l’Été ☀️';
-		case 'automne': return 'Voix de l’Automne 🍁';
-		case 'temps': return 'Voix du Temps ⏳';
-		case 'rupture': return 'Voix de la Rupture 💀';
-		default: return '';
+function getSaisonData(saison) {
+	if (!saison) {
+		return {
+			title: '',
+			essence: '',
+			anatheme: ''
+		};
 	}
+
+	return saisons[saison.value] ?? {
+		title: '',
+		essence: '',
+		anatheme: ''
+	};
 }
 
 function getLabelFromSelectedInput(input) {
 	if (!input) return '';
 	const label = input.closest('.option')?.querySelector('label');
 	return label ? label.textContent.trim() : '';
-}
-
-function getTextContentFromClosest(input, selector) {
-	if (!input) return '';
-	const node = input.closest('.option')?.querySelector(selector);
-	return node ? node.textContent.trim() : '';
 }
 
 function getSaisonScore(saison, saisonName) {
@@ -216,10 +217,11 @@ export class Personnage {
 		this.state.scoreModAutomne = toInteger(scoreModAutomne);
 		this.state.scoreModSouffle = toInteger(scoreModSouffle);
 		this._syncSelectionArrays();
+		const saisonData = getSaisonData(this.state.saison);
 
 		this.state.ficheSaison = getVoixTitle(this.state.saison);
-		this.state.ficheEssence = getTextContentFromClosest(this.state.saison, '.label-essence');
-		this.state.ficheAnatheme = getTextContentFromClosest(this.state.saison, '.label-anatheme');
+		this.state.ficheEssence = saisonData.essence;
+		this.state.ficheAnatheme = saisonData.anatheme;
 		this.state.ficheFamille = getLabelFromSelectedInput(this.state.famille);
 		this.state.ficheLignee = getLabelFromSelectedInput(this.state.lignee);
 		this.state.ficheRole = getLabelFromSelectedInput(this.state.role);

@@ -1,8 +1,12 @@
 @use "colors";
+@use "optionCards";
 @use "print.scss";
 @use "mobile";
+@use "viewMode";
 
 :root {
+	--mobile-card-radius: 10px;
+	
 	--color-hiver: #{colors.$color-hiver};
 	--color-printemps: #{colors.$color-printemps};
 	--color-ete: #{colors.$color-ete};
@@ -37,10 +41,6 @@ h3 {
 	font-size: 1.25rem;
 	color: colors.$color-text-dark;
 	letter-spacing: 0.02rem;
-}
-
-#main-title-mobile {
-	display: none;
 }
 
 .page-actions {
@@ -96,257 +96,205 @@ section {
 	}
 }
 
-#collapsible-section {
-	h2 {
-		margin-bottom: 0;
+#ameliorations-section {
+	
+	#collapsible-section {
+		h2 {
+			margin-bottom: 0;
+		}
+		
+		& > summary {
+			list-style: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+		
+		& > summary::-webkit-details-marker {
+			display: none;
+		}
+		
+		& > summary::after {
+			content: '+';
+			flex: 0 0 auto;
+			width: 1.5rem;
+			height: 1.5rem;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 999px;
+			background: colors.$color-hiver-lighter;
+			color: colors.$color-hiver;
+			font-size: 1.1rem;
+			font-weight: 700;
+		}
+		
+		&[open] > summary::after {
+			content: '−';
+		}
 	}
 	
-	& > summary {
-		list-style: none;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+	.collapsible-section-hint {
+		font-size: 0.9rem;
+		color: colors.$color-text-muted;
+		text-align: right;
+	}
+	
+	.collapsible-section-content {
+		margin-top: 0.8rem;
+	}
+	
+	#ameliorations-group {
+		align-items: stretch;
+		flex-wrap: wrap;
 		gap: 1rem;
 	}
 	
-	& > summary::-webkit-details-marker {
-		display: none;
+	#ameliorations-scores-row {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(150px, 1fr));
+		gap: 0.6rem;
+		margin-bottom: 1rem;
+		
+		background: colors.$color-bg-page;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		padding: 0.9rem;
+		box-sizing: border-box;
 	}
 	
-	& > summary::after {
-		content: '+';
+	.ameliorations-zone {
+		flex: 1 1 calc(25% - 0.75rem);
+		min-width: 220px;
+		background: colors.$color-bg-page;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		padding: 0.9rem;
+		box-sizing: border-box;
+		
+		h3 {
+			margin-bottom: 0.75rem;
+			font-size: 1.05rem;
+			color: colors.$color-hiver;
+		}
+	}
+	
+	.ameliorations-zone-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		min-height: 2rem;
+	}
+	
+	.ameliorations-item {
+		@include optionCards.option-card-light();
+	}
+	
+	.ameliorations-item-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.4rem;
+	}
+	
+	.ameliorations-item-option-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.55rem;
+		font-weight: 600;
+		cursor: pointer;
+		width: 100%;
+		
+		strong {
+			line-height: 1.3;
+		}
+	}
+	
+	.ameliorations-item-checkbox {
+		margin-top: 0.15rem;
 		flex: 0 0 auto;
-		width: 1.5rem;
-		height: 1.5rem;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
+	}
+	
+	.ameliorations-item-add-btn {
+		border: 1px solid colors.$color-hiver;
+		background: colors.$color-hiver;
+		color: colors.$color-white;
+		width: 1.8rem;
+		height: 1.8rem;
 		border-radius: 999px;
-		background: colors.$color-hiver-lighter;
-		color: colors.$color-hiver;
-		font-size: 1.1rem;
+		font-size: 1rem;
 		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+		flex: 0 0 auto;
+		
+		&:disabled {
+			cursor: default;
+			opacity: 0.65;
+		}
 	}
 	
-	&[open] > summary::after {
-		content: '−';
+	.ameliorations-item-category {
+		font-size: 0.80rem;
+		color: colors.$color-text-muted;
+		margin-bottom: 0.35rem;
 	}
-}
-
-.collapsible-section-hint {
-	font-size: 0.9rem;
-	color: colors.$color-text-muted;
-	text-align: right;
-}
-
-.collapsible-section-content {
-	margin-top: 0.8rem;
-}
-
-#ameliorations-group {
-	align-items: stretch;
-	flex-wrap: wrap;
-	gap: 1rem;
-}
-
-#ameliorations-scores-row {
-	display: grid;
-	grid-template-columns: repeat(5, minmax(150px, 1fr));
-	gap: 0.6rem;
-	margin-bottom: 1rem;
 	
-	background: colors.$color-bg-page;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 10px;
-	padding: 0.9rem;
-	box-sizing: border-box;
-}
-
-.ameliorations-zone {
-	flex: 1 1 calc(25% - 0.75rem);
-	min-width: 220px;
-	background: colors.$color-bg-page;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 10px;
-	padding: 0.9rem;
-	box-sizing: border-box;
-	
-	h3 {
-		margin-bottom: 0.75rem;
-		font-size: 1.05rem;
-		color: colors.$color-hiver;
+	.ameliorations-item-description {
+		font-size: 0.85rem;
+		color: colors.$color-text-dark;
 	}
-}
-
-.ameliorations-zone-list {
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-	min-height: 2rem;
-}
-
-.ameliorations-item {
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 8px;
-	padding: 0.75rem;
 	
-	&.selected {
-		border-color: colors.$color-hiver;
-		box-shadow: 0 2px 10px colors.$color-box-shadow;
+	.amelioration-score-row-item {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) auto auto auto;
+		align-items: center;
+		gap: 0.35rem;
+		background: colors.$color-white;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 8px;
+		padding: 0.55rem 0.6rem;	
 	}
-}
-
-.ameliorations-item-header {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 0.75rem;
-	margin-bottom: 0.4rem;
-}
-
-.ameliorations-item-add-btn {
-	border: 1px solid colors.$color-hiver;
-	background: colors.$color-hiver;
-	color: colors.$color-white;
-	width: 1.8rem;
-	height: 1.8rem;
-	border-radius: 999px;
-	font-size: 1rem;
-	font-weight: 700;
-	line-height: 1;
-	cursor: pointer;
-	flex: 0 0 auto;
 	
-	&:disabled {
-		cursor: default;
-		opacity: 0.65;
+	.amelioration-score-input {
+		width: 1.5rem;
+		text-align: center;
+		padding: 0.2rem;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 6px;
+		background: colors.$color-white;
 	}
-}
-
-.ameliorations-item-category {
-	font-size: 0.80rem;
-	color: colors.$color-text-muted;
-	margin-bottom: 0.35rem;
-}
-
-.ameliorations-item-description {
-	font-size: 0.85rem;
-	color: colors.$color-text-dark;
-}
-
-.amelioration-score-row-item {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto auto auto minmax(0, 1fr);
-	align-items: center;
-	gap: 0.35rem;
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 8px;
-	padding: 0.55rem 0.6rem;	
-}
-
-.amelioration-score-input {
-	width: 1.5rem;
-	text-align: center;
-	padding: 0.2rem;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 6px;
-	background: colors.$color-white;
-}
-
-.amelioration-score-btn {
-	width: 1.6rem;
-	height: 1.6rem;
-	border: 1px solid colors.$color-hiver;
-	border-radius: 999px;
-	background: colors.$color-hiver;
-	color: colors.$color-white;
-	font-weight: 700;
-	line-height: 1;
-	cursor: pointer;
-
-	&:disabled {
-		opacity: 0.4;
-		cursor: not-allowed;
-		filter: saturate(0.35);
+	
+	.amelioration-score-btn {
+		width: 1.6rem;
+		height: 1.6rem;
+		border: 1px solid colors.$color-hiver;
+		border-radius: 999px;
+		background: colors.$color-hiver;
+		color: colors.$color-white;
+		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+		
+		&:disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+			filter: saturate(0.35);
+		}
 	}
 }
 
 .option {
-	border-width: 1px;
-	border-style: solid;
-	position: relative;
-	border-radius: 8px;
-	padding: 0.5rem;
-	transition: box-shadow 0.2s;
-	&:hover {
-		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
-	}
-	
-	&.hiver {
-		background: colors.$color-hiver-lighter;
-		border-color: colors.$color-hiver-light;
-		order: 1;
-	}
-	&.printemps {
-		background: colors.$color-printemps-lighter;
-		border-color: colors.$color-printemps-light;
-		order: 2;
-	}
-	&.ete {
-		background: colors.$color-ete-lighter;
-		border-color: colors.$color-ete-light;
-		order: 3;
-	}
-	&.automne {
-		background: colors.$color-automne-lighter;
-		border-color: colors.$color-automne-light;
-		order: 4;
-	}
-	&.temps {
-		background: colors.$color-temps-lighter;
-		border-color: colors.$color-temps-light;
-		order: 5;
-	}
-	
-	.option-label {
-		display:flex;
-		align-items:center;
-		gap:0.5rem;
-		
-		label {
-			color: colors.$color-text-main;
-			font-weight: 600;
-		}
-	}
-	
-	&.selected {
-		z-index: 1;
-		&.hiver {
-			border-color: colors.$color-hiver !important;
-		}
-		&.printemps {
-			border-color: colors.$color-printemps !important;
-		}
-		&.ete {
-			border-color: colors.$color-ete !important;
-		}
-		&.automne {
-			border-color: colors.$color-automne !important;
-		}
-		&.temps {
-			border-color: colors.$color-temps !important;
-		}
-	}
+	@include optionCards.option-card-seasonal(0.5rem, $includeOrder: true);
 	
 	&.lignee {
 		flex: 1 1 22%;
 		min-width: 0;
 		box-sizing: border-box;
 		padding: 0.5rem;
-		border: 1px solid colors.$color-border-gray;
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
@@ -419,16 +367,22 @@ section {
 }
 
 .don-separateur {
-	border: none;
-	border-top: 2px solid colors.$color-border-separator;
-	margin: 0.7rem 0 0.3rem 0;
+	display: none;
 }
 
 .don {
 	color: colors.$color-text-dark;
 	font-size: 1rem;
 	display: block;
-	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+	background-color: rgba(256, 256, 256, 0.5);
+	padding: 0.5rem 1rem;
+	border-left: dotted 2px var(--season-strong-border);
+	
+	ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
 }
 
 #fiche-personnage {
@@ -440,42 +394,12 @@ section {
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
 	
-	&.hiver {
-		.saison-border { border-color: colors.$color-hiver; }
-		.saison-background { background: colors.$color-hiver-lighter; }
-		#mots-hiver { display: flex; }
-		#fiche-magie-hiver { display: table; }
-	}
-	&.printemps {
-		.saison-border { border-color: colors.$color-printemps; }
-		.saison-background { background: colors.$color-printemps-lighter; }
-		#mots-printemps { display: flex; }
-		#fiche-magie-printemps { display: table; }
-	}
-	&.ete {
-		.saison-border { border-color: colors.$color-ete; }
-		.saison-background { background: colors.$color-ete-lighter; }
-		#mots-ete { display: flex; }
-		#fiche-magie-ete { display: table; }
-	}
-	&.automne {
-		.saison-border { border-color: colors.$color-automne; }
-		.saison-background { background: colors.$color-automne-lighter; }
-		#mots-automne { display: flex; }
-		#fiche-magie-automne { display: table; }
-	}
-	&.temps {
-		.saison-border { border-color: colors.$color-temps; }
-		.saison-background { background: colors.$color-temps-lighter; }
-		#mots-temps { display: flex; }
-		#fiche-magie-temps { display: table; }
-	}
-	&.rupture {
-		.saison-border { border-color: colors.$color-rupture; }
-		.saison-background { background: colors.$color-rupture-lighter; }
-		#mots-rupture { display: flex; }
-		#fiche-magie-rupture { display: table; }
-	}
+	&.hiver #fiche-magie-hiver { display: table; }
+	&.printemps #fiche-magie-printemps { display: table; }
+	&.ete #fiche-magie-ete { display: table; }
+	&.automne #fiche-magie-automne { display: table; }
+	&.temps #fiche-magie-temps { display: table; }
+	&.rupture #fiche-magie-rupture { display: table; }
 }
 
 .fiche-header {
@@ -779,7 +703,7 @@ section {
 		font-style: italic;
 		font-weight: 600;
 	}
-
+	
 	.fiche-magie-actions {
 		display: flex;
 		justify-content: center;
@@ -813,7 +737,7 @@ section {
 	max-width: 38rem;
 	box-shadow: 0 20px 50px colors.$color-box-shadow-hover;
 	background: colors.$color-white;
-
+	
 	&::backdrop {
 		background: rgba(24, 37, 58, 0.45);
 		backdrop-filter: blur(2px);
@@ -830,13 +754,13 @@ section {
 	justify-content: space-between;
 	gap: 1rem;
 	margin-bottom: 1rem;
-
+	
 	h6 {
 		margin: 0;
 		font-size: 1.2rem;
 		color: colors.$color-hiver;
 	}
-
+	
 	p {
 		margin: 0.3rem 0 0;
 		color: colors.$color-text-muted;
@@ -858,8 +782,8 @@ section {
 	display: flex;
 	flex-direction: column;
 	gap: 0.6rem;
-		font-size: 0.9rem;
-		color: colors.$color-text-muted;
+	font-size: 0.9rem;
+	color: colors.$color-text-muted;
 }
 
 .sort-dialog-talent-select-row {
@@ -880,7 +804,7 @@ section {
 #sort-talent-effets {
 	margin: 0.35rem 0;
 	padding-left: 1.2rem;
-
+	
 	li + li {
 		margin-top: 0.3rem;
 	}
@@ -920,7 +844,7 @@ section {
 	flex-wrap: wrap;
 }
 
-.fiche-blocs {
+#fiche-blocs {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem; 
@@ -1010,13 +934,8 @@ section {
 	}
 	
 	.fiche-bloc-item {
-		border: 1px solid colors.$color-border-gray;
-		border-radius: 6px;
-		padding: 0.5rem 2rem 0.5rem 0.5rem;
-		background: colors.$color-white;
-		box-sizing: border-box;
+		@include optionCards.option-card-light(0.5rem 2rem 0.5rem 0.5rem);
 		flex: 1 1 auto;
-		position: relative;
 		
 		label {
 			margin-right: 5px;
@@ -1033,7 +952,7 @@ section {
 	align-items: center;
 	
 	.champ-lexical {
-		display: none;
+		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;

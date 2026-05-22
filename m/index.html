@@ -12,103 +12,40 @@
 </head>
 <body>
 	<header class="mobile-brand-banner" aria-label="Bandeau de marque">
-		<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
-		<span class="mobile-brand-title">Création de personnage</span>
+		<div class="mobile-brand-main">
+			<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
+			<span class="mobile-brand-title">Création de personnage</span>
+		</div>
+		<details class="mobile-header-menu">
+			<summary class="mobile-header-menu-toggle" aria-label="Ouvrir le menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</summary>
+			<div class="page-actions" aria-label="Actions de partage">
+				<button type="button" id="return-to-form-btn" class="page-action-btn page-action-btn-secondary" hidden>Revenir au formulaire</button>
+				<button type="button" id="open-ameliorations-btn" class="page-action-btn page-action-btn-secondary">Ouvrir les ameliorations</button>
+				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
+				<button type="button" id="open-sort-dialog-btn" class="page-action-btn">Lancer un sort</button>
+				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+			</div>
+		</details>
 	</header>
-	<div class="page-actions" aria-label="Actions de partage">
-		<a href="./index.html" class="page-action-btn">Version desktop</a>
-		<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
-		<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
-	</div>
-	<div id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
+	<nav id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
 		<button type="button" id="mobile-step-prev" class="page-action-btn page-action-btn-secondary">◄◄</button>
 		<span id="mobile-step-title" class="mobile-step-title"></span>
 		<button type="button" id="mobile-step-next" class="page-action-btn">►►</button>
-	</div>
+	</nav>
+	
 	<div id="character-builder">
 		<h1 id="main-title">Résilience - Création de Voix</h1>
-		<h1 id="main-title-mobile">Résilience - Attributs</h1>
 		
 		<!-------------------- SAISONS -------------------->
 		
 		<section>
 			<h2>Saison</h2>
 			<div class="flex-group three-columns-grid" id="saison-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="saison" value="hiver" id="saison-hiver">
-						<label for="saison-hiver">Hiver</label>
-					</span>
-					<span class="desc hiver-desc">
-						<span class="short">Mÿelta recherche les gens humbles, discrets, qui savent se fondre dans la masse, accepter les événements pour s'y adapter et en tirer le meilleur parti au moment voulu.</span>
-						<span class="long">Parfois, ils sont cyniques ou froids. Souvent, ils sont ermites, agriculteurs, explorateurs. Mÿelta ne cherche pas les gens qui se mettent en avant, s'exposent inutilement et refusent toute contrariété. Le personnage à tendance à se fondre dans la masse et attendre le meilleur moment pour agir efficacement et anonymement. Son attitude peut parfois le rendre cynique ou asocial.</span>
-					</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<strong>Essence : <span class="label-essence">Adaptation</span>.</strong> Pour survivre en Hiver, il faut embrasser la difficulté et saisir la moindre opportunité. <br>
-						<strong>Anathème : <span class="label-anatheme">Fierté</span>.</strong> Qui se met en avant tombera en premier…
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="saison" value="printemps" id="saison-printemps">
-						<label for="saison-printemps">Printemps</label>
-					</span>
-					<span class="desc printemps-desc">
-						<span class="short">Liana recherche des gens curieux, à l'esprit vif, inventifs et perceptifs, pacifistes.</span>
-						<span class="long"> Parfois, ils sont malicieux et fourbes, farceurs voire voleurs. Souvent, ils sont médecins, érudits, sentinelles. Liana ne cherche pas les personnes belliqueuses, rigides, pliant le monde à leur volonté, par la force physique ou les contraintes psychologiques. Le personnage aime découvrir le maximum de choses, explorer, tester, tout en respectant l’intégrité des gens. Cela peut le faire passer pour inconstant, peu fiable ou exagérément pacifiste.</span>
-					</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<strong>Essence : <span class="label-essence">Curiosité</span>.</strong> Le Printemps c'est le renouveau de la vie, la découverte du monde... <br>
-						<strong>Anathème : <span class="label-anatheme">Contrôle</span>.</strong> Dominer et exercer son pouvoir quelque chose la dénature…donc fait perdre la découverte.
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="saison" value="ete" id="saison-ete">
-						<label for="saison-ete">Été</label>
-					</span>
-					<span class="desc ete-desc">
-						<span class="short">Fyrellÿa recherche des gens sensibles, dévoués, francs, esthètes et sociaux.</span>
-						<span class="long"> Parfois, ils sont envahissants ou dangereux. Souvent, ils sont artistes, officiers, négociants. Fyrellÿa ne cherche pas des personnes égocentrées, agissant sans aucune considération pour les autres ou leur environnement voire pire, les utilisant à son bénéfice. Le personnage est passionné, sociable et aime pousser les autres vers l’action ou l’expression de leur être. Il noue facilement des liens, mais peut le rendre envahissant ou exagérément extraverti.</span>
-					</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<strong>Essence : <span class="label-essence">Émotion</span>.</strong> L’Été c’est la recherche de l’autre. L'Émotion est le vecteur du lien… <br>
-						<strong>Anathème : <span class="label-anatheme">Insouciance</span>.</strong> Qui ne pense pas aux conséquences de ses actes sur les autres perdra ses liens avec eux.
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="saison" value="automne" id="saison-automne">
-						<label for="saison-automne">Automne</label>
-					</span>
-					<span class="desc automne-desc">
-						<span class="short">Ailma recherche les gens pragmatiques, patients, méthodiques et entiers.</span>
-						<span class="long"> Parfois, ils sont lents ou rigides, autoritaires. Souvent, ils sont guerriers, artisans, rebouteux. Ailma ne cherche pas les personnes indolentes, irréfléchies, impulsives, recourant à la voie de moindre résistance face à chaque difficulté. Le personnage est posé et prend le temps de la préparation avant l’action, laissant le moins de choses possible au hasard, et déteste agir sans réfléchir. Cela peut le rendre perfectionniste ou indécis.</span>
-					</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<strong>Essence : <span class="label-essence">Prévoyance</span>.</strong> En Automne, il faut se préparer à l’Hiver et à ses dangers… <br>
-						<strong>Anathème : <span class="label-anatheme">Facilité</span>.</strong> Les solutions simples et uniques cachent des défauts majeurs conduisant à la ruine.
-					</span>
-				</div>
-				<div class="option temps">
-					<span class="option-label">
-						<input type="checkbox" name="saison" value="temps" id="saison-temps">
-						<label for="saison-temps">Temps</label>
-					</span>
-					<span class="desc temps-desc">
-						<span class="short">Les personnes bénies par le Temps voient les gens s'organiser d'eux-mêmes autour d'elles.</span>
-						<span class="long"> Elles maintiennent, voire créent les groupes, par leur seule présence, capables de répartir les rôles, apaiser les égos et satisfaire les désirs de chacun, ménageant un espace pour chacun et chacune. Si elles paraissent parfois en retrait, c'est que le groupe avance dans la direction qui leur semble juste. Car elles ne relâchent jamais leur attention, veillant à ce que chacun soit justement rétribué pour ses actes. Le personnage aime voir les gens s’organiser et s’entendre. Il encourage et implique tout le monde. Le personnage a un sens aigu de la justice, de l'équité et de la mesure. Cela peut parfois le rendre trop catégorique voire autoritaire, ou à l'inverse manquant d'affirmation.</span>
-					</span>
-					<hr class="don-separateur">
-					<span class="don">
-						<strong>Essence : <span class="label-essence">Coopération</span>.</strong> Le Temps rassemble autour de lui et permet à chacun de s’exprimer. <br>
-						<strong>Anathème : <span class="label-anatheme">Excès</span>.</strong> Ni trop, ni trop peu, mais la juste dose de tout, pour tous.
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -117,54 +54,7 @@
 		<section>
 			<h2>Famille</h2>
 			<div class="flex-group" id="famille-group">
-				<div class="option ete" style="position:relative;">
-					<span class="option-label">
-						<input type="checkbox" name="famille" value="squelette" id="famille-squelette" data-don="adrenaline">
-						<label for="famille-squelette">Squelette</label>
-					</span>
-					<span class="desc">
-						<span class="short">La Famille Squelette regroupe tous les personnages ayant un squelette interne, quatre membres et une tête.</span>
-						<span class="long"> Ils peuvent tenir du mammifère et être couvert de poils, de l’oiseau, ou avoir plutôt une ascendance reptilienne voir un apparence directement inspirée des amphibiens, leur donnant une peau multicolore.</span>
-						<hr class="don-separateur">
-						<span class="don">Don : Adrénaline ☀️</span>
-					</span>
-				</div>
-				<div class="option printemps" style="position:relative;">
-					<span class="option-label">
-						<input type="checkbox" name="famille" value="cellulose" id="famille-cellulose" data-don="symbiose">
-						<label for="famille-cellulose">Cellulose</label>
-					</span>
-					<span class="desc">
-						<span class="short">La Famille Cellulose contient tous les personnages issus du règne des végétaux ou des champignons.</span>
-						<span class="long"> Ces individus particulièrement étranges simulent des visages pour parvenir à communiquer avec les autres Familles. Dans leur incroyable diversité, ils ont trouvé le moyen d’avoir des morphologies relativement constantes, en apparence du moins.</span>
-						<hr class="don-separateur">
-						<span class="don">Don : Symbiose 🌱</span>
-					</span>
-				</div>
-				<div class="option automne" style="position:relative;">
-					<span class="option-label">
-						<input type="checkbox" name="famille" value="chitine" id="famille-chitine" data-don="exosquelette">
-						<label for="famille-chitine">Chitine</label>
-					</span>
-					<span class="desc">
-						<span class="short">La Famille Chitine comprend tous les personnages portant un exosquelette de chitine.</span>
-						<span class="long"> Leur apparence est très variée, pouvant avoir de six à plusieurs dizaines de membres, des pinces, des antennes, ou des ailes. Ces personnages peuvent donc aussi bien tenir de la fourmi de l’araignée, du mille-patte ou de la mante.</span>
-						<hr class="don-separateur">
-						<span class="don">Don : Exosquelette 🍁</span>
-					</span>
-				</div>
-				<div class="option hiver" style="position:relative;">
-					<span class="option-label">
-						<input type="checkbox" name="famille" value="souple" id="famille-souple" data-don="mimetisme">
-						<label for="famille-souple">Souple</label>
-					</span>
-					<span class="desc">
-						<span class="short">La Famille Souple englobe tous les personnages tenant du mollusque.</span>
-						<span class="long"> Ils peuvent ainsi être inspirés très simplement des étoiles de mer, mais un poulpe est parfaitement envisageable. Les personnages les plus extravagants pourront avoir une coquille dans laquelle se réfugier, ou même tenir du ver de terre.</span>
-						<hr class="don-separateur">
-						<span class="don">Don : Mimétisme ❄️</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -189,188 +79,16 @@
 				Elles sont de cinq types : Armement, Cuirasse, Mains et Peau, plus les Matières.
 			</div>
 			<div class="flex-group grid-with-header" id="armement-group">
-				<div class="step-text temps">
-					<span class="option-label">
-						<label for="saison-temps">Armement</label>
-					</span>
-					<span class="desc temps-desc">
-						<span class="short"></span>
-					</span>
-				</div>
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="armement" value="articule" id="armement-articule" data-morphologie="articule">
-						<label for="armement-articule">Articulé</label>
-					</span>
-					<span class="desc">
-						<span class="short">Tentacule, Dard, Serres, Queue, etc.</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="armement" value="distance" id="armement-distance" data-morphologie="distance">
-						<label for="armement-distance">Distance</label>
-					</span>
-					<span class="desc">
-						<span class="short">Langue, Épines, Crachat, Projectile, etc.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="armement" value="court" id="armement-court" data-morphologie="court">
-						<label for="armement-court">Court</label>
-					</span>
-					<span class="desc">
-						<span class="short">Croc, Bec, Griffes, Cornes, etc.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="armement" value="long" id="armement-long" data-morphologie="long">
-						<label for="armement-long">Long</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ramure, Défenses, Mandibules, Sabots, etc.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 			<div class="flex-group" id="cuirasse-group">
-				<div class="step-text temps">
-					<span class="option-label">
-						<label for="saison-temps">Cuirasse</label>
-					</span>
-					<span class="desc temps-desc">
-						<span class="short">Une Cuirasse réduit les Dégâts subit par le personnage lorsqu’il est victime d’une Agression de la Saison associée à l’Armure.</span>
-					</span>
-				</div>
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="mucus" id="cuirasse-mucus" data-morphologie="mucus">
-						<label for="cuirasse-mucus">Mucus</label>
-					</span>
-					<span class="desc">
-						<span class="short">Revêtement gluant ou glissant</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="urticant" id="cuirasse-urticant" data-morphologie="urticant">
-						<label for="cuirasse-urticant">Urticant</label>
-					</span>
-					<span class="desc">
-						<span class="short">Poils acérés presque invisibles.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="bourre" id="cuirasse-bourre" data-morphologie="bourre">
-						<label for="cuirasse-bourre">Bourre</label>
-					</span>
-					<span class="desc">
-						<span class="short">Duvet, fourrure, plumes ou liège.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="cuirasse" value="carapace" id="cuirasse-carapace" data-morphologie="carapace">
-						<label for="cuirasse-carapace">Carapace</label>
-					</span>
-					<span class="desc">
-						<span class="short">Cuir, os, kératine ou écorce.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 			<div class="flex-group" id="mains-group">
-				<div class="step-text temps">
-					<span class="option-label">
-						<label for="saison-temps">Mains</label>
-					</span>
-					<span class="desc temps-desc">
-						<span class="short">Des Mains s’utilisent lorsque le personnage interagit avec certains êtres ou matériaux.</span>
-					</span>
-				</div>
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="mains" value="ventouses" id="mains-ventouses" data-morphologie="ventouses">
-						<label for="mains-ventouses">Ventouses</label>
-					</span>
-					<span class="desc">
-						<span class="short"></span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="mains" value="vibrisses" id="mains-vibrisses" data-morphologie="vibrisses">
-						<label for="mains-vibrisses">Vibrisses</label>
-					</span>
-					<span class="desc">
-						<span class="short">Poils sensitifs.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="mains" value="crochets" id="mains-crochets" data-morphologie="crochets">
-						<label for="mains-crochets">Crochets</label>
-					</span>
-					<span class="desc">
-						<span class="short"></span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="mains" value="pinces" id="mains-pinces" data-morphologie="pinces">
-						<label for="mains-pinces">Pinces</label>
-					</span>
-					<span class="desc">
-						<span class="short"></span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 			<div class="flex-group" id="peau-group">
-				<div class="step-text temps">
-					<span class="option-label">
-						<label for="saison-temps">Peau</label>
-					</span>
-					<span class="desc temps-desc">
-						<span class="short">Une Peau s’utilise lorsque le personnage effectue une action d’un certain type.</span>
-					</span>
-				</div>
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="peau" value="membrane" id="peau-membrane" data-morphologie="membrane">
-						<label for="peau-membrane">Membrane</label>
-					</span>
-					<span class="desc">
-						<span class="short">Dorsale, recouvrant le corps ou rejoignant les membres ou doigts.</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="peau" value="camouflage" id="peau-camouflage" data-morphologie="camouflage">
-						<label for="peau-camouflage">Camouflage</label>
-					</span>
-					<span class="desc">
-						<span class="short">Coussinets, motifs, silencieux, feuillage…</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="peau" value="aposematisme" id="peau-aposematisme" data-morphologie="aposematisme">
-						<label for="peau-aposematisme">Aposématisme</label>
-					</span>
-					<span class="desc">
-						<span class="short">Couleurs vives et motifs complexes.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="peau" value="ecailles" id="peau-ecailles" data-morphologie="ecailles">
-						<label for="peau-ecailles">Écailles</label>
-					</span>
-					<span class="desc">
-						<span class="short">D’os, de chitine ou d’écorce, couvrant le corps et s’emboîtant</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -380,54 +98,7 @@
 			<h2>Environnement</h2>
 			<div class="step-text">Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
 			<div class="flex-group" id="environnement-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="environnement" value="riviere-lacs-marais" id="environnement-riviere-lacs-marais" data-equipement="jambieres">
-						<label for="environnement-riviere-lacs-marais">Rivières, lacs et marais</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces environnements sont riches en eau potable. Ils attirent donc des proies faciles pour la chasse et permettent, s’ils sont bien gérés, la culture et l’élevage.</span>
-						<span class="long">Cependant, les eaux stagnantes sont propices au développement de maladies, car elles favorisent le développement de parasites tout en affaiblissant le système immunitaire des communautés vivant à leur proximité.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Jambières ❄️.</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="environnement" value="iles-littoral" id="environnement-iles-littoral" data-equipement="brassards">
-						<label for="environnement-iles-littoral">Îles et littoral</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces environnements bénéficient de l’influence de l’océan qui temporise les fluctuations de températures. Par ailleurs, la nourriture y est plutôt abondante et facile à récolter.</span>
-						<span class="long">En revanche, ce sont des milieux souvent pauvres en eau douce, exposés à la fois aux dangers terrestres et maritimes. De plus, beaucoup d’animaux marins tendent des embuscades, se confondant avec les rochers, et beaucoup utilisent des venins mortels.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Brassards 🌱.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="environnement" value="plaines-collines" id="environnement-plaines-collines" data-equipement="casque">
-						<label for="environnement-plaines-collines">Plaines et collines</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces environnements permettent de voir loin et de voyager facilement. Les échanges sont donc plus aisés, ce qui signifie que des communautés peuvent s’installer avec peu de moyens et échanger avec celles alentour.</span>
-						<span class="long">En revanche, si ces lieux permettent d’anticiper les dangers, aussi bien les attaques que les intempéries, cela signifie aussi que ses habitants y sont plus exposés, ce qui pèse lourdement sur leur moral.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder un Casque ☀️.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="environnement" value="montagnes-canyons" id="environnement-montagnes-canyons" data-equipement="plastron">
-						<label for="environnement-montagnes-canyons">Montagnes et canyons</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces environnements clos, difficiles d’accès ont l’avantage d’offrir un bon isolement face aux bandits et pillards, et une protection relative aux aléas climatiques.</span>
-						<span class="long">Ces lieux permettent donc de faire des abris sûrs et solides. Cependant, ils viennent avec des dangers supplémentaires : éboulements, crevasses, avalanches. Ces dangers sont impressionnants mais assez prévisibles dans l’ensemble.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder un Plastron 🍁.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 			<div class="step-text more-info">Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
 		</section>
@@ -438,54 +109,7 @@
 			<h2>Mode de vie</h2>
 			<div class="step-text">Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
 			<div class="flex-group" id="mode-de-vie-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="alize" id="mode-de-vie-alize" data-equipement="survie">
-						<label for="mode-de-vie-alize">Alizé</label>
-					</span>
-					<span class="desc">
-						<span class="short">Les Alizés n’ont aucune attache, acceptant les variations et déplacements erratiques de la météo.</span>
-						<span class="long">Les troupeaux et les oracles les guident vers des alliés, des abris ou des météos favorables, répondant à leurs besoins du moment. Les Alizés errent en permanence, devant garder leur cap et faire de chaque changement une opportunité.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Outils de Survie ❄️.</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="troglodyte" id="mode-de-vie-troglodyte" data-equipement="sapience">
-						<label for="mode-de-vie-troglodyte">Troglodyte</label>
-					</span>
-					<span class="desc">
-						<span class="short">Les Troglodytes vivent presque coupés du monde, dans des grottes cachées, des vallées secrètes, ou canyons inaccessibles.</span>
-						<span class="long">Leurs échanges rarissimes leur apprennent à tirer le meilleur parti de leur environnement. Les Troglodytes doivent connaître et comprendre leur milieu de vie à la perfection pour ne jamais manquer de rien.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Outils de Sapience 🌱.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="sedentaire" id="mode-de-vie-sedentaire" data-equipement="foyer">
-						<label for="mode-de-vie-sedentaire">Sédentaire</label>
-					</span>
-					<span class="desc">
-						<span class="short">Les Sédentaires s’établissent dans un lieu offrant au moins une ressource pérenne, telle que l’eau, un abri ou un sol fertile.</span>
-						<span class="long">Ils construisent de quoi la faire fructifier et échangent pour le reste. Les Sédentaires doivent plus que tout maintenir leur unité et la bonne entente face à l’adversité tant interne qu’externe.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Outils du Foyer ☀️.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="mode-de-vie" value="nomade" id="mode-de-vie-nomade" data-equipement="confection">
-						<label for="mode-de-vie-nomade">Nomade</label>
-					</span>
-					<span class="desc">
-						<span class="short">Les Nomades voyagent entre les communautés sédentaires et des points habitables, exploités puis abandonnés le temps qu’ils se régénèrent.</span>
-						<span class="long">Les Nomades entretiennent les échanges et voies de communication. Ils doivent souvent réparer les infrastructures et habitations, de la route où aider les communautés qu’ils visitent.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder des Outils de Confection 🍁.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -495,54 +119,7 @@
 			<h2>Philosophie</h2>
 			<div class="step-text">Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
 			<div class="flex-group" id="philosophie-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="inne" id="philosophie-inne" data-equipement="echarpe">
-						<label for="philosophie-inne">Inné</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage considère que puisqu’aucune connaissance ne peut être complète et aucune technologie totalement fiable, le plus sage est d’apprivoiser au mieux ses qualités naturelles.</span>
-						<span class="long">Connaître ses atouts permet de faire face à toutes les situations, en improvisant à partir de la confiance en soi ainsi bâtie.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder comme Vêtement une Écharpe ❄️.</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="appris" id="philosophie-appris" data-equipement="cape">
-						<label for="philosophie-appris">Appris</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage estime que dans chaque problème réside sa propre solution.</span>
-						<span class="long">Aussi, étudier le monde et ses peuples permet de développer des connaissances éclectiques pour parer à toutes les situations. Cela demande d’embrasser chaque expérience et d’en tirer des leçons, afin d’apprivoiser le monde.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder comme Vêtement une Cape 🌱.</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="chitine" id="philosophie-chitine" data-equipement="parure">
-						<label for="philosophie-chitine">Entraide</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage sait que personne n’est parfait, qu’aucun expert ne saurait être infaillible, qu’il aura toujours besoin des autres et les autres de lui.</span>
-						<span class="long">En travaillant ensemble avec sincérité et confiance, la synergie dépasse la somme des individus.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder comme Vêtement une Parure ☀️.</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="philosophie" value="construit" id="philosophie-construit" data-equipement="tablier">
-						<label for="philosophie-construit">Construit</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage pense que la technologie, incarnation du contrôle de la matière, est la clé qui permet de surmonter les épreuves de la vie.</span>
-						<span class="long">Un bon outil compense les faiblesses naturelles, permet d’aller dans l’inconnu ou de faire progresser les savoirs.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder comme Vêtement un Tablier 🍁.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		<!-------------------- RELATION A LA RUPTURE -------------------->
@@ -551,54 +128,7 @@
 			<h2>Relation à la Rupture</h2>
 			<div class="step-text">Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
 			<div class="flex-group" id="relation-rupture-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="dompter" id="relation-rupture-dompter" data-equipement="armearticulee">
-						<label for="relation-rupture-dompter">Dompter</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage a grandi dans un environnement où la Rupture était une force à dompter, où puiser avec sagesse, ou pas.</span>
-						<span class="long">Cela pouvait être pour combattre le feu par le feu, par facilité ou par recherche de puissance. En tout cas, les Rongés y étaient fréquents, peut-être même les Parjures, s’ils n’y étaient pas vu comme des faibles.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder une Arme Articulée ❄️ : garrot, harpon, fouet ou fléau</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="etudier" id="relation-rupture-etudier" data-equipement="armeadistance">
-						<label for="relation-rupture-etudier">Étudier</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mystère à percer, une énigme à résoudre.</span>
-						<span class="long">La comprendre était l’objectif, pour la détruire, la forger, ou même l’asservir. La Pourprine y était présente, peut-être des Parjures volontaires ou esclaves, ou des Séides et Chimères capturés pour études.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder une Arme à Distance 🌱 : bolas, arc, arbalète, sarbacane, javelot, chakram, boomerang ou fronde</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="purifier" id="relation-rupture-purifier" data-equipement="armecourte">
-						<label for="relation-rupture-purifier">Purifier</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage a grandi dans un environnement où la Rupture était un mal à abattre.</span>
-						<span class="long">Que ce soit pour ramener un ancien monde idéalisé, fantasmé, ou simplement pour débarrasser le monde de son influence et en construire un nouveau, tout ce qui portait sa marque, même les Rongés, était détruit.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder une Arme Courte ☀️ : tonfa, dague, serpe, épée, hache, masse ou ceste</span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="relation-rupture" value="composer" id="relation-rupture-composer" data-equipement="armelongue">
-						<label for="relation-rupture-composer">Composer</label>
-					</span>
-					<span class="desc">
-						<span class="short">Le personnage a grandi dans un environnement où la Rupture était acceptée comme faisant partie du monde actuel.</span>
-						<span class="long">Par résignation, fatalisme ou pragmatisme, elle n’était pas activement combattue, simplement contenue. Les gens géraient les dégâts qu’elle causait et cherchaient à s’en prémunir, sans imaginer l’éradiquer.</span>
-						<hr class="don-separateur">
-						<span class="don">Le personnage pourrait posséder une Arme Longue 🍁 : trident, sasumata, lance, pic, vouge, claymore ou bâton.</span>
-					</span>
-				</div>
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -613,71 +143,8 @@
 				Le Rôle d’un personnage détermine sa Compétence de Rôle, associée à une Saison, qu’il reçoit automatiquement.<br/>
 				Il reçoit gratuitement une Compétence parmi les quatre autres compétences proposées par son Rôle.
 			</div>
-			<div class="flex-group" id="role-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="role" value="guide" id="role-guide" data-competence="guide">
-						<label for="role-guide">Guide</label> <span class="role-tagline">(nourrir et prévenir)</span>
-					</span>
-					<span class="desc">
-						<span class="short">Les Guides nourrissent les communautés et leur évitent les dangers causés par les catastrophes naturelles.</span>
-						<span class="long">Grâce à eux, leurs communautés ne s’égarent pas et anticipent les dangers naturels. Le cas échéant, ils savent comment fabriquer le nécessaire pour se protéger des aléas. Les Guides nourrissent les leurs grâce à la chasse et à la cueillette et savent également comment protéger les leurs et le matériel des intempéries.</span>
-						<hr class="don-separateur">
-						<span class="don">
-							<ul>
-								<li>Compétence de Rôle : Exploration ❄️</li>
-								<li>Compétence au choix : Chasse (Animal), Cueillette (Végétal), Cuisine (Flamme), Étoffes (Techné)</li>
-							</ul>
-						</span>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="role" value="sibylle" id="role-sibylle" data-competence="sibylle">
-						<label for="role-sibylle">Sibylle</label> <span class="role-tagline">(connaître et purifier)</span>
-					</span>
-					<span class="desc">
-						<span class="short">Les Sibylles veillent à la santé des membres de leur communauté à tous les niveaux d’existence.</span>
-						<span class="long">Maîtresses des rituels, elles organisent le passage de la vie à la mort, soignent les affections du corps et de l’âme et protègent contre les mauvais esprits. Les Sibylles oscillent entre pythies plongées dans les oracles et les secrets de l’invisible et sages dépositaires des savoirs ancestraux, permettant de faire revivre l’ancien monde au coeur de la Rupture.</span>
-						<hr class="don-separateur">
-						<span class="don">
-							<ul>
-								<li>Compétence de Rôle : Sagesse 🌱</li>
-								<li>Compétence au choix : Artefacts (Techné), Médecine (Animal), Forge (Flamme), Sceaux (Végétal)</li>
-							</ul>
-						</span>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="role" value="matrice" id="role-matrice" data-competence="matrice">
-						<label for="role-matrice">Matrice</label> <span class="role-tagline">(unir et échanger)</span>
-					</span>
-					<span class="desc">
-						<span class="short">Les Matrices organisent les communautés et leurs ressources, aussi bien entre les membres qu’avec d’autres communautés.</span>
-						<span class="long">Elles mettent en place les structures sociales et les échanges, veillent aux troupeaux et aux récoltes. Les Matrices trouvent une place pour chaque membre de la communauté et organisent la gestion des ressources en fonction des besoins. Elles soudent les personnes entre elles, les communautés entre elles, dans une organisation dépassant leur existence.</span>
-						<hr class="don-separateur">
-						<span class="don"><ul>
-							<li>Compétence de Rôle : Civilisation ☀️</li>
-							<li>Compétence au choix : Agriculture (Végétal), Élevage (Animal), Résines (Flamme), Maçonnerie (Techné)</li>
-						</ul></span>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="role" value="artisan" id="role-artisan" data-competence="artisan">
-						<label for="role-artisan">Artisan</label> <span class="role-tagline">(construire et innover)</span>
-					</span>
-					<span class="desc">
-						<span class="short">Les Artisans fabriquent les outils dont ont besoin les membres de leurs communautés et édifient les ouvrages permettant leur survie : systèmes d’irrigation, ponts et voies de communication.</span>
-						<span class="long">Ils savent comment transformer la matière brute pour en extraire de nouvelles ressources et matériaux afin d’en faire les objets du quotidien ou de modifier leur environnement. Face à l’inconnu et à l’imprévu, leur ingéniosité et inventivité leur permet de trouver et créer de nouvelles solutions.</span>
-						<hr class="don-separateur">
-						<span class="don"><ul>
-							<li>Compétence de Rôle : Ingénierie 🍁</li>
-							<li>Compétence au choix : Bois (Végétal), Équarrissage (Animal), Poterie (Flamme), Silex (Techné)</li>
-						</ul></span>
-					</span>
-				</div>
+			<div class="flex-group" id="role-group" data-option-section="role">
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -685,47 +152,8 @@
 		
 		<section>
 			<h2>Âge</h2>
-			<div class="flex-group" id="role-group">
-				<div class="option temps">
-					<span class="option-label">
-						<input type="checkbox" name="age" value="jeune" id="age-jeune">
-						<label for="age-jeune">Jeune</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces personnages n'ont pas fini leur croissance et apprennent encore souvent leur métier.</span>
-						<span class="long">Aussi leurs Compétences sont limitées. En revanche, ils ont de nombreux Dons, des qualités innées leur permettant de dépasser leurs limites. Les Nymphes les Adoubent peu, car leur jeunesse fait que leur volonté d'agir, leur inclinaison profonde n’a pas souvent eu l’occasion de semanifester. Toutefois, les catastrophes ou leur fougue juvénile peuvent les avoir stimulés.</span>
-					</span>
-				</div>
-				<div class="option temps">
-					<span class="option-label">
-						<input type="checkbox" name="age" value="adulte" id="age-adulte">
-						<label for="age-adulte">Adulte</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces personnages se sont déjà confrontés au monde, ils ont pratiqué leur profession et l’ont affinée, ce qui leur a montré l’étendue de ce qu’ils ont encore à apprendre.</span>
-						<span class="long">Leurs corps et leur esprits sont encore frais, ce qui leur permet de cumuler à la fois la volonté et les moyens d’agir. S’il sont souvent encore caricaturaux voire extrêmes dans leur philosophie, ils n’en sont que plus réceptifs à l’enseignement des Nymphes. Ils forment la majorité des Voix.</span>
-					</span>
-				</div>
-				<div class="option temps">
-					<span class="option-label">
-						<input type="checkbox" name="age" value="mur" id="age-mur">
-						<label for="age-mur">Mûr</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces personnages ont accumulé de l’expérience et des années peu communes pour ce monde post-Rupture.</span>
-						<span class="long">Cela en fait des êtres respectés dans leur communautés, tant pour leur expertise que pour leur sagesse, qui leur permet de voir les nuances des êtres. Cependant, leur volonté commence à s’étioler, ils agissent plutôt par habitude voire lassitude. Pourtant, leur flamme est toujours présente, juste dormante. Devenir une Voix les transforme en puissants leviers d’actions vers un monde meilleur.</span>
-					</span>
-				</div>
-				<div class="option temps">
-					<span class="option-label">
-						<input type="checkbox" name="age" value="age" id="age-age">
-						<label for="age-age">Âgé</label>
-					</span>
-					<span class="desc">
-						<span class="short">Ces personnages sont des êtres à part, leur longévité prouvant leur capacité de survie hors normes.</span>
-						<span class="long">Ces individus sont rares et portés en haute estime par leurs communautés. Les stigmates de leur vie sont l’histoire de celles-ci et le terreau de mythes à venir. Souvent ces personnages n'attendent plus rien de la vie que transmettre le maximum de leurs immenses connaissances avant leur trépas. Toutefois, les Nymphes les Adoubent parfois, preuve qu’il n’y a pas d’âge pour servir et changer le monde.</span>
-					</span>
-				</div>
+			<div class="flex-group" id="role-group" data-option-section="age">
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
@@ -736,90 +164,24 @@
 			<div class="step-text">Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
 				Cette personnalité définit aussi ce qui est cher au personnage, et son point faible vis-à-vis de la corruption de la Rupture.
 			</div>
-			<div class="flex-group" id="role-group">
-				<div class="option hiver">
-					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="eminence" id="personnalite-eminence">
-						<label for="personnalite-eminence">Éminence</label>
-					</span>
-					<span class="desc">
-						<p class="short">
-							Le personnage fait porter ses opinions par d’autres lors des prises de décisions, ou suggère des idées aux personnes qui s’expriment ouvertement.
-						</p>
-						<p class="long">
-							Lors des actions lancées par la communauté, il préfère conseiller les volontaires et leur fournir de quoi réussir leur mission.
-						</p>
-						<p class="long">
-							La Rupture tentera le personnage lorsqu’il se sentira impuissant, dépassé par les événements. Elle sera alors le témoignage inavouable de la méconnaissance de ses limites, ou au contraire l’allié qui lui permet de se dépasser.
-						</p>
-					</span>
-				</div>
-				<div class="option printemps">
-					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="portefaix" id="personnalite-portefaix">
-						<label for="personnalite-portefaix">Portefaix</label>
-					</span>
-					<span class="desc">
-						<p class="short">
-							Le personnage écoute les propositions des autres, ou les conseille, et se range du côté des idées qui lui paraissent les plus sensées.
-						</p>
-						<p class="long">
-							Il se porte généralement volontaire pour mener à bien les actions décidées par la communauté, s’intégrant dans un groupe ou en formant un autour de lui.
-						</p>
-						<p class="long">
-							La Rupture tentera le personnage lorsqu’il doutera ou se sentira incompétant voire inutile. Elle sera alors le cuisant rappel de son ignorance, ou bien sa source d’inspiration permanente.
-						</p>
-					</span>
-				</div>
-				<div class="option ete">
-					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="leader" id="personnalite-leader">
-						<label for="personnalite-leader">Leader</label>
-					</span>
-					<span class="desc">
-						<p class="short">
-							Le personnage s’implique directement dans les processus de décision, soit en exprimant ses idées, soit en relayant celles d’autres.
-						</p>
-						<p class="long">
-							Il participe également activement aux actions menées, rassemblant les volontaires autour de lui ou rejoignant les groupes déjà formés.
-						</p>
-						<p class="long">
-							La Rupture tentera le personnage sur sa peur d’être rejeté, inutile, ou ses craintes sur l’intégrité du groupe. Elle deviendra la honte d’avoir perdu confiance, ou un moyen de maintenir les sociétés, par l’admiration ou la tyrannie.
-						</p>
-					</span>
-				</div>
-				<div class="option automne">
-					<span class="option-label">
-						<input type="checkbox" name="personnalite" value="sage" id="personnalite-sage">
-						<label for="personnalite-sage">Sage</label>
-					</span>
-					<span class="desc">
-						<p class="short">
-							Le personnage se fait le relais d’autres voix que la sienne lors des prises de décision, ou exprime ses propres idées, participant toujours aux discussions.
-						</p>
-						<p class="long">
-							Lorsqu’une action est menée, il fournit aux volontaires ce dont ils ont besoin, et reste au sein de la communauté pour aider les plus fragiles.
-						</p>
-						<p class="long">
-							La Rupture tentera le personnage lorsqu’il aura la sensation d’avoir tout perdu, ou en lui offrant ce dont il pense avoir besoin. Elle sera alors le châtiment de n’avoir pas su anticiper, ou bien un outil résolvant toutes les situations.
-						</p>
-					</span>
-				</div>
+			<div class="flex-group" id="role-group" data-option-section="personnalite">
+				<!-- Généré dynamiquement depuis data/optionSections.js -->
 			</div>
 		</section>
 		
 		<!-------------------- AMELIORATIONS -------------------->
 		
 		<section id="ameliorations-section">
-			<details id="collapsible-section">
-				<summary>
-					<div>
-						<h2>Améliorations</h2>
-						Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête. Tout cela se fait en dépensant des points d'Harmonie.
-					</div>
-				</summary>
-				<div class="collapsible-section-content">
-					<div id="ameliorations-scores-row">
+			<div id="help-modale-ameliorations" class="help-modale">
+				<button type="button" class="help-modale-close" aria-label="Fermer l'aide des améliorations">×</button>
+				<h2>Améliorations</h2>
+				<p>Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête.</p>
+				<p>Tout cela se fait en dépensant des points d'Harmonie.</p>
+			</div>
+			<div class="collapsible-section-content">				
+				<div class="flex-group" id="ameliorations-group">
+					<div id="ameliorations-scores-row" class="ameliorations-zone">
+						<h3>Saisons</h3>
 						<div class="amelioration-score-row-item">
 							<span>Hiver</span>
 							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="-1">-</button>
@@ -851,41 +213,44 @@
 							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="1">+</button>
 						</div>
 					</div>
-					<div class="flex-group" id="ameliorations-group">
-						<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
-							<h3>Morphologies</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-competences-zone">
-							<h3>Compétences</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-dons-zone">
-							<h3>Dons</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-equipements-zone">
-							<h3>Équipements</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
-						</div>
+					<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
+						<h3>Morphologies</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-competences-zone">
+						<h3>Compétences</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-dons-zone">
+						<h3>Dons</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
+					</div>
+					<div class="ameliorations-zone" id="ameliorations-equipements-zone">
+						<h3>Équipements</h3>
+						<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
 					</div>
 				</div>
-			</details>
+			</div>
 		</section>
 	</div>
 	
 	<div id="fiche-personnage">
-		<div class="fiche-header logo-name-saison">
-			<div class="logo-nom">
-				<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
-				<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Nom du personnage"></div>
-				<div class="fiche-quatuor">Quatuor : <input type="text" id="fiche-quatuor-input" placeholder="Nom du Quatuor"></div>
-			</div>
+		<div class="fiche-header-flex logo-name-saison">
+			<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Nom du personnage"></div>
+			<div class="fiche-quatuor">Quatuor : <input type="text" id="fiche-quatuor-input" placeholder="Nom du Quatuor"></div>
 			<div class="fiche-valeurs saison-border header-saison">
 				<span id="fiche-saison"></span>
 			</div>
 		</div>
 		<div class="fiche-header">
+			<div class="fiche-valeurs saison-border">
+				<div>Essence : <span id="fiche-essence"></span></div>
+				<div>Harmonie : <input type="text" id="fiche-harmonie" class="resonnance-point"></td></div>
+			</div>
+			<div class="fiche-valeurs saison-border rupture">
+				<div>Anathème : <span id="fiche-anatheme"></span></div>
+				<div>Rupture : <input type="text" id="fiche-rupture" class="resonnance-point"></td></div>
+			</div>
 			<div class="fiche-valeurs">
 				<div>Famille : <span id="fiche-famille"></span></div>
 				<div>Lignée : <span id="fiche-lignee"></span></div>
@@ -902,454 +267,423 @@
 				<div>Vitalité : <span id="fiche-vitalite"></span></div>
 				<div>Blessures : <input type="text" id="fiche-blessures" class="resonnance-point"></div>
 			</div>
-			<div class="fiche-valeurs saison-border">
-				<div>Essence : <span id="fiche-essence"></span></div>
-				<div>Harmonie : <input type="text" id="fiche-harmonie" class="resonnance-point"></td></div>
-			</div>
-			<div class="fiche-valeurs rupture">
-				<div>Anathème : <span id="fiche-anatheme"></span></div>
-				<div>Rupture : <input type="text" id="fiche-rupture" class="resonnance-point"></td></div>
-			</div>
 		</div>
-		<div class="fiche-grid">
-			<div class="fiche-saisons">
-				<div class="saisons-center saison-temps">
-					<div class="saison-title">Souffle <span class="saison-icon">⏳</span></div>
-					<div class="saison-cercle saison-central">
-						<span id="fiche-souffle"></span>
+		<div class="fiche-saisons">
+			<div class="saison-block saison-hiver saison-left">
+				<div class="saison-info">
+					<div class="saison-title">Hiver</div>
+					<div class="saison-desc">
+						Coordonner<br>
+						Instinct<br>
+						Mimer<br>
+						Modifier<br>
+						Mouvement<br>
+						Profiter
 					</div>
 				</div>
-				<div class="saison-block saison-hiver saison-left">
-					<div class="saison-cercle saison-icon">❄️</div>
-					<div class="saison-info">
-						<div class="saison-title">Hiver</div>
-						<div class="saison-desc">
-							Coordonner, Instinct, Mimer<br>
-							Modifier, Mouvement, Profiter
-						</div>
+				<div class="saison-cercle saison-score"><span id="fiche-hiver"></span></div>
+			</div>
+			<div class="saison-block saison-printemps saison-right">
+				<div class="saison-cercle saison-score"><span id="fiche-printemps"></span></div>
+				<div class="saison-info">
+					<div class="saison-title">Printemps</div>
+					<div class="saison-desc">
+						Apaiser<br>
+						Éviter<br>
+						Fausser<br>
+						Cacher<br>
+						Trouver<br>
+						Vérité
 					</div>
-					<div class="saison-cercle saison-score"><span id="fiche-hiver"></span></div>
-				</div>
-				<div class="saison-block saison-printemps saison-right">
-					<div class="saison-cercle saison-score"><span id="fiche-printemps"></span></div>
-					<div class="saison-info">
-						<div class="saison-title">Printemps</div>
-						<div class="saison-desc">
-							Apaiser, Éviter, Fausser <br>
-							Cacher, Trouver, Vérité
-						</div>
-					</div>
-					<div class="saison-cercle saison-icon">🌱</div>
-				</div>
-				<div class="saison-block saison-automne saison-left">
-					<div class="saison-cercle saison-icon">🍁</div>
-					<div class="saison-info">
-						<div class="saison-title">Automne</div>
-						<div class="saison-desc">
-							Acquérir, Concevoir, Détruire<br>
-							Logique, Protéger, Réparer
-						</div>
-					</div>
-					<div class="saison-cercle saison-score"><span id="fiche-automne"></span></div>
-				</div>
-				<div class="saison-block saison-ete saison-right">
-					<div class="saison-cercle saison-score"><span id="fiche-ete"></span></div>
-					<div class="saison-info">
-						<div class="saison-title">Été</div>
-						<div class="saison-desc">
-							Beau, Inspirer, Interagir<br>
-							Rassembler, Sacrifier, Vitesse
-						</div>
-					</div>
-					<div class="saison-cercle saison-icon">☀️</div>
 				</div>
 			</div>
-			<div class="fiche-tableaux">
-				<h2>Résonances</h2>
-				<div class="fiche-resonances">
-					<table>
-						<thead>
-							<tr><th>Nom</th><th>Points</th><th>Niveau</th><th>Nature</th></tr>
-						</thead>
-						<tbody>
-							<tr><td><input type="text" id="resonance-1"></td><td><input type="text" id="resonance-pt-1" class="resonnance-point"></td><td><input type="text" id="resonance-niv-1" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-1"></td></tr>
-							<tr><td><input type="text" id="resonance-2"></td><td><input type="text" id="resonance-pt-2" class="resonnance-point"></td><td><input type="text" id="resonance-niv-2" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-2"></td></tr>
-							<tr><td><input type="text" id="resonance-3"></td><td><input type="text" id="resonance-pt-3" class="resonnance-point"></td><td><input type="text" id="resonance-niv-3" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-3"></td></tr>
-							<tr><td><input type="text" id="resonance-4"></td><td><input type="text" id="resonance-pt-4" class="resonnance-point"></td><td><input type="text" id="resonance-niv-4" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-4"></td></tr>
-							<tr><td><input type="text" id="resonance-5"></td><td><input type="text" id="resonance-pt-5" class="resonnance-point"></td><td><input type="text" id="resonance-niv-5" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-5"></td></tr>
-							<tr><td><input type="text" id="resonance-6"></td><td><input type="text" id="resonance-pt-6" class="resonnance-point"></td><td><input type="text" id="resonance-niv-6" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-6"></td></tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="fiche-magie" class="saison-border saison-background">
-					<h5>Magie</h5>
-					<div class="fiche-magie-actions">
-						<button type="button" id="open-sort-dialog-btn" class="page-action-btn">Outil de lancement</button>
+			<div class="saison-block saison-automne saison-left">
+				<div class="saison-info">
+					<div class="saison-title">Automne</div>
+					<div class="saison-desc">
+						Acquérir<br>
+						Concevoir<br>
+						Détruire<br>
+						Logique<br>
+						Protéger<br>
+						Réparer
 					</div>
-					<label>Talisman :</label>
-					<textarea id="fiche-talisman" rows="2" cols="30"></textarea>
-					<label>Liturgie :</label>
-					<textarea id="fiche-liturgie" rows="2" cols="30"></textarea>
-					<label>Talents :</label>
-					<table id="fiche-magie-hiver" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="eau">Eau</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eau-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="chair">Chair</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="chair-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="vie">Vie</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vie-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="reve">Rêve</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="reve-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="vide">Vide</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="vide-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-printemps" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="air">Air</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="air-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="sens">Sens</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="sens-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="savoir">Savoir</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="savoir-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="illusion">Illusion</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="illusion-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="rythme">Rythme</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="rythme-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-ete" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="feu">Feu</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="feu-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="alchimie">Alchimie</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="alchimie-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="passion">Passion</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passion-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="esprit">Esprit</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="esprit-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="lumiere">Lumière</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="lumiere-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-automne" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="terre">Terre</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="terre-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="force">Force</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="force-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="technique">Technique</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="technique-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="creation">Création</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="creation-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="gravite">Gravité</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="gravite-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<table id="fiche-magie-temps" class="tableau-magie-talents">
-						<tbody>
-							<tr>
-								<td><label><input type="checkbox" id="temps-présent">Présent</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="temps-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="passe">Passé</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="passe-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="futur">Futur</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="futur-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="cycle">Cycle</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="cycle-modeler">Modeler</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="eternite">Éternité</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-connaitre">Connaître</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-alterer">Altérer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-invoquer">Invoquer</label></td>
-								<td><label><input type="checkbox" class="talent" id="eternite-modeler">Modeler</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<dialog id="sort-dialog" class="sort-dialog" aria-labelledby="sort-dialog-title">
-						<form method="dialog" class="sort-dialog-form">
-							<div class="sort-dialog-header">
-								<div>
-									<h6 id="sort-dialog-title">Lancement de sort</h6>
-									<p>Renseignez les paramètres du sort.</p>
-								</div>
-								<button type="submit" class="sort-dialog-close-btn" value="close" aria-label="Fermer la modale">×</button>
-							</div>
-							<div class="sort-dialog-fields">
-								<div class="sort-dialog-talent-select-row">
-									<label for="sort-talent-select">Talent utilisé</label>
-									<select id="sort-talent-select" class="sort-dialog-talent-select"></select>
-									<label>Effets possibles :</label>
-									<ul id="sort-talent-effets"></ul>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>Graines récoltées</span>
-									<span id="sort-graines-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="-1">-</button>
-									<input type="text" id="sort-graines" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="1">+</button>
-									<span id="sort-graines-result">graines</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>❄️ Aire d'effet</span>
-									<span id="sort-aire-effet-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-aire-effet" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="souffle">+</button>
-									<span id="sort-aire-effet-result">mètres de rayon</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>🌱 Portée</span>
-									<span id="sort-portee-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-portee" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="souffle">+</button>
-									<span id="sort-portee-result">x 10 mètres</span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>☀️ Puissance</span>
-									<span id="sort-puissance-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-puissance" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="souffle">+</button>
-									<span id="sort-puissance-result"></span>
-								</div>
-								<div class="amelioration-score-row-item sort-dialog-row-item">
-									<span>🍁 Durée</span>
-									<span id="sort-duree-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-souffle">-</button>
-									<input type="text" id="sort-duree" class="amelioration-score-input" value="0" inputmode="numeric">
-									<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="souffle">+</button>
-									<span id="sort-duree-result">heures ou tours</span>
-								</div>
-							</div>
-							<div class="sort-dialog-actions">
-								<button type="reset" class="page-action-btn page-action-btn-secondary">Réinitialiser</button>
-								<button type="submit" class="page-action-btn" value="close">Fermer</button>
-							</div>
-						</form>
-					</dialog>
+				</div>
+				<div class="saison-cercle saison-score"><span id="fiche-automne"></span></div>
+			</div>
+			<div class="saison-block saison-ete saison-right">
+				<div class="saison-cercle saison-score"><span id="fiche-ete"></span></div>
+				<div class="saison-info">
+					<div class="saison-title">Été</div>
+					<div class="saison-desc">
+						Beau<br>
+						Inspirer<br>
+						Interagir<br>
+						Rassembler<br>
+						Sacrifier<br>
+						Vitesse
+					</div>
 				</div>
 			</div>
-			<div class="fiche-blocs">
-				<div class="fiche-bloc saison-hiver">
-					<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
-					<div id="fiche-morphologies">
-						<!-- Généré dynamiquement depuis data/morphologies.js -->
-					</div>
-				</div>
-				<div class="fiche-bloc saison-printemps">
-					<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
-					<div id="fiche-competences">
-						<!-- Généré dynamiquement depuis data/competences.js -->
-					</div>
-				</div>
-				<div class="fiche-bloc saison-automne">
-					<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
-					<div id="fiche-equipements">
-						<!-- Généré dynamiquement depuis data/equipements.js -->
-					</div>
-				</div>
-				<div class="fiche-bloc saison-ete">
-					<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>
-					<div id="fiche-dons">
-						<!-- Généré dynamiquement depuis data/dons.js -->
-					</div>
+			<div class="saisons-center saison-block saison-temps">
+				<div class="saison-title">Souffle</div>
+				<div class="saison-desc">Entraide, Résilience, Magie</div>
+				<div class="saison-cercle saison-central saison-score">
+					<span id="fiche-souffle"></span>
 				</div>
 			</div>
 		</div>
-		<div id="fiche-champ-lexical" class="saison-border saison-background">
-			<div class="champ-lexical" id="mots-hiver">
-				<div>Eau</div>
-				<div>Chair</div>
-				<div>Vie</div>
-				<div>Rêve</div>
-				<div>Vide</div>
-				<div>Adaptation</div>
-				<div>Coordonner</div>
-				<div>Instinct</div>
-				<div>Mimer</div>
-				<div>Modifier</div>
-				<div>Mouvement</div>
-				<div>Profiter</div>
+		<div class="fiche-tableaux">
+			<h2>Résonances</h2>
+			<div class="fiche-resonances">
+				<table>
+					<thead>
+						<tr><th>Nom</th><th>Pts</th><th>Niv</th><th>Nature</th></tr>
+					</thead>
+					<tbody>
+						<tr><td><input type="text" id="resonance-1"></td><td><input type="text" id="resonance-pt-1" class="resonnance-point"></td><td><input type="text" id="resonance-niv-1" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-1"></td></tr>
+						<tr><td><input type="text" id="resonance-2"></td><td><input type="text" id="resonance-pt-2" class="resonnance-point"></td><td><input type="text" id="resonance-niv-2" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-2"></td></tr>
+						<tr><td><input type="text" id="resonance-3"></td><td><input type="text" id="resonance-pt-3" class="resonnance-point"></td><td><input type="text" id="resonance-niv-3" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-3"></td></tr>
+						<tr><td><input type="text" id="resonance-4"></td><td><input type="text" id="resonance-pt-4" class="resonnance-point"></td><td><input type="text" id="resonance-niv-4" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-4"></td></tr>
+						<tr><td><input type="text" id="resonance-5"></td><td><input type="text" id="resonance-pt-5" class="resonnance-point"></td><td><input type="text" id="resonance-niv-5" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-5"></td></tr>
+						<tr><td><input type="text" id="resonance-6"></td><td><input type="text" id="resonance-pt-6" class="resonnance-point"></td><td><input type="text" id="resonance-niv-6" class="resonnance-niveau"></td><td><input type="text" id="resonance-nature-6"></td></tr>
+					</tbody>
+				</table>
 			</div>
-			<div class="champ-lexical" id="mots-printemps">
-				<div>Vent</div>
-				<div>Sens</div>
-				<div>Savoir</div>
-				<div>Illusion</div>
-				<div>Rythme</div>
-				<div>Curiosité</div>
-				<div>Apaiser</div>
-				<div>Éviter</div>
-				<div>Fausser</div>
-				<div>Cacher</div>
-				<div>Trouver</div>
-				<div>Vérité</div>
-			</div>
-			<div class="champ-lexical" id="mots-ete">
-				<div>Feu</div>
-				<div>Alchimie</div>
-				<div>Passion</div>
-				<div>Esprit</div>
-				<div>Lumière</div>
-				<div>Émotion</div>
-				<div>Beau</div>
-				<div>Inspirer</div>
-				<div>Interagir</div>
-				<div>Rassembler</div>
-				<div>Sacrifier</div>
-				<div>Vitesse</div>
-			</div>
-			<div class="champ-lexical" id="mots-automne">
-				<div>Terre</div>
-				<div>Force</div>
-				<div>Technique</div>
-				<div>Création</div>
-				<div>Gravité</div>
-				<div>Prévoyance</div>
-				<div>Acquérir</div>
-				<div>Concevoir</div>
-				<div>Détruire</div>
-				<div>Logique</div>
-				<div>Protéger</div>
-				<div>Réparer</div>
-			</div>
-			<div class="champ-lexical" id="mots-temps">
-				<div>Présent</div>
-				<div>Passé</div>
-				<div>Futur</div>
-				<div>Cycle</div>
-				<div>Éternel</div>
-				<div>Coopération</div>
-				<div>Devoir</div>
-				<div>Évolution</div>
-				<div>Destin</div>
-				<div>Mesure</div>
-				<div>Aléa</div>
-				<div>Universel</div>
+			<div id="fiche-magie" class="saison-border saison-background">
+				<h5>Magie</h5>
+				<label>Talisman :</label>
+				<textarea id="fiche-talisman" rows="2" cols="30"></textarea>
+				<label>Liturgie :</label>
+				<textarea id="fiche-liturgie" rows="2" cols="30"></textarea>
+				<h5>Talents</h5>
+				<div id="fiche-magie-hiver" class="tableau-magie-talents">
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="eau"><span class="magie-domaine-name">Eau</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eau-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eau-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eau-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eau-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="chair"><span class="magie-domaine-name">Chair</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="chair-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="chair-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="chair-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="chair-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="vie"><span class="magie-domaine-name">Vie</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vie-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vie-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vie-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vie-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="reve"><span class="magie-domaine-name">Rêve</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="reve-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="reve-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="reve-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="reve-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="vide"><span class="magie-domaine-name">Vide</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vide-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vide-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vide-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="vide-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+				</div>
+				<div id="fiche-magie-printemps" class="tableau-magie-talents">
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="air"><span class="magie-domaine-name">Air</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="air-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="air-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="air-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="air-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="sens"><span class="magie-domaine-name">Sens</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="sens-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="sens-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="sens-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="sens-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="savoir"><span class="magie-domaine-name">Savoir</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="savoir-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="savoir-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="savoir-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="savoir-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="illusion"><span class="magie-domaine-name">Illusion</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="illusion-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="illusion-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="illusion-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="illusion-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="rythme"><span class="magie-domaine-name">Rythme</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="rythme-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="rythme-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="rythme-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="rythme-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+				</div>
+				<div id="fiche-magie-ete" class="tableau-magie-talents">
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="feu"><span class="magie-domaine-name">Feu</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="feu-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="feu-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="feu-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="feu-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="alchimie"><span class="magie-domaine-name">Alchimie</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="alchimie-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="alchimie-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="alchimie-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="alchimie-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="passion"><span class="magie-domaine-name">Passion</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passion-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passion-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passion-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passion-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="esprit"><span class="magie-domaine-name">Esprit</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="esprit-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="esprit-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="esprit-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="esprit-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="lumiere"><span class="magie-domaine-name">Lumière</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="lumiere-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="lumiere-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="lumiere-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="lumiere-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+				</div>
+				<div id="fiche-magie-automne" class="tableau-magie-talents">
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="terre"><span class="magie-domaine-name">Terre</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="terre-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="terre-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="terre-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="terre-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="force"><span class="magie-domaine-name">Force</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="force-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="force-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="force-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="force-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="technique"><span class="magie-domaine-name">Technique</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="technique-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="technique-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="technique-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="technique-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="creation"><span class="magie-domaine-name">Création</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="creation-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="creation-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="creation-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="creation-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="gravite"><span class="magie-domaine-name">Gravité</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="gravite-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="gravite-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="gravite-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="gravite-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+				</div>
+				<div id="fiche-magie-temps" class="tableau-magie-talents">
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="temps-présent"><span class="magie-domaine-name">Présent</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="temps-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="temps-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="temps-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="temps-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="passe"><span class="magie-domaine-name">Passé</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passe-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passe-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passe-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="passe-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="futur"><span class="magie-domaine-name">Futur</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="futur-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="futur-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="futur-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="futur-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="cycle"><span class="magie-domaine-name">Cycle</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="cycle-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="cycle-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="cycle-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="cycle-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+					<div class="magie-domaine-card">
+						<label class="magie-domaine-toggle"><input type="checkbox" id="eternite"><span class="magie-domaine-name">Éternité</span></label>
+						<div class="magie-talents-grid">
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eternite-connaitre"><span class="magie-talent-label">Connaître</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eternite-alterer"><span class="magie-talent-label">Altérer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eternite-invoquer"><span class="magie-talent-label">Invoquer</span></label>
+							<label class="magie-talent-chip"><input type="checkbox" class="talent" id="eternite-modeler"><span class="magie-talent-label">Modeler</span></label>
+						</div>
+					</div>
+				</div>
+				<dialog id="sort-dialog" class="sort-dialog" aria-labelledby="sort-dialog-title">
+					<form method="dialog" class="sort-dialog-form">
+						<div class="sort-dialog-header">
+							<div>
+								<h6 id="sort-dialog-title">Lancement de sort</h6>
+								<p>Renseignez les paramètres du sort.</p>
+							</div>
+							<button type="submit" class="sort-dialog-close-btn" value="close" aria-label="Fermer la modale">×</button>
+						</div>
+						<div class="sort-dialog-fields">
+							<div class="sort-dialog-talent-select-row">
+								<label for="sort-talent-select">Talent utilisé</label>
+								<select id="sort-talent-select" class="sort-dialog-talent-select"></select>
+								<label>Effets possibles :</label>
+								<ul id="sort-talent-effets"></ul>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>Graines récoltées</span>
+								<span id="sort-graines-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="-1">-</button>
+								<input type="text" id="sort-graines" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-graines" data-score-step="1">+</button>
+								<span id="sort-graines-result">graines</span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>❄️ Aire d'effet</span>
+								<span id="sort-aire-effet-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-aire-effet" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-aire-effet" data-score-step="souffle">+</button>
+								<span id="sort-aire-effet-result">mètres de rayon</span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>🌱 Portée</span>
+								<span id="sort-portee-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-portee" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-portee" data-score-step="souffle">+</button>
+								<span id="sort-portee-result">x 10 mètres</span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>☀️ Puissance</span>
+								<span id="sort-puissance-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-puissance" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-puissance" data-score-step="souffle">+</button>
+								<span id="sort-puissance-result"></span>
+							</div>
+							<div class="amelioration-score-row-item sort-dialog-row-item">
+								<span>🍁 Durée</span>
+								<span id="sort-duree-indicator" class="sort-dialog-row-indicator" aria-live="polite"></span>
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="-souffle">-</button>
+								<input type="text" id="sort-duree" class="amelioration-score-input" value="0" inputmode="numeric">
+								<button type="button" class="amelioration-score-btn" data-score-target="sort-duree" data-score-step="souffle">+</button>
+								<span id="sort-duree-result">heures ou tours</span>
+							</div>
+						</div>
+						<div class="sort-dialog-actions">
+							<button type="reset" class="page-action-btn page-action-btn-secondary">Réinitialiser</button>
+							<button type="submit" class="page-action-btn" value="close">Fermer</button>
+						</div>
+					</form>
+				</dialog>
 			</div>
 		</div>
+		<div id="fiche-blocs">
+			<div class="fiche-bloc saison-hiver">
+				<label><span class="saison-icon">❄️</span> Morphologies <span class="saison-icon">❄️</span></label>
+				<div id="fiche-morphologies" class="atout-container">
+					<!-- Généré dynamiquement depuis data/morphologies.js -->
+				</div>
+			</div>
+			<div class="fiche-bloc saison-printemps">
+				<label><span class="saison-icon">🌱</span> Compétences <span class="saison-icon">🌱</span></label>
+				<div id="fiche-competences" class="atout-container">
+					<!-- Généré dynamiquement depuis data/competences.js -->
+				</div>
+			</div>
+			<div class="fiche-bloc saison-automne">
+				<label><span class="saison-icon">🍁</span> Équipements <span class="saison-icon">🍁</span></label>
+				<div id="fiche-equipements" class="atout-container">
+					<!-- Généré dynamiquement depuis data/equipements.js -->
+				</div>
+			</div>
+			<div class="fiche-bloc saison-ete">
+				<label><span class="saison-icon">☀️</span> Dons <span class="saison-icon">☀️</span></label>
+				<div id="fiche-dons" class="atout-container">
+					<!-- Généré dynamiquement depuis data/dons.js -->
+				</div>
+			</div>
+		</div>
+		<div id="fiche-champ-lexical" class="saison-border saison-background"></div>
 	</div>
 </body>
 </html>
