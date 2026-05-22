@@ -2,6 +2,7 @@
 @use "optionCards";
 @use "print.scss";
 @use "mobile";
+@use "viewMode";
 
 :root {
 	--mobile-card-radius: 10px;
@@ -868,7 +869,7 @@ section {
 	flex-wrap: wrap;
 }
 
-.fiche-blocs {
+#fiche-blocs {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem; 

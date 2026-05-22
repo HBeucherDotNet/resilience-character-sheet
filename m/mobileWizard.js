@@ -175,11 +175,36 @@ function setupSteps() {
 
 	let currentStepIndex = 0;
 	const defaultNextLabel = nextButton.textContent || '►►';
+	const lastButtonClickByElement = new WeakMap();
 
 	function closeHeaderMenu() {
 		if (!(headerMenu instanceof HTMLDetailsElement)) return;
 		headerMenu.open = false;
 	}
+
+	function shouldIgnoreDuplicatedButtonClick(button, event) {
+		if (!window.matchMedia('(pointer: coarse)').matches) return false;
+
+		const lastHandledAt = lastButtonClickByElement.get(button) ?? -Infinity;
+		if ((event.timeStamp - lastHandledAt) < 180) {
+			event.preventDefault();
+			return true;
+		}
+
+		lastButtonClickByElement.set(button, event.timeStamp);
+		return false;
+	}
+
+	document.addEventListener('click', event => {
+		if (!(event.target instanceof Element)) return;
+
+		const button = event.target.closest('button');
+		if (!(button instanceof HTMLButtonElement)) return;
+
+		if (!shouldIgnoreDuplicatedButtonClick(button, event)) return;
+
+		event.stopImmediatePropagation();
+	}, true);
 
 	function isReadOnlyViewModeEnabled() {
 		return document.body.classList.contains('view-mode');

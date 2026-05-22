@@ -32,7 +32,9 @@ function getLabelFromSelectedInput(input) {
 
 function getTextContentFromClosest(input, selector) {
 	if (!input) return '';
-	const node = input.closest('.option')?.querySelector(selector);
+	const option = input.closest('.option');
+	const node = option?.querySelector(selector)
+		|| option?._buildDetailContent?.().querySelector(selector);
 	return node ? node.textContent.trim() : '';
 }
 

@@ -1,5 +1,6 @@
 @use "../colors";
 @use "../optionCards";
+@use "../viewMode";
 
 /* Mobile-only overrides for /m/index.html */
 
@@ -1432,7 +1433,7 @@ body.mobile-sheet-mode {
 		}
 	}
 	
-	.fiche-blocs {
+	#fiche-blocs {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
@@ -1653,129 +1654,6 @@ body.mobile-ameliorations-mode {
 	@media (max-width: 479px) {
 		#ameliorations-scores-row {
 			grid-template-columns: 1fr;
-		}
-	}
-}
-
-body.mobile-sheet-mode.view-mode {
-	.fiche-blocs {
-		gap: 0.85rem;
-	}
-	
-	.fiche-bloc {
-		padding: 1.15rem 0.95rem 0.8rem;
-		gap: 0.35rem;
-		border-width: 1px;
-		
-		& > label {
-			padding: 0 0.7rem;
-			font-size: 1.05rem;
-			letter-spacing: 0.01em;
-		}
-	}
-	
-	.fiche-bloc {
-		.atout-container {
-			gap: 0.35rem;
-			
-			.fiche-bloc-item {
-				border: none;
-				background: transparent !important;
-				box-shadow: none !important;
-				padding: 0 !important;
-				
-				&:not(:has(input:checked)) {
-					display: none !important;
-				}
-			}
-		}
-	}
-	
-	#fiche-magie {
-		padding: 0.95rem 0.95rem 0.8rem;
-		
-		.magie-domaine-card[hidden],
-		.magie-talent-chip[hidden] {
-			display: none !important;
-		}
-		
-		h5 {
-			margin-bottom: 0.35rem;
-		}
-		
-		> label {
-			display: block;
-			margin-top: 0.65rem;
-			margin-bottom: 0.25rem;
-			font-size: 0.75rem;
-			color: colors.$color-text-muted;
-		}
-		
-		.magie-domaine-card {
-			gap: 0.32rem;
-			padding: 0.55rem 0 0.75rem;
-			border: none;
-			background: transparent;
-			box-shadow: none;
-		}
-		
-		.magie-domaine-card + .magie-domaine-card {
-			padding-top: 0.75rem;
-		}
-		
-		.magie-domaine-toggle {
-			justify-content: flex-start;
-			text-align: left;
-			pointer-events: none;
-			cursor: default;
-			padding-bottom: 0.15rem;
-		}
-		
-		.magie-talents-grid {
-			grid-template-columns: 1fr;
-			gap: 0.55rem;
-		}
-		
-		.magie-talent-chip {
-			display: grid;
-			grid-template-columns: minmax(0, max-content) 1fr;
-			column-gap: 0.75rem;
-			row-gap: 0.15rem;
-			min-height: 0;
-			align-items: flex-start;
-			justify-content: flex-start;
-			padding: 0;
-			border: none;
-			background: transparent;
-			box-shadow: none;
-			cursor: default;
-			
-			&:has(input:checked) {
-				border: none;
-				background: transparent;
-				box-shadow: none;
-			}
-		}
-		
-		.magie-talent-label {
-			text-align: left;
-			font-size: 0.7rem;
-			line-height: 1.15;
-			white-space: nowrap;
-		}
-		
-		.magie-talent-description {
-			margin: 0;
-			padding-left: 0;
-			color: colors.$color-text-dark;
-			font-size: 0.8rem;
-			font-weight: 400;
-			line-height: 1.15;
-			list-style-type: none;
-			
-			li + li {
-				margin-top: 0.2rem;
-			}
 		}
 	}
 }

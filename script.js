@@ -517,7 +517,7 @@ function getAddedAmeliorationsForType(type, state = personnage.state) {
 	}
 }
 
-function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
+function getFicheBlocCheckboxSelector(type, key) {
 	const selectorMap = {
 		competence: `#fiche-competences .fiche-bloc-item[data-competence="${key}"] input[type="checkbox"]`,
 		don: `#fiche-dons .fiche-bloc-item[data-don="${key}"] input[type="checkbox"]`,
@@ -525,25 +525,82 @@ function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
 		morphologie: `#fiche-morphologies .fiche-bloc-item[data-morphologie="${key}"] input[type="checkbox"]`
 	};
 
-	const checkbox = document.querySelector(selectorMap[type]);
+	return selectorMap[type] ?? '';
+}
+
+function getAmeliorationCheckboxSelector(type, key) {
+	return `.ameliorations-item-checkbox[data-amelioration-type="${type}"][data-amelioration-key="${key}"]`;
+}
+
+function resolveFicheBlocAmelioration(item) {
+	if (!item) return null;
+
+	const typeByDatasetKey = {
+		competence: 'competence',
+		don: 'don',
+		equipement: 'equipement',
+		morphologie: 'morphologie'
+	};
+
+	for (const [datasetKey, type] of Object.entries(typeByDatasetKey)) {
+		const key = item.dataset[datasetKey];
+		if (key) {
+			return { type, key };
+		}
+	}
+
+	return null;
+}
+
+let isSyncingAmeliorationSelection = false;
+
+function syncFicheBlocCheckbox(type, key, shouldBeChecked) {
+	const checkbox = document.querySelector(getFicheBlocCheckboxSelector(type, key));
 	if (!checkbox || checkbox.checked === shouldBeChecked) return;
 
 	checkbox.checked = shouldBeChecked;
 	checkbox.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
-function toggleAmeliorationInPersonnage(type, key) {
+
+function syncAmeliorationCheckbox(type, key, shouldBeChecked) {
+	const checkbox = document.querySelector(getAmeliorationCheckboxSelector(type, key));
+	if (!checkbox || checkbox.checked === shouldBeChecked) return;
+
+	checkbox.checked = shouldBeChecked;
+	checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function setAmeliorationInPersonnage(type, key, shouldBeChecked) {
 	const isAdded = getAddedAmeliorationsForType(type).includes(key);
-	if (isAdded) {
+	if (shouldBeChecked === isAdded) return true;
+
+	if (!shouldBeChecked) {
 		const removed = personnage.removeAmelioration(type, key);
 		if (!removed) return;
-		syncFicheBlocCheckbox(type, key, false);
-		return;
+		return true;
 	}
 
 	const added = personnage.addAmelioration(type, key);
 	if (!added) return;
-	syncFicheBlocCheckbox(type, key, true);
+	return true;
+}
+
+function syncAmeliorationSelection(type, key, shouldBeChecked, source) {
+	if (isSyncingAmeliorationSelection) return;
+
+	isSyncingAmeliorationSelection = true;
+	setAmeliorationInPersonnage(type, key, shouldBeChecked);
+
+	if (source !== 'fiche') {
+		syncFicheBlocCheckbox(type, key, shouldBeChecked);
+	}
+
+	if (source !== 'amelioration') {
+		syncAmeliorationCheckbox(type, key, shouldBeChecked);
+	}
+
+	isSyncingAmeliorationSelection = false;
 }
 
 function refreshAmeliorationButtons(state = personnage.state) {
@@ -572,7 +629,7 @@ function createAmeliorationItem({ key, type, nom, meta, description, saison = 't
 	checkbox.dataset.ameliorationKey = key;
 	checkbox.setAttribute('aria-label', `Selectionner ${nom}`);
 	checkbox.addEventListener('change', () => {
-		toggleAmeliorationInPersonnage(type, key);
+		syncAmeliorationSelection(type, key, checkbox.checked, 'amelioration');
 	});
 
 	optionLabel.classList.add('ameliorations-item-option-label');
@@ -709,13 +766,22 @@ function initBindings() {
 		});
 	});
 
+	document.querySelectorAll('.fiche-bloc-item input[type="checkbox"]').forEach(checkbox => {
+		checkbox.addEventListener('change', () => {
+			const amelioration = resolveFicheBlocAmelioration(checkbox.closest('.fiche-bloc-item'));
+			if (!amelioration) return;
+
+			syncAmeliorationSelection(amelioration.type, amelioration.key, checkbox.checked, 'fiche');
+		});
+	});
+
 	document.querySelectorAll('#fiche-magie input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', syncMobileViewModePresentation);
 	});
 
 	document.addEventListener('viewmodechange', syncMobileViewModePresentation);
 
-	hashStateSync.bindAutoHashSync();
+	hashStateSync.bindTextFieldHashSync();
 }
 
 function initStateFromHash() {
@@ -768,6 +834,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(ficheRenderer.renderPersonnage);
 	personnage.subscribe(syncMagicDomains);
+	personnage.subscribe(hashStateSync.updateHashFromState);
 
 	fillAmeliorationsSections();
 
