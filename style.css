@@ -1220,6 +1220,9 @@ section > div:last-child {
   border-collapse: collapse;
   display: none;
 }
+#fiche-magie .tableau-magie-talents input {
+  accent-color: var(--character-season-strong-border);
+}
 #fiche-magie textarea {
   width: 98%;
   box-sizing: border-box;

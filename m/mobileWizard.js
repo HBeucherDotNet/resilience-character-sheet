@@ -168,7 +168,6 @@ function setupSteps() {
 	const returnToFormButton = document.getElementById('return-to-form-btn');
 	const openAmeliorationsButton = document.getElementById('open-ameliorations-btn');
 	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
-	const openSortDialogButton = document.getElementById('open-sort-dialog-btn');
 	const shareViewLinkButton = document.getElementById('share-view-link-btn');
 
 	if (!nav || !prevButton || !nextButton || !title) return;
@@ -402,10 +401,6 @@ function setupSteps() {
 	});
 
 	shareViewLinkButton?.addEventListener('click', () => {
-		closeHeaderMenu();
-	});
-
-	openSortDialogButton?.addEventListener('click', () => {
 		closeHeaderMenu();
 	});
 
