@@ -234,10 +234,10 @@ section {
 	flex-direction: column;
 	
 	.mobile-step-detail-content {
-		@include optionCards.option-card-saison-vars($includeOrder: false);
+		@include colors.option-card-saison-vars();
 		
 		.don {
-			background-color: var(--option-card-soft-bg);
+			background-color: var(--season-soft-bg);
 			
 			ul {
 				margin: 0;
@@ -630,6 +630,7 @@ section {
 }
 
 #fiche-personnage {
+
 	display: none;
 	flex-direction: column;
 	background: colors.$color-white;
@@ -637,49 +638,16 @@ section {
 	gap: 0.65rem;
 	background: colors.$color-white;
 	
-	&.hiver {
-		--fiche-magie-accent: #{colors.$color-hiver};
-		--fiche-magie-accent-soft: #{colors.$color-hiver-lighter};
-		.saison-border { border-color: colors.$color-hiver; }
-		.saison-background { background: colors.$color-hiver-lighter; }
-		#fiche-magie-hiver { display: flex; }
+	.saison-border { 
+		border-width: 2px;
 	}
-	&.printemps {
-		--fiche-magie-accent: #{colors.$color-printemps};
-		--fiche-magie-accent-soft: #{colors.$color-printemps-lighter};
-		.saison-border { border-color: colors.$color-printemps; }
-		.saison-background { background: colors.$color-printemps-lighter; }
-		#fiche-magie-printemps { display: flex; }
-	}
-	&.ete {
-		--fiche-magie-accent: #{colors.$color-ete};
-		--fiche-magie-accent-soft: #{colors.$color-ete-lighter};
-		.saison-border { border-color: colors.$color-ete; }
-		.saison-background { background: colors.$color-ete-lighter; }
-		#fiche-magie-ete { display: flex; }
-	}
-	&.automne {
-		--fiche-magie-accent: #{colors.$color-automne};
-		--fiche-magie-accent-soft: #{colors.$color-automne-lighter};
-		.saison-border { border-color: colors.$color-automne; }
-		.saison-background { background: colors.$color-automne-lighter; }
-		#fiche-magie-automne { display: flex; }
-	}
-	&.temps {
-		--fiche-magie-accent: #{colors.$color-temps};
-		--fiche-magie-accent-soft: #{colors.$color-temps-lighter};
-		.saison-border { border-color: colors.$color-temps; }
-		.saison-background { background: colors.$color-temps-lighter; }
-		#fiche-magie-temps { display: flex; }
-	}
-	&.rupture {
-		--fiche-magie-accent: #{colors.$color-rupture};
-		--fiche-magie-accent-soft: #{colors.$color-rupture-lighter};
-		.saison-border { border-color: colors.$color-rupture; }
-		.saison-background { background: colors.$color-rupture-lighter; }
-		#mots-rupture { display: grid; }
-		#fiche-magie-rupture { display: flex; }
-	}
+	
+	&.hiver #fiche-magie-hiver { display: flex; }
+	&.printemps #fiche-magie-printemps { display: flex; }
+	&.ete #fiche-magie-ete { display: flex; }
+	&.automne #fiche-magie-automne { display: flex; }
+	&.temps #fiche-magie-temps { display: flex; }
+	&.rupture #fiche-magie-rupture { display: flex; }
 }
 
 .fiche-header {
@@ -710,11 +678,10 @@ section {
 
 .fiche-logo { 
 	width: 180px;
-	--fiche-magie-accent: #{colors.$color-temps};
-	--fiche-magie-accent-soft: #{colors.$color-temps-lighter};
 }
 
 .fiche-valeurs { 
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -735,25 +702,6 @@ section {
 		border-style: none none solid none;
 		width: 30px;
 		text-align: center;
-	}
-	
-	&.hiver {
-		border-color: colors.$color-hiver;
-	}
-	&.printemps {
-		border-color: colors.$color-printemps;
-	}
-	&.ete {
-		border-color: colors.$color-ete;
-	}
-	&.automne {
-		border-color: colors.$color-automne;
-	}
-	&.temps {
-		border-color: colors.$color-temps;
-	}
-	&.rupture {
-		border-color: colors.$color-rupture;
 	}
 }
 
@@ -999,7 +947,7 @@ section {
 		}
 		
 		input:checked + .magie-domaine-name {
-			color: var(--fiche-magie-accent);
+			color: var(--character-season-strong-border);
 		}
 	}
 	
@@ -1044,9 +992,9 @@ section {
 		transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 		
 		&:has(input:checked) {
-			border-color: var(--fiche-magie-accent);
+			border-color: var(--character-season-strong-border);
 			background: rgba(255, 255, 255, 0.98);
-			box-shadow: inset 0 0 0 1px var(--fiche-magie-accent);
+			box-shadow: inset 0 0 0 1px var(--character-season-strong-border);
 		}
 		
 		input {
@@ -1059,7 +1007,7 @@ section {
 		}
 		
 		input:checked + .magie-talent-label {
-			color: var(--fiche-magie-accent);
+			color: var(--character-season-strong-border);
 		}
 	}
 	

@@ -1,4 +1,50 @@
 @charset "UTF-8";
+#fiche-personnage.hiver {
+  --character-season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --character-season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-border: #235a8a;
+}
+#fiche-personnage.printemps {
+  --character-season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --character-season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-border: #2c7a4b;
+}
+#fiche-personnage.ete {
+  --character-season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --character-season-soft-border: rgb(255, 226.5968586387, 38);
+  --character-season-strong-bg: rgb(255, 226.5968586387, 38);
+  --character-season-strong-border: #bfa600;
+}
+#fiche-personnage.automne {
+  --character-season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --character-season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-border: #a13a3a;
+}
+#fiche-personnage.temps {
+  --character-season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --character-season-soft-border: #cccccc;
+  --character-season-strong-bg: #cccccc;
+  --character-season-strong-border: #999;
+}
+#fiche-personnage.rupture {
+  --character-season-soft-bg: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
+  --character-season-soft-border: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-bg: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-border: #7d5fa3;
+}
+#fiche-personnage .saison-border {
+  border-color: var(--character-season-strong-bg);
+}
+#fiche-personnage .saison-border.rupture {
+  border-color: #7d5fa3;
+}
+#fiche-personnage .saison-background {
+  background: var(--character-season-soft-bg);
+}
+
 body.view-mode #fiche-magie label,
 body.view-mode #fiche-magie input[type=checkbox],
 body.view-mode #fiche-magie .fiche-bloc-item,
@@ -356,38 +402,44 @@ section h2 {
   gap: 0.5rem;
   flex-direction: column;
 }
+.mobile-step .mobile-step-detail-content {
+  --season-soft-bg: colors.$color-white;
+  --season-soft-border: colors.$color-border-section;
+  --season-strong-bg: colors.$color-white;
+  --season-strong-border: colors.$color-border-section;
+}
 .mobile-step .mobile-step-detail-content.hiver {
-  --option-card-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
-  --option-card-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-border: #235a8a;
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
 }
 .mobile-step .mobile-step-detail-content.printemps {
-  --option-card-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-  --option-card-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-border: #2c7a4b;
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
 }
 .mobile-step .mobile-step-detail-content.ete {
-  --option-card-soft-bg: rgb(255, 249.9607329843, 216.5);
-  --option-card-soft-border: rgb(255, 226.5968586387, 38);
-  --option-card-strong-bg: rgb(255, 226.5968586387, 38);
-  --option-card-strong-border: #bfa600;
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
 }
 .mobile-step .mobile-step-detail-content.automne {
-  --option-card-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-  --option-card-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-border: #a13a3a;
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
 }
 .mobile-step .mobile-step-detail-content.temps {
-  --option-card-soft-bg: rgb(242.25, 242.25, 242.25);
-  --option-card-soft-border: #cccccc;
-  --option-card-strong-bg: #cccccc;
-  --option-card-strong-border: #999;
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
 }
 .mobile-step .mobile-step-detail-content .don {
-  background-color: var(--option-card-soft-bg);
+  background-color: var(--season-soft-bg);
 }
 .mobile-step .mobile-step-detail-content .don ul {
   margin: 0;
@@ -571,7 +623,7 @@ section h2 {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 .ameliorations-item input[type=checkbox] {
-  accent-color: var(--option-card-strong-bg);
+  accent-color: var(--season-strong-bg);
 }
 .ameliorations-item .option-label {
   display: flex;
@@ -582,43 +634,49 @@ section h2 {
   color: #444;
   font-weight: 600;
 }
+.ameliorations-item {
+  --season-soft-bg: colors.$color-white;
+  --season-soft-border: colors.$color-border-section;
+  --season-strong-bg: colors.$color-white;
+  --season-strong-border: colors.$color-border-section;
+}
 .ameliorations-item.hiver {
-  --option-card-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
-  --option-card-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-border: #235a8a;
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
 }
 .ameliorations-item.printemps {
-  --option-card-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-  --option-card-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-border: #2c7a4b;
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
 }
 .ameliorations-item.ete {
-  --option-card-soft-bg: rgb(255, 249.9607329843, 216.5);
-  --option-card-soft-border: rgb(255, 226.5968586387, 38);
-  --option-card-strong-bg: rgb(255, 226.5968586387, 38);
-  --option-card-strong-border: #bfa600;
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
 }
 .ameliorations-item.automne {
-  --option-card-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-  --option-card-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-border: #a13a3a;
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
 }
 .ameliorations-item.temps {
-  --option-card-soft-bg: rgb(242.25, 242.25, 242.25);
-  --option-card-soft-border: #cccccc;
-  --option-card-strong-bg: #cccccc;
-  --option-card-strong-border: #999;
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
 }
 .ameliorations-item {
   background: #fff;
-  border-color: var(--option-card-strong-border);
+  border-color: var(--season-strong-border);
 }
 .ameliorations-item:has(input:checked) {
-  border-color: var(--option-card-strong-border);
-  background: var(--option-card-soft-bg);
+  border-color: var(--season-strong-border);
+  background: var(--season-soft-bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -715,7 +773,7 @@ section h2 {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 .option input[type=checkbox] {
-  accent-color: var(--option-card-strong-bg);
+  accent-color: var(--season-strong-bg);
 }
 .option .option-label {
   display: flex;
@@ -727,47 +785,63 @@ section h2 {
   font-weight: 600;
 }
 .option.hiver {
-  --option-card-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
-  --option-card-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-border: #235a8a;
   order: 1;
 }
 .option.printemps {
-  --option-card-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-  --option-card-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-border: #2c7a4b;
   order: 2;
 }
 .option.ete {
-  --option-card-soft-bg: rgb(255, 249.9607329843, 216.5);
-  --option-card-soft-border: rgb(255, 226.5968586387, 38);
-  --option-card-strong-bg: rgb(255, 226.5968586387, 38);
-  --option-card-strong-border: #bfa600;
   order: 3;
 }
 .option.automne {
-  --option-card-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-  --option-card-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-border: #a13a3a;
   order: 4;
 }
 .option.temps {
-  --option-card-soft-bg: rgb(242.25, 242.25, 242.25);
-  --option-card-soft-border: #cccccc;
-  --option-card-strong-bg: #cccccc;
-  --option-card-strong-border: #999;
   order: 5;
 }
 .option {
-  background: var(--option-card-soft-bg);
-  border-color: var(--option-card-soft-border);
+  --season-soft-bg: colors.$color-white;
+  --season-soft-border: colors.$color-border-section;
+  --season-strong-bg: colors.$color-white;
+  --season-strong-border: colors.$color-border-section;
+}
+.option.hiver {
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
+}
+.option.printemps {
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
+}
+.option.ete {
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
+}
+.option.automne {
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
+}
+.option.temps {
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
+}
+.option {
+  background: var(--season-soft-bg);
+  border-color: var(--season-soft-border);
 }
 .option:has(input:checked) {
-  border-color: var(--option-card-strong-border) !important;
-  background: var(--option-card-strong-bg) !important;
+  border-color: var(--season-strong-border) !important;
+  background: var(--season-strong-bg) !important;
 }
 .option .option-label {
   align-items: center;
@@ -855,83 +929,23 @@ section h2 {
   gap: 0.65rem;
   background: #fff;
 }
-#fiche-personnage.hiver {
-  --fiche-magie-accent: #235a8a;
-  --fiche-magie-accent-soft: rgb(209.9306358382, 227.8930635838, 243.5693641618);
-}
-#fiche-personnage.hiver .saison-border {
-  border-color: #235a8a;
-}
-#fiche-personnage.hiver .saison-background {
-  background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+#fiche-personnage .saison-border {
+  border-width: 2px;
 }
 #fiche-personnage.hiver #fiche-magie-hiver {
   display: flex;
 }
-#fiche-personnage.printemps {
-  --fiche-magie-accent: #2c7a4b;
-  --fiche-magie-accent-soft: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-}
-#fiche-personnage.printemps .saison-border {
-  border-color: #2c7a4b;
-}
-#fiche-personnage.printemps .saison-background {
-  background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-}
 #fiche-personnage.printemps #fiche-magie-printemps {
   display: flex;
-}
-#fiche-personnage.ete {
-  --fiche-magie-accent: #bfa600;
-  --fiche-magie-accent-soft: rgb(255, 249.9607329843, 216.5);
-}
-#fiche-personnage.ete .saison-border {
-  border-color: #bfa600;
-}
-#fiche-personnage.ete .saison-background {
-  background: rgb(255, 249.9607329843, 216.5);
 }
 #fiche-personnage.ete #fiche-magie-ete {
   display: flex;
 }
-#fiche-personnage.automne {
-  --fiche-magie-accent: #a13a3a;
-  --fiche-magie-accent-soft: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-}
-#fiche-personnage.automne .saison-border {
-  border-color: #a13a3a;
-}
-#fiche-personnage.automne .saison-background {
-  background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-}
 #fiche-personnage.automne #fiche-magie-automne {
   display: flex;
 }
-#fiche-personnage.temps {
-  --fiche-magie-accent: #999;
-  --fiche-magie-accent-soft: rgb(242.25, 242.25, 242.25);
-}
-#fiche-personnage.temps .saison-border {
-  border-color: #999;
-}
-#fiche-personnage.temps .saison-background {
-  background: rgb(242.25, 242.25, 242.25);
-}
 #fiche-personnage.temps #fiche-magie-temps {
   display: flex;
-}
-#fiche-personnage.rupture {
-  --fiche-magie-accent: #7d5fa3;
-  --fiche-magie-accent-soft: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
-}
-#fiche-personnage.rupture .saison-border {
-  border-color: #7d5fa3;
-}
-#fiche-personnage.rupture .saison-background {
-  background: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
-}
-#fiche-personnage.rupture #mots-rupture {
-  display: grid;
 }
 #fiche-personnage.rupture #fiche-magie-rupture {
   display: flex;
@@ -963,8 +977,6 @@ section h2 {
 
 .fiche-logo {
   width: 180px;
-  --fiche-magie-accent: #999;
-  --fiche-magie-accent-soft: rgb(242.25, 242.25, 242.25);
 }
 
 .fiche-valeurs {
@@ -987,24 +999,6 @@ section h2 {
   border-style: none none solid none;
   width: 30px;
   text-align: center;
-}
-.fiche-valeurs.hiver {
-  border-color: #235a8a;
-}
-.fiche-valeurs.printemps {
-  border-color: #2c7a4b;
-}
-.fiche-valeurs.ete {
-  border-color: #bfa600;
-}
-.fiche-valeurs.automne {
-  border-color: #a13a3a;
-}
-.fiche-valeurs.temps {
-  border-color: #999;
-}
-.fiche-valeurs.rupture {
-  border-color: #7d5fa3;
 }
 
 .fiche-grid {
@@ -1243,7 +1237,7 @@ section h2 {
   display: none;
 }
 #fiche-magie .magie-domaine-toggle input:checked + .magie-domaine-name {
-  color: var(--fiche-magie-accent);
+  color: var(--character-season-strong-border);
 }
 #fiche-magie .magie-domaine-name {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
@@ -1281,9 +1275,9 @@ section h2 {
   transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 #fiche-magie .magie-talent-chip:has(input:checked) {
-  border-color: var(--fiche-magie-accent);
+  border-color: var(--character-season-strong-border);
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: inset 0 0 0 1px var(--fiche-magie-accent);
+  box-shadow: inset 0 0 0 1px var(--character-season-strong-border);
 }
 #fiche-magie .magie-talent-chip input {
   position: absolute;
@@ -1294,7 +1288,7 @@ section h2 {
   margin: 0;
 }
 #fiche-magie .magie-talent-chip input:checked + .magie-talent-label {
-  color: var(--fiche-magie-accent);
+  color: var(--character-season-strong-border);
 }
 #fiche-magie .magie-talent-label {
   display: block;
@@ -1699,7 +1693,7 @@ body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item input[type=checkbox] {
-  accent-color: var(--option-card-strong-bg);
+  accent-color: var(--season-strong-bg);
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item .option-label {
   display: flex;
@@ -1710,43 +1704,49 @@ body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item .option-lab
   color: #444;
   font-weight: 600;
 }
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item {
+  --season-soft-bg: colors.$color-white;
+  --season-soft-border: colors.$color-border-section;
+  --season-strong-bg: colors.$color-white;
+  --season-strong-border: colors.$color-border-section;
+}
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.hiver {
-  --option-card-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
-  --option-card-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
-  --option-card-strong-border: #235a8a;
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.printemps {
-  --option-card-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
-  --option-card-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
-  --option-card-strong-border: #2c7a4b;
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.ete {
-  --option-card-soft-bg: rgb(255, 249.9607329843, 216.5);
-  --option-card-soft-border: rgb(255, 226.5968586387, 38);
-  --option-card-strong-bg: rgb(255, 226.5968586387, 38);
-  --option-card-strong-border: #bfa600;
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.automne {
-  --option-card-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
-  --option-card-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
-  --option-card-strong-border: #a13a3a;
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.temps {
-  --option-card-soft-bg: rgb(242.25, 242.25, 242.25);
-  --option-card-soft-border: #cccccc;
-  --option-card-strong-bg: #cccccc;
-  --option-card-strong-border: #999;
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item {
   background: #fff;
-  border-color: var(--option-card-strong-border);
+  border-color: var(--season-strong-border);
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item:has(input:checked) {
-  border-color: var(--option-card-strong-border);
-  background: var(--option-card-soft-bg);
+  border-color: var(--season-strong-border);
+  background: var(--season-soft-bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item label {
