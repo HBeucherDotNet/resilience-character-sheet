@@ -637,6 +637,10 @@ section {
 	padding: 0;
 	gap: 0.65rem;
 	background: colors.$color-white;
+
+	h2 {
+		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+	}
 	
 	.saison-border { 
 		border-width: 2px;

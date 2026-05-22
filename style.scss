@@ -20,6 +20,34 @@ body {
 	background: colors.$color-bg-page;
 }
 
+.desktop-app-shell {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-bottom: 2rem;
+}
+
+.desktop-app-header {
+	position: sticky;
+	top: 1rem;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 1rem 1.2rem;
+	border: 1px solid colors.$color-border-section;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.94);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 6px 18px colors.$color-box-shadow;
+
+	#main-title {
+		margin-bottom: 0;
+		flex: 1 1 auto;
+	}
+}
+
 h1 {
 	margin-top: 0;
 	font-size: 1.25rem;
@@ -46,11 +74,10 @@ h3 {
 .page-actions {
 	display: flex;
 	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
 	gap: 0.75rem;
-	margin-bottom: 1.25rem;
-	position: sticky;
-	top: 0;
-	z-index: 10;
+	margin-bottom: 0;
 }
 
 .page-action-btn {
@@ -393,6 +420,10 @@ section {
 	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
+
+	h2 {
+		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+	}
 	
 	&.hiver #fiche-magie-hiver { display: table; }
 	&.printemps #fiche-magie-printemps { display: table; }

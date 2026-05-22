@@ -9,200 +9,204 @@
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
-	<div class="page-actions" aria-label="Actions de partage">
-		<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
-		<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
-	</div>
-	<div id="character-builder">
-		<h1 id="main-title">Résilience - Création de Voix</h1>
-		
-		<!-------------------- SAISONS -------------------->
-		
-		<section>
-			<h2>Saison</h2>
-			<div class="flex-group" id="saison-group"></div>
-		</section>
-		
-		<!-------------------- FAMILLES -------------------->
-		
-		<section>
-			<h2>Famille</h2>
-			<div class="flex-group" id="famille-group"></div>
-		</section>
-		
-		<!-------------------- LIGNEES -------------------->
-		
-		<section>
-			<h2>Lignée</h2>
-			<div id="lignées-container">
-				<p id="lignées-message">Veuillez choisir une famille.</p>
-				<div id="lignées-list" class="flex-group">
-					<!-- Généré dynamiquement depuis data/lignees.js -->
-				</div>
+	<div class="desktop-app-shell">
+		<header class="desktop-app-header">
+			<h1 id="main-title">Résilience - Création de Voix</h1>
+			<div class="page-actions" aria-label="Actions de partage">
+				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
+				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
 			</div>
-		</section>
-		
-		<!-------------------- MORPHOLOGIES -------------------->
-		
-		<section>
-			<h2>Morphologies</h2>
-			<div>
-				Les Morphologies sont les atouts physiques innés du personnage. Elles sont intégrées à son corps, à sa biologie, et peuvent s'abîmer avec le temps.<br/>
-				Elles sont de cinq types : Armement, Cuirasse, Mains et Peau, plus les Matières.
-			</div>
-			<div class="flex-group" id="armement-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-			<div class="flex-group" id="cuirasse-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-			<div class="flex-group" id="mains-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-			<div class="flex-group" id="peau-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- ENVIRONNEMENT -------------------->
-		
-		<section>
-			<h2>Environnement</h2>
-			<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
-			<div class="flex-group" id="environnement-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-			<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
-		</section>
-		
-		<!-------------------- MODE DE VIE -------------------->
-		
-		<section>
-			<h2>Mode de vie</h2>
-			<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
-			<div class="flex-group" id="mode-de-vie-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- PHILOSOPHIE -------------------->
-		
-		<section>
-			<h2>Philosophie</h2>
-			<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
-			<div class="flex-group" id="philosophie-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		<!-------------------- RELATION A LA RUPTURE -------------------->
-		
-		<section>
-			<h2>Relation à la Rupture</h2>
-			<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
-			<div class="flex-group" id="relation-rupture-group">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- RÔLE -------------------->
-		
-		<section>
-			<h2>Rôle</h2>
-			<div>Le Rôle est la place du personnage dans le monde, son métier et sa façon de se rendre utile aux siens. Cela détermine ses Compétence : ce que le personnage sait faire, ce qu’il a appris par l’expérience et la pratique. Tous les noms de Rôle sont épicènes, pouvant désigner n’importe quel individu.<br/>
-				<br/>
-				Le Rôle d’un personnage détermine sa Compétence de Rôle, associée à une Saison, qu’il reçoit automatiquement.<br/>
-				Il reçoit gratuitement une Compétence parmi les quatre proposées par son Rôle.
-			</div>
-			<div class="flex-group" id="role-group" data-option-section="role">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- Age -------------------->
-		
-		<section>
-			<h2>Âge</h2>
-			<div class="flex-group" id="role-group" data-option-section="age">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- PERSONNALITE -------------------->
-		
-		<section>
-			<h2>Personnalité</h2>
-			<div>Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
-				Cette personnalité définit aussi ce qui est cher au personnage, et son point faible vis-à-vis de la corruption de la Rupture.
-			</div>
-			<div class="flex-group" id="role-group" data-option-section="personnalite">
-				<!-- Généré dynamiquement depuis data/optionSections.js -->
-			</div>
-		</section>
-		
-		<!-------------------- AMELIORATIONS -------------------->
-		
-		<section id="ameliorations-section">
-			<details id="collapsible-section">
-				<summary>
-					<div>
-						<h2>Améliorations</h2>
-						Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête. Tout cela se fait en dépensant des points d'Harmonie.
-					</div>
-				</summary>
-				<div class="collapsible-section-content">
-					<div id="ameliorations-scores-row">
-						<div class="amelioration-score-row-item">
-							<span>Hiver</span>
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="-1">-</button>
-							<input type="text" id="amelioration-score-hiver" class="amelioration-score-input" value="0">
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="1">+</button>
-						</div>
-						<div class="amelioration-score-row-item">
-							<span>Printemps</span>
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-printemps" data-score-step="-1">-</button>
-							<input type="text" id="amelioration-score-printemps" class="amelioration-score-input" value="0">
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-printemps" data-score-step="1">+</button>
-						</div>
-						<div class="amelioration-score-row-item">
-							<span>Été</span>
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-ete" data-score-step="-1">-</button>
-							<input type="text" id="amelioration-score-ete" class="amelioration-score-input" value="0">
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-ete" data-score-step="1">+</button>
-						</div>
-						<div class="amelioration-score-row-item">
-							<span>Automne</span>
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-automne" data-score-step="-1">-</button>
-							<input type="text" id="amelioration-score-automne" class="amelioration-score-input" value="0">
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-automne" data-score-step="1">+</button>
-						</div>
-						<div class="amelioration-score-row-item">
-							<span>Souffle</span>
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="-1">-</button>
-							<input type="text" id="amelioration-score-souffle" class="amelioration-score-input" value="0">
-							<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="1">+</button>
-						</div>
-					</div>
-					<div class="flex-group" id="ameliorations-group">
-						<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
-							<h3>Morphologies</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-competences-zone">
-							<h3>Compétences</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-dons-zone">
-							<h3>Dons</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
-						</div>
-						<div class="ameliorations-zone" id="ameliorations-equipements-zone">
-							<h3>Équipements</h3>
-							<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
-						</div>
+		</header>
+		<div id="character-builder">
+			
+			<!-------------------- SAISONS -------------------->
+			
+			<section>
+				<h2>Saison</h2>
+				<div class="flex-group" id="saison-group"></div>
+			</section>
+			
+			<!-------------------- FAMILLES -------------------->
+			
+			<section>
+				<h2>Famille</h2>
+				<div class="flex-group" id="famille-group"></div>
+			</section>
+			
+			<!-------------------- LIGNEES -------------------->
+			
+			<section>
+				<h2>Lignée</h2>
+				<div id="lignées-container">
+					<p id="lignées-message">Veuillez choisir une famille.</p>
+					<div id="lignées-list" class="flex-group">
+						<!-- Généré dynamiquement depuis data/lignees.js -->
 					</div>
 				</div>
-			</details>
-		</section>
+			</section>
+			
+			<!-------------------- MORPHOLOGIES -------------------->
+			
+			<section>
+				<h2>Morphologies</h2>
+				<div>
+					Les Morphologies sont les atouts physiques innés du personnage. Elles sont intégrées à son corps, à sa biologie, et peuvent s'abîmer avec le temps.<br/>
+					Elles sont de cinq types : Armement, Cuirasse, Mains et Peau, plus les Matières.
+				</div>
+				<div class="flex-group" id="armement-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+				<div class="flex-group" id="cuirasse-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+				<div class="flex-group" id="mains-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+				<div class="flex-group" id="peau-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- ENVIRONNEMENT -------------------->
+			
+			<section>
+				<h2>Environnement</h2>
+				<div>Le personnage a pu grandir dans cinq types d’environnement. Cela conditionne les dangers auxquels il a été exposé, donc ce contre quoi il se protège en priorité. Cet environnement définit quel Équipement de type Armure pourrait posséder le personnage.</div>
+				<div class="flex-group" id="environnement-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+				<div>Pour aller plus loin, vous pouvez réfléchir aux ressources dont disposaient la communauté du personnage, et sur lesquelles elle s’est construite. Leur acquisition, exploitation ou maintient lui ont transmis des valeurs, tout comme ce qui lui manquait et comment elle parvenait à se le procurer ou au contraire avait appris à faire sans.</div>
+			</section>
+			
+			<!-------------------- MODE DE VIE -------------------->
+			
+			<section>
+				<h2>Mode de vie</h2>
+				<div>Les peuples de Kiwandoto s’organisent de différentes façons pour survivre aux rudes conditions de la Rupture. Le personnage a vécu selon l’un de ses modes de vie. Cela conditionne les principaux défis auxquels il doit répondre. Le mode de vie définit quel Équipement de type Outils pourrait posséder le personnage.</div>
+				<div class="flex-group" id="mode-de-vie-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- PHILOSOPHIE -------------------->
+			
+			<section>
+				<h2>Philosophie</h2>
+				<div>Le personnage a une vision du monde, des principes guidant sa relation aux autres et aux événements, hérités de son éducation et de sa culture. Les membres d'une même communauté partagent souvent la même philosophie. Elle pourra évoluer avec le temps. La philosophie définit quel Équipement de type Vêtement pourrait posséder le personnage.</div>
+				<div class="flex-group" id="philosophie-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			<!-------------------- RELATION A LA RUPTURE -------------------->
+			
+			<section>
+				<h2>Relation à la Rupture</h2>
+				<div>Chaque communauté sur Kiwandoto se construit nécessairement en relation à la Rupture. Celle-ci étant le danger quotidien, la façon qu’ont les gens de gérer sa présence et son impact influence directement leur façon d’aborder n’importe quel conflit, donc le style de combat principal de cette communauté. La relation à la Rupture définit quelle Arme pourrait posséder le personnage.</div>
+				<div class="flex-group" id="relation-rupture-group">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- RÔLE -------------------->
+			
+			<section>
+				<h2>Rôle</h2>
+				<div>Le Rôle est la place du personnage dans le monde, son métier et sa façon de se rendre utile aux siens. Cela détermine ses Compétence : ce que le personnage sait faire, ce qu’il a appris par l’expérience et la pratique. Tous les noms de Rôle sont épicènes, pouvant désigner n’importe quel individu.<br/>
+					<br/>
+					Le Rôle d’un personnage détermine sa Compétence de Rôle, associée à une Saison, qu’il reçoit automatiquement.<br/>
+					Il reçoit gratuitement une Compétence parmi les quatre proposées par son Rôle.
+				</div>
+				<div class="flex-group" id="role-group" data-option-section="role">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- Age -------------------->
+			
+			<section>
+				<h2>Âge</h2>
+				<div class="flex-group" id="role-group" data-option-section="age">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- PERSONNALITE -------------------->
+			
+			<section>
+				<h2>Personnalité</h2>
+				<div>Le personnage a une attitude, une personnalité qui dirige sa façon de se comporter au sein de sa communauté. Ce tempérament conditionne comment il participe aux prises de décision et aux actions menées par celle-ci.<br/>
+					Cette personnalité définit aussi ce qui est cher au personnage, et son point faible vis-à-vis de la corruption de la Rupture.
+				</div>
+				<div class="flex-group" id="role-group" data-option-section="personnalite">
+					<!-- Généré dynamiquement depuis data/optionSections.js -->
+				</div>
+			</section>
+			
+			<!-------------------- AMELIORATIONS -------------------->
+			
+			<section id="ameliorations-section">
+				<details id="collapsible-section">
+					<summary>
+						<div>
+							<h2>Améliorations</h2>
+							Le personnage peut gagner de nouvelles compétences ou apprendre à maitriser de nouveaux équipements, ainsi que gagner des dons et des morphologies si la situation s'y prête. Tout cela se fait en dépensant des points d'Harmonie.
+						</div>
+					</summary>
+					<div class="collapsible-section-content">
+						<div id="ameliorations-scores-row">
+							<div class="amelioration-score-row-item">
+								<span>Hiver</span>
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="-1">-</button>
+								<input type="text" id="amelioration-score-hiver" class="amelioration-score-input" value="0">
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-hiver" data-score-step="1">+</button>
+							</div>
+							<div class="amelioration-score-row-item">
+								<span>Printemps</span>
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-printemps" data-score-step="-1">-</button>
+								<input type="text" id="amelioration-score-printemps" class="amelioration-score-input" value="0">
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-printemps" data-score-step="1">+</button>
+							</div>
+							<div class="amelioration-score-row-item">
+								<span>Été</span>
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-ete" data-score-step="-1">-</button>
+								<input type="text" id="amelioration-score-ete" class="amelioration-score-input" value="0">
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-ete" data-score-step="1">+</button>
+							</div>
+							<div class="amelioration-score-row-item">
+								<span>Automne</span>
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-automne" data-score-step="-1">-</button>
+								<input type="text" id="amelioration-score-automne" class="amelioration-score-input" value="0">
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-automne" data-score-step="1">+</button>
+							</div>
+							<div class="amelioration-score-row-item">
+								<span>Souffle</span>
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="-1">-</button>
+								<input type="text" id="amelioration-score-souffle" class="amelioration-score-input" value="0">
+								<button type="button" class="amelioration-score-btn" data-score-target="amelioration-score-souffle" data-score-step="1">+</button>
+							</div>
+						</div>
+						<div class="flex-group" id="ameliorations-group">
+							<div class="ameliorations-zone" id="ameliorations-morphologies-zone">
+								<h3>Morphologies</h3>
+								<div class="ameliorations-zone-list" id="ameliorations-morphologies-list"></div>
+							</div>
+							<div class="ameliorations-zone" id="ameliorations-competences-zone">
+								<h3>Compétences</h3>
+								<div class="ameliorations-zone-list" id="ameliorations-competences-list"></div>
+							</div>
+							<div class="ameliorations-zone" id="ameliorations-dons-zone">
+								<h3>Dons</h3>
+								<div class="ameliorations-zone-list" id="ameliorations-dons-list"></div>
+							</div>
+							<div class="ameliorations-zone" id="ameliorations-equipements-zone">
+								<h3>Équipements</h3>
+								<div class="ameliorations-zone-list" id="ameliorations-equipements-list"></div>
+							</div>
+						</div>
+					</div>
+				</details>
+			</section>
+		</div>
 	</div>
 	
 	<div id="fiche-personnage">

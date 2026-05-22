@@ -322,17 +322,13 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-domaine-toggle {
   padding-bottom: 0.15rem;
 }
 body.view-mode.mobile-sheet-mode #fiche-magie .magie-talents-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 0.55rem;
+  align-items: start;
 }
 body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-chip {
-  display: grid;
-  grid-template-columns: minmax(0, max-content) 1fr;
-  column-gap: 0.75rem;
-  row-gap: 0.15rem;
+  display: block;
   min-height: 0;
-  align-items: flex-start;
-  justify-content: flex-start;
   padding: 0;
   border: none;
   background: transparent;
@@ -345,14 +341,27 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-chip:has(input:check
   box-shadow: none;
 }
 body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-label {
-  text-align: left;
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background: var(--character-season-strong-border);
+  box-shadow: var(--mobile-shadow);
+  text-align: center;
   font-size: 0.7rem;
+  font-weight: 700;
   line-height: 1.15;
-  white-space: nowrap;
+  white-space: normal;
+  box-sizing: border-box;
+  color: #fff;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie input:checked + .magie-talent-label {
+  color: #fff;
 }
 body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description {
   margin: 0;
   padding-left: 0;
+  align-self: center;
   color: #333;
   font-size: 0.8rem;
   font-weight: 400;
@@ -376,6 +385,33 @@ body {
   font-family: sans-serif;
   margin: 2rem;
   background: #e9ecf3;
+}
+
+.desktop-app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.desktop-app-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+.desktop-app-header #main-title {
+  margin-bottom: 0;
+  flex: 1 1 auto;
 }
 
 h1 {
@@ -404,11 +440,10 @@ h3 {
 .page-actions {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  margin-bottom: 0;
 }
 
 .page-action-btn {
@@ -857,6 +892,9 @@ section > div:last-child {
   padding: 1.6rem 1.8rem;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+#fiche-personnage h2 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 }
 #fiche-personnage.hiver #fiche-magie-hiver {
   display: table;
