@@ -94,6 +94,8 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-personnage {
   box-shadow: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents {
+  width: 100%;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0 0.7rem;
 }
@@ -101,20 +103,31 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents input
   display: none !important;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tbody {
-  display: block;
+  display: table-row-group;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr[hidden] {
   display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr {
+  width: 100%;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr + tr {
   border-top: 1px solid #d3d7e3;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td {
+  width: 20%;
   padding: 0;
   border: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td:not(:has(input:checked)) .magie-talent-label {
   background: #888 !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td + td {
+  padding-left: 0.5rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td > label {
+  display: block;
+  width: 100%;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hidden] {
   display: none !important;
@@ -122,7 +135,8 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hi
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-label {
   pointer-events: auto;
   cursor: pointer;
-  display: inline-block;
+  display: block;
+  width: 100%;
   padding: 0.5rem;
   border-radius: 999px;
   background: var(--character-season-strong-border);
@@ -146,6 +160,11 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magi
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-description li + li {
   margin-top: 0.2rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-domaine-name {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.15;
 }
 body.view-mode.mobile-sheet-mode #fiche-blocs {
   gap: 0.85rem;

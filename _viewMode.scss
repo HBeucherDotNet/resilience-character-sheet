@@ -63,6 +63,8 @@ body.view-mode {
 		
 		#fiche-magie {
 			.tableau-magie-talents {
+				width: 100%;
+				table-layout: fixed;
 				border-collapse: separate;
 				border-spacing: 0 0.7rem;
 				
@@ -71,7 +73,7 @@ body.view-mode {
 				}
 				
 				tbody {
-					display: block;
+					display: table-row-group;
 				}
 				
 				tr[hidden] {
@@ -79,18 +81,29 @@ body.view-mode {
 				}
 				
 				tr {
+					width: 100%;
 					& + tr {
 						border-top: 1px solid colors.$color-border-section;
 					}
 				}
 				
 				td {
+					width: 20%;
 					padding: 0;
 					border: none;
 
 					&:not(:has(input:checked)) .magie-talent-label {
 						background: colors.$color-border-cercle !important;
 					}
+				}
+
+				td + td {
+					padding-left: 0.5rem;
+				}
+
+				td > label {
+					display: block;
+					width: 100%;
 				}
 				
 				td[hidden] {
@@ -100,7 +113,8 @@ body.view-mode {
 				.magie-talent-label {
 					pointer-events: auto;
 					cursor: pointer;
-					display: inline-block;
+					display: block;
+					width: 100%;
 					padding: 0.5rem;
 					border-radius: 999px;
 					background: var(--character-season-strong-border);
@@ -126,6 +140,12 @@ body.view-mode {
 					li + li {
 						margin-top: 0.2rem;
 					}
+				}
+				
+				.magie-domaine-name {
+					font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+					font-size: 0.98rem;
+					line-height: 1.15;
 				}
 			}
 		}
