@@ -189,46 +189,6 @@
     order: -1;
   }
 }
-@media (min-width: 769px) {
-  body.view-mode {
-    background: #fff;
-    margin: 0;
-    padding: 1rem;
-  }
-  body.view-mode #character-builder {
-    display: none !important;
-  }
-  body.view-mode .page-actions {
-    padding: 0.75rem 1rem;
-    margin: 0;
-    background: #fff;
-  }
-  body.view-mode #fiche-personnage {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  body.view-mode .fiche-bloc-item {
-    border: none;
-    padding: 0;
-  }
-  body.view-mode .fiche-bloc-item input {
-    display: none;
-  }
-  body.view-mode .fiche-bloc-item .lire-plus.pictogram-btn {
-    display: none;
-  }
-  body.view-mode .fiche-bloc-item .desc {
-    display: inline !important;
-  }
-  body.view-mode .fiche-bloc-item:not(:has(input:checked)) {
-    display: none;
-  }
-}
 body.view-mode #fiche-magie label,
 body.view-mode #fiche-magie input[type=checkbox],
 body.view-mode #fiche-magie .fiche-bloc-item,
@@ -491,9 +451,80 @@ body {
   margin: calc(-1 * var(--desktop-page-padding));
   margin-bottom: 0.7rem;
 }
-.desktop-app-header #main-title {
+.desktop-app-header .header-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.desktop-app-header .header-main #main-title {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 2rem;
   margin-bottom: 0;
   flex: 1 1 auto;
+}
+.desktop-app-header .desktop-header-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+.desktop-app-header .desktop-header-menu .page-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.65rem);
+  min-width: 15rem;
+  padding: 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+  opacity: 0;
+  transform: translateY(-0.6rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 120;
+}
+.desktop-app-header .desktop-header-menu .page-actions .page-action-btn {
+  width: 100%;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle {
+  background: #235a8a;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle span {
+  background: #fff;
+}
+.desktop-app-header .desktop-header-menu[open] .page-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle {
+  list-style: none;
+  width: 3.35rem;
+  height: 3.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle span {
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: #235a8a;
 }
 
 .mobile-brand-banner {
@@ -584,15 +615,6 @@ h3 {
   letter-spacing: 0.02rem;
 }
 
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 0;
-}
-
 .page-action-btn {
   border: 1px solid #235a8a;
   background: #235a8a;
@@ -605,6 +627,12 @@ h3 {
 }
 .page-action-btn:hover {
   filter: brightness(1.2);
+}
+.page-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+  box-shadow: none;
 }
 
 .page-action-btn-secondary {
@@ -1092,10 +1120,6 @@ section > div:last-child {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-style: italic;
   font-weight: 600;
-}
-
-.fiche-logo {
-  width: 180px;
 }
 
 .fiche-valeurs {

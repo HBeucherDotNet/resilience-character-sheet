@@ -446,6 +446,12 @@ section h2 {
 .page-action-btn:hover {
   filter: brightness(1.2);
 }
+.page-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+  box-shadow: none;
+}
 
 .page-action-btn-secondary {
   background: #fff;
@@ -1056,10 +1062,6 @@ section h2 {
 .logo-name-saison input {
   width: 100%;
   box-sizing: border-box;
-}
-
-.fiche-logo {
-  width: 180px;
 }
 
 .fiche-valeurs {

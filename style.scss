@@ -44,10 +44,96 @@ body {
 	box-shadow: 0 6px 18px colors.$color-box-shadow;
 	margin: calc(-1 * var(--desktop-page-padding));
 	margin-bottom: 0.7rem;
-
-	#main-title {
-		margin-bottom: 0;
-		flex: 1 1 auto;
+	
+	.header-main {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-width: 0;
+		
+		#main-title {
+			font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+			font-size: 2rem;
+			margin-bottom: 0;
+			flex: 1 1 auto;
+		}
+	}
+	
+	.desktop-header-menu {
+		position: relative;
+		flex: 0 0 auto;
+		
+		.page-actions {
+			display: flex;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			margin-bottom: 0;
+			
+			position: absolute;
+			right: 0;
+			top: calc(100% + 0.65rem);
+			min-width: 15rem;
+			padding: 0.75rem;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			border: 1px solid colors.$color-border-section;
+			border-radius: 16px;
+			background: colors.$color-white;
+			box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+			opacity: 0;
+			transform: translateY(-0.6rem);
+			pointer-events: none;
+			transition: opacity 180ms ease, transform 180ms ease;
+			z-index: 120;
+			
+			.page-action-btn {
+				width: 100%;
+			}
+		}
+		
+		&[open] {
+			.desktop-header-menu-toggle {
+				background: colors.$color-hiver;
+				
+				span {
+					background: colors.$color-white;
+				}
+			}
+			
+			.page-actions {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		}
+		
+		
+		
+		.desktop-header-menu-toggle {
+			list-style: none;
+			width: 3.35rem;
+			height: 3.35rem;
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.32rem;
+			cursor: pointer;
+			border-radius: 999px;
+			
+			&::-webkit-details-marker {
+				display: none;
+			}
+			
+			span {
+				width: 2rem;
+				height: 3px;
+				border-radius: 999px;
+				background: colors.$color-hiver;
+			}
+		}
 	}
 }
 
@@ -168,15 +254,6 @@ h3 {
 	letter-spacing: 0.02rem;
 }
 
-.page-actions {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 0.75rem;
-	margin-bottom: 0;
-}
-
 .page-action-btn {
 	border: 1px solid colors.$color-hiver;
 	background: colors.$color-hiver;
@@ -189,6 +266,13 @@ h3 {
 	
 	&:hover {
 		filter: brightness(1.20);
+	}
+
+	&:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+		filter: saturate(0.35);
+		box-shadow: none;
 	}
 }
 
@@ -517,7 +601,7 @@ section {
 	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
-
+	
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	}
@@ -563,10 +647,6 @@ section {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	font-style: italic;
 	font-weight: 600;
-}
-
-.fiche-logo { 
-	width: 180px;
 }
 
 .fiche-valeurs { 

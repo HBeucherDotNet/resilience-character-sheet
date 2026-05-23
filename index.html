@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Résilience - Création de Voix</title>
+	<title>Résilience - Création de personnage</title>
 	<link rel="stylesheet" href="style.css">
 	<script type="module" src="script.js"></script>
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -11,11 +11,22 @@
 <body>
 	<div class="desktop-app-shell">
 		<header class="desktop-app-header">
-			<h1 id="main-title">Résilience - Création de Voix</h1>
-			<div class="page-actions" aria-label="Actions de partage">
-				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
-				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+			<div class="header-main">
+				<img src="./assets/logo-180.png" alt="Logo Résilience" class="mobile-brand-logo">
+				<h1 id="main-title">Création de personnage</h1>
 			</div>
+			<details class="desktop-header-menu">
+				<summary class="desktop-header-menu-toggle" aria-label="Ouvrir le menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</summary>
+				<div class="page-actions" aria-label="Actions de partage">
+					<button type="button" id="launch-sort-btn" class="page-action-btn page-action-btn-secondary" disabled>Lancer un sort</button>
+					<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
+					<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+				</div>
+			</details>
 		</header>
 		<div id="character-builder">
 			
@@ -212,7 +223,7 @@
 	<div id="fiche-personnage">
 		<div class="fiche-header logo-name-saison">
 			<div class="logo-nom">
-				<img src="./assets/logo.png" alt="Resilience" class="fiche-logo">
+				<img src="./assets/logo-180.png" alt="Resilience" class="fiche-logo">
 				<div class="fiche-nom">Nom : <input type="text" id="fiche-nom-input" placeholder="Nom du personnage"></div>
 				<div class="fiche-quatuor">Quatuor : <input type="text" id="fiche-quatuor-input" placeholder="Nom du Quatuor"></div>
 			</div>

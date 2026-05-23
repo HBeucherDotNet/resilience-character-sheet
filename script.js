@@ -171,6 +171,18 @@ function syncMagicDomains(state = personnage.state) {
 	syncMobileViewModePresentation();
 }
 
+function syncSortLaunchButtonState(state = personnage.state) {
+	const launchSortButton = document.getElementById('launch-sort-btn');
+	if (!(launchSortButton instanceof HTMLButtonElement)) return;
+
+	const hasSelectedSeason = Boolean(state?.saison?.value);
+	launchSortButton.disabled = !hasSelectedSeason;
+	launchSortButton.setAttribute('aria-disabled', String(!hasSelectedSeason));
+	launchSortButton.title = hasSelectedSeason
+		? 'Ouvrir la modale de lancement de sort'
+		: 'Choisissez d\'abord une saison';
+}
+
 function isMobileReadOnlyViewActive() {
 	return document.body.classList.contains('view-mode') && document.body.classList.contains('mobile-sheet-mode');
 }
@@ -808,6 +820,12 @@ function initLignees() {
 function initBindings() {
 	bindViewModeActions();
 
+	const launchSortButton = document.getElementById('launch-sort-btn');
+	launchSortButton?.addEventListener('click', () => {
+		if (launchSortButton.disabled) return;
+		sortDialogController.openSortDialog();
+	});
+
 	document.querySelectorAll('#character-builder input[type="checkbox"]').forEach(input => {
 		input.addEventListener('change', selectUnique.bind(null, input.name, input));
 		input.addEventListener('change', genererFiche);
@@ -949,6 +967,37 @@ function bindResponsiveCollapsibleSection() {
 	resizeObserver.observe(summary);
 }
 
+function bindDesktopHeaderMenu() {
+	const headerMenu = document.querySelector('.desktop-header-menu');
+	if (!(headerMenu instanceof HTMLDetailsElement)) return;
+
+	function closeHeaderMenu() {
+		headerMenu.open = false;
+	}
+
+	headerMenu.addEventListener('click', event => {
+		const button = event.target instanceof Element
+			? event.target.closest('.page-action-btn')
+			: null;
+		if (button instanceof HTMLButtonElement) {
+			closeHeaderMenu();
+		}
+	});
+
+	document.addEventListener('click', event => {
+		if (!(event.target instanceof Node)) return;
+		if (!headerMenu.open) return;
+		if (headerMenu.contains(event.target)) return;
+		closeHeaderMenu();
+	});
+
+	document.addEventListener('keydown', event => {
+		if (event.key === 'Escape') {
+			closeHeaderMenu();
+		}
+	});
+}
+
 window.addEventListener('DOMContentLoaded', function() {
 	renderConfiguredOptionSections();
 	renderMorphologyOptionGroups();
@@ -961,6 +1010,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('.fiche-bloc-item').forEach(div => { div.style.display = 'none'; });
 	personnage.subscribe(ficheRenderer.renderPersonnage);
 	personnage.subscribe(syncMagicDomains);
+	personnage.subscribe(syncSortLaunchButtonState);
 	personnage.subscribe(hashStateSync.updateHashFromState);
 
 	fillAmeliorationsSections();
@@ -971,7 +1021,9 @@ window.addEventListener('DOMContentLoaded', function() {
 	initBindings();
 	initStateFromHash();
 	syncPersonnageFromDom();
+	syncSortLaunchButtonState();
 	syncMobileViewModePresentation();
+	bindDesktopHeaderMenu();
 	sortDialogController.bindSortDialog();
 	bindResponsiveCollapsibleSection();
 });

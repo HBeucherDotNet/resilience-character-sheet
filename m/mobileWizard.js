@@ -167,6 +167,7 @@ function setupSteps() {
 	const ameliorationsHelpModalCloseButton = ameliorationsHelpModal?.querySelector('.help-modale-close');
 	const returnToFormButton = document.getElementById('return-to-form-btn');
 	const openAmeliorationsButton = document.getElementById('open-ameliorations-btn');
+	const launchSortButton = document.getElementById('launch-sort-btn');
 	const toggleViewModeButton = document.getElementById('toggle-view-mode-btn');
 	const shareViewLinkButton = document.getElementById('share-view-link-btn');
 
@@ -378,6 +379,10 @@ function setupSteps() {
 
 	openAmeliorationsButton?.addEventListener('click', () => {
 		openAmeliorationsView();
+	});
+
+	launchSortButton?.addEventListener('click', () => {
+		closeHeaderMenu();
 	});
 
 	toggleViewModeButton?.addEventListener('click', () => {
