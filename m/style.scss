@@ -34,90 +34,6 @@ ul {
 	padding-left: 1.25rem;
 }
 
-.mobile-brand-banner {
-	z-index: 100;
-	position: sticky;
-	top: 0;
-	min-height: var(--mobile-header-height);
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0.75rem;
-	margin: calc(-1 * var(--mobile-page-padding));
-	margin-bottom: 0.7rem;
-	padding: 0.45rem 0.7rem;
-	background-color: colors.$color-white;
-	border-bottom: 1px solid var(--mobile-card-border);
-	box-shadow: var(--mobile-shadow);
-}
-
-.mobile-brand-main {
-	display: flex;
-	align-items: center;
-	gap: 0.55rem;
-	min-width: 0;
-}
-
-.mobile-brand-logo {
-	height: 34px;
-	object-fit: contain;
-	flex: 0 0 auto;
-}
-
-.mobile-brand-title {
-	font-size: 1rem;
-	font-weight: 700;
-	letter-spacing: 0.03em;
-	color: colors.$color-hiver;
-}
-
-.mobile-header-menu {
-	position: relative;
-	margin-left: auto;
-	z-index: 130;
-	
-	&[open] {
-		.mobile-header-menu-toggle {
-			background: colors.$color-hiver;
-			
-			span {
-				background: colors.$color-white;
-			}
-		}
-		
-		.page-actions {
-			display: flex !important;
-			opacity: 1;
-			transform: translateY(0);
-			pointer-events: auto;
-		}
-	}
-}
-
-.mobile-header-menu-toggle {
-	list-style: none;
-	width: 2.6rem;
-	height: 2.6rem;
-	display: inline-flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.24rem;
-	cursor: pointer;
-	
-	&::-webkit-details-marker {
-		display: none;
-	}
-	
-	span {
-		width: 1rem;
-		height: 2px;
-		border-radius: 999px;
-		background: colors.$color-hiver;
-	}
-}
-
 h1 {
 	margin-top: 0;
 	font-size: 1.25rem;
@@ -158,6 +74,90 @@ section {
 	
 	h2 {
 		display: none;
+	}
+}
+
+.mobile-brand-banner {
+	z-index: 100;
+	position: sticky;
+	top: 0;
+	min-height: var(--mobile-header-height);
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin: calc(-1 * var(--mobile-page-padding));
+	margin-bottom: 0.7rem;
+	padding: 0.45rem 0.7rem;
+	background-color: colors.$color-white;
+	border-bottom: 1px solid var(--mobile-card-border);
+	box-shadow: var(--mobile-shadow);
+	
+	.mobile-brand-main {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		min-width: 0;
+	}
+	
+	.mobile-brand-logo {
+		height: 34px;
+		object-fit: contain;
+		flex: 0 0 auto;
+	}
+	
+	.mobile-brand-title {
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		color: colors.$color-hiver;
+	}
+	
+	.mobile-header-menu {
+		position: relative;
+		margin-left: auto;
+		z-index: 130;
+		
+		&[open] {
+			.mobile-header-menu-toggle {
+				background: colors.$color-hiver;
+				
+				span {
+					background: colors.$color-white;
+				}
+			}
+			
+			.page-actions {
+				display: flex !important;
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		}
+	}
+	
+	.mobile-header-menu-toggle {
+		list-style: none;
+		width: 2.6rem;
+		height: 2.6rem;
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.24rem;
+		cursor: pointer;
+		
+		&::-webkit-details-marker {
+			display: none;
+		}
+		
+		span {
+			width: 1rem;
+			height: 2px;
+			border-radius: 999px;
+			background: colors.$color-hiver;
+		}
 	}
 }
 
@@ -244,7 +244,7 @@ section {
 			}
 		}
 	}
-
+	
 	&.mobile-step-active {
 		display: flex !important;
 	}
@@ -630,14 +630,14 @@ section {
 }
 
 #fiche-personnage {
-
+	
 	display: none;
 	flex-direction: column;
 	background: colors.$color-white;
 	padding: 0;
 	gap: 0.65rem;
 	background: colors.$color-white;
-
+	
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	}
@@ -685,7 +685,7 @@ section {
 }
 
 .fiche-valeurs { 
-
+	
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

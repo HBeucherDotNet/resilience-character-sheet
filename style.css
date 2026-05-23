@@ -106,6 +106,9 @@
   #fiche-magie .tableau-magie-talents {
     font-size: 0.8rem !important;
   }
+  #fiche-magie td:not(:has(input:checked)) {
+    display: none !important;
+  }
   .fiche-bloc > div {
     gap: 0 !important;
   }
@@ -253,9 +256,10 @@ body.view-mode .fiche-bloc .fiche-bloc-item:not(:has(input:checked)) {
   display: none !important;
 }
 body.view-mode:not(.mobile-sheet-mode) {
+  --desktop-page-padding: 1rem;
   background: #fff;
   margin: 0;
-  padding: 1rem;
+  padding: var(--desktop-page-padding);
 }
 body.view-mode:not(.mobile-sheet-mode) #character-builder {
   display: none !important;
@@ -448,6 +452,7 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description li + li 
 }
 
 :root {
+  --desktop-page-padding: 2rem;
   --mobile-card-radius: 10px;
   --color-hiver: #235a8a;
   --color-printemps: #2c7a4b;
@@ -470,23 +475,90 @@ body {
 }
 
 .desktop-app-header {
+  z-index: 100;
   position: sticky;
-  top: 1rem;
-  z-index: 20;
+  top: 0;
+  min-height: 3.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   padding: 1rem 1.2rem;
-  border: 1px solid #d3d7e3;
-  border-radius: 16px;
+  border-bottom: 1px solid var(--mobile-card-border);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  margin: calc(-1 * var(--desktop-page-padding));
+  margin-bottom: 0.7rem;
 }
 .desktop-app-header #main-title {
   margin-bottom: 0;
   flex: 1 1 auto;
+}
+
+.mobile-brand-banner {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  gap: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  background-color: #fff;
+  border-bottom: 1px solid var(--mobile-card-border);
+  box-shadow: var(--mobile-shadow);
+}
+.mobile-brand-banner .mobile-brand-main {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.mobile-brand-banner .mobile-brand-logo {
+  height: 34px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+.mobile-brand-banner .mobile-brand-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #235a8a;
+}
+.mobile-brand-banner .mobile-header-menu {
+  position: relative;
+  margin-left: auto;
+  z-index: 130;
+}
+.mobile-brand-banner .mobile-header-menu[open] .mobile-header-menu-toggle {
+  background: #235a8a;
+}
+.mobile-brand-banner .mobile-header-menu[open] .mobile-header-menu-toggle span {
+  background: #fff;
+}
+.mobile-brand-banner .mobile-header-menu[open] .page-actions {
+  display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-brand-banner .mobile-header-menu-toggle {
+  list-style: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.24rem;
+  cursor: pointer;
+}
+.mobile-brand-banner .mobile-header-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+.mobile-brand-banner .mobile-header-menu-toggle span {
+  width: 1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #235a8a;
 }
 
 h1 {

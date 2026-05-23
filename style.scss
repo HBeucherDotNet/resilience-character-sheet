@@ -5,6 +5,7 @@
 @use "viewMode";
 
 :root {
+	--desktop-page-padding: 2rem;
 	--mobile-card-radius: 10px;
 	
 	--color-hiver: #{colors.$color-hiver};
@@ -28,25 +29,121 @@ body {
 }
 
 .desktop-app-header {
+	z-index: 100;
 	position: sticky;
-	top: 1rem;
-	z-index: 20;
+	top: 0;
+	min-height: 3.6rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1.5rem;
 	padding: 1rem 1.2rem;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 16px;
+	border-bottom: 1px solid var(--mobile-card-border);
 	background: rgba(255, 255, 255, 0.94);
 	backdrop-filter: blur(10px);
 	box-shadow: 0 6px 18px colors.$color-box-shadow;
+	margin: calc(-1 * var(--desktop-page-padding));
+	margin-bottom: 0.7rem;
 
 	#main-title {
 		margin-bottom: 0;
 		flex: 1 1 auto;
 	}
 }
+
+
+
+
+
+.mobile-brand-banner {
+	position: sticky;
+	top: 0;
+	box-sizing: border-box;
+	gap: 0.75rem;
+	padding: 0.45rem 0.7rem;
+	background-color: colors.$color-white;
+	border-bottom: 1px solid var(--mobile-card-border);
+	box-shadow: var(--mobile-shadow);
+	
+	.mobile-brand-main {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		min-width: 0;
+	}
+	
+	.mobile-brand-logo {
+		height: 34px;
+		object-fit: contain;
+		flex: 0 0 auto;
+	}
+	
+	.mobile-brand-title {
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		color: colors.$color-hiver;
+	}
+	
+	.mobile-header-menu {
+		position: relative;
+		margin-left: auto;
+		z-index: 130;
+		
+		&[open] {
+			.mobile-header-menu-toggle {
+				background: colors.$color-hiver;
+				
+				span {
+					background: colors.$color-white;
+				}
+			}
+			
+			.page-actions {
+				display: flex !important;
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		}
+	}
+	
+	.mobile-header-menu-toggle {
+		list-style: none;
+		width: 2.6rem;
+		height: 2.6rem;
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.24rem;
+		cursor: pointer;
+		
+		&::-webkit-details-marker {
+			display: none;
+		}
+		
+		span {
+			width: 1rem;
+			height: 2px;
+			border-radius: 999px;
+			background: colors.$color-hiver;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 h1 {
 	margin-top: 0;

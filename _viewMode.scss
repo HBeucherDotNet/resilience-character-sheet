@@ -37,9 +37,11 @@ body.view-mode {
 	}
 	
 	&:not(.mobile-sheet-mode) {
+		--desktop-page-padding: 1rem;
+
 		background: colors.$color-white;
 		margin: 0;
-		padding: 1rem;
+		padding: var(--desktop-page-padding);
 		
 		#character-builder {
 			display: none !important;

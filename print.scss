@@ -73,6 +73,10 @@
 		.tableau-magie-talents {
 			font-size: 0.8rem !important;
 		}
+
+		td:not(:has(input:checked)) {
+			display: none !important;
+		}
 	}
 	
 	.fiche-bloc > div {
