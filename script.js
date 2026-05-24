@@ -347,7 +347,7 @@ function syncMobileViewModePresentation() {
 }
 
 function bindAmeliorationScoreControls() {
-	document.querySelectorAll('.amelioration-score-btn').forEach(button => {
+	document.querySelectorAll('.amelioration-score-btn, .sort-dialog-btn').forEach(button => {
 		button.addEventListener('click', event => {
 			if (window.matchMedia('(pointer: coarse)').matches) {
 				const lastHandledAt = lastScoreButtonClickByElement.get(button) ?? -Infinity;

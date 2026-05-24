@@ -373,6 +373,7 @@ section h2 {
   font-weight: 700;
   letter-spacing: 0.03em;
   color: #235a8a;
+  margin-bottom: 0;
 }
 .mobile-brand-banner .mobile-header-menu {
   position: relative;
@@ -1450,6 +1451,46 @@ section h2 {
   font-size: 0.9rem;
   color: #555;
 }
+.sort-dialog-fields .sort-dialog-row-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto auto 45px;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+}
+.sort-dialog-fields .sort-dialog-row-item > span {
+  min-width: 0;
+}
+.sort-dialog-fields .sort-dialog-row-item > :last-child {
+  font-size: 0.7rem;
+}
+.sort-dialog-fields .sort-dialog-input {
+  width: 1.5rem;
+  text-align: center;
+  padding: 0.2rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 6px;
+  background: #fff;
+}
+.sort-dialog-fields .sort-dialog-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #235a8a;
+  border-radius: 999px;
+  background: #235a8a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.sort-dialog-fields .sort-dialog-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+}
 
 .sort-dialog-talent-select-row {
   display: flex;
@@ -1472,10 +1513,6 @@ section h2 {
 }
 #sort-talent-effets li + li {
   margin-top: 0.3rem;
-}
-
-.sort-dialog-row-item > span {
-  min-width: 0;
 }
 
 .sort-dialog-row-indicator {
