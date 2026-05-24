@@ -105,6 +105,9 @@
   #fiche-magie .tableau-magie-talents {
     font-size: 0.8rem !important;
   }
+  #fiche-magie td:not(:has(input:checked)) {
+    display: none !important;
+  }
   .fiche-bloc > div {
     gap: 0 !important;
   }

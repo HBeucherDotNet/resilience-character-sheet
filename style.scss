@@ -5,6 +5,7 @@
 @use "viewMode";
 
 :root {
+	--desktop-page-padding: 2rem;
 	--mobile-card-radius: 10px;
 	
 	--color-hiver: #{colors.$color-hiver};
@@ -28,23 +29,217 @@ body {
 }
 
 .desktop-app-header {
+	z-index: 100;
 	position: sticky;
-	top: 1rem;
-	z-index: 20;
+	top: 0;
+	min-height: 3.6rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1.5rem;
 	padding: 1rem 1.2rem;
-	border: 1px solid colors.$color-border-section;
-	border-radius: 16px;
+	border-bottom: 1px solid var(--mobile-card-border);
 	background: rgba(255, 255, 255, 0.94);
 	backdrop-filter: blur(10px);
 	box-shadow: 0 6px 18px colors.$color-box-shadow;
+	margin: calc(-1 * var(--desktop-page-padding));
+	margin-bottom: 0.7rem;
+	
+	.header-main {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-width: 0;
+		
+		#main-title {
+			font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+			font-size: 2rem;
+			margin-bottom: 0;
+			flex: 1 1 auto;
+		}
+	}
+	
+	.desktop-header-menu {
+		position: relative;
+		flex: 0 0 auto;
+		
+		.page-actions {
+			display: flex;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			margin-bottom: 0;
+			
+			position: absolute;
+			right: 0;
+			top: calc(100% + 0.65rem);
+			min-width: 15rem;
+			padding: 0.75rem;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			border: 1px solid colors.$color-border-section;
+			border-radius: 16px;
+			background: colors.$color-white;
+			box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+			opacity: 0;
+			transform: translateY(-0.6rem);
+			pointer-events: none;
+			transition: opacity 180ms ease, transform 180ms ease;
+			z-index: 120;
+			
+			.page-action-btn {
+				width: 100%;
+			}
+		}
+		
+		&[open] {
+			.desktop-header-menu-toggle {
+				background: colors.$color-hiver;
+				
+				span {
+					background: colors.$color-white;
+				}
+			}
+			
+			.page-actions {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		}
+		
+		
+		
+		.desktop-header-menu-toggle {
+			list-style: none;
+			width: 3.35rem;
+			height: 3.35rem;
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.32rem;
+			cursor: pointer;
+			border-radius: 999px;
+			
+			&::-webkit-details-marker {
+				display: none;
+			}
+			
+			span {
+				width: 2rem;
+				height: 3px;
+				border-radius: 999px;
+				background: colors.$color-hiver;
+			}
+		}
+	}
+}
 
-	#main-title {
-		margin-bottom: 0;
-		flex: 1 1 auto;
+
+
+
+
+.mobile-brand-banner {
+	position: sticky;
+	top: 0;
+	box-sizing: border-box;
+	gap: 0.75rem;
+	padding: 0.45rem 0.7rem;
+	background-color: colors.$color-white;
+	border-bottom: 1px solid var(--mobile-card-border);
+	box-shadow: var(--mobile-shadow);
+	
+	.header-main {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-width: 0;
+		
+		#main-title {
+			font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+			font-size: 2rem;
+			margin-bottom: 0;
+			flex: 1 1 auto;
+		}
+	}
+	
+	.desktop-header-menu {
+		position: relative;
+		flex: 0 0 auto;
+		
+		.page-actions {
+			display: flex;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			margin-bottom: 0;
+			
+			position: absolute;
+			right: 0;
+			top: calc(100% + 0.65rem);
+			min-width: 15rem;
+			padding: 0.75rem;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			border: 1px solid colors.$color-border-section;
+			border-radius: 16px;
+			background: colors.$color-white;
+			box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+			opacity: 0;
+			transform: translateY(-0.6rem);
+			pointer-events: none;
+			transition: opacity 180ms ease, transform 180ms ease;
+			z-index: 120;
+			
+			.page-action-btn {
+				width: 100%;
+			}
+		}
+		
+		&[open] {
+			.desktop-header-menu-toggle {
+				background: colors.$color-hiver;
+				
+				span {
+					background: colors.$color-white;
+				}
+			}
+			
+			.page-actions {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		}
+		
+		
+		
+		.desktop-header-menu-toggle {
+			list-style: none;
+			width: 3.35rem;
+			height: 3.35rem;
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.32rem;
+			cursor: pointer;
+			border-radius: 999px;
+			
+			&::-webkit-details-marker {
+				display: none;
+			}
+			
+			span {
+				width: 2rem;
+				height: 3px;
+				border-radius: 999px;
+				background: colors.$color-hiver;
+			}
+		}
 	}
 }
 
@@ -71,15 +266,6 @@ h3 {
 	letter-spacing: 0.02rem;
 }
 
-.page-actions {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 0.75rem;
-	margin-bottom: 0;
-}
-
 .page-action-btn {
 	border: 1px solid colors.$color-hiver;
 	background: colors.$color-hiver;
@@ -92,6 +278,13 @@ h3 {
 	
 	&:hover {
 		filter: brightness(1.20);
+	}
+
+	&:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+		filter: saturate(0.35);
+		box-shadow: none;
 	}
 }
 
@@ -420,7 +613,7 @@ section {
 	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
-
+	
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	}
@@ -466,10 +659,6 @@ section {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	font-style: italic;
 	font-weight: 600;
-}
-
-.fiche-logo { 
-	width: 180px;
 }
 
 .fiche-valeurs { 
@@ -819,6 +1008,48 @@ section {
 	gap: 0.6rem;
 	font-size: 0.9rem;
 	color: colors.$color-text-muted;
+	
+	.sort-dialog-row-item {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) auto auto auto auto 75px;
+		align-items: center;
+		gap: 0.35rem;
+		background: colors.$color-white;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 8px;
+		padding: 0.55rem 0.6rem;
+		
+		> span {
+		min-width: 0;
+	}
+	}
+	
+	.sort-dialog-input {
+		width: 1.5rem;
+		text-align: center;
+		padding: 0.2rem;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 6px;
+		background: colors.$color-white;
+	}
+	
+	.sort-dialog-btn {
+		width: 1.6rem;
+		height: 1.6rem;
+		border: 1px solid colors.$color-hiver;
+		border-radius: 999px;
+		background: colors.$color-hiver;
+		color: colors.$color-white;
+		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+		
+		&:disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+			filter: saturate(0.35);
+		}
+	}
 }
 
 .sort-dialog-talent-select-row {
@@ -842,12 +1073,6 @@ section {
 	
 	li + li {
 		margin-top: 0.3rem;
-	}
-}
-
-.sort-dialog-row-item {
-	> span {
-		min-width: 0;
 	}
 }
 

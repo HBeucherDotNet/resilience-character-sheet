@@ -106,6 +106,9 @@
   #fiche-magie .tableau-magie-talents {
     font-size: 0.8rem !important;
   }
+  #fiche-magie td:not(:has(input:checked)) {
+    display: none !important;
+  }
   .fiche-bloc > div {
     gap: 0 !important;
   }
@@ -186,46 +189,6 @@
     order: -1;
   }
 }
-@media (min-width: 769px) {
-  body.view-mode {
-    background: #fff;
-    margin: 0;
-    padding: 1rem;
-  }
-  body.view-mode #character-builder {
-    display: none !important;
-  }
-  body.view-mode .page-actions {
-    padding: 0.75rem 1rem;
-    margin: 0;
-    background: #fff;
-  }
-  body.view-mode #fiche-personnage {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  body.view-mode .fiche-bloc-item {
-    border: none;
-    padding: 0;
-  }
-  body.view-mode .fiche-bloc-item input {
-    display: none;
-  }
-  body.view-mode .fiche-bloc-item .lire-plus.pictogram-btn {
-    display: none;
-  }
-  body.view-mode .fiche-bloc-item .desc {
-    display: inline !important;
-  }
-  body.view-mode .fiche-bloc-item:not(:has(input:checked)) {
-    display: none;
-  }
-}
 body.view-mode #fiche-magie label,
 body.view-mode #fiche-magie input[type=checkbox],
 body.view-mode #fiche-magie .fiche-bloc-item,
@@ -253,9 +216,10 @@ body.view-mode .fiche-bloc .fiche-bloc-item:not(:has(input:checked)) {
   display: none !important;
 }
 body.view-mode:not(.mobile-sheet-mode) {
+  --desktop-page-padding: 1rem;
   background: #fff;
   margin: 0;
-  padding: 1rem;
+  padding: var(--desktop-page-padding);
 }
 body.view-mode:not(.mobile-sheet-mode) #character-builder {
   display: none !important;
@@ -448,6 +412,7 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description li + li 
 }
 
 :root {
+  --desktop-page-padding: 2rem;
   --mobile-card-radius: 10px;
   --color-hiver: #235a8a;
   --color-printemps: #2c7a4b;
@@ -470,23 +435,182 @@ body {
 }
 
 .desktop-app-header {
+  z-index: 100;
   position: sticky;
-  top: 1rem;
-  z-index: 20;
+  top: 0;
+  min-height: 3.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   padding: 1rem 1.2rem;
-  border: 1px solid #d3d7e3;
-  border-radius: 16px;
+  border-bottom: 1px solid var(--mobile-card-border);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  margin: calc(-1 * var(--desktop-page-padding));
+  margin-bottom: 0.7rem;
 }
-.desktop-app-header #main-title {
+.desktop-app-header .header-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.desktop-app-header .header-main #main-title {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 2rem;
   margin-bottom: 0;
   flex: 1 1 auto;
+}
+.desktop-app-header .desktop-header-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+.desktop-app-header .desktop-header-menu .page-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.65rem);
+  min-width: 15rem;
+  padding: 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+  opacity: 0;
+  transform: translateY(-0.6rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 120;
+}
+.desktop-app-header .desktop-header-menu .page-actions .page-action-btn {
+  width: 100%;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle {
+  background: #235a8a;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle span {
+  background: #fff;
+}
+.desktop-app-header .desktop-header-menu[open] .page-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle {
+  list-style: none;
+  width: 3.35rem;
+  height: 3.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle span {
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: #235a8a;
+}
+
+.mobile-brand-banner {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  gap: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  background-color: #fff;
+  border-bottom: 1px solid var(--mobile-card-border);
+  box-shadow: var(--mobile-shadow);
+}
+.mobile-brand-banner .header-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.mobile-brand-banner .header-main #main-title {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 2rem;
+  margin-bottom: 0;
+  flex: 1 1 auto;
+}
+.mobile-brand-banner .desktop-header-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+.mobile-brand-banner .desktop-header-menu .page-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.65rem);
+  min-width: 15rem;
+  padding: 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+  opacity: 0;
+  transform: translateY(-0.6rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 120;
+}
+.mobile-brand-banner .desktop-header-menu .page-actions .page-action-btn {
+  width: 100%;
+}
+.mobile-brand-banner .desktop-header-menu[open] .desktop-header-menu-toggle {
+  background: #235a8a;
+}
+.mobile-brand-banner .desktop-header-menu[open] .desktop-header-menu-toggle span {
+  background: #fff;
+}
+.mobile-brand-banner .desktop-header-menu[open] .page-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-brand-banner .desktop-header-menu .desktop-header-menu-toggle {
+  list-style: none;
+  width: 3.35rem;
+  height: 3.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.mobile-brand-banner .desktop-header-menu .desktop-header-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+.mobile-brand-banner .desktop-header-menu .desktop-header-menu-toggle span {
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: #235a8a;
 }
 
 h1 {
@@ -512,15 +636,6 @@ h3 {
   letter-spacing: 0.02rem;
 }
 
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 0;
-}
-
 .page-action-btn {
   border: 1px solid #235a8a;
   background: #235a8a;
@@ -533,6 +648,12 @@ h3 {
 }
 .page-action-btn:hover {
   filter: brightness(1.2);
+}
+.page-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+  box-shadow: none;
 }
 
 .page-action-btn-secondary {
@@ -1022,10 +1143,6 @@ section > div:last-child {
   font-weight: 600;
 }
 
-.fiche-logo {
-  width: 180px;
-}
-
 .fiche-valeurs {
   display: flex;
   flex-direction: column;
@@ -1363,6 +1480,43 @@ section > div:last-child {
   font-size: 0.9rem;
   color: #555;
 }
+.sort-dialog-fields .sort-dialog-row-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto auto 75px;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+}
+.sort-dialog-fields .sort-dialog-row-item > span {
+  min-width: 0;
+}
+.sort-dialog-fields .sort-dialog-input {
+  width: 1.5rem;
+  text-align: center;
+  padding: 0.2rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 6px;
+  background: #fff;
+}
+.sort-dialog-fields .sort-dialog-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #235a8a;
+  border-radius: 999px;
+  background: #235a8a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.sort-dialog-fields .sort-dialog-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+}
 
 .sort-dialog-talent-select-row {
   display: flex;
@@ -1385,10 +1539,6 @@ section > div:last-child {
 }
 #sort-talent-effets li + li {
   margin-top: 0.3rem;
-}
-
-.sort-dialog-row-item > span {
-  min-width: 0;
 }
 
 .sort-dialog-row-indicator {
