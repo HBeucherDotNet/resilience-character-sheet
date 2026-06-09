@@ -39,7 +39,7 @@ export const dons = {
 		categorie: "Commun",
 		saison: null,
 		summary: "S’utilise lors des Intempéries et lorsque le personnage est dans un milieu inhospitalier ou un milieu hostile",
-		description: "Le personnage sait ralentir son métabolisme pour supporter des conditions difficiles voire létales. Ce Don s'utilise lors des Intempéries et lorsque le personnage est dans un milieu inhospitalier ou un milieu hostile. Ce Don est uniquement utile dans le Monde d’origine du personnage (Matériel, Altjira, Mictlan…)."
+		description: "le personnage sait ralentir son métabolisme pour supporter des conditions difficiles voire létales. Ce Don s'utilise quand le personnage subit un malus (Blessures, Intempéries, Sort, milieux inhospitalier/hostile…), lors des périodes d’Attrition ou pour feindre la mort. Ce Don est uniquement utile dans le Monde d’origine du personnage (Matériel, Altjira, Mictlan…)."
 	},
 	regeneration: {
 		nom: "Régénération",
@@ -153,12 +153,19 @@ export const dons = {
 		summary: "S’utilise en Attaque",
 		description: "Le personnage produit des toxines mortelles qu’il peut injecter à ses victimes. Ce Don s’utilise quand le personnage fait une Attaque."
 	},
-	fabrique: {
-		nom: "Fabrique 🍁",
+	cire: {
+		nom: "Cire 🍁",
 		categorie: "Sécrétion",
 		saison: "automne",
-		summary: "Fabriquer ou réparer des objets et abris",
-		description: "Le personnage secrète en permanence une substance utile pour sa vie quotidienne, qu’il peut utiliser de multiples façons : poils, soie, bave, épines, feuilles, plumes, cire… Ce Don s’utilise quand le personnage fabrique ou répare des objets et abris."
+		summary: "Résister aux intempéries, fabriquer ou réparer des édifices et abris",
+		description: "le personnage secrète une substance isolante qui recouvre son corps ou qu’il utilise pour son abri. Cela peut prendre la forme d’une cire ou de sébum, par exemple. Ce Don s’utilise quand le personnage subit une Intempérie ou pour construire et réparer des édifices et structures."
+	},
+	soie: {
+		nom: "Soie 🍁",
+		categorie: "Sécrétion",
+		saison: "automne",
+		summary: "Fabriquer ou réparer des objets",
+		description: "Le personnage secrète des fils de soie, bave, latex, glue ou laine qu’il peut utiliser de multiples façons. Ce Don s’utilise quand le personnage fabrique ou répare des objets, y compris faits de cette soie."
 	},
 	reserves: {
 		nom: "Réserves 🍁",

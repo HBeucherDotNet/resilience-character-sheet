@@ -66,56 +66,56 @@ export const equipements = {
 		nom: "Outils de Survie ❄️",
 		categorie: "outil",
 		saison: "hiver",
-		summary: "Compétences : Chasse, Cueillette, Cuisine, Étoffes, Athlétisme et Exploration",
-		description: "Astrolabe, craie, grappin, miroir, peigne à carder et popotte.<br/>Les Outils de Survie s’utilisent quand les Compétences Chasse, Cueillette, Cuisine, Étoffes, Athlétisme et Exploration sont pertinentes."
+		summary: "Compétences : Chasse, Cueillette, Cuisine, Étoffes et Exploration",
+		description: "Astrolabe, craie, grappin, miroir, peigne à carder et popotte.<br/>Les Outils de Survie s’utilisent quand les Compétences Chasse, Cueillette, Cuisine, Étoffes et Exploration sont pertinentes."
 	},
 	sapience: {
 		nom: "Outils de Sapience 🌱",
 		categorie: "outil",
 		saison: "printemps",
-		summary: "Compétences : Artefacts, Forge, Médecine, Sagesse, Sceaux et Sociabilité",
-		description: "Trousse de soins, creuset, tenaille, matériel d’écriture, jeux et pinceaux.<br/>Les Outils de Sapience s’utilisent quand les Compétences Artefacts, Forge, Médecine, Sagesse, Sceaux et Sociabilité sont pertinentes."
+		summary: "Compétences : Artefacts, Forge, Médecine, Sagesse et Sceaux",
+		description: "Trousse de soins, creuset, tenaille, matériel d’écriture et pinceaux.<br/>Les Outils de Sapience s’utilisent quand les Compétences Artefacts, Forge, Médecine, Sagesse et Sceaux sont pertinentes."
 	},
 	foyer: {
 		nom: "Outils du Foyer ☀️",
 		categorie: "outil",
 		saison: "ete",
-		summary: "Compétences : Agriculture, Civilisation, Élevage, Maçonnerie, Résines et Cuisine",
-		description: "Balance, briquet, lampe, instrument de musique, fil à plomb et sifflet.<br/>Les Outils du Foyer s’utilisent quand les Compétences Agriculture, Civilisation, Élevage, Maçonnerie, Résines et Cuisine sont pertinentes."
+		summary: "Compétences : Agriculture, Civilisation, Élevage, Maçonnerie, Résines",
+		description: "Balance, briquet, lampe, fil à plomb et sifflet.<br/>Les Outils du Foyer s’utilisent quand les Compétences Agriculture, Civilisation, Élevage, Maçonnerie et Résines sont pertinentes."
 	},
 	confection: {
 		nom: "Outils de Confection 🍁",
 		categorie: "outil",
 		saison: "automne",
-		summary: "Compétences : Couture, Tissage, Teinture, Parure, Trophées et Habillement",
-		description: "Aiguille, bobine de fil, ciseaux, dé à coudre, métier à tisser et mannequin.<br/>Les Outils de Confection s’utilisent quand les Compétences Couture, Tissage, Teinture, Parure, Trophées et Habillement sont pertinentes."
+		summary: "Compétences : Bois, Équarrissage, Ingénierie, Poterie et Silex",
+		description: "Compas, équerre, règle, racleur, poulie et pinces.<br/>Les Outils de Confections s’utilisent quand les Compétences Bois, Équarrissage, Ingénierie, Poterie et Silex sont pertinentes."
 	},
 	echarpe: {
 		nom: "Écharpe ❄️",
 		categorie: "vetement",
 		saison: "hiver",
-		summary: "Dons : Amphibie, Écran, Électroréception, Hypnose, Mimétisme et Transe",
-		description: "Long ruban servant contre le soleil, la pluie ou le vent.<br/>Une Écharpe s’utilise quand les Dons Amphibie, Écran, Électroréception, Hypnose, Mimétisme, ou Transe seraient pertinents."
+		summary: "Dons : Amphibie, Écran, Électroréception, Hypnose ou Mimétisme",
+		description: "Long ruban servant contre le soleil, la pluie ou le vent.<br/>Une Écharpe s’utilise quand les Dons Amphibie, Écran, Électroréception, Hypnose ou Mimétisme seraient pertinents."
 	},
 	cape: {
 		nom: "Cape 🌱",
 		categorie: "vetement",
 		saison: "printemps",
-		summary: "Dons : Empathie, Flair, Grimper, Régénération, Réserves et Symbiose",
-		description: "Imperméable, munie d’une capuche et pouvant couvrir tout le corps.<br/>Une Cape s’utilise quand les Dons Empathie, Flair, Grimper, Régénération, Réserves ou Symbiose seraient pertinents."
+		summary: "Dons : Cire, Empathie, Sonar, Symbiose et Terrier",
+		description: "Imperméable, munie d’une capuche et pouvant couvrir tout le corps.<br/>Une Cape s’utilise quand les Dons Cire, Empathie, Sonar, Symbiose ou Terrier seraient pertinents."
 	},
 	parure: {
 		nom: "Parure ☀️",
 		categorie: "vetement",
 		saison: "ete",
-		summary: "Dons : Adrénaline, Albinos, Bond, Charisme, Fabrique et Thermoception",
-		description: "Coiffe, ornements et étoffes de couleurs vives.<br/>Une Parure s’utilise quand les Dons Adrénaline, Albinos, Bond, Charisme, Fabrique ou Thermoception seraient pertinents."
+		summary: "Dons : Adrénaline, Charisme, Grimper, Réserves et Thermoception",
+		description: "Coiffe, ornements et étoffes de couleurs vives.<br/>Une Parure s’utilise quand les Dons Adrénaline, Charisme, Grimper, Réserves ou Thermoception seraient pertinents."
 	},
 	tablier: {
 		nom: "Tablier 🍁",
 		categorie: "vetement",
 		saison: "automne",
-		summary: "Dons : Exosquelette, Hibernation, Messages, Sonar, Terrier et Venin",
-		description: "Blouse ou cotte solide, facile à laver et garnie de poches.<br/>Un Tablier s’utilise quand les Dons Exosquelette, Hibernation, Messages, Sonar, Terrier ou Venin seraient pertinents."
+		summary: "Dons : Bond, Exosquelette, Flair, Messages et Soie",
+		description: "Blouse ou cotte solide, facile à laver et garnie de poches.<br/>Un Tablier s’utilise quand les Dons Bond, Exosquelette, Flair, Messages ou Soie seraient pertinents."
 	},
 };

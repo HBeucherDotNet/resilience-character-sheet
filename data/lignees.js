@@ -6,7 +6,7 @@ export const lignees = {
 		environnement: "plaines et collines",
 		modeDeVie: "alizé",
 		personnalite: "éminence",
-		don: "amphibie",
+		don: "thermoception",
 		summary: "Les Amphioses sont dérivées des amphibiens : grenouilles, crapauds et salamandres. Les lamproies, myxines et sangsues peuvent aussi être à l’origine d’Amphioses.",
 		description: "Leur corps, petit et rond, est surmonté d’une tête large et presque sans cou. Leur peau porte de nombreuses couleurs très vives et le mucus qui la couvre protège des sautes de températures. Les Amphioses sont généralement curieuses et aiment le mouvement, l’animation, sauf quand il s’agit de veiller sur leur ponte. Elles sont généralement considérées comme de bonnes éclaireuses, guides et chanteuses.",
 		exemplesNoms: "(inspiration langues d’Amazonie) : ajurú, ára, katoma, kuña, michī, narki, pyhare, ruka, tuicha, warekena, yvaga, zuruahá"
@@ -18,7 +18,7 @@ export const lignees = {
 		environnement: "montagnes et canyons",
 		modeDeVie: "alizé",
 		personnalite: "éminence",
-		don: "venin",
+		don: "soie",
 		summary: "Les Arachéens ont pour origine les araignées, scorpions, opilions et autres arachnides. Les limules font aussi partie des inspirations pour les Arachéens.",
 		description: "Leur corps voûté, ployant sous la chitine, est soutenu par trois paires de pattes, libérant une paire de pinces leur tenant lieu de mains. Ils utilisent leurs pédipalpes, des appendices placés autour de leur bouche, pour aider ces pinces lors des manipulations fines. Les Arachéens sont des êtres souvent solitaires car considérés comme inquiétants voire effrayants par les autres. Toutefois, ils sont les amis les plus fidèles et dévoués possibles, si l’on fait l’effort de surmonter les préjugés les entourant.",
 		exemplesNoms: "(inspiration Aymara et Quechua) : alaxpacha, allpa, aruma, hatun, kala, kuntur, nina, qari, qucha, sunqu, uraqi, uru"
@@ -42,7 +42,7 @@ export const lignees = {
 		environnement: "plaines et collines",
 		modeDeVie: "troglodytes",
 		personnalite: "portefaix",
-		don: "grimper",
+		don: "sonar",
 		summary: "Les Bryoses sont des lichens, des mousses ou des fougères se construisant un habitat mobile de sable, de graviers et de pierres. Elles peuvent aussi avoir pour origine des algues, coraux ou foraminifères.",
 		description: "Elles sont l’incarnation parfaite de l’idée que le corps est le véhicule terrestre de l’esprit. Cette construction minérale qu’elles animent est très solide et facile à dissimuler dans l’environnement, mais long à régénérer. Les Bryoses préfèrent souvent la discrétion et la prudence à l’action directe et brutale. Chaque Bryose abrite un Bryodé, un oiseau en symbiose avec elle qui s’agite et piaille pour transmettre ses émotions, facilitant les échanges avec les autres Lignées.",
 		exemplesNoms: "(inspiration Arabe et Persan) : akeem, alya, charbel, fathi, gulzar, hala, kubra, marwa, nour, raja, salman, sherazade"
@@ -66,7 +66,7 @@ export const lignees = {
 		environnement: "montagnes et canyons",
 		modeDeVie: "sédentaire",
 		personnalite: "sage",
-		don: "fabrique",
+		don: "reserves",
 		summary: "Les Mammaliens sont la Lignée majoritaire à Kiwandoto. Ils ont une très grande diversité morphologique, pouvant tenir de n’importe quel mammifère, y compris marin comme les phoques et les cétacés.",
 		description: "Ainsi, si certains sont identiques aux humains, d’autres auront un faciès canin ou une allure dérivée d’un cerf. Certains portent même une trompe similaire à celle des éléphants. Quoiqu’il en soit, les Mammaliens sont toujours parfaitement bipèdes, avec des mains bien découpées et agiles. Ils sont connus pour vivre dans des communautés assez vastes et leurs aptitudes corporelles très diverses leur permettent d’être présents dans n’importe quel environnement.",
 		exemplesNoms: "(inspiration Japonais et Coréen) : akiko, fuyuko, gyeong, hoshi, hwan, iseul, kazuyo, noboru, oshiro, seok, takuma, yukiko"
@@ -95,14 +95,14 @@ export const lignees = {
 		description: "Courbées sous leur coquille pour la majorité, elles avancent sur un unique pied puissant et massif. Quatre longs tentacules, deux portant des yeux et deux servant de bras, sortent de leur caparaçon de calcaire. Le reste est généralement à l’abri, sauf dans les moments de repos et de confiance, typiquement pour se nourrir ou se reproduire. Les Nacrisses sont en effet des êtres plutôt timides, voire craintives. Pourtant, elles ont le goût de la connaissance et aiment apprendre de nouvelles choses. Elles sont ainsi souvent les gardiennes de l’histoire de leurs communautés.",
 		exemplesNoms: "(inspiration langues Celtiques, Slaves et Germaniques) : alric, balder, erik, fenrir, georg, götz, freyja, ingvar, odinson, siegfried, solveig, swanhildr"
 	},
-	"ophidie": {
+	ophidie: {
 		nom: "Ophidie",
 		sexe: "mâle ou femelle",
 		famille: "squelette",
 		environnement: "rivières, lacs et marais",
 		modeDeVie: "troglodyte",
 		personnalite: "portefaix",
-		don: "thermoception",
+		don: "grimper",
 		summary: "Les Ophidies sont des êtres de grande taille, tenant du lézard, du crocodile ou du serpent. Les tortues marines et poissons osseux sont également des sources d’inspiration pour les Ophidies.",
 		description: "Elles se tiennent sur deux pattes arrières, la queue faisant balancier, libérant une paire de bras puissants. Les Ophidies apprécient l'air chaud et humide, les points d'eau fiables, y compris marécageux. Elles vivent généralement dans de petites communautés, dépassant rarement la famille directe, mais se mélangent très volontiers avec les autres Lignées, car cela les protège pendant la ponte. Elles sont d’excellentes chasseuses et guerrières, compensant leur réputation de sournoiserie ou de froides calculatrices.",
 		exemplesNoms: "(inspiration langues Aborigènes) : alinta, allora, alkawari, bunggu, gamuru, gawuul, kareela, koa, mawukara, myaree, walo, wiltja"
@@ -126,7 +126,7 @@ export const lignees = {
 		environnement: "îles et littoral",
 		modeDeVie: "alizé",
 		personnalite: "éminence",
-		don: "flair",
+		don: "cire",
 		summary: "Les Polliniens sont pratiquement les seules fleurs restantes sur Kiwandoto. Ils sont issus des herbacées comme les pissenlits, les céréales, mais aussi des lotus et roseaux.",
 		description: "Malheureusement, la corolle et les pétales cascadant autour de leur tête leur servent avant tout de récepteur sensoriel, très peu pour produire du pollen, encore moins du nectar. Les Polliniens ont des yeux monochromes, surplombant un corps fin, presque fragile. Des feuilles couvrent les racines leur servant de jambes, et deux tiges munies de feuilles préhensiles, font office de mains. Les Polliniens se mélangent peu aux autres Lignées, mais quand ils le font, ce sont des atouts inestimables pour les communautés.",
 		exemplesNoms: "(inspiration langues Bantoues et Malgaches) : amina, arinoa, diera, furaha, hirasoa, mosi, nuru, onja, reniala, simba, subira, zawadi"
@@ -150,7 +150,7 @@ export const lignees = {
 		environnement: "îles et littoral",
 		modeDeVie: "troglodyte",
 		personnalite: "sage",
-		don: "sonar",
+		don: "flair",
 		summary: "Les Scutiges sont une Lignée descendant les iules, mille-pattes et scolopendres, ainsi que des crevettes, puces de mer et autres décapodes et isopodes dont les cloportes.",
 		description: "Elles ont un corps excessivement long, se redressant comme un accent grave, reposant ainsi sur lui-même. Une paire de pattes plus longue leur sert de bras, complété par les antennes ou les mandibules pour la motricité fine. Les Scutiges sont grandes et lourdes, ce qui les oblige à se déplacer lentement, malgré leurs nombreuses pattes. Sous leur aspect effrayant, les Scutiges sont en fait pacifiques, voire même peureuses. Elles favorisent les communautés mixtes, dans lesquelles elles s'occupent souvent des troupeaux.",
 		exemplesNoms: "(inspiration Chinois et langues d’Asie du Sud-Est) : anong, arthit, bopha, feng, guanyu, kun-lun, phirun, shufen, thaksin, veasna, xiuying, zhang"
@@ -174,7 +174,7 @@ export const lignees = {
 		environnement: "rivières, lacs et marais",
 		modeDeVie: "nomade",
 		personnalite: "portefaix",
-		don: "terrier",
+		don: "bond",
 		summary: "Les Syrphides peuvent provenir de n'importe quels insectes solitaires : papillon, punaise, mouche, libellule, mante, scarabée, phasmes ou même les nèpes et dytiques pour les membres les plus aquatiques.",
 		description: "Elles se déplacent en utilisant à la fois leurs robustes pattes arrières et leurs ailes. Leur membres médians, atrophiés, servent d’outils de secours. Au-delà de cela, la diversité de leur apparence est phénoménale : couleurs, longueur et forme des antennes, des mandibules, du corps…chaque Syrphide est une oeuvre unique. Les Syrphides sont affables, espiègles, romantiques, étourdies...d’où une réputation de personnes peu fiables, volages, à cadrer.",
 		exemplesNoms: "(inspiration langues Africaines) : adama, amara, binta, diara, fanta, kofi, mariama, nana, sadio, samba, yaya, zainab"
@@ -186,7 +186,7 @@ export const lignees = {
 		environnement: "montagnes et canyons",
 		modeDeVie: "nomade",
 		personnalite: "leader",
-		don: "reserves",
+		don: "terrier",
 		summary: "Les Xyloses sont originaires des arbres et arbustes, parfois des hydres et anémones.",
 		description: "Leur apparence est anthropomorphe, avec une chevelure de feuilles ou d’aiguilles, et une écorce très variable. Les Xylose ont un simili-visage avec des yeux monochromes et une bouche s’ouvrant dans l’écorce de leur tronc. Leurs sens sont assurés par leur feuillage. En plus de leurs bras, elles utilisent des lianes qui participent à la manipulation fine des objets. Les Xyloses voyagent souvent mais sont très protectrices du territoire qu’elles occupent sur le moment. Leur parole est sacrée et elles ont la réputation de ne jamais baisser les bras devant les difficultés.",
 		exemplesNoms: "(inspiration langues Amérindiennes) : amarok, cheyenne, eyota, huyana, kwanita, nashoba, ozalie, poloma, sahale, tallulah, waban, yuma"
