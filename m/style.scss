@@ -1,8 +1,10 @@
 @use "../colors";
 @use "../optionCards";
 @use "../viewMode";
-
-/* Mobile-only overrides for /m/index.html */
+@use "../typography";
+@use "../header";
+@use "../buttons";
+@use "../sortDialog";
 
 :root {
 	--mobile-page-padding: 0.75rem;
@@ -10,60 +12,6 @@
 	--mobile-card-radius: 10px;
 	--mobile-card-border: rgba(0, 0, 0, 0.15);
 	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-	--color-hiver: #{colors.$color-hiver};
-	--color-printemps: #{colors.$color-printemps};
-	--color-ete: #{colors.$color-ete};
-	--color-automne: #{colors.$color-automne};
-	--color-temps: #{colors.$color-temps};
-}
-
-html {
-	font-size: 16px;
-}
-
-body {
-	margin: 0;
-	padding: var(--mobile-page-padding);
-	max-width: none;
-	min-width: 0;
-	font-family: sans-serif;
-	background: colors.$color-bg-page;
-}
-
-ul {
-	padding-left: 1.25rem;
-}
-
-h1 {
-	margin-top: 0;
-	font-size: 1.25rem;
-	color: colors.$color-hiver;
-	letter-spacing: 0.02rem;
-	margin-bottom: 0.7rem;
-}
-
-h2 {
-	margin-top: 0;
-	font-size: 1.25rem;
-	color: colors.$color-hiver;
-	letter-spacing: 0.02rem;
-	margin-bottom: 0.7rem;
-}
-
-h3 {
-	margin-top: 0;
-	font-size: 1.25rem;
-	color: colors.$color-text-dark;
-	letter-spacing: 0.02rem;
-}
-
-h5 {
-	margin: 0;
-	font-size: 1.35rem;
-	text-align: center;
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-	font-style: italic;
-	font-weight: 600;
 }
 
 section {
@@ -71,7 +19,7 @@ section {
 	padding: 0;
 	border: none;
 	box-shadow: none;
-	
+
 	h2 {
 		display: none;
 	}
@@ -93,20 +41,20 @@ section {
 	background-color: colors.$color-white;
 	border-bottom: 1px solid var(--mobile-card-border);
 	box-shadow: var(--mobile-shadow);
-	
+
 	.mobile-brand-main {
 		display: flex;
 		align-items: center;
 		gap: 0.55rem;
 		min-width: 0;
 	}
-	
+
 	.mobile-brand-logo {
 		height: 34px;
 		object-fit: contain;
 		flex: 0 0 auto;
 	}
-	
+
 	.mobile-brand-title {
 		font-size: 1rem;
 		font-weight: 700;
@@ -114,50 +62,19 @@ section {
 		color: colors.$color-hiver;
 		margin-bottom: 0;
 	}
-	
+
 	.mobile-header-menu {
 		position: relative;
 		margin-left: auto;
 		z-index: 130;
-		
-		&[open] {
-			.mobile-header-menu-toggle {
-				background: colors.$color-hiver;
-				
-				span {
-					background: colors.$color-white;
-				}
-			}
-			
-			.page-actions {
-				display: flex !important;
-				opacity: 1;
-				transform: translateY(0);
-				pointer-events: auto;
-			}
+		@include header.header-menu-content();
+
+		&[open] .page-actions {
+			display: flex !important;
 		}
-	}
-	
-	.mobile-header-menu-toggle {
-		list-style: none;
-		width: 2.6rem;
-		height: 2.6rem;
-		display: inline-flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 0.24rem;
-		cursor: pointer;
-		
-		&::-webkit-details-marker {
-			display: none;
-		}
-		
-		span {
-			width: 1rem;
-			height: 2px;
-			border-radius: 999px;
-			background: colors.$color-hiver;
+
+		.mobile-header-menu-toggle {
+			@include header.mobile-header-menu-toggle();
 		}
 	}
 }
@@ -179,37 +96,6 @@ section {
 	display: none;
 }
 
-.page-action-btn {
-	border-radius: 999px;
-	text-decoration: none;
-	border: 1px solid colors.$color-hiver;
-	background: colors.$color-hiver;
-	color: colors.$color-white;
-	padding: 0.7rem;
-	border-radius: 999px;
-	cursor: pointer;
-	box-shadow: 0 2px 10px colors.$color-box-shadow;
-	text-align: center;
-	white-space: nowrap;
-	width: auto;
-	
-	&:hover {
-		filter: brightness(1.20);
-	}
-	
-	&:disabled {
-		opacity: 0.45;
-		cursor: not-allowed;
-		filter: saturate(0.35);
-		box-shadow: none;
-	}
-}
-
-.page-action-btn-secondary {
-	background: colors.$color-white;
-	color: colors.$color-hiver;
-}
-
 .page-actions {
 	position: fixed;
 	left: 0;
@@ -228,9 +114,11 @@ section {
 	box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
 	transform: translateY(-1rem);
 	pointer-events: none;
-	transition: opacity 180ms ease, transform 180ms ease;
+	transition:
+		opacity 180ms ease,
+		transform 180ms ease;
 	z-index: 120;
-	
+
 	.page-action-btn {
 		width: 100%;
 	}
@@ -240,19 +128,19 @@ section {
 	display: none;
 	gap: 0.5rem;
 	flex-direction: column;
-	
+
 	.mobile-step-detail-content {
 		@include colors.option-card-saison-vars();
-		
+
 		.don {
 			background-color: var(--season-soft-bg);
-			
+
 			ul {
 				margin: 0;
 			}
 		}
 	}
-	
+
 	&.mobile-step-active {
 		display: flex !important;
 	}
@@ -286,11 +174,11 @@ section {
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	align-items: start;
-	
+
 	.option {
 		flex: 1 1 40%;
 	}
-	
+
 	&.three-columns-grid {
 		.option {
 			flex: 1 1 30%;
@@ -308,7 +196,7 @@ section {
 	border-radius: var(--mobile-card-radius);
 	background: colors.$color-white;
 	flex-basis: 100%;
-	
+
 	&.more-info {
 		font-size: 0.8rem;
 		color: colors.$color-text-muted;
@@ -318,7 +206,7 @@ section {
 
 .mobile-step-detail {
 	order: 50;
-	
+
 	.lignee-sexe {
 		margin-left: 5px;
 		font-size: 0.8rem;
@@ -338,40 +226,17 @@ section {
 
 #fiche-talents {
 	overflow-x: auto;
-	
+
 	table {
 		min-width: 640px;
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #collapsible-section {
 	h2 {
 		margin-bottom: 0;
 	}
-	
+
 	& > summary {
 		list-style: none;
 		cursor: pointer;
@@ -380,13 +245,13 @@ section {
 		justify-content: space-between;
 		gap: 1rem;
 	}
-	
+
 	& > summary::-webkit-details-marker {
 		display: none;
 	}
-	
+
 	& > summary::after {
-		content: '+';
+		content: "+";
 		flex: 0 0 auto;
 		width: 1.5rem;
 		height: 1.5rem;
@@ -399,17 +264,17 @@ section {
 		font-size: 1.1rem;
 		font-weight: 700;
 	}
-	
+
 	&[open] > summary::after {
-		content: '−';
+		content: "−";
 	}
-	
+
 	.collapsible-section-hint {
 		font-size: 0.9rem;
 		color: colors.$color-text-muted;
 		text-align: right;
 	}
-	
+
 	.collapsible-section-content {
 		margin-top: 0.8rem;
 	}
@@ -418,13 +283,13 @@ section {
 #ameliorations-group {
 	flex-direction: column;
 	align-items: stretch;
-	
+
 	.option {
 		padding: 0.5rem;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		
+
 		.option-label {
 			min-height: unset;
 		}
@@ -445,7 +310,7 @@ section {
 	border-radius: var(--mobile-card-radius);
 	padding: 0.9rem;
 	box-sizing: border-box;
-	
+
 	h3 {
 		margin-bottom: 0.75rem;
 		font-size: 1.05rem;
@@ -489,7 +354,7 @@ section {
 	line-height: 1;
 	cursor: pointer;
 	flex: 0 0 auto;
-	
+
 	&:disabled {
 		cursor: default;
 		opacity: 0.65;
@@ -497,7 +362,7 @@ section {
 }
 
 .ameliorations-item-category {
-	font-size: 0.80rem;
+	font-size: 0.8rem;
 	color: colors.$color-text-muted;
 	margin-bottom: 0.35rem;
 }
@@ -515,7 +380,7 @@ section {
 	background: colors.$color-white;
 	border: 1px solid colors.$color-border-section;
 	border-radius: var(--mobile-card-radius);
-	padding: 0.55rem 0.6rem;	
+	padding: 0.55rem 0.6rem;
 }
 
 .amelioration-score-input {
@@ -537,7 +402,7 @@ section {
 	font-weight: 700;
 	line-height: 1;
 	cursor: pointer;
-	
+
 	&:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;
@@ -547,17 +412,17 @@ section {
 
 .option {
 	@include optionCards.option-card-seasonal(0.5rem, $includeOrder: true, $selectedStrongBg: true);
-	
+
 	.option-label {
-		align-items:center;
-		gap:0.5rem;
-		
+		align-items: center;
+		gap: 0.5rem;
+
 		justify-content: center;
 		font-weight: 600;
 		min-height: 2.6rem;
 		font-size: 0.92rem;
 		text-align: center;
-		
+
 		input {
 			position: absolute;
 			opacity: 0;
@@ -566,30 +431,29 @@ section {
 			height: 1px;
 			margin: 0;
 		}
-		
+
 		label {
 			line-height: 1.2;
 			word-break: break-word;
 			width: 100%;
 		}
-		
+
 		.lignee-sexe,
 		.role-tagline {
 			display: none;
 		}
 	}
-	
+
 	.lire-plus,
 	.desc,
-	.don,
-	.don-separateur {
+	.don {
 		display: none !important;
 	}
-	
+
 	.desc {
 		line-height: 1.35;
 	}
-	
+
 	&:has(input:checked) {
 		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
 	}
@@ -598,8 +462,7 @@ section {
 #armement-group,
 #cuirasse-group,
 #mains-group,
-#peau-group
-{
+#peau-group {
 	.temps {
 		order: -1;
 	}
@@ -623,10 +486,6 @@ section {
 	z-index: 2;
 }
 
-.don-separateur {
-	display: none;
-}
-
 .don {
 	color: colors.$color-text-dark;
 	font-size: 0.9rem;
@@ -638,28 +497,39 @@ section {
 }
 
 #fiche-personnage {
-	
 	display: none;
 	flex-direction: column;
 	background: colors.$color-white;
 	padding: 0;
 	gap: 0.65rem;
 	background: colors.$color-white;
-	
+
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	}
-	
-	.saison-border { 
+
+	.saison-border {
 		border-width: 2px;
 	}
-	
-	&.hiver #fiche-magie-hiver { display: flex; }
-	&.printemps #fiche-magie-printemps { display: flex; }
-	&.ete #fiche-magie-ete { display: flex; }
-	&.automne #fiche-magie-automne { display: flex; }
-	&.temps #fiche-magie-temps { display: flex; }
-	&.rupture #fiche-magie-rupture { display: flex; }
+
+	&.hiver #fiche-magie-hiver {
+		display: flex;
+	}
+	&.printemps #fiche-magie-printemps {
+		display: flex;
+	}
+	&.ete #fiche-magie-ete {
+		display: flex;
+	}
+	&.automne #fiche-magie-automne {
+		display: flex;
+	}
+	&.temps #fiche-magie-temps {
+		display: flex;
+	}
+	&.rupture #fiche-magie-rupture {
+		display: flex;
+	}
 }
 
 .fiche-header {
@@ -667,7 +537,7 @@ section {
 	grid-template-columns: repeat(6, 1fr);
 	gap: 0.6rem;
 	align-items: start;
-	
+
 	input {
 		border-width: 1px;
 		border-style: none none solid none;
@@ -681,15 +551,14 @@ section {
 	font-style: italic;
 	font-weight: 600;
 	font-size: 1.05rem;
-	
+
 	input {
 		width: 100%;
 		box-sizing: border-box;
 	}
 }
 
-.fiche-valeurs { 
-	
+.fiche-valeurs {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -697,14 +566,14 @@ section {
 	padding: 0.5rem;
 	border: 2px solid colors.$color-border-section;
 	border-radius: var(--mobile-card-radius);
-	
+
 	> label {
 		display: block;
 		margin: 0 0 0.35rem;
 		color: colors.$color-text-dark;
 		font-weight: 700;
 	}
-	
+
 	input {
 		border-width: 1px;
 		border-style: none none solid none;
@@ -715,8 +584,8 @@ section {
 
 .fiche-grid {
 	display: grid;
-	grid-template-columns: 2fr minmax(0, 30%); 
-	gap: 1.2rem; 
+	grid-template-columns: 2fr minmax(0, 30%);
+	gap: 1.2rem;
 }
 
 .fiche-saisons {
@@ -729,39 +598,48 @@ section {
 }
 
 .saison-block {
-	
 	.saison-info {
 		grid-column: 2 / span 1;
 	}
-	
-	&.saison-hiver { 
+
+	&.saison-hiver {
 		grid-column-start: 1;
-		border-color: colors.$color-hiver; 
-		background: colors.$color-hiver-lighter; 
-		.saison-cercle { border-color: colors.$color-hiver; }
+		border-color: colors.$color-hiver;
+		background: colors.$color-hiver-lighter;
+		.saison-cercle {
+			border-color: colors.$color-hiver;
+		}
 	}
-	&.saison-printemps { 
+	&.saison-printemps {
 		grid-column-start: 3;
-		border-color: colors.$color-printemps; 
-		background: colors.$color-printemps-lighter; 
-		.saison-cercle { border-color: colors.$color-printemps; }
+		border-color: colors.$color-printemps;
+		background: colors.$color-printemps-lighter;
+		.saison-cercle {
+			border-color: colors.$color-printemps;
+		}
 	}
-	&.saison-ete { 
+	&.saison-ete {
 		grid-column-start: 3;
-		border-color: colors.$color-ete; 
-		background: colors.$color-ete-lighter; 
-		.saison-cercle { border-color: colors.$color-ete; }
+		border-color: colors.$color-ete;
+		background: colors.$color-ete-lighter;
+		.saison-cercle {
+			border-color: colors.$color-ete;
+		}
 	}
-	&.saison-automne { 
+	&.saison-automne {
 		grid-column-start: 1;
-		border-color: colors.$color-automne; 
-		background: colors.$color-automne-lighter; 
-		.saison-cercle { border-color: colors.$color-automne; }
+		border-color: colors.$color-automne;
+		background: colors.$color-automne-lighter;
+		.saison-cercle {
+			border-color: colors.$color-automne;
+		}
 	}
-	&.saison-temps { 
-		border-color: colors.$color-temps; 
-		background: colors.$color-temps-lighter; 
-		.saison-cercle { border-color: colors.$color-temps; }
+	&.saison-temps {
+		border-color: colors.$color-temps;
+		background: colors.$color-temps-lighter;
+		.saison-cercle {
+			border-color: colors.$color-temps;
+		}
 	}
 }
 
@@ -781,12 +659,12 @@ section {
 	position: relative;
 	overflow: hidden;
 	isolation: isolate;
-	
+
 	span {
 		position: relative;
 		z-index: 1;
 	}
-	
+
 	&::before {
 		position: absolute;
 		inset: 0;
@@ -794,7 +672,7 @@ section {
 		align-items: center;
 		justify-content: center;
 		font-size: 1.95rem;
-		opacity: 0.30;
+		opacity: 0.3;
 		pointer-events: none;
 	}
 }
@@ -838,13 +716,13 @@ section {
 
 .saison-right {
 	text-align: right;
-	
+
 	.saison-title {
 		justify-content: flex-end;
 	}
 }
 
-.saison-title { 
+.saison-title {
 	font-size: 1.2rem;
 	display: flex;
 	align-items: center;
@@ -854,15 +732,15 @@ section {
 	font-weight: 600;
 }
 
-.saison-icon { 
-	font-size: 1.3rem; 
+.saison-icon {
+	font-size: 1.3rem;
 }
 
-.fiche-tableaux { 
+.fiche-tableaux {
 	display: flex;
 	flex-direction: column;
 	gap: 0.85rem;
-	
+
 	> h2 {
 		font-size: 1rem;
 		margin-top: 0.5rem;
@@ -872,13 +750,14 @@ section {
 
 .fiche-resonances {
 	table {
-		width: 100%; 
-		border-collapse: collapse; 
+		width: 100%;
+		border-collapse: collapse;
 	}
-	th, td { 
-		border: 1px dotted colors.$color-black; 
+	th,
+	td {
+		border: 1px dotted colors.$color-black;
 		padding: 0.3rem 0.5rem;
-		text-align: left; 
+		text-align: left;
 	}
 	th:nth-child(2),
 	th:nth-child(3),
@@ -894,7 +773,8 @@ section {
 		border-width: 1px;
 		border-style: none none solid none;
 	}
-	.resonnance-point, .resonnance-niveau {
+	.resonnance-point,
+	.resonnance-niveau {
 		text-align: center;
 		width: 3ch;
 	}
@@ -905,13 +785,13 @@ section {
 	border-style: solid;
 	border-radius: var(--mobile-card-radius);
 	padding: 1rem;
-	
+
 	.fiche-magie-actions {
 		display: flex;
 		justify-content: center;
 		margin: 0.75rem 0 1rem;
 	}
-	
+
 	.tableau-magie-talents {
 		width: 100%;
 		display: none;
@@ -919,12 +799,12 @@ section {
 		gap: 0.75rem;
 		margin-top: 0.35rem;
 	}
-	
+
 	.magie-domaine-card {
 		display: flex;
 		flex-direction: column;
 		gap: 0.6rem;
-		
+
 		&:not(:has(.magie-domaine-toggle input:checked)) {
 			border-radius: var(--mobile-card-radius);
 			border: 1px solid rgba(24, 37, 58, 0.1);
@@ -933,12 +813,12 @@ section {
 			padding: 0.75rem;
 		}
 	}
-	
+
 	.magie-domaine-card + .magie-domaine-card {
 		padding-top: 0.85rem;
 		border-top: 1px solid rgba(24, 37, 58, 0.12);
 	}
-	
+
 	.magie-domaine-toggle {
 		display: flex;
 		align-items: center;
@@ -949,44 +829,44 @@ section {
 		font-weight: 700;
 		text-align: center;
 		cursor: pointer;
-		
+
 		input {
 			display: none;
 		}
-		
+
 		input:checked + .magie-domaine-name {
 			color: var(--character-season-strong-border);
 		}
 	}
-	
+
 	.magie-domaine-name {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 		font-size: 0.98rem;
 		line-height: 1.15;
 	}
-	
+
 	.magie-talents-grid {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: 0.45rem;
 	}
-	
+
 	@media (max-width: 259px) {
 		.magie-talents-grid {
 			grid-template-columns: 1fr;
 		}
 	}
-	
+
 	@media (max-width: 379px) {
 		.magie-talents-grid {
 			grid-template-columns: 1fr 1fr;
 		}
 	}
-	
+
 	.magie-domaine-card:not(:has(.magie-domaine-toggle input:checked)) .magie-talents-grid {
 		display: none;
 	}
-	
+
 	.magie-talent-chip {
 		display: flex;
 		align-items: center;
@@ -997,14 +877,17 @@ section {
 		background: rgba(255, 255, 255, 0.82);
 		border: 1px solid rgba(24, 37, 58, 0.08);
 		cursor: pointer;
-		transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-		
+		transition:
+			background-color 160ms ease,
+			border-color 160ms ease,
+			box-shadow 160ms ease;
+
 		&:has(input:checked) {
 			border-color: var(--character-season-strong-border);
 			background: rgba(255, 255, 255, 0.98);
 			box-shadow: inset 0 0 0 1px var(--character-season-strong-border);
 		}
-		
+
 		input {
 			position: absolute;
 			opacity: 0;
@@ -1013,12 +896,12 @@ section {
 			height: 1px;
 			margin: 0;
 		}
-		
+
 		input:checked + .magie-talent-label {
 			color: var(--character-season-strong-border);
 		}
 	}
-	
+
 	.magie-talent-label {
 		display: block;
 		width: 100%;
@@ -1029,144 +912,17 @@ section {
 		color: colors.$color-text-dark;
 		transition: color 160ms ease;
 	}
-	
+
 	textarea {
 		width: 100%;
 		box-sizing: border-box;
-		border-radius: var(--mobile-card-radius);;
+		border-radius: var(--mobile-card-radius);
 		border: 1px solid colors.$color-border-gray;
 		padding: 0.5rem;
 		font-family: inherit;
 		font-size: 0.8rem;
 		resize: vertical;
 		margin-bottom: 0.5rem;
-	}
-}
-
-.sort-dialog {
-	border: none;
-	border-radius: var(--mobile-card-radius);;
-	padding: 0;
-	width: min(100%, 38rem);
-	max-width: 38rem;
-	box-shadow: 0 20px 50px colors.$color-box-shadow-hover;
-	background: colors.$color-white;
-	
-	&::backdrop {
-		background: rgba(24, 37, 58, 0.45);
-		backdrop-filter: blur(2px);
-	}
-}
-
-.sort-dialog-form {
-	padding: 1.25rem;
-}
-
-.sort-dialog-header {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 1rem;
-	margin-bottom: 1rem;
-	
-	h6 {
-		margin: 0;
-		font-size: 1.2rem;
-		color: colors.$color-hiver;
-	}
-	
-	p {
-		margin: 0.3rem 0 0;
-		color: colors.$color-text-muted;
-		font-size: 0.95rem;
-	}
-}
-
-.sort-dialog-close-btn {
-	border: none;
-	background: transparent;
-	color: colors.$color-text-muted;
-	font-size: 1.75rem;
-	line-height: 1;
-	cursor: pointer;
-	padding: 0;
-}
-
-.sort-dialog-fields {
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-	font-size: 0.9rem;
-	color: colors.$color-text-muted;
-	
-	.sort-dialog-row-item {
-		display: grid;
-		grid-template-columns: minmax(0, 1.5fr) auto auto auto auto 45px;
-		align-items: center;
-		gap: 0.35rem;
-		background: colors.$color-white;
-		border: 1px solid colors.$color-border-section;
-		border-radius: 8px;
-		padding: 0.55rem 0.6rem;
-		
-		> span {
-			min-width: 0;
-		}
-		
-		> :last-child {
-			font-size: 0.7rem;
-		}
-	}
-	
-	.sort-dialog-input {
-		width: 1.5rem;
-		text-align: center;
-		padding: 0.2rem;
-		border: 1px solid colors.$color-border-section;
-		border-radius: 6px;
-		background: colors.$color-white;
-	}
-	
-	.sort-dialog-btn {
-		width: 1.6rem;
-		height: 1.6rem;
-		border: 1px solid colors.$color-hiver;
-		border-radius: 999px;
-		background: colors.$color-hiver;
-		color: colors.$color-white;
-		font-weight: 700;
-		line-height: 1;
-		cursor: pointer;
-		
-		&:disabled {
-			opacity: 0.4;
-			cursor: not-allowed;
-			filter: saturate(0.35);
-		}
-	}
-}
-
-.sort-dialog-talent-select-row {
-	display: flex;
-	flex-direction: column;
-	gap: 0.35rem;
-}
-
-.sort-dialog-talent-select {
-	border: 1px solid colors.$color-border-section;
-	border-radius: var(--mobile-card-radius);
-	padding: 0.45rem 0.6rem;
-	font: inherit;
-	color: colors.$color-text-dark;
-	background: colors.$color-white;
-}
-
-#sort-talent-effets {
-	margin: 0.35rem 0;
-	padding-left: 1.2rem;
-	
-	li + li {
-		margin-top: 0.3rem;
 	}
 }
 
@@ -1196,7 +952,7 @@ section {
 	border-style: dotted none;
 	padding: 0.5rem;
 	font-size: 0.85rem;
-	
+
 	.champ-lexical {
 		display: grid;
 		text-align: center;
@@ -1207,45 +963,45 @@ section {
 
 body.mobile-sheet-mode {
 	background-color: colors.$color-white;
-	
+
 	#fiche-personnage {
 		display: flex;
 	}
-	
+
 	.mobile-brand-banner {
 		margin-bottom: 0.5rem;
 		box-shadow: 0 10px 24px rgba(19, 41, 72, 0.08);
 	}
-	
+
 	#character-builder,
 	#mobile-step-nav {
 		display: none !important;
 	}
-	
+
 	.mobile-header-menu {
 		&[open] {
 			.page-actions {
 				display: flex !important;
 			}
 		}
-		
+
 		.page-actions {
 			z-index: 140;
 		}
 	}
-	
+
 	.fiche-header-flex {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		align-items: start;
-		
+
 		.header-saison {
 			align-items: center;
 			width: 100%;
 			box-sizing: border-box;
 		}
-		
+
 		input {
 			border-width: 1px;
 			border-style: none none solid none;
@@ -1253,12 +1009,12 @@ body.mobile-sheet-mode {
 			font-size: 1em; // hérite de la taille de la fiche-header
 		}
 	}
-	
+
 	.fiche-header {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 0.65rem;
 		align-items: stretch;
-		
+
 		.header-saison {
 			min-height: auto;
 			justify-content: center;
@@ -1266,39 +1022,39 @@ body.mobile-sheet-mode {
 			text-align: center;
 			font-size: 1rem;
 			font-weight: 700;
-			
+
 			&:has(#fiche-saison:empty) {
 				display: none;
 			}
 		}
-		
+
 		input {
 			width: 100%;
 			max-width: 100%;
 			background: transparent;
 		}
 	}
-	
+
 	@media (max-width: 569px) {
 		.fiche-header {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
-	
+
 	.fiche-logo {
 		width: 88px;
 		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
 	}
-	
+
 	.fiche-nom,
 	.fiche-quatuor {
 		width: 100%;
 	}
-	
+
 	.fiche-valeurs {
 		border-width: 1px;
 		border-radius: var(--mobile-card-radius);
-		
+
 		> div {
 			width: 100%;
 			display: flex;
@@ -1306,19 +1062,19 @@ body.mobile-sheet-mode {
 			gap: 0.6rem;
 			font-size: 0.84rem;
 			line-height: 1.25;
-			
+
 			span {
 				text-align: right;
 				font-weight: 700;
 				color: colors.$color-text-dark;
 			}
 		}
-		
+
 		input {
 			width: 3.2rem;
 		}
 	}
-	
+
 	.fiche-saisons {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto;
@@ -1326,7 +1082,7 @@ body.mobile-sheet-mode {
 		padding: 0;
 		align-items: stretch;
 	}
-	
+
 	.saison-block {
 		grid-template-columns: auto 1fr auto;
 		align-items: center;
@@ -1337,141 +1093,138 @@ body.mobile-sheet-mode {
 		padding: 0.75rem;
 		box-shadow: 0 10px 20px rgba(20, 36, 62, 0.08);
 		display: grid;
-		
+
 		&.saison-hiver,
 		&.saison-printemps,
 		&.saison-ete,
 		&.saison-automne {
 			grid-column-start: auto;
 		}
-		
+
 		.saison-score {
 			transform: none;
 			grid-column: auto;
 		}
 	}
-	
+
 	.saisons-center {
 		z-index: 2;
 		grid-template-columns: auto 48px;
 		grid-template-rows: auto auto;
 		grid-column: -1 / 1;
 		grid-row: auto;
-		
+
 		.saison-title {
 			grid-column: 1 / span 1;
 			grid-row: 1 / span 1;
 		}
-		
+
 		.saison-desc {
 			grid-column: 1 / span 1;
 			grid-row: 2 / span 1;
 		}
-		
+
 		.saison-cercle {
 			grid-column: 2 / span 1;
 			grid-row: 1 / span 2;
 		}
 	}
-	
+
 	.saison-cercle {
 		width: 48px;
 		height: 48px;
 		font-size: 1.15rem;
 		border-width: 1px;
 	}
-	
+
 	.saison-title {
 		font-size: 0.88rem;
 		margin-bottom: 0.18rem;
 	}
-	
+
 	.saison-desc {
 		font-size: 0.69rem;
 		line-height: 1.2;
 		opacity: 0.88;
 	}
-	
+
 	.fiche-tableaux,
 	.fiche-resonances,
 	#fiche-magie,
 	#fiche-talents {
 		overflow-x: auto;
 	}
-	
+
 	#fiche-magie {
 		padding: 0.85rem;
 		border-radius: var(--mobile-card-radius);
 		box-shadow: var(--mobile-shadow);
 	}
-	
+
 	.fiche-resonances {
 		table {
 			font-size: 0.82rem;
 		}
-		
+
 		th,
 		td {
 			padding: 0.4rem 0.45rem;
 		}
 	}
-	
+
 	#fiche-magie {
 		border-width: 1px;
-		
+
 		h5 {
 			font-size: 1.05rem;
 			margin-bottom: 0.2rem;
 		}
-		
+
 		label {
 			font-size: 0.82rem;
 			font-weight: 700;
 			color: colors.$color-text-main;
 		}
 	}
-	
+
 	#fiche-blocs {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
-		gap: 1rem; 
+		gap: 1rem;
 	}
-	
-	
-	
+
 	.fiche-bloc {
-		
-		&.saison-hiver { 
+		&.saison-hiver {
 			--fiche-bloc-color: #{colors.$color-hiver};
 			--fiche-bloc-color-soft: #{colors.$color-hiver-lighter};
 		}
-		&.saison-printemps { 
+		&.saison-printemps {
 			--fiche-bloc-color: #{colors.$color-printemps};
 			--fiche-bloc-color-soft: #{colors.$color-printemps-lighter};
 		}
-		&.saison-ete { 
+		&.saison-ete {
 			--fiche-bloc-color: #{colors.$color-ete};
 			--fiche-bloc-color-soft: #{colors.$color-ete-lighter};
 		}
-		&.saison-automne { 
+		&.saison-automne {
 			--fiche-bloc-color: #{colors.$color-automne};
 			--fiche-bloc-color-soft: #{colors.$color-automne-lighter};
 		}
-		
+
 		flex: 1 1 100%;
 		position: relative;
 		border: 2px solid var(--fiche-bloc-color);
 		border-radius: var(--mobile-card-radius);
 		background: colors.$color-white;
 		padding: 1.35rem 0.85rem 0.9rem;
-		display: flex; 
+		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
 		margin-top: 0.8rem;
 		align-items: stretch;
 		box-shadow: var(--mobile-shadow);
-		
+
 		& > label {
 			position: absolute;
 			top: 0;
@@ -1492,7 +1245,7 @@ body.mobile-sheet-mode {
 			box-shadow: none;
 			z-index: 1;
 			color: var(--fiche-bloc-color);
-			
+
 			.saison-icon {
 				display: inline-flex;
 				align-items: center;
@@ -1504,28 +1257,28 @@ body.mobile-sheet-mode {
 				background: colors.$color-white;
 			}
 		}
-		
+
 		.atout-container {
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
-			
+
 			.fiche-bloc-item {
 				@include optionCards.option-card-light();
-				
+
 				label {
 					margin-right: 5px;
 				}
-				
+
 				.desc {
 					display: block !important;
 				}
-				
+
 				input,
 				.lire-plus.pictogram-btn {
 					display: none;
 				}
-				
+
 				&:has(input:checked) {
 					background: var(--fiche-bloc-color-soft);
 					border-color: var(--fiche-bloc-color);
@@ -1542,19 +1295,19 @@ body.mobile-ameliorations-mode {
 	#character-builder > section:not(#ameliorations-section) {
 		display: none !important;
 	}
-	
+
 	#character-builder {
 		min-height: auto;
 		padding-bottom: 1rem;
 	}
-	
+
 	#ameliorations-section {
 		display: block !important;
 		position: relative;
 	}
-	
+
 	#ameliorations-section::before {
-		content: '';
+		content: "";
 		position: fixed;
 		inset: 0;
 		background: rgba(19, 41, 72, 0.38);
@@ -1564,7 +1317,7 @@ body.mobile-ameliorations-mode {
 		transition: opacity 160ms ease;
 		z-index: 149;
 	}
-	
+
 	.help-modale {
 		display: none;
 		position: fixed;
@@ -1578,25 +1331,25 @@ body.mobile-ameliorations-mode {
 		background: colors.$color-white;
 		box-shadow: 0 20px 42px rgba(20, 36, 62, 0.24);
 		z-index: 150;
-		
+
 		h2 {
 			display: block;
 			margin: 0 2rem 0.45rem 0;
 			font-size: 1.05rem;
 			color: colors.$color-hiver;
 		}
-		
+
 		p {
 			margin: 0;
 			color: colors.$color-text-dark;
 			line-height: 1.4;
 		}
-		
+
 		p + p {
 			margin-top: 0.55rem;
 		}
 	}
-	
+
 	.help-modale-close {
 		position: absolute;
 		top: 0.65rem;
@@ -1612,43 +1365,43 @@ body.mobile-ameliorations-mode {
 		line-height: 1;
 		cursor: pointer;
 	}
-	
+
 	&.mobile-ameliorations-help-open {
 		#ameliorations-section::before {
 			opacity: 1;
 			pointer-events: auto;
 		}
-		
+
 		.help-modale {
 			display: block;
 		}
 	}
-	
+
 	#collapsible-section {
 		border: 1px solid colors.$color-border-section;
 		border-radius: 18px;
 		padding: 0.85rem;
 		background: colors.$color-white;
 		box-shadow: var(--mobile-shadow);
-		
+
 		& > summary::after {
 			display: none;
 		}
 	}
-	
+
 	#ameliorations-scores-row {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
-	
+
 	.ameliorations-zone {
 		min-width: 0;
 		width: 100%;
 	}
-	
+
 	.mobile-header-menu .page-actions {
 		z-index: 140;
 	}
-	
+
 	@media (max-width: 479px) {
 		#ameliorations-scores-row {
 			grid-template-columns: 1fr;

@@ -1,0 +1,33 @@
+@use "colors";
+
+h1 {
+	margin-top: 0;
+	font-size: 1.25rem;
+	color: colors.$color-hiver;
+	letter-spacing: 0.02rem;
+	margin-bottom: 0.7rem;
+}
+
+h2 {
+	margin-top: 0;
+	font-size: 1.25rem;
+	color: colors.$color-hiver;
+	letter-spacing: 0.02rem;
+	margin-bottom: 0.7rem;
+}
+
+h3 {
+	margin-top: 0;
+	font-size: 1.25rem;
+	color: colors.$color-text-dark;
+	letter-spacing: 0.02rem;
+}
+
+h5 {
+	margin: 0;
+	font-size: 1.35rem;
+	text-align: center;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+	font-style: italic;
+	font-weight: 600;
+}

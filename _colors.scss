@@ -40,6 +40,14 @@ $color-rupture: #7d5fa3;
 $color-rupture-light: color.adjust($color-rupture, $lightness: 20%);
 $color-rupture-lighter: color.adjust($color-rupture, $lightness: 55%);
 
+:root {	
+	--color-hiver: #{$color-hiver};
+	--color-printemps: #{$color-printemps};
+	--color-ete: #{$color-ete};
+	--color-automne: #{$color-automne};
+	--color-temps: #{$color-temps};
+}
+
 @mixin option-card-saison-vars() {
 	--season-soft-bg: colors.$color-white;
 	--season-soft-border: colors.$color-border-section;

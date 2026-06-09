@@ -1,3 +1,11 @@
+:root {
+  --color-hiver: #235a8a;
+  --color-printemps: #2c7a4b;
+  --color-ete: #bfa600;
+  --color-automne: #a13a3a;
+  --color-temps: #999;
+}
+
 #fiche-personnage.hiver {
   --character-season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
   --character-season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
