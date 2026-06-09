@@ -45,6 +45,11 @@ h5 {
   font-weight: 600;
 }
 
+body {
+  font-family: sans-serif;
+  background: #e9ecf3;
+}
+
 .page-action-btn {
   border-radius: 999px;
   text-decoration: none;
@@ -501,9 +506,7 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description li + li 
 }
 
 body {
-  font-family: sans-serif;
   margin: 2rem;
-  background: #e9ecf3;
 }
 
 .desktop-app-shell {

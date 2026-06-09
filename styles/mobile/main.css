@@ -45,6 +45,11 @@ h5 {
   font-weight: 600;
 }
 
+body {
+  font-family: sans-serif;
+  background: #e9ecf3;
+}
+
 .page-action-btn {
   border-radius: 999px;
   text-decoration: none;

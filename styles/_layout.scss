@@ -1,3 +1,9 @@
 // Structures partagées entre desktop et mobile.
 // Les layouts spécifiques à chaque plateforme sont dans desktop/_layout.scss
 // et mobile/_layout.scss.
+@use "variables" as colors;
+
+body {
+	font-family: sans-serif;
+	background: colors.$color-bg-page;
+}
