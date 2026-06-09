@@ -1,11 +1,10 @@
-@use "colors";
+@use "../variables" as colors;
 
-/* Masquer les questions lors de l'impression */
 @media print {
 	@page {
 		size: A4 landscape;
 	}
-	
+
 	html {
 		font-size: 70% !important;
 	}
@@ -25,25 +24,29 @@
 		border-width: 0px !important;
 		border-style: none !important;
 	}
-	
+
 	.saison-desc {
 		font-size: 0.9rem !important;
 	}
-	
+
 	#character-builder {
 		display: none !important;
 	}
+
 	#fiche-personnage {
 		padding: 0 !important;
 		box-shadow: none !important;
 		border: none !important;
 	}
+
 	.page-actions {
 		display: none !important;
 	}
+
 	.pictogram-btn {
 		display: none !important;
 	}
+
 	.fiche-bloc .fiche-bloc-item {
 		border: none !important;
 		padding: 0.5rem 0 !important;
@@ -69,7 +72,7 @@
 			border: none !important;
 			padding: 0 !important;
 		}
-		
+
 		.tableau-magie-talents {
 			font-size: 0.8rem !important;
 		}
@@ -78,7 +81,7 @@
 			display: none !important;
 		}
 	}
-	
+
 	.fiche-bloc > div {
 		gap: 0 !important;
 	}

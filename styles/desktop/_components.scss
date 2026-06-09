@@ -1,0 +1,273 @@
+@use "../variables" as colors;
+@use "../mixins";
+
+// ─── Options / cartes saisonnières ───────────────────────────────────────────
+
+.option {
+	@include mixins.option-card-seasonal(0.5rem, $includeOrder: true);
+
+	&.lignee .lignee-sexe {
+		font-size: 0.9rem;
+		color: colors.$color-text-muted;
+		font-weight: normal;
+	}
+}
+
+#armement-group,
+#cuirasse-group,
+#mains-group,
+#peau-group {
+	.temps {
+		order: -1;
+	}
+}
+
+.flex-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 0.5rem;
+
+	.option {
+		flex: 1 1 20%;
+		min-width: 0;
+		box-sizing: border-box;
+		padding: 0.5rem;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		input[type="checkbox"] {
+			margin-bottom: 0.5rem;
+		}
+	}
+}
+
+.flex-group#lignées-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.don {
+	color: colors.$color-text-dark;
+	font-size: 1rem;
+	display: block;
+	margin-top: 1rem;
+	background-color: rgba(256, 256, 256, 0.5);
+	padding: 0.5rem 1rem;
+	border-left: dotted 2px var(--season-strong-border);
+
+	ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+}
+
+// ─── Section améliorations ────────────────────────────────────────────────────
+
+#ameliorations-section {
+	#collapsible-section {
+		h2 {
+			margin-bottom: 0;
+		}
+
+		& > summary {
+			list-style: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		& > summary::-webkit-details-marker {
+			display: none;
+		}
+
+		& > summary::after {
+			content: "+";
+			flex: 0 0 auto;
+			width: 1.5rem;
+			height: 1.5rem;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 999px;
+			background: colors.$color-hiver-lighter;
+			color: colors.$color-hiver;
+			font-size: 1.1rem;
+			font-weight: 700;
+		}
+
+		&[open] > summary::after {
+			content: "−";
+		}
+	}
+
+	.collapsible-section-hint {
+		font-size: 0.9rem;
+		color: colors.$color-text-muted;
+		text-align: right;
+	}
+
+	.collapsible-section-content {
+		margin-top: 0.8rem;
+	}
+
+	#ameliorations-group {
+		align-items: stretch;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	#ameliorations-scores-row {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(150px, 1fr));
+		gap: 0.6rem;
+		margin-bottom: 1rem;
+		background: colors.$color-bg-page;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		padding: 0.9rem;
+		box-sizing: border-box;
+	}
+
+	.ameliorations-zone {
+		flex: 1 1 calc(25% - 0.75rem);
+		min-width: 220px;
+		background: colors.$color-bg-page;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		padding: 0.9rem;
+		box-sizing: border-box;
+
+		h3 {
+			margin-bottom: 0.75rem;
+			font-size: 1.05rem;
+			color: colors.$color-hiver;
+		}
+	}
+
+	.ameliorations-zone-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		min-height: 2rem;
+	}
+
+	.ameliorations-item {
+		@include mixins.option-card-light();
+	}
+
+	.ameliorations-item-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.4rem;
+	}
+
+	.ameliorations-item-option-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.55rem;
+		font-weight: 600;
+		cursor: pointer;
+		width: 100%;
+
+		strong {
+			line-height: 1.3;
+		}
+	}
+
+	.ameliorations-item-checkbox {
+		margin-top: 0.15rem;
+		flex: 0 0 auto;
+	}
+
+	.ameliorations-item-add-btn {
+		border: 1px solid colors.$color-hiver;
+		background: colors.$color-hiver;
+		color: colors.$color-white;
+		width: 1.8rem;
+		height: 1.8rem;
+		border-radius: 999px;
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+		flex: 0 0 auto;
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.65;
+		}
+	}
+
+	.ameliorations-item-category {
+		font-size: 0.8rem;
+		color: colors.$color-text-muted;
+		margin-bottom: 0.35rem;
+	}
+
+	.ameliorations-item-description {
+		font-size: 0.85rem;
+		color: colors.$color-text-dark;
+	}
+
+	.amelioration-score-row-item {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) auto auto auto;
+		align-items: center;
+		gap: 0.35rem;
+		background: colors.$color-white;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		padding: 0.55rem 0.6rem;
+	}
+
+	.amelioration-score-input {
+		width: 1.5rem;
+		text-align: center;
+		padding: 0.2rem;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 10px;
+		background: colors.$color-white;
+	}
+
+	.amelioration-score-btn {
+		width: 1.6rem;
+		height: 1.6rem;
+		border: 1px solid colors.$color-hiver;
+		border-radius: 999px;
+		background: colors.$color-hiver;
+		color: colors.$color-white;
+		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+
+		&:disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+			filter: saturate(0.35);
+		}
+	}
+}
+
+// ─── Sort dialog (spécifique desktop) ────────────────────────────────────────
+
+.sort-dialog-row-indicator {
+	min-height: 1.6rem;
+	display: inline-grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	align-content: center;
+	justify-content: flex-start;
+	justify-self: start;
+	gap: 0.12rem;
+	font-size: 1.1rem;
+	overflow: hidden;
+}

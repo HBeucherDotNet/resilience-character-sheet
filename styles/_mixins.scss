@@ -1,0 +1,211 @@
+@use "variables" as colors;
+
+// ─── Couleurs saisonnières (CSS custom props) ─────────────────────────────────
+
+@mixin option-card-saison-vars() {
+	--season-soft-bg: #{colors.$color-white};
+	--season-soft-border: #{colors.$color-border-section};
+	--season-strong-bg: #{colors.$color-white};
+	--season-strong-border: #{colors.$color-border-section};
+
+	&.hiver {
+		--season-soft-bg: #{colors.$color-hiver-lighter};
+		--season-soft-border: #{colors.$color-hiver-light};
+		--season-strong-bg: #{colors.$color-hiver-light};
+		--season-strong-border: #{colors.$color-hiver};
+	}
+
+	&.printemps {
+		--season-soft-bg: #{colors.$color-printemps-lighter};
+		--season-soft-border: #{colors.$color-printemps-light};
+		--season-strong-bg: #{colors.$color-printemps-light};
+		--season-strong-border: #{colors.$color-printemps};
+	}
+
+	&.ete {
+		--season-soft-bg: #{colors.$color-ete-lighter};
+		--season-soft-border: #{colors.$color-ete-light};
+		--season-strong-bg: #{colors.$color-ete-light};
+		--season-strong-border: #{colors.$color-ete};
+	}
+
+	&.automne {
+		--season-soft-bg: #{colors.$color-automne-lighter};
+		--season-soft-border: #{colors.$color-automne-light};
+		--season-strong-bg: #{colors.$color-automne-light};
+		--season-strong-border: #{colors.$color-automne};
+	}
+
+	&.temps {
+		--season-soft-bg: #{colors.$color-temps-lighter};
+		--season-soft-border: #{colors.$color-temps-light};
+		--season-strong-bg: #{colors.$color-temps-light};
+		--season-strong-border: #{colors.$color-temps};
+	}
+}
+
+// ─── Option cards ─────────────────────────────────────────────────────────────
+
+@mixin option-card-base($padding, $includeOrder: false) {
+	border: 1px solid colors.$color-border-section;
+	border-radius: var(--mobile-card-radius);
+	padding: $padding;
+	position: relative;
+	box-sizing: border-box;
+	background: colors.$color-white;
+	transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
+	}
+
+	input[type="checkbox"] {
+		accent-color: var(--season-strong-bg);
+	}
+
+	.option-label {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		label {
+			color: colors.$color-text-main;
+			font-weight: 600;
+		}
+	}
+
+	@if $includeOrder {
+		&.hiver { order: 1; }
+		&.printemps { order: 2; }
+		&.ete { order: 3; }
+		&.automne { order: 4; }
+		&.temps { order: 5; }
+	}
+}
+
+@mixin option-card-seasonal($padding, $includeOrder: false, $selectedStrongBg: false) {
+	@include option-card-base($padding, $includeOrder);
+	@include option-card-saison-vars();
+	background: var(--season-soft-bg);
+	border-color: var(--season-soft-border);
+
+	&:has(input:checked) {
+		border-color: var(--season-strong-border) !important;
+
+		@if $selectedStrongBg {
+			background: var(--season-strong-bg) !important;
+		}
+	}
+}
+
+@mixin option-card-light($padding: 0.75rem) {
+	@include option-card-base($padding, $includeOrder: false);
+	@include option-card-saison-vars();
+	background: colors.$color-white;
+	border-color: var(--season-strong-border);
+
+	&:has(input:checked) {
+		border-color: var(--season-strong-border);
+		background: var(--season-soft-bg);
+		box-shadow: 0 2px 10px colors.$color-box-shadow;
+	}
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+
+@mixin header-menu-content() {
+	.page-actions {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 0;
+
+		position: absolute;
+		right: 0;
+		top: calc(100% + 0.65rem);
+		min-width: 15rem;
+		padding: 0.75rem;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.55rem;
+		border: 1px solid colors.$color-border-section;
+		border-radius: 16px;
+		background: colors.$color-white;
+		box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+		opacity: 0;
+		transform: translateY(-0.6rem);
+		pointer-events: none;
+		transition: opacity 180ms ease, transform 180ms ease;
+		z-index: 120;
+
+		.page-action-btn {
+			width: 100%;
+		}
+	}
+
+	&[open] {
+		.desktop-header-menu-toggle,
+		.mobile-header-menu-toggle {
+			background: colors.$color-hiver;
+
+			span {
+				background: colors.$color-white;
+			}
+		}
+
+		.page-actions {
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: auto;
+		}
+	}
+}
+
+@mixin desktop-header-menu-toggle() {
+	list-style: none;
+	width: 3.35rem;
+	height: 3.35rem;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.32rem;
+	cursor: pointer;
+	border-radius: 999px;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	span {
+		width: 2rem;
+		height: 3px;
+		border-radius: 999px;
+		background: colors.$color-hiver;
+	}
+}
+
+@mixin mobile-header-menu-toggle() {
+	list-style: none;
+	width: 2.6rem;
+	height: 2.6rem;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.24rem;
+	cursor: pointer;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	span {
+		width: 1rem;
+		height: 2px;
+		border-radius: 999px;
+		background: colors.$color-hiver;
+	}
+}

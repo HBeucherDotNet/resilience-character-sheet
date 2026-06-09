@@ -1,0 +1,1653 @@
+@charset "UTF-8";
+:root {
+  --color-hiver: #235a8a;
+  --color-printemps: #2c7a4b;
+  --color-ete: #bfa600;
+  --color-automne: #a13a3a;
+  --color-temps: #999;
+  --desktop-page-padding: 2rem;
+  --mobile-page-padding: 0.75rem;
+  --mobile-header-height: 3.6rem;
+  --mobile-card-radius: 10px;
+  --mobile-card-border: rgba(0, 0, 0, 0.15);
+  --mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #235a8a;
+  letter-spacing: 0.02rem;
+  margin-bottom: 0.7rem;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #235a8a;
+  letter-spacing: 0.02rem;
+  margin-bottom: 0.7rem;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #333;
+  letter-spacing: 0.02rem;
+}
+
+h5 {
+  margin: 0;
+  font-size: 1.35rem;
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.page-action-btn {
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  padding: 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  white-space: nowrap;
+  width: auto;
+}
+.page-action-btn:hover {
+  filter: brightness(1.2);
+}
+.page-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+  box-shadow: none;
+}
+
+.page-action-btn-secondary {
+  background: #fff;
+  color: #235a8a;
+}
+
+.desc {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.2rem;
+}
+
+.pictogram-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sort-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.sort-dialog-row-indicator-seed {
+  line-height: 1;
+  display: inline-grid;
+  place-items: center;
+  min-width: 1ch;
+}
+
+.fiche-saisons {
+  display: grid;
+  grid-template-columns: 5fr 1fr 5fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 2.5rem;
+  position: relative;
+  padding: 0 30px;
+}
+
+.sort-dialog {
+  border: none;
+  border-radius: var(--mobile-card-radius);
+  padding: 0;
+  width: min(100%, 38rem);
+  max-width: 38rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+.sort-dialog::backdrop {
+  background: rgba(24, 37, 58, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.sort-dialog-form {
+  padding: 1.25rem;
+}
+
+.sort-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sort-dialog-header h6 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #235a8a;
+}
+.sort-dialog-header p {
+  margin: 0.3rem 0 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.sort-dialog-close-btn {
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sort-dialog-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+.sort-dialog-fields .sort-dialog-row-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto auto 45px;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+}
+.sort-dialog-fields .sort-dialog-row-item > span {
+  min-width: 0;
+}
+.sort-dialog-fields .sort-dialog-row-item > :last-child {
+  font-size: 0.7rem;
+}
+.sort-dialog-fields .sort-dialog-input {
+  width: 1.5rem;
+  text-align: center;
+  padding: 0.2rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 6px;
+  background: #fff;
+}
+.sort-dialog-fields .sort-dialog-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #235a8a;
+  border-radius: 999px;
+  background: #235a8a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.sort-dialog-fields .sort-dialog-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+}
+
+.sort-dialog-talent-select-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sort-dialog-talent-select {
+  border: 1px solid #d3d7e3;
+  border-radius: var(--mobile-card-radius);
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  color: #333;
+  background: #fff;
+}
+
+#sort-talent-effets {
+  margin: 0.35rem 0;
+  padding-left: 1.2rem;
+}
+#sort-talent-effets li + li {
+  margin-top: 0.3rem;
+}
+
+#fiche-personnage.hiver {
+  --character-season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --character-season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --character-season-strong-border: #235a8a;
+}
+#fiche-personnage.printemps {
+  --character-season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --character-season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --character-season-strong-border: #2c7a4b;
+}
+#fiche-personnage.ete {
+  --character-season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --character-season-soft-border: rgb(255, 226.5968586387, 38);
+  --character-season-strong-bg: rgb(255, 226.5968586387, 38);
+  --character-season-strong-border: #bfa600;
+}
+#fiche-personnage.automne {
+  --character-season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --character-season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --character-season-strong-border: #a13a3a;
+}
+#fiche-personnage.temps {
+  --character-season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --character-season-soft-border: #cccccc;
+  --character-season-strong-bg: #cccccc;
+  --character-season-strong-border: #999;
+}
+#fiche-personnage.rupture {
+  --character-season-soft-bg: hsl(266.4705882353, 26.9841269841%, 105.5882352941%);
+  --character-season-soft-border: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-bg: rgb(177.619047619, 159.7619047619, 200.2380952381);
+  --character-season-strong-border: #7d5fa3;
+}
+#fiche-personnage .saison-border {
+  border-color: var(--character-season-strong-bg);
+}
+#fiche-personnage .saison-border.rupture {
+  border-color: #7d5fa3;
+}
+#fiche-personnage .saison-background {
+  background: var(--character-season-soft-bg);
+}
+
+body.view-mode #fiche-magie label,
+body.view-mode #fiche-magie input[type=checkbox],
+body.view-mode #fiche-magie .fiche-bloc-item,
+body.view-mode #fiche-blocs label,
+body.view-mode #fiche-blocs input[type=checkbox],
+body.view-mode #fiche-blocs .fiche-bloc-item {
+  pointer-events: none;
+}
+body.view-mode .fiche-bloc .fiche-bloc-item {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+body.view-mode .fiche-bloc .fiche-bloc-item input {
+  display: none;
+}
+body.view-mode .fiche-bloc .fiche-bloc-item .lire-plus.pictogram-btn {
+  display: none;
+}
+body.view-mode .fiche-bloc .fiche-bloc-item .desc {
+  display: inline !important;
+}
+body.view-mode .fiche-bloc .fiche-bloc-item:not(:has(input:checked)) {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) {
+  --desktop-page-padding: 1rem;
+  background: #fff;
+  margin: 0;
+  padding: var(--desktop-page-padding);
+}
+body.view-mode:not(.mobile-sheet-mode) #character-builder {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) .page-actions {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background: #fff;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-personnage {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 0.7rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents input {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tbody {
+  display: table-row-group;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr[hidden] {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr {
+  width: 100%;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr + tr {
+  border-top: 1px solid #d3d7e3;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td {
+  width: 20%;
+  padding: 0;
+  border: none;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td:not(:has(input:checked)) .magie-talent-label {
+  background: #888 !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td + td {
+  padding-left: 0.5rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td > label {
+  display: block;
+  width: 100%;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hidden] {
+  display: none !important;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-label {
+  pointer-events: auto;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background: var(--character-season-strong-border);
+  box-shadow: var(--mobile-shadow);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: normal;
+  box-sizing: border-box;
+  color: #fff;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-description {
+  margin: 0;
+  padding-left: 0;
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.2;
+  list-style-type: none;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-description li + li {
+  margin-top: 0.2rem;
+}
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-domaine-name {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.15;
+  color: var(--character-season-strong-border);
+  font-weight: 700;
+}
+body.view-mode.mobile-sheet-mode #fiche-blocs {
+  gap: 0.85rem;
+}
+body.view-mode.mobile-sheet-mode .fiche-bloc {
+  padding: 1.15rem 0.95rem 0.8rem;
+  gap: 0.35rem;
+  border-width: 1px;
+}
+body.view-mode.mobile-sheet-mode .fiche-bloc > label {
+  padding: 0 0.7rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie {
+  padding: 0.95rem 0.95rem 0.8rem;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-domaine-card[hidden],
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-chip[hidden] {
+  display: none !important;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie h5 {
+  margin-bottom: 0.35rem;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie > label {
+  display: block;
+  margin-top: 0.65rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: #555;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-domaine-card {
+  gap: 0.32rem;
+  padding: 0.55rem 0 0.75rem;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-domaine-card + .magie-domaine-card {
+  padding-top: 0.75rem;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-domaine-toggle {
+  justify-content: flex-start;
+  text-align: left;
+  pointer-events: none;
+  cursor: default;
+  padding-bottom: 0.15rem;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talents-grid {
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-chip {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-chip:has(input:checked) {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-label {
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background: var(--character-season-strong-border);
+  box-shadow: var(--mobile-shadow);
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: normal;
+  box-sizing: border-box;
+  color: #fff;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie input:checked + .magie-talent-label {
+  color: #fff;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description {
+  margin: 0;
+  padding-left: 0;
+  align-self: center;
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.15;
+  list-style-type: none;
+}
+body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description li + li {
+  margin-top: 0.2rem;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+  background: #e9ecf3;
+}
+
+.desktop-app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.desktop-app-header {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  min-height: 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--mobile-card-border);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  margin: calc(-1 * var(--desktop-page-padding));
+  margin-bottom: 0.7rem;
+}
+.desktop-app-header .header-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.desktop-app-header .header-main #main-title {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 2rem;
+  margin-bottom: 0;
+  flex: 1 1 auto;
+}
+.desktop-app-header .desktop-header-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+.desktop-app-header .desktop-header-menu .page-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.65rem);
+  min-width: 15rem;
+  padding: 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
+  opacity: 0;
+  transform: translateY(-0.6rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 120;
+}
+.desktop-app-header .desktop-header-menu .page-actions .page-action-btn {
+  width: 100%;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle,
+.desktop-app-header .desktop-header-menu[open] .mobile-header-menu-toggle {
+  background: #235a8a;
+}
+.desktop-app-header .desktop-header-menu[open] .desktop-header-menu-toggle span,
+.desktop-app-header .desktop-header-menu[open] .mobile-header-menu-toggle span {
+  background: #fff;
+}
+.desktop-app-header .desktop-header-menu[open] .page-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle {
+  list-style: none;
+  width: 3.35rem;
+  height: 3.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+.desktop-app-header .desktop-header-menu .desktop-header-menu-toggle span {
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: #235a8a;
+}
+
+section {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 1.2rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d3d7e3;
+  transition: box-shadow 0.2s;
+}
+section:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+section > div {
+  margin-bottom: 1rem;
+  margin-top: 0.3rem;
+  color: #444;
+}
+section > div:last-child {
+  margin-bottom: 0;
+}
+
+#fiche-personnage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: #fff;
+  padding: 1.6rem 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+#fiche-personnage h2 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}
+#fiche-personnage.hiver #fiche-magie-hiver {
+  display: table;
+}
+#fiche-personnage.printemps #fiche-magie-printemps {
+  display: table;
+}
+#fiche-personnage.ete #fiche-magie-ete {
+  display: table;
+}
+#fiche-personnage.automne #fiche-magie-automne {
+  display: table;
+}
+#fiche-personnage.temps #fiche-magie-temps {
+  display: table;
+}
+#fiche-personnage.rupture #fiche-magie-rupture {
+  display: table;
+}
+
+.fiche-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+.fiche-header .logo-nom {
+  grid-column: 1/span 4;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: row;
+}
+.fiche-header .header-saison {
+  grid-column: 5/span 2;
+  align-items: center;
+}
+.fiche-header input {
+  border-width: 1px;
+  border-style: none none solid none;
+  width: 250px;
+  font-size: 1em;
+}
+
+.logo-name-saison {
+  font-size: 2rem;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.fiche-valeurs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.5rem 1rem;
+  border: 2px solid #d3d7e3;
+  border-radius: 16px;
+}
+.fiche-valeurs input {
+  border-width: 1px;
+  border-style: none none solid none;
+  width: 30px;
+  text-align: center;
+}
+.fiche-valeurs.hiver {
+  border-color: #235a8a;
+}
+.fiche-valeurs.printemps {
+  border-color: #2c7a4b;
+}
+.fiche-valeurs.ete {
+  border-color: #bfa600;
+}
+.fiche-valeurs.automne {
+  border-color: #a13a3a;
+}
+.fiche-valeurs.temps {
+  border-color: #999;
+}
+.fiche-valeurs.rupture {
+  border-color: #7d5fa3;
+}
+
+.fiche-grid {
+  display: grid;
+  grid-template-columns: 2fr minmax(0, 30%);
+  gap: 1.2rem;
+}
+
+.saisons-center {
+  grid-column: 2/3;
+  grid-row: 1/3;
+  place-self: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.saisons-center .saison-cercle {
+  border-color: #999;
+}
+.saisons-center .saison-title {
+  position: absolute;
+  left: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0.8rem;
+}
+
+.saison-block {
+  border-radius: 100px;
+  border-width: 2px;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 75px auto 75px;
+}
+.saison-block .saison-icon {
+  font-size: 2.8rem;
+  place-self: center;
+}
+.saison-block .saison-info {
+  grid-column: 2/span 1;
+}
+.saison-block .saison-cercle {
+  place-self: center;
+}
+.saison-block.saison-hiver {
+  grid-column-start: 1;
+  border-color: #235a8a;
+  background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+}
+.saison-block.saison-hiver .saison-cercle {
+  border-color: #235a8a;
+}
+.saison-block.saison-printemps {
+  grid-column-start: 3;
+  border-color: #2c7a4b;
+  background: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+}
+.saison-block.saison-printemps .saison-cercle {
+  border-color: #2c7a4b;
+}
+.saison-block.saison-ete {
+  grid-column-start: 3;
+  border-color: #bfa600;
+  background: rgb(255, 249.9607329843, 216.5);
+}
+.saison-block.saison-ete .saison-cercle {
+  border-color: #bfa600;
+}
+.saison-block.saison-automne {
+  grid-column-start: 1;
+  border-color: #a13a3a;
+  background: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+}
+.saison-block.saison-automne .saison-cercle {
+  border-color: #a13a3a;
+}
+.saison-block.saison-temps {
+  border-color: #999;
+  background: rgb(242.25, 242.25, 242.25);
+}
+.saison-block.saison-temps .saison-cercle {
+  border-color: #999;
+}
+
+.saison-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}
+
+.saison-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+}
+
+.saison-cercle {
+  width: 75px;
+  height: 75px;
+  border-radius: 999px;
+  border: 2px solid #888;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+.saison-left .saison-info {
+  text-align: left;
+  place-self: center start;
+}
+.saison-left .saison-score {
+  transform: translateX(40%);
+  grid-column: 3/span 1;
+}
+.saison-left .saison-icon {
+  transform: translateX(-40%);
+  grid-column: 1/span 1;
+}
+
+.saison-right .saison-info {
+  text-align: right;
+  place-self: center end;
+}
+.saison-right .saison-score {
+  transform: translateX(-40%);
+  grid-column: 1/span 1;
+}
+.saison-right .saison-icon {
+  transform: translateX(40%);
+  grid-column: 3/span 1;
+}
+.saison-right .saison-title {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.saison-title {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.saison-icon {
+  font-size: 1.3rem;
+}
+
+.fiche-tableaux {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-row: span 2;
+}
+.fiche-tableaux h2 {
+  margin-bottom: 0;
+}
+
+.fiche-resonances table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.fiche-resonances th,
+.fiche-resonances td {
+  border: 1px dotted #000;
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+}
+.fiche-resonances th:nth-child(2),
+.fiche-resonances th:nth-child(3),
+.fiche-resonances td:nth-child(2),
+.fiche-resonances td:nth-child(3) {
+  width: 1%;
+  white-space: nowrap;
+}
+.fiche-resonances input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: none none solid none;
+}
+.fiche-resonances .resonnance-point,
+.fiche-resonances .resonnance-niveau {
+  text-align: center;
+  width: 4ch;
+}
+
+#fiche-magie {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 16px;
+  padding: 1rem;
+}
+#fiche-magie .fiche-magie-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0 1rem;
+}
+#fiche-magie .tableau-magie-talents {
+  width: 100%;
+  border-collapse: collapse;
+  display: none;
+}
+#fiche-magie .tableau-magie-talents input {
+  accent-color: var(--character-season-strong-border);
+}
+#fiche-magie textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+#fiche-blocs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fiche-bloc {
+  flex: 1 1 40%;
+  position: relative;
+  border-radius: 8px;
+  border-width: 2px;
+  border-style: solid;
+  background: #fff;
+  padding: 1.7rem 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+.fiche-bloc.saison-hiver {
+  border-color: #235a8a;
+}
+.fiche-bloc.saison-printemps {
+  border-color: #2c7a4b;
+}
+.fiche-bloc.saison-ete {
+  border-color: #bfa600;
+}
+.fiche-bloc.saison-automne {
+  border-color: #a13a3a;
+}
+.fiche-bloc > label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0 0.9rem;
+  background: #fff;
+  border-radius: 999px;
+  font-size: 1.35rem;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0.2rem #fff;
+  z-index: 1;
+}
+.fiche-bloc > label .saison-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  font-style: normal;
+  background: #fff;
+}
+.fiche-bloc.saison-hiver > label {
+  color: #235a8a;
+}
+.fiche-bloc.saison-printemps > label {
+  color: #2c7a4b;
+}
+.fiche-bloc.saison-ete > label {
+  color: #bfa600;
+}
+.fiche-bloc.saison-automne > label {
+  color: #a13a3a;
+}
+.fiche-bloc > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.fiche-bloc .fiche-bloc-item {
+  border: 1px solid #d3d7e3;
+  border-radius: var(--mobile-card-radius);
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.fiche-bloc .fiche-bloc-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+.fiche-bloc .fiche-bloc-item input[type=checkbox] {
+  accent-color: var(--season-strong-bg);
+}
+.fiche-bloc .fiche-bloc-item .option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fiche-bloc .fiche-bloc-item .option-label label {
+  color: #444;
+  font-weight: 600;
+}
+.fiche-bloc .fiche-bloc-item {
+  --season-soft-bg: #fff;
+  --season-soft-border: #d3d7e3;
+  --season-strong-bg: #fff;
+  --season-strong-border: #d3d7e3;
+}
+.fiche-bloc .fiche-bloc-item.hiver {
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
+}
+.fiche-bloc .fiche-bloc-item.printemps {
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
+}
+.fiche-bloc .fiche-bloc-item.ete {
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
+}
+.fiche-bloc .fiche-bloc-item.automne {
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
+}
+.fiche-bloc .fiche-bloc-item.temps {
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
+}
+.fiche-bloc .fiche-bloc-item {
+  background: #fff;
+  border-color: var(--season-strong-border);
+}
+.fiche-bloc .fiche-bloc-item:has(input:checked) {
+  border-color: var(--season-strong-border);
+  background: var(--season-soft-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.fiche-bloc .fiche-bloc-item {
+  flex: 1 1 auto;
+}
+.fiche-bloc .fiche-bloc-item label {
+  margin-right: 5px;
+}
+
+#fiche-champ-lexical {
+  border-width: 2px 0;
+  border-style: dotted none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+#fiche-champ-lexical .champ-lexical {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#fiche-champ-lexical .champ-lexical div {
+  flex-basis: 16%;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 1650px) {
+  html {
+    font-size: 90% !important;
+  }
+  .saison-block {
+    grid-template-columns: 50px auto 50px !important;
+  }
+  .saison-block .saison-icon {
+    font-size: 2rem !important;
+  }
+  .saison-cercle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+@media screen and (max-width: 1510px) {
+  .tableau-magie-talents {
+    font-size: 90% !important;
+  }
+}
+@media screen and (max-width: 1430px) {
+  .tableau-magie-talents {
+    font-size: 80% !important;
+  }
+}
+@media screen and (max-width: 1330px) {
+  html {
+    font-size: 100% !important;
+  }
+  body {
+    margin: 0.5rem;
+    background: #fff !important;
+  }
+  #main-title {
+    display: none !important;
+  }
+  .page-actions {
+    display: none !important;
+  }
+  #character-builder > section:not(#ameliorations-section) {
+    display: none !important;
+  }
+  #fiche-personnage {
+    display: none !important;
+  }
+  #ameliorations-section {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  #ameliorations-section details > summary {
+    display: none;
+  }
+  #ameliorations-section details > .collapsible-section-content {
+    display: block !important;
+  }
+  #ameliorations-scores-row {
+    display: none !important;
+  }
+  #ameliorations-group {
+    flex-direction: column;
+  }
+  .ameliorations-zone {
+    flex: none;
+    width: 100%;
+  }
+  .ameliorations-item-add-btn {
+    display: none !important;
+  }
+  .ameliorations-item:has(input:checked) {
+    order: -1;
+  }
+}
+.option {
+  border: 1px solid #d3d7e3;
+  border-radius: var(--mobile-card-radius);
+  padding: 0.5rem;
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.option:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+.option input[type=checkbox] {
+  accent-color: var(--season-strong-bg);
+}
+.option .option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.option .option-label label {
+  color: #444;
+  font-weight: 600;
+}
+.option.hiver {
+  order: 1;
+}
+.option.printemps {
+  order: 2;
+}
+.option.ete {
+  order: 3;
+}
+.option.automne {
+  order: 4;
+}
+.option.temps {
+  order: 5;
+}
+.option {
+  --season-soft-bg: #fff;
+  --season-soft-border: #d3d7e3;
+  --season-strong-bg: #fff;
+  --season-strong-border: #d3d7e3;
+}
+.option.hiver {
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
+}
+.option.printemps {
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
+}
+.option.ete {
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
+}
+.option.automne {
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
+}
+.option.temps {
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
+}
+.option {
+  background: var(--season-soft-bg);
+  border-color: var(--season-soft-border);
+}
+.option:has(input:checked) {
+  border-color: var(--season-strong-border) !important;
+}
+.option.lignee .lignee-sexe {
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: normal;
+}
+
+#armement-group .temps,
+#cuirasse-group .temps,
+#mains-group .temps,
+#peau-group .temps {
+  order: -1;
+}
+
+.flex-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.flex-group .option {
+  flex: 1 1 20%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.flex-group .option input[type=checkbox] {
+  margin-bottom: 0.5rem;
+}
+
+.flex-group#lignées-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.don {
+  color: #333;
+  font-size: 1rem;
+  display: block;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  border-left: dotted 2px var(--season-strong-border);
+}
+.don ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+#ameliorations-section #collapsible-section h2 {
+  margin-bottom: 0;
+}
+#ameliorations-section #collapsible-section > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+#ameliorations-section #collapsible-section > summary::-webkit-details-marker {
+  display: none;
+}
+#ameliorations-section #collapsible-section > summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  color: #235a8a;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+#ameliorations-section #collapsible-section[open] > summary::after {
+  content: "−";
+}
+#ameliorations-section .collapsible-section-hint {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: right;
+}
+#ameliorations-section .collapsible-section-content {
+  margin-top: 0.8rem;
+}
+#ameliorations-section #ameliorations-group {
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#ameliorations-section #ameliorations-scores-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  background: #e9ecf3;
+  border: 1px solid #d3d7e3;
+  border-radius: 10px;
+  padding: 0.9rem;
+  box-sizing: border-box;
+}
+#ameliorations-section .ameliorations-zone {
+  flex: 1 1 calc(25% - 0.75rem);
+  min-width: 220px;
+  background: #e9ecf3;
+  border: 1px solid #d3d7e3;
+  border-radius: 10px;
+  padding: 0.9rem;
+  box-sizing: border-box;
+}
+#ameliorations-section .ameliorations-zone h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  color: #235a8a;
+}
+#ameliorations-section .ameliorations-zone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2rem;
+}
+#ameliorations-section .ameliorations-item {
+  border: 1px solid #d3d7e3;
+  border-radius: var(--mobile-card-radius);
+  padding: 0.75rem;
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+#ameliorations-section .ameliorations-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+#ameliorations-section .ameliorations-item input[type=checkbox] {
+  accent-color: var(--season-strong-bg);
+}
+#ameliorations-section .ameliorations-item .option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#ameliorations-section .ameliorations-item .option-label label {
+  color: #444;
+  font-weight: 600;
+}
+#ameliorations-section .ameliorations-item {
+  --season-soft-bg: #fff;
+  --season-soft-border: #d3d7e3;
+  --season-strong-bg: #fff;
+  --season-strong-border: #d3d7e3;
+}
+#ameliorations-section .ameliorations-item.hiver {
+  --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
+  --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
+  --season-strong-border: #235a8a;
+}
+#ameliorations-section .ameliorations-item.printemps {
+  --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
+  --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
+  --season-strong-border: #2c7a4b;
+}
+#ameliorations-section .ameliorations-item.ete {
+  --season-soft-bg: rgb(255, 249.9607329843, 216.5);
+  --season-soft-border: rgb(255, 226.5968586387, 38);
+  --season-strong-bg: rgb(255, 226.5968586387, 38);
+  --season-strong-border: #bfa600;
+}
+#ameliorations-section .ameliorations-item.automne {
+  --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
+  --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
+  --season-strong-border: #a13a3a;
+}
+#ameliorations-section .ameliorations-item.temps {
+  --season-soft-bg: rgb(242.25, 242.25, 242.25);
+  --season-soft-border: #cccccc;
+  --season-strong-bg: #cccccc;
+  --season-strong-border: #999;
+}
+#ameliorations-section .ameliorations-item {
+  background: #fff;
+  border-color: var(--season-strong-border);
+}
+#ameliorations-section .ameliorations-item:has(input:checked) {
+  border-color: var(--season-strong-border);
+  background: var(--season-soft-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#ameliorations-section .ameliorations-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+#ameliorations-section .ameliorations-item-option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+#ameliorations-section .ameliorations-item-option-label strong {
+  line-height: 1.3;
+}
+#ameliorations-section .ameliorations-item-checkbox {
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+}
+#ameliorations-section .ameliorations-item-add-btn {
+  border: 1px solid #235a8a;
+  background: #235a8a;
+  color: #fff;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+#ameliorations-section .ameliorations-item-add-btn:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+#ameliorations-section .ameliorations-item-category {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 0.35rem;
+}
+#ameliorations-section .ameliorations-item-description {
+  font-size: 0.85rem;
+  color: #333;
+}
+#ameliorations-section .amelioration-score-row-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) auto auto auto;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  border: 1px solid #d3d7e3;
+  border-radius: 10px;
+  padding: 0.55rem 0.6rem;
+}
+#ameliorations-section .amelioration-score-input {
+  width: 1.5rem;
+  text-align: center;
+  padding: 0.2rem;
+  border: 1px solid #d3d7e3;
+  border-radius: 10px;
+  background: #fff;
+}
+#ameliorations-section .amelioration-score-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #235a8a;
+  border-radius: 999px;
+  background: #235a8a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+#ameliorations-section .amelioration-score-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: saturate(0.35);
+}
+
+.sort-dialog-row-indicator {
+  min-height: 1.6rem;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-content: center;
+  justify-content: flex-start;
+  justify-self: start;
+  gap: 0.12rem;
+  font-size: 1.1rem;
+  overflow: hidden;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+  }
+  html {
+    font-size: 70% !important;
+  }
+  body {
+    background: #fff !important;
+    margin: 0 !important;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+  input[type=text] {
+    border-width: 0px !important;
+    border-style: none !important;
+  }
+  .saison-desc {
+    font-size: 0.9rem !important;
+  }
+  #character-builder {
+    display: none !important;
+  }
+  #fiche-personnage {
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .page-actions {
+    display: none !important;
+  }
+  .pictogram-btn {
+    display: none !important;
+  }
+  .fiche-bloc .fiche-bloc-item {
+    border: none !important;
+    padding: 0.5rem 0 !important;
+  }
+  .saison-block {
+    grid-template-columns: 50px auto 50px !important;
+  }
+  .saison-cercle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  #fiche-magie .fiche-magie-actions,
+  #fiche-magie .sort-dialog {
+    display: none !important;
+  }
+  #fiche-magie textarea {
+    font-size: 0.9rem !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  #fiche-magie .tableau-magie-talents {
+    font-size: 0.8rem !important;
+  }
+  #fiche-magie td:not(:has(input:checked)) {
+    display: none !important;
+  }
+  .fiche-bloc > div {
+    gap: 0 !important;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

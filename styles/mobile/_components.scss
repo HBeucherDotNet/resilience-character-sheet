@@ -1,18 +1,7 @@
-@use "../colors";
-@use "../optionCards";
-@use "../viewMode";
-@use "../typography";
-@use "../header";
-@use "../buttons";
-@use "../sortDialog";
+@use "../variables" as colors;
+@use "../mixins";
 
-:root {
-	--mobile-page-padding: 0.75rem;
-	--mobile-header-height: 3.6rem;
-	--mobile-card-radius: 10px;
-	--mobile-card-border: rgba(0, 0, 0, 0.15);
-	--mobile-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-}
+// ─── Overrides section de base ────────────────────────────────────────────────
 
 section {
 	margin: 0;
@@ -23,65 +12,6 @@ section {
 	h2 {
 		display: none;
 	}
-}
-
-.mobile-brand-banner {
-	z-index: 100;
-	position: sticky;
-	top: 0;
-	min-height: var(--mobile-header-height);
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0.75rem;
-	margin: calc(-1 * var(--mobile-page-padding));
-	margin-bottom: 0.7rem;
-	padding: 0.45rem 0.7rem;
-	background-color: colors.$color-white;
-	border-bottom: 1px solid var(--mobile-card-border);
-	box-shadow: var(--mobile-shadow);
-
-	.mobile-brand-main {
-		display: flex;
-		align-items: center;
-		gap: 0.55rem;
-		min-width: 0;
-	}
-
-	.mobile-brand-logo {
-		height: 34px;
-		object-fit: contain;
-		flex: 0 0 auto;
-	}
-
-	.mobile-brand-title {
-		font-size: 1rem;
-		font-weight: 700;
-		letter-spacing: 0.03em;
-		color: colors.$color-hiver;
-		margin-bottom: 0;
-	}
-
-	.mobile-header-menu {
-		position: relative;
-		margin-left: auto;
-		z-index: 130;
-		@include header.header-menu-content();
-
-		&[open] .page-actions {
-			display: flex !important;
-		}
-
-		.mobile-header-menu-toggle {
-			@include header.mobile-header-menu-toggle();
-		}
-	}
-}
-
-#character-builder {
-	min-height: 100vh;
-	padding-bottom: 5.5rem;
 }
 
 .help-modale {
@@ -96,33 +26,7 @@ section {
 	display: none;
 }
 
-.page-actions {
-	position: fixed;
-	left: 0;
-	right: 0;
-	width: 100vw;
-	max-width: 100vw;
-	top: var(--mobile-header-height);
-	min-width: 0;
-	box-sizing: border-box;
-	padding: 0.65rem 0.75rem 0.85rem;
-	flex-direction: column;
-	gap: 0.45rem;
-	border: none;
-	border-radius: 0 0 var(--mobile-card-radius) var(--mobile-card-radius);
-	background: colors.$color-white;
-	box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
-	transform: translateY(-1rem);
-	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
-	z-index: 120;
-
-	.page-action-btn {
-		width: 100%;
-	}
-}
+// ─── Steps mobile ─────────────────────────────────────────────────────────────
 
 .mobile-step {
 	display: none;
@@ -130,7 +34,7 @@ section {
 	flex-direction: column;
 
 	.mobile-step-detail-content {
-		@include colors.option-card-saison-vars();
+		@include mixins.option-card-saison-vars();
 
 		.don {
 			background-color: var(--season-soft-bg);
@@ -146,48 +50,14 @@ section {
 	}
 }
 
-.mobile-step-nav {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 19;
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	align-items: center;
-	gap: 0.45rem;
-	padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
-	background: colors.$color-white;
-	backdrop-filter: blur(3px);
-	border-top: 1px solid rgba(0, 0, 0, 0.08);
-	box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
-}
+.mobile-step-detail {
+	order: 50;
 
-.mobile-step-title {
-	text-align: center;
-	font-size: 0.9rem;
-	font-weight: 700;
-}
-
-.flex-group {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	align-items: start;
-
-	.option {
-		flex: 1 1 40%;
+	.lignee-sexe {
+		margin-left: 5px;
+		font-size: 0.8rem;
+		color: colors.$color-text-muted;
 	}
-
-	&.three-columns-grid {
-		.option {
-			flex: 1 1 30%;
-		}
-	}
-}
-
-#lignées-list {
-	width: 100%;
 }
 
 .step-text {
@@ -204,219 +74,14 @@ section {
 	}
 }
 
-.mobile-step-detail {
-	order: 50;
-
-	.lignee-sexe {
-		margin-left: 5px;
-		font-size: 0.8rem;
-		color: colors.$color-text-muted;
-	}
-}
-
-.personnage-layout {
-	display: grid;
-	gap: 0.7rem;
-}
-
-.sort-dialog-content {
-	width: min(96vw, 640px);
-	max-height: 88vh;
-}
-
-#fiche-talents {
-	overflow-x: auto;
-
-	table {
-		min-width: 640px;
-	}
-}
-
-#collapsible-section {
-	h2 {
-		margin-bottom: 0;
-	}
-
-	& > summary {
-		list-style: none;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-
-	& > summary::-webkit-details-marker {
-		display: none;
-	}
-
-	& > summary::after {
-		content: "+";
-		flex: 0 0 auto;
-		width: 1.5rem;
-		height: 1.5rem;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 999px;
-		background: colors.$color-hiver-lighter;
-		color: colors.$color-hiver;
-		font-size: 1.1rem;
-		font-weight: 700;
-	}
-
-	&[open] > summary::after {
-		content: "−";
-	}
-
-	.collapsible-section-hint {
-		font-size: 0.9rem;
-		color: colors.$color-text-muted;
-		text-align: right;
-	}
-
-	.collapsible-section-content {
-		margin-top: 0.8rem;
-	}
-}
-
-#ameliorations-group {
-	flex-direction: column;
-	align-items: stretch;
-
-	.option {
-		padding: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-
-		.option-label {
-			min-height: unset;
-		}
-	}
-}
-
-#ameliorations-scores-row {
-	display: grid;
-	grid-template-columns: repeat(5, minmax(150px, 1fr));
-	gap: 0.6rem;
-}
-
-.ameliorations-zone {
-	flex: 1 1 calc(25% - 0.75rem);
-	min-width: 220px;
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: var(--mobile-card-radius);
-	padding: 0.9rem;
-	box-sizing: border-box;
-
-	h3 {
-		margin-bottom: 0.75rem;
-		font-size: 1.05rem;
-		color: colors.$color-hiver;
-	}
-}
-
-.ameliorations-zone-list {
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-	min-height: 2rem;
-}
-
-.ameliorations-item {
-	@include optionCards.option-card-light();
-}
-
-.ameliorations-item-header {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 0.75rem;
-	margin-bottom: 0.4rem;
-}
-
-.ameliorations-item-checkbox {
-	margin-top: 0.15rem;
-	flex: 0 0 auto;
-}
-
-.ameliorations-item-add-btn {
-	border: 1px solid colors.$color-hiver;
-	background: colors.$color-hiver;
-	color: colors.$color-white;
-	width: 1.8rem;
-	height: 1.8rem;
-	border-radius: 999px;
-	font-size: 1rem;
-	font-weight: 700;
-	line-height: 1;
-	cursor: pointer;
-	flex: 0 0 auto;
-
-	&:disabled {
-		cursor: default;
-		opacity: 0.65;
-	}
-}
-
-.ameliorations-item-category {
-	font-size: 0.8rem;
-	color: colors.$color-text-muted;
-	margin-bottom: 0.35rem;
-}
-
-.ameliorations-item-description {
-	font-size: 0.85rem;
-	color: colors.$color-text-dark;
-}
-
-.amelioration-score-row-item {
-	display: grid;
-	grid-template-columns: minmax(0, 1.5fr) auto auto auto;
-	align-items: center;
-	gap: 0.35rem;
-	background: colors.$color-white;
-	border: 1px solid colors.$color-border-section;
-	border-radius: var(--mobile-card-radius);
-	padding: 0.55rem 0.6rem;
-}
-
-.amelioration-score-input {
-	width: 1.5rem;
-	text-align: center;
-	padding: 0.2rem;
-	border: 1px solid colors.$color-border-section;
-	border-radius: var(--mobile-card-radius);
-	background: colors.$color-white;
-}
-
-.amelioration-score-btn {
-	width: 1.6rem;
-	height: 1.6rem;
-	border: 1px solid colors.$color-hiver;
-	border-radius: 999px;
-	background: colors.$color-hiver;
-	color: colors.$color-white;
-	font-weight: 700;
-	line-height: 1;
-	cursor: pointer;
-
-	&:disabled {
-		opacity: 0.4;
-		cursor: not-allowed;
-		filter: saturate(0.35);
-	}
-}
+// ─── Options / cartes saisonnières ───────────────────────────────────────────
 
 .option {
-	@include optionCards.option-card-seasonal(0.5rem, $includeOrder: true, $selectedStrongBg: true);
+	@include mixins.option-card-seasonal(0.5rem, $includeOrder: true, $selectedStrongBg: true);
 
 	.option-label {
 		align-items: center;
 		gap: 0.5rem;
-
 		justify-content: center;
 		font-weight: 600;
 		min-height: 2.6rem;
@@ -468,22 +133,25 @@ section {
 	}
 }
 
-.desc {
-	display: block;
-	font-size: 0.9rem;
-	color: colors.$color-text-muted;
-	margin-top: 0.2rem;
+.flex-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: start;
+
+	.option {
+		flex: 1 1 40%;
+	}
+
+	&.three-columns-grid {
+		.option {
+			flex: 1 1 30%;
+		}
+	}
 }
 
-.pictogram-btn {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
-	background: none;
-	border: none;
-	padding: 0;
-	cursor: pointer;
-	z-index: 2;
+#lignées-list {
+	width: 100%;
 }
 
 .don {
@@ -496,13 +164,14 @@ section {
 	border-left: dotted 2px black;
 }
 
+// ─── Fiche personnage (mobile builder) ───────────────────────────────────────
+
 #fiche-personnage {
 	display: none;
 	flex-direction: column;
 	background: colors.$color-white;
 	padding: 0;
 	gap: 0.65rem;
-	background: colors.$color-white;
 
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
@@ -512,24 +181,12 @@ section {
 		border-width: 2px;
 	}
 
-	&.hiver #fiche-magie-hiver {
-		display: flex;
-	}
-	&.printemps #fiche-magie-printemps {
-		display: flex;
-	}
-	&.ete #fiche-magie-ete {
-		display: flex;
-	}
-	&.automne #fiche-magie-automne {
-		display: flex;
-	}
-	&.temps #fiche-magie-temps {
-		display: flex;
-	}
-	&.rupture #fiche-magie-rupture {
-		display: flex;
-	}
+	&.hiver #fiche-magie-hiver { display: flex; }
+	&.printemps #fiche-magie-printemps { display: flex; }
+	&.ete #fiche-magie-ete { display: flex; }
+	&.automne #fiche-magie-automne { display: flex; }
+	&.temps #fiche-magie-temps { display: flex; }
+	&.rupture #fiche-magie-rupture { display: flex; }
 }
 
 .fiche-header {
@@ -542,7 +199,7 @@ section {
 		border-width: 1px;
 		border-style: none none solid none;
 		width: 250px;
-		font-size: 1em; // hérite de la taille de la fiche-header
+		font-size: 1em;
 	}
 }
 
@@ -606,40 +263,34 @@ section {
 		grid-column-start: 1;
 		border-color: colors.$color-hiver;
 		background: colors.$color-hiver-lighter;
-		.saison-cercle {
-			border-color: colors.$color-hiver;
-		}
+		.saison-cercle { border-color: colors.$color-hiver; }
 	}
+
 	&.saison-printemps {
 		grid-column-start: 3;
 		border-color: colors.$color-printemps;
 		background: colors.$color-printemps-lighter;
-		.saison-cercle {
-			border-color: colors.$color-printemps;
-		}
+		.saison-cercle { border-color: colors.$color-printemps; }
 	}
+
 	&.saison-ete {
 		grid-column-start: 3;
 		border-color: colors.$color-ete;
 		background: colors.$color-ete-lighter;
-		.saison-cercle {
-			border-color: colors.$color-ete;
-		}
+		.saison-cercle { border-color: colors.$color-ete; }
 	}
+
 	&.saison-automne {
 		grid-column-start: 1;
 		border-color: colors.$color-automne;
 		background: colors.$color-automne-lighter;
-		.saison-cercle {
-			border-color: colors.$color-automne;
-		}
+		.saison-cercle { border-color: colors.$color-automne; }
 	}
+
 	&.saison-temps {
 		border-color: colors.$color-temps;
 		background: colors.$color-temps-lighter;
-		.saison-cercle {
-			border-color: colors.$color-temps;
-		}
+		.saison-cercle { border-color: colors.$color-temps; }
 	}
 }
 
@@ -677,25 +328,11 @@ section {
 	}
 }
 
-.saison-hiver .saison-score::before {
-	content: "❄️";
-}
-
-.saison-printemps .saison-score::before {
-	content: "🌱";
-}
-
-.saison-ete .saison-score::before {
-	content: "☀️";
-}
-
-.saison-automne .saison-score::before {
-	content: "🍁";
-}
-
-.saison-temps .saison-score::before {
-	content: "⏳";
-}
+.saison-hiver .saison-score::before { content: "❄️"; }
+.saison-printemps .saison-score::before { content: "🌱"; }
+.saison-ete .saison-score::before { content: "☀️"; }
+.saison-automne .saison-score::before { content: "🍁"; }
+.saison-temps .saison-score::before { content: "⏳"; }
 
 .saison-cercle {
 	width: 75px;
@@ -753,12 +390,14 @@ section {
 		width: 100%;
 		border-collapse: collapse;
 	}
+
 	th,
 	td {
 		border: 1px dotted colors.$color-black;
 		padding: 0.3rem 0.5rem;
 		text-align: left;
 	}
+
 	th:nth-child(2),
 	th:nth-child(3),
 	td:nth-child(2),
@@ -766,6 +405,7 @@ section {
 		width: 1%;
 		white-space: nowrap;
 	}
+
 	input {
 		width: 100%;
 		min-width: 0;
@@ -773,6 +413,7 @@ section {
 		border-width: 1px;
 		border-style: none none solid none;
 	}
+
 	.resonnance-point,
 	.resonnance-niveau {
 		text-align: center;
@@ -926,25 +567,207 @@ section {
 	}
 }
 
+// ─── Sort dialog (spécifique mobile) ─────────────────────────────────────────
+
+.sort-dialog-content {
+	width: min(96vw, 640px);
+	max-height: 88vh;
+}
+
 .sort-dialog-row-indicator {
 	min-height: 1.6rem;
 	align-content: center;
 	font-size: 1.1rem;
 }
 
-.sort-dialog-row-indicator-seed {
-	line-height: 1;
-	display: inline-grid;
-	place-items: center;
-	min-width: 1ch;
+// ─── Améliorations ────────────────────────────────────────────────────────────
+
+#collapsible-section {
+	h2 {
+		margin-bottom: 0;
+	}
+
+	& > summary {
+		list-style: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	& > summary::-webkit-details-marker {
+		display: none;
+	}
+
+	& > summary::after {
+		content: "+";
+		flex: 0 0 auto;
+		width: 1.5rem;
+		height: 1.5rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 999px;
+		background: colors.$color-hiver-lighter;
+		color: colors.$color-hiver;
+		font-size: 1.1rem;
+		font-weight: 700;
+	}
+
+	&[open] > summary::after {
+		content: "−";
+	}
+
+	.collapsible-section-hint {
+		font-size: 0.9rem;
+		color: colors.$color-text-muted;
+		text-align: right;
+	}
+
+	.collapsible-section-content {
+		margin-top: 0.8rem;
+	}
 }
 
-.sort-dialog-actions {
+#ameliorations-group {
+	flex-direction: column;
+	align-items: stretch;
+
+	.option {
+		padding: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		.option-label {
+			min-height: unset;
+		}
+	}
+}
+
+#ameliorations-scores-row {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(150px, 1fr));
+	gap: 0.6rem;
+}
+
+.ameliorations-zone {
+	flex: 1 1 calc(25% - 0.75rem);
+	min-width: 220px;
+	background: colors.$color-white;
+	border: 1px solid colors.$color-border-section;
+	border-radius: var(--mobile-card-radius);
+	padding: 0.9rem;
+	box-sizing: border-box;
+
+	h3 {
+		margin-bottom: 0.75rem;
+		font-size: 1.05rem;
+		color: colors.$color-hiver;
+	}
+}
+
+.ameliorations-zone-list {
 	display: flex;
-	justify-content: flex-end;
+	flex-direction: column;
+	gap: 0.6rem;
+	min-height: 2rem;
+}
+
+.ameliorations-item {
+	@include mixins.option-card-light();
+}
+
+.ameliorations-item-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
 	gap: 0.75rem;
-	margin-top: 1rem;
-	flex-wrap: wrap;
+	margin-bottom: 0.4rem;
+}
+
+.ameliorations-item-checkbox {
+	margin-top: 0.15rem;
+	flex: 0 0 auto;
+}
+
+.ameliorations-item-add-btn {
+	border: 1px solid colors.$color-hiver;
+	background: colors.$color-hiver;
+	color: colors.$color-white;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 999px;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
+	flex: 0 0 auto;
+
+	&:disabled {
+		cursor: default;
+		opacity: 0.65;
+	}
+}
+
+.ameliorations-item-category {
+	font-size: 0.8rem;
+	color: colors.$color-text-muted;
+	margin-bottom: 0.35rem;
+}
+
+.ameliorations-item-description {
+	font-size: 0.85rem;
+	color: colors.$color-text-dark;
+}
+
+.amelioration-score-row-item {
+	display: grid;
+	grid-template-columns: minmax(0, 1.5fr) auto auto auto;
+	align-items: center;
+	gap: 0.35rem;
+	background: colors.$color-white;
+	border: 1px solid colors.$color-border-section;
+	border-radius: var(--mobile-card-radius);
+	padding: 0.55rem 0.6rem;
+}
+
+.amelioration-score-input {
+	width: 1.5rem;
+	text-align: center;
+	padding: 0.2rem;
+	border: 1px solid colors.$color-border-section;
+	border-radius: var(--mobile-card-radius);
+	background: colors.$color-white;
+}
+
+.amelioration-score-btn {
+	width: 1.6rem;
+	height: 1.6rem;
+	border: 1px solid colors.$color-hiver;
+	border-radius: 999px;
+	background: colors.$color-hiver;
+	color: colors.$color-white;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
+
+	&:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+		filter: saturate(0.35);
+	}
+}
+
+// ─── Fiche talents ────────────────────────────────────────────────────────────
+
+#fiche-talents {
+	overflow-x: auto;
+
+	table {
+		min-width: 640px;
+	}
 }
 
 #fiche-champ-lexical {
@@ -960,6 +783,8 @@ section {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
+
+// ─── Mode fiche (mobile-sheet-mode) ──────────────────────────────────────────
 
 body.mobile-sheet-mode {
 	background-color: colors.$color-white;
@@ -1006,7 +831,7 @@ body.mobile-sheet-mode {
 			border-width: 1px;
 			border-style: none none solid none;
 			width: 100%;
-			font-size: 1em; // hérite de la taille de la fiche-header
+			font-size: 1em;
 		}
 	}
 
@@ -1199,14 +1024,17 @@ body.mobile-sheet-mode {
 			--fiche-bloc-color: #{colors.$color-hiver};
 			--fiche-bloc-color-soft: #{colors.$color-hiver-lighter};
 		}
+
 		&.saison-printemps {
 			--fiche-bloc-color: #{colors.$color-printemps};
 			--fiche-bloc-color-soft: #{colors.$color-printemps-lighter};
 		}
+
 		&.saison-ete {
 			--fiche-bloc-color: #{colors.$color-ete};
 			--fiche-bloc-color-soft: #{colors.$color-ete-lighter};
 		}
+
 		&.saison-automne {
 			--fiche-bloc-color: #{colors.$color-automne};
 			--fiche-bloc-color-soft: #{colors.$color-automne-lighter};
@@ -1264,7 +1092,7 @@ body.mobile-sheet-mode {
 			gap: 0.5rem;
 
 			.fiche-bloc-item {
-				@include optionCards.option-card-light();
+				@include mixins.option-card-light();
 
 				label {
 					margin-right: 5px;
@@ -1288,6 +1116,8 @@ body.mobile-sheet-mode {
 		}
 	}
 }
+
+// ─── Mode améliorations ───────────────────────────────────────────────────────
 
 body.mobile-ameliorations-mode {
 	#fiche-personnage,
