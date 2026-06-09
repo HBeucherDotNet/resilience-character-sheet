@@ -1,6 +1,12 @@
 @use "../variables" as colors;
 @use "../mixins";
 
+body {
+	margin: 0;
+	padding: var(--mobile-page-padding);
+	font-family: sans-serif;
+}
+
 .mobile-brand-banner {
 	z-index: 100;
 	position: sticky;

@@ -505,6 +505,12 @@ body.view-mode.mobile-sheet-mode #fiche-magie .magie-talent-description li + li 
   margin-top: 0.2rem;
 }
 
+body {
+  margin: 0;
+  padding: var(--mobile-page-padding);
+  font-family: sans-serif;
+}
+
 .mobile-brand-banner {
   z-index: 100;
   position: sticky;
