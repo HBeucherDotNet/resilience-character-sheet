@@ -50,7 +50,7 @@ body {
 		align-items: center;
 		gap: 1.5rem;
 		min-width: 0;
-		
+
 		#main-title {
 			font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 			font-size: 2rem;
@@ -137,10 +137,6 @@ body {
 	}
 }
 
-
-
-
-
 .mobile-brand-banner {
 	position: sticky;
 	top: 0;
@@ -150,13 +146,13 @@ body {
 	background-color: colors.$color-white;
 	border-bottom: 1px solid var(--mobile-card-border);
 	box-shadow: var(--mobile-shadow);
-	
+
 	.header-main {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
 		min-width: 0;
-		
+
 		#main-title {
 			font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 			font-size: 2rem;
@@ -304,12 +300,12 @@ section {
 	&:hover {
 		box-shadow: 0 4px 16px colors.$color-box-shadow-hover;
 	}
-	
-	&> div {
+
+	& > div {
 		margin-bottom: 1rem;
 		margin-top: 0.3rem;
 		color: colors.$color-text-main;
-		
+
 		&:last-child {
 			margin-bottom: 0;
 		}
@@ -317,12 +313,11 @@ section {
 }
 
 #ameliorations-section {
-	
 	#collapsible-section {
 		h2 {
 			margin-bottom: 0;
 		}
-		
+
 		& > summary {
 			list-style: none;
 			cursor: pointer;
@@ -331,13 +326,13 @@ section {
 			justify-content: space-between;
 			gap: 1rem;
 		}
-		
+
 		& > summary::-webkit-details-marker {
 			display: none;
 		}
-		
+
 		& > summary::after {
-			content: '+';
+			content: "+";
 			flex: 0 0 auto;
 			width: 1.5rem;
 			height: 1.5rem;
@@ -350,41 +345,41 @@ section {
 			font-size: 1.1rem;
 			font-weight: 700;
 		}
-		
+
 		&[open] > summary::after {
-			content: '−';
+			content: "−";
 		}
 	}
-	
+
 	.collapsible-section-hint {
 		font-size: 0.9rem;
 		color: colors.$color-text-muted;
 		text-align: right;
 	}
-	
+
 	.collapsible-section-content {
 		margin-top: 0.8rem;
 	}
-	
+
 	#ameliorations-group {
 		align-items: stretch;
 		flex-wrap: wrap;
 		gap: 1rem;
 	}
-	
+
 	#ameliorations-scores-row {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(150px, 1fr));
 		gap: 0.6rem;
 		margin-bottom: 1rem;
-		
+
 		background: colors.$color-bg-page;
 		border: 1px solid colors.$color-border-section;
 		border-radius: 10px;
 		padding: 0.9rem;
 		box-sizing: border-box;
 	}
-	
+
 	.ameliorations-zone {
 		flex: 1 1 calc(25% - 0.75rem);
 		min-width: 220px;
@@ -393,25 +388,25 @@ section {
 		border-radius: 10px;
 		padding: 0.9rem;
 		box-sizing: border-box;
-		
+
 		h3 {
 			margin-bottom: 0.75rem;
 			font-size: 1.05rem;
 			color: colors.$color-hiver;
 		}
 	}
-	
+
 	.ameliorations-zone-list {
 		display: flex;
 		flex-direction: column;
 		gap: 0.6rem;
 		min-height: 2rem;
 	}
-	
+
 	.ameliorations-item {
 		@include optionCards.option-card-light();
 	}
-	
+
 	.ameliorations-item-header {
 		display: flex;
 		align-items: flex-start;
@@ -419,7 +414,7 @@ section {
 		gap: 0.75rem;
 		margin-bottom: 0.4rem;
 	}
-	
+
 	.ameliorations-item-option-label {
 		display: flex;
 		align-items: flex-start;
@@ -427,17 +422,17 @@ section {
 		font-weight: 600;
 		cursor: pointer;
 		width: 100%;
-		
+
 		strong {
 			line-height: 1.3;
 		}
 	}
-	
+
 	.ameliorations-item-checkbox {
 		margin-top: 0.15rem;
 		flex: 0 0 auto;
 	}
-	
+
 	.ameliorations-item-add-btn {
 		border: 1px solid colors.$color-hiver;
 		background: colors.$color-hiver;
@@ -450,24 +445,24 @@ section {
 		line-height: 1;
 		cursor: pointer;
 		flex: 0 0 auto;
-		
+
 		&:disabled {
 			cursor: default;
 			opacity: 0.65;
 		}
 	}
-	
+
 	.ameliorations-item-category {
-		font-size: 0.80rem;
+		font-size: 0.8rem;
 		color: colors.$color-text-muted;
 		margin-bottom: 0.35rem;
 	}
-	
+
 	.ameliorations-item-description {
 		font-size: 0.85rem;
 		color: colors.$color-text-dark;
 	}
-	
+
 	.amelioration-score-row-item {
 		display: grid;
 		grid-template-columns: minmax(0, 1.5fr) auto auto auto;
@@ -487,7 +482,7 @@ section {
 		border-radius: 6px;
 		background: colors.$color-white;
 	}
-	
+
 	.amelioration-score-btn {
 		width: 1.6rem;
 		height: 1.6rem;
@@ -498,7 +493,7 @@ section {
 		font-weight: 700;
 		line-height: 1;
 		cursor: pointer;
-		
+
 		&:disabled {
 			opacity: 0.4;
 			cursor: not-allowed;
@@ -532,8 +527,7 @@ section {
 #armement-group,
 #cuirasse-group,
 #mains-group,
-#peau-group
-{
+#peau-group {
 	.temps {
 		order: -1;
 	}
@@ -544,7 +538,7 @@ section {
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 0.5rem;
-	
+
 	.option {
 		flex: 1 1 20%;
 		min-width: 0;
@@ -554,7 +548,7 @@ section {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		
+
 		input[type="checkbox"] {
 			margin-bottom: 0.5rem;
 		}
@@ -598,7 +592,7 @@ section {
 	background-color: rgba(256, 256, 256, 0.5);
 	padding: 0.5rem 1rem;
 	border-left: dotted 2px var(--season-strong-border);
-	
+
 	ul {
 		margin: 0;
 		padding-left: 1.25rem;
@@ -613,17 +607,29 @@ section {
 	padding: 1.6rem 1.8rem;
 	border-radius: 16px;
 	box-shadow: 0 2px 12px colors.$color-box-shadow;
-	
+
 	h2 {
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	}
-	
-	&.hiver #fiche-magie-hiver { display: table; }
-	&.printemps #fiche-magie-printemps { display: table; }
-	&.ete #fiche-magie-ete { display: table; }
-	&.automne #fiche-magie-automne { display: table; }
-	&.temps #fiche-magie-temps { display: table; }
-	&.rupture #fiche-magie-rupture { display: table; }
+
+	&.hiver #fiche-magie-hiver {
+		display: table;
+	}
+	&.printemps #fiche-magie-printemps {
+		display: table;
+	}
+	&.ete #fiche-magie-ete {
+		display: table;
+	}
+	&.automne #fiche-magie-automne {
+		display: table;
+	}
+	&.temps #fiche-magie-temps {
+		display: table;
+	}
+	&.rupture #fiche-magie-rupture {
+		display: table;
+	}
 }
 
 .fiche-header {
@@ -631,7 +637,7 @@ section {
 	grid-template-columns: repeat(6, 1fr);
 	gap: 1rem;
 	align-items: start;
-	
+
 	.logo-nom {
 		grid-column: 1 / span 4;
 		align-self: center;
@@ -640,12 +646,12 @@ section {
 		gap: 2rem;
 		flex-direction: row;
 	}
-	
+
 	.header-saison {
 		grid-column: 5 / span 2;
 		align-items: center;
 	}
-	
+
 	input {
 		border-width: 1px;
 		border-style: none none solid none;
@@ -661,7 +667,7 @@ section {
 	font-weight: 600;
 }
 
-.fiche-valeurs { 
+.fiche-valeurs {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -669,14 +675,14 @@ section {
 	padding: 0.5rem 1rem;
 	border: 2px solid colors.$color-border-section;
 	border-radius: 16px;
-	
+
 	input {
 		border-width: 1px;
 		border-style: none none solid none;
 		width: 30px;
 		text-align: center;
 	}
-	
+
 	&.hiver {
 		border-color: colors.$color-hiver;
 	}
@@ -699,8 +705,8 @@ section {
 
 .fiche-grid {
 	display: grid;
-	grid-template-columns: 2fr minmax(0, 30%); 
-	gap: 1.2rem; 
+	grid-template-columns: 2fr minmax(0, 30%);
+	gap: 1.2rem;
 }
 
 .fiche-saisons {
@@ -721,8 +727,10 @@ section {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 2;
-	
-	.saison-cercle { border-color: colors.$color-temps; }
+
+	.saison-cercle {
+		border-color: colors.$color-temps;
+	}
 }
 
 .saison-block {
@@ -731,48 +739,58 @@ section {
 	border-style: solid;
 	display: grid;
 	grid-template-columns: 75px auto 75px;
-	
+
 	.saison-icon {
 		font-size: 2.8rem;
 		place-self: center;
 	}
-	
+
 	.saison-info {
 		grid-column: 2 / span 1;
 	}
-	
+
 	.saison-cercle {
 		place-self: center;
 	}
-	
-	&.saison-hiver { 
+
+	&.saison-hiver {
 		grid-column-start: 1;
-		border-color: colors.$color-hiver; 
-		background: colors.$color-hiver-lighter; 
-		.saison-cercle { border-color: colors.$color-hiver; }
+		border-color: colors.$color-hiver;
+		background: colors.$color-hiver-lighter;
+		.saison-cercle {
+			border-color: colors.$color-hiver;
+		}
 	}
-	&.saison-printemps { 
+	&.saison-printemps {
 		grid-column-start: 3;
-		border-color: colors.$color-printemps; 
-		background: colors.$color-printemps-lighter; 
-		.saison-cercle { border-color: colors.$color-printemps; }
+		border-color: colors.$color-printemps;
+		background: colors.$color-printemps-lighter;
+		.saison-cercle {
+			border-color: colors.$color-printemps;
+		}
 	}
-	&.saison-ete { 
+	&.saison-ete {
 		grid-column-start: 3;
-		border-color: colors.$color-ete; 
-		background: colors.$color-ete-lighter; 
-		.saison-cercle { border-color: colors.$color-ete; }
+		border-color: colors.$color-ete;
+		background: colors.$color-ete-lighter;
+		.saison-cercle {
+			border-color: colors.$color-ete;
+		}
 	}
-	&.saison-automne { 
+	&.saison-automne {
 		grid-column-start: 1;
-		border-color: colors.$color-automne; 
-		background: colors.$color-automne-lighter; 
-		.saison-cercle { border-color: colors.$color-automne; }
+		border-color: colors.$color-automne;
+		background: colors.$color-automne-lighter;
+		.saison-cercle {
+			border-color: colors.$color-automne;
+		}
 	}
-	&.saison-temps { 
-		border-color: colors.$color-temps; 
-		background: colors.$color-temps-lighter; 
-		.saison-cercle { border-color: colors.$color-temps; }
+	&.saison-temps {
+		border-color: colors.$color-temps;
+		background: colors.$color-temps-lighter;
+		.saison-cercle {
+			border-color: colors.$color-temps;
+		}
 	}
 }
 
@@ -844,7 +862,7 @@ section {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 2;
-	
+
 	.saison-title {
 		position: absolute;
 		left: -120px;
@@ -854,7 +872,7 @@ section {
 	}
 }
 
-.saison-title { 
+.saison-title {
 	font-size: 1.2rem;
 	display: flex;
 	align-items: center;
@@ -864,16 +882,16 @@ section {
 	font-weight: 600;
 }
 
-.saison-icon { 
-	font-size: 1.3rem; 
+.saison-icon {
+	font-size: 1.3rem;
 }
 
-.fiche-tableaux { 
+.fiche-tableaux {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	grid-row: span 2;
-	
+
 	h2 {
 		margin-bottom: 0;
 	}
@@ -881,13 +899,14 @@ section {
 
 .fiche-resonances {
 	table {
-		width: 100%; 
-		border-collapse: collapse; 
+		width: 100%;
+		border-collapse: collapse;
 	}
-	th, td { 
-		border: 1px dotted colors.$color-black; 
+	th,
+	td {
+		border: 1px dotted colors.$color-black;
 		padding: 0.3rem 0.5rem;
-		text-align: left; 
+		text-align: left;
 	}
 	th:nth-child(2),
 	th:nth-child(3),
@@ -903,7 +922,8 @@ section {
 		border-width: 1px;
 		border-style: none none solid none;
 	}
-	.resonnance-point, .resonnance-niveau {
+	.resonnance-point,
+	.resonnance-niveau {
 		text-align: center;
 		width: 4ch;
 	}
@@ -914,7 +934,7 @@ section {
 	border-style: solid;
 	border-radius: 16px;
 	padding: 1rem;
-	
+
 	h5 {
 		margin: 0;
 		font-size: 1.35rem;
@@ -923,23 +943,23 @@ section {
 		font-style: italic;
 		font-weight: 600;
 	}
-	
+
 	.fiche-magie-actions {
 		display: flex;
 		justify-content: center;
 		margin: 0.75rem 0 1rem;
 	}
-	
+
 	.tableau-magie-talents {
 		width: 100%;
 		border-collapse: collapse;
-		display: none;	
-		
+		display: none;
+
 		input {
 			accent-color: var(--character-season-strong-border);
 		}
 	}
-	
+
 	textarea {
 		width: 100%;
 		box-sizing: border-box;
@@ -1107,7 +1127,7 @@ section {
 #fiche-blocs {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem; 
+	gap: 1rem;
 }
 
 .fiche-bloc {
@@ -1118,25 +1138,25 @@ section {
 	border-style: solid;
 	background: colors.$color-white;
 	padding: 1.7rem 1rem 0.9rem;
-	display: flex; 
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
 	margin-top: 0.8rem;
-	
-	&.saison-hiver { 
-		border-color: colors.$color-hiver; 
+
+	&.saison-hiver {
+		border-color: colors.$color-hiver;
 	}
-	&.saison-printemps { 
-		border-color: colors.$color-printemps; 
+	&.saison-printemps {
+		border-color: colors.$color-printemps;
 	}
-	&.saison-ete { 
-		border-color: colors.$color-ete; 
+	&.saison-ete {
+		border-color: colors.$color-ete;
 	}
-	&.saison-automne { 
-		border-color: colors.$color-automne; 
+	&.saison-automne {
+		border-color: colors.$color-automne;
 	}
-	
+
 	& > label {
 		position: absolute;
 		top: 0;
@@ -1157,7 +1177,7 @@ section {
 		white-space: nowrap;
 		box-shadow: 0 0 0 0.2rem colors.$color-white;
 		z-index: 1;
-		
+
 		.saison-icon {
 			display: inline-flex;
 			align-items: center;
@@ -1169,34 +1189,34 @@ section {
 			background: colors.$color-white;
 		}
 	}
-	
+
 	&.saison-hiver > label {
 		color: colors.$color-hiver;
 	}
-	
+
 	&.saison-printemps > label {
 		color: colors.$color-printemps;
 	}
-	
+
 	&.saison-ete > label {
 		color: colors.$color-ete;
 	}
-	
+
 	&.saison-automne > label {
 		color: colors.$color-automne;
 	}
-	
+
 	& > div {
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
 		flex-wrap: wrap;
 	}
-	
+
 	.fiche-bloc-item {
 		@include optionCards.option-card-light(0.5rem 2rem 0.5rem 0.5rem);
 		flex: 1 1 auto;
-		
+
 		label {
 			margin-right: 5px;
 		}
@@ -1210,13 +1230,13 @@ section {
 	font-size: 1rem;
 	flex-direction: column;
 	align-items: center;
-	
+
 	.champ-lexical {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		
+
 		div {
 			flex-basis: 16%;
 			flex-shrink: 0;
