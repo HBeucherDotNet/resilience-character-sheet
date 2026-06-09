@@ -4,7 +4,6 @@ import { createFicheRenderer, createQuestionMarkSvg, normalizePlaceholderToken }
 import { createHashStateSync } from './lib/hashState.js';
 import { createOptionCard, renderOptionGroup } from './lib/optionCard.js';
 import { createSortDialogController } from './lib/sortDialog.js';
-import { lignees } from './data/lignees.js';
 import { ligneeOptionConfigs } from './data/ligneeSections.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
@@ -817,6 +816,44 @@ function initLignees() {
 	renderOptionGroup(lignéesList, optionNodes);
 }
 
+function randomChoice(arr) {
+	return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function selectRandomInGroup(name) {
+	const inputs = Array.from(document.querySelectorAll(`input[name="${name}"]`))
+		.filter(input => !input.disabled);
+	if (inputs.length === 0) return;
+	inputs.forEach(cb => { cb.checked = false; });
+	const chosen = randomChoice(inputs);
+	chosen.checked = true;
+	chosen.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function genererPersonnageAleatoire() {
+	// Famille avant lignée : updateLignees() est déclenché par le change famille
+	selectRandomInGroup('saison');
+	selectRandomInGroup('famille');
+
+	const visibleLigneeInputs = Array.from(document.querySelectorAll('input[name="lignee"]'))
+		.filter(input => {
+			const option = input.closest('.option');
+			return option && option.style.display !== 'none' && !input.disabled;
+		});
+	if (visibleLigneeInputs.length > 0) {
+		document.querySelectorAll('input[name="lignee"]').forEach(cb => { cb.checked = false; });
+		const chosen = randomChoice(visibleLigneeInputs);
+		chosen.checked = true;
+		chosen.dispatchEvent(new Event('change', { bubbles: true }));
+	}
+
+	['armement', 'cuirasse', 'mains', 'peau'].forEach(selectRandomInGroup);
+	['environnement', 'mode-de-vie', 'philosophie', 'relation-rupture', 'role', 'age', 'personnalite']
+		.forEach(selectRandomInGroup);
+
+	syncPersonnageFromDom();
+}
+
 function initBindings() {
 	bindViewModeActions();
 
@@ -824,6 +861,12 @@ function initBindings() {
 	launchSortButton?.addEventListener('click', () => {
 		if (launchSortButton.disabled) return;
 		sortDialogController.openSortDialog();
+	});
+
+	document.getElementById('random-personnage-btn')?.addEventListener('click', () => {
+		genererPersonnageAleatoire();
+		document.querySelector('.desktop-header-menu')?.removeAttribute('open');
+		document.querySelector('.mobile-header-menu')?.removeAttribute('open');
 	});
 
 	document.querySelectorAll('#character-builder input[type="checkbox"]').forEach(input => {
