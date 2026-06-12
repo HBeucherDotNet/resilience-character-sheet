@@ -1,0 +1,252 @@
+@use "variables" as colors;
+@use "mixins";
+
+// ─── Base ─────────────────────────────────────────────────────────────────────
+
+body {
+	margin: 0;
+	background: colors.$color-bg-page;
+	font-family: system-ui, -apple-system, sans-serif;
+	color: colors.$color-text-main;
+}
+
+// ─── Shell ────────────────────────────────────────────────────────────────────
+
+.ref-shell {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+
+.ref-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	background: rgba(255, 255, 255, 0.94);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 6px 18px colors.$color-box-shadow;
+}
+
+.ref-header-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 1rem 1.2rem;
+	min-height: 3.6rem;
+	box-sizing: border-box;
+
+	.ref-header-main {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.ref-logo {
+		height: 2rem;
+		width: auto;
+	}
+
+	h1 {
+		margin: 0;
+		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+		font-size: 1.6rem;
+		color: colors.$color-hiver;
+		letter-spacing: 0.02rem;
+	}
+}
+
+.ref-back-link {
+	font-size: 0.85rem;
+	padding: 0.45rem 1rem;
+	text-decoration: none;
+	border-radius: 999px;
+	border: 1px solid colors.$color-hiver;
+	color: colors.$color-hiver;
+	background: colors.$color-white;
+	white-space: nowrap;
+	box-shadow: 0 2px 8px colors.$color-box-shadow;
+	transition: filter 0.15s;
+
+	&:hover {
+		filter: brightness(0.9);
+	}
+}
+
+// ─── Onglets ──────────────────────────────────────────────────────────────────
+
+.ref-tab-back {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+	color: colors.$color-text-muted;
+	font-size: 1.05rem;
+	margin-right: 0.25rem;
+	transition: color 0.15s;
+
+	&:hover {
+		color: colors.$color-hiver;
+	}
+}
+
+.ref-tabs {
+	display: flex;
+	border-bottom: 2px solid colors.$color-border-section;
+	overflow-x: auto;
+	scrollbar-width: none;
+	padding: 0 1.2rem;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.ref-tab {
+	flex: 0 0 auto;
+	padding: 0.75rem 1.25rem;
+	background: none;
+	border: none;
+	border-bottom: 3px solid transparent;
+	margin-bottom: -2px;
+	color: colors.$color-text-muted;
+	font-size: 0.95rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition:
+		color 0.15s,
+		border-color 0.15s;
+
+	&:hover {
+		color: colors.$color-text-dark;
+	}
+
+	&.active {
+		color: colors.$color-hiver;
+		border-bottom-color: colors.$color-hiver;
+	}
+}
+
+// ─── Contenu ──────────────────────────────────────────────────────────────────
+
+.ref-content {
+	padding: 1.75rem 1.5rem;
+	max-width: 1400px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.ref-section {
+	display: flex;
+	flex-direction: column;
+	gap: 2.25rem;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+// ─── Groupes ──────────────────────────────────────────────────────────────────
+
+.ref-group-hint {
+	font-size: 0.8em;
+	font-weight: 400;
+	opacity: 0.75;
+	text-transform: none;
+	letter-spacing: 0;
+	margin-left: 0.3em;
+}
+
+.ref-group-title {
+	margin: 0 0 0.9rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	font-size: 0.8rem;
+	font-weight: 700;
+	color: colors.$color-hiver;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+
+	&::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: colors.$color-border-section;
+	}
+}
+
+// ─── Grille & cartes ──────────────────────────────────────────────────────────
+
+.ref-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 0.75rem;
+}
+
+.ref-card {
+	@include mixins.option-card-saison-vars();
+	background: var(--season-soft-bg);
+	border: 1px solid var(--season-soft-border);
+	border-radius: 10px;
+	padding: 0.75rem 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	transition:
+		box-shadow 0.15s,
+		transform 0.12s;
+
+	&:hover {
+		box-shadow: 0 4px 14px colors.$color-box-shadow-hover;
+		transform: translateY(-1px);
+	}
+
+	&-name {
+		font-weight: 600;
+		color: colors.$color-text-label;
+		font-size: 0.95rem;
+	}
+
+	&-desc {
+		font-size: 0.85rem;
+		color: colors.$color-text-muted;
+		line-height: 1.45;
+	}
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+	.ref-header-top {
+		padding: 0.6rem 1rem;
+		min-height: 3.2rem;
+
+		h1 {
+			font-size: 1.25rem;
+		}
+	}
+
+	.ref-tabs {
+		padding: 0 0.75rem;
+	}
+
+	.ref-tab {
+		padding: 0.6rem 0.85rem;
+		font-size: 0.88rem;
+	}
+
+	.ref-content {
+		padding: 1.25rem 0.75rem;
+	}
+
+	.ref-grid {
+		grid-template-columns: 1fr;
+	}
+}

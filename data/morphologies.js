@@ -118,32 +118,32 @@ export const morphologies = {
 		summary: "Actions mentales ou manuelles",
 		description: "Des Écailles s’utilisent pour les actions mentales ou manuelles."
 	},
-	comestible: {
-		nom: "Comestible ❄️",
-		categorie: "matiere",
+	necrosant: {
+		nom: "Nécrosant ❄️",
+		categorie: "toxine",
 		saison: "hiver",
-		summary: "Fruit, graine, feuilles, miellat, lait, nectar…",
-		description: "Fruit, graine, feuilles, miellat, lait, nectar…"
+		summary: "Provoque des lésions internes",
+		description: "Provoque des lésions internes"
 	},
-	secretion: {
-		nom: "Sécrétion 🌱",
-		categorie: "matiere",
+	neurotoxique: {
+		nom: "Neurotoxique 🌱",
+		categorie: "toxine",
 		saison: "printemps",
-		summary: "Latex, laine, cire, soie, sève, huile…",
-		description: "Latex, laine, cire, soie, sève, huile…"
+		summary: "Détruit le système nerveux ou équivalent",
+		description: "Détruit le système nerveux ou équivalent"
 	},
-	ornement: {
-		nom: "Ornement ☀️",	
-		categorie: "matiere",
+	irritant: {
+		nom: "Irritant ☀️",	
+		categorie: "toxine",
 		saison: "ete",
-		summary: "Crinière, fleur, ambre, plume, pigment, nacre…",
-		description: "Crinière, fleur, ambre, plume, pigment, nacre…"
+		summary: "Augmente la douleur perçue",
+		description: "Augmente la douleur perçue"
 	},	
-	ossature: {
-		nom: "Ossature 🍁",
-		categorie: "matiere",
+	paralysant: {
+		nom: "Paralysant 🍁",
+		categorie: "toxine",
 		saison: "automne",
-		summary: "Bois, os, chitine, coquillage, écaille, pierre…",
-		description: "Bois, os, chitine, coquillage, écaille, pierre…"
+		summary: "Provoque l’arrêt des fonctions vitales (circulation, respiration…)",
+		description: "Provoque l’arrêt des fonctions vitales (circulation, respiration…)"
 	}
 };

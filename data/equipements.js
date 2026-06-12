@@ -118,4 +118,32 @@ export const equipements = {
 		summary: "Dons : Bond, Exosquelette, Flair, Messages et Soie",
 		description: "Blouse ou cotte solide, facile à laver et garnie de poches.<br/>Un Tablier s’utilise quand les Dons Bond, Exosquelette, Flair, Messages ou Soie seraient pertinents."
 	},
+	steroides: {
+		nom: "Stéroïdes ❄️",
+		categorie: "drogue",
+		saison: "hiver",
+		summary: "Extraits de sucs et liquides animaux",
+		description: "Extraits de sucs et liquides animaux"
+	},
+	relaxants: {
+		nom: "Relaxants 🌱",
+		categorie: "drogue",
+		saison: "printemps",
+		summary: "Décoctions à base de feuilles et peaux",
+		description: "Décoctions à base de feuilles et peaux"
+	},
+	psychotropes: {
+		nom: "Psychotropes ☀️",
+		categorie: "drogue",
+		saison: "ete",
+		summary: "Pollens et spores à respirer ou fumer",
+		description: "Pollens et spores à respirer ou fumer",
+	},
+	stimulants: {
+		nom: "Stimulants 🍁",
+		categorie: "drogue",
+		saison: "automne",
+		summary: "Alcools et boissons fermentées ou torréfiées",
+		description: "Alcools et boissons fermentées ou torréfiées"
+	}
 };
