@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Résilience — Référentiel</title>
+	<title>Résilience - Améliorations</title>
 	<link rel="stylesheet" href="./styles/reference.css">
 	<script type="module" src="reference.js"></script>
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -12,19 +12,20 @@
 	<div class="ref-shell">
 
 		<header class="ref-header">
-			<div class="ref-header-main">
-				<img src="./assets/logo-180.png" alt="Logo Résilience" class="ref-logo">
-				<h1>Référentiel</h1>
+			<div class="ref-header-top">
+				<div class="ref-header-main">
+					<img src="./assets/logo-180.png" alt="Logo Résilience" class="ref-logo">
+					<h1>Améliorations</h1>
+				</div>
 			</div>
-			<a href="./index.html" class="ref-back-link">← Création</a>
+			<nav class="ref-tabs" role="tablist" aria-label="Catégories">
+				<a href="./index.html" class="ref-tab-back" aria-label="Retour à la création">«&#x202F;👤</a>
+				<button class="ref-tab active" role="tab" aria-selected="true" aria-controls="section-competences" data-section="competences">Compétences</button>
+				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-morphologies" data-section="morphologies">Morphologies</button>
+				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-equipements" data-section="equipements">Équipements</button>
+				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-dons" data-section="dons">Dons</button>
+			</nav>
 		</header>
-
-		<nav class="ref-tabs" role="tablist" aria-label="Catégories">
-			<button class="ref-tab active" role="tab" aria-selected="true" aria-controls="section-competences" data-section="competences">Compétences</button>
-			<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-morphologies" data-section="morphologies">Morphologies</button>
-			<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-equipements" data-section="equipements">Équipements</button>
-			<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-dons" data-section="dons">Dons</button>
-		</nav>
 
 		<main class="ref-content">
 			<section id="section-competences" class="ref-section" role="tabpanel"></section>

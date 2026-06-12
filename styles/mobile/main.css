@@ -1028,15 +1028,6 @@ section h2 {
   gap: 1.2rem;
 }
 
-.fiche-saisons {
-  display: grid;
-  grid-template-columns: 5fr 1fr 5fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 2.5rem;
-  position: relative;
-  padding: 0 30px;
-}
-
 .saison-block .saison-info {
   grid-column: 2/span 1;
 }

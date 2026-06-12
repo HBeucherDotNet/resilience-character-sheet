@@ -146,19 +146,12 @@ export const dons = {
 		summary: "Fuir, cacher ou se cacher, marquer et détourner l’attention",
 		description: "Le personnage peut projeter du gaz coloré et/ou odorant, de l’encre ou autre substance formant un nuage. Ce Don s’utilise pour fuir, cacher ou se cacher, marquer et détourner l’attention."	
 	},
-	venin: {
-		nom: "Venin 🍁",
-		categorie: "Sécrétion",
-		saison: "automne",
-		summary: "S’utilise en Attaque",
-		description: "Le personnage produit des toxines mortelles qu’il peut injecter à ses victimes. Ce Don s’utilise quand le personnage fait une Attaque."
-	},
 	cire: {
 		nom: "Cire 🍁",
 		categorie: "Sécrétion",
 		saison: "automne",
 		summary: "Résister aux intempéries, fabriquer ou réparer des édifices et abris",
-		description: "le personnage secrète une substance isolante qui recouvre son corps ou qu’il utilise pour son abri. Cela peut prendre la forme d’une cire ou de sébum, par exemple. Ce Don s’utilise quand le personnage subit une Intempérie ou pour construire et réparer des édifices et structures."
+		description: "Le personnage secrète une substance isolante qui recouvre son corps ou qu’il utilise pour son abri. Cela peut prendre la forme d’une cire ou de sébum, par exemple. Ce Don s’utilise quand le personnage subit une Intempérie ou pour construire et réparer des édifices et structures."
 	},
 	soie: {
 		nom: "Soie 🍁",

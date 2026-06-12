@@ -9,13 +9,14 @@ const SECTION_CONFIGS = [
 	{
 		id: 'section-competences',
 		data: competences,
-		groupKey: 'role',
+		groupKey: 'categorie',
 		groups: [
+			{ key: 'role', label: 'Rôle', hint: '+1 Harmonie' },
 			{ key: 'commune', label: 'Communes' },
-			{ key: 'guide', label: 'Guide' },
-			{ key: 'sibylle', label: 'Sibylle' },
-			{ key: 'matrice', label: 'Matrice' },
-			{ key: 'artisan', label: 'Artisan' },
+			{ key: 'animale', label: 'Animale' },
+			{ key: 'végétale', label: 'Végétale' },
+			{ key: 'flamme', label: 'Flamme' },
+			{ key: 'techné', label: 'Techné' },
 		]
 	},
 	{
@@ -27,7 +28,7 @@ const SECTION_CONFIGS = [
 			{ key: 'cuirasse', label: 'Cuirasses' },
 			{ key: 'mains', label: 'Mains' },
 			{ key: 'peau', label: 'Peau' },
-			{ key: 'matiere', label: 'Matières' },
+			{ key: 'toxine', label: 'Toxines', hint: '+1 Harmonie - 4 doses' },
 		]
 	},
 	{
@@ -39,6 +40,7 @@ const SECTION_CONFIGS = [
 			{ key: 'armure', label: 'Armures' },
 			{ key: 'outil', label: 'Outils' },
 			{ key: 'vetement', label: 'Vêtements' },
+			{ key: 'drogue', label: 'Drogues', hint: '+1 Harmonie - 4 doses' },
 		]
 	},
 	{
@@ -46,7 +48,7 @@ const SECTION_CONFIGS = [
 		data: dons,
 		groupKey: 'categorie',
 		groups: [
-			{ key: 'Famille', label: 'Famille' },
+			{ key: 'Famille', label: 'Famille', hint: '+1 Harmonie' },
 			{ key: 'Commun', label: 'Communs' },
 			{ key: 'Mobilité', label: 'Mobilité' },
 			{ key: 'Perception', label: 'Perception' },
@@ -75,7 +77,7 @@ function createCard(item) {
 
 	const desc = document.createElement('span');
 	desc.className = 'ref-card-desc';
-	desc.textContent = item.summary || '';
+	desc.innerHTML = item.description || '';
 
 	card.appendChild(name);
 	card.appendChild(desc);
@@ -92,7 +94,7 @@ function renderSection(config) {
 		grouped[k].push({ id, ...item });
 	}
 
-	for (const { key, label } of config.groups) {
+	for (const { key, label, hint } of config.groups) {
 		const items = grouped[key];
 		if (!items || items.length === 0) continue;
 
@@ -102,6 +104,12 @@ function renderSection(config) {
 		const title = document.createElement('h3');
 		title.className = 'ref-group-title';
 		title.textContent = label;
+		if (hint) {
+			const hintEl = document.createElement('span');
+			hintEl.className = 'ref-group-hint';
+			hintEl.textContent = `(${hint})`;
+			title.appendChild(hintEl);
+		}
 		group.appendChild(title);
 
 		const grid = document.createElement('div');

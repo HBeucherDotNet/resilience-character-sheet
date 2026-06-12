@@ -25,16 +25,20 @@ body {
 	top: 0;
 	z-index: 100;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	padding: 0.75rem 1.5rem;
-	min-height: 3.6rem;
-	box-sizing: border-box;
+	flex-direction: column;
 	background: rgba(255, 255, 255, 0.94);
 	backdrop-filter: blur(10px);
-	border-bottom: 1px solid colors.$color-border-section;
-	box-shadow: 0 2px 12px colors.$color-box-shadow;
+	box-shadow: 0 6px 18px colors.$color-box-shadow;
+}
+
+.ref-header-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 1rem 1.2rem;
+	min-height: 3.6rem;
+	box-sizing: border-box;
 
 	.ref-header-main {
 		display: flex;
@@ -75,16 +79,28 @@ body {
 
 // ─── Onglets ──────────────────────────────────────────────────────────────────
 
-.ref-tabs {
-	position: sticky;
-	top: 3.6rem;
-	z-index: 90;
+.ref-tab-back {
+	flex: 0 0 auto;
 	display: flex;
-	background: colors.$color-white;
+	align-items: center;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+	color: colors.$color-text-muted;
+	font-size: 1.05rem;
+	margin-right: 0.25rem;
+	transition: color 0.15s;
+
+	&:hover {
+		color: colors.$color-hiver;
+	}
+}
+
+.ref-tabs {
+	display: flex;
 	border-bottom: 2px solid colors.$color-border-section;
 	overflow-x: auto;
 	scrollbar-width: none;
-	padding: 0 1.5rem;
+	padding: 0 1.2rem;
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -130,9 +146,22 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 2.25rem;
+
+	&[hidden] {
+		display: none;
+	}
 }
 
 // ─── Groupes ──────────────────────────────────────────────────────────────────
+
+.ref-group-hint {
+	font-size: 0.8em;
+	font-weight: 400;
+	opacity: 0.75;
+	text-transform: none;
+	letter-spacing: 0;
+	margin-left: 0.3em;
+}
 
 .ref-group-title {
 	margin: 0 0 0.9rem;
@@ -165,7 +194,6 @@ body {
 	@include mixins.option-card-saison-vars();
 	background: var(--season-soft-bg);
 	border: 1px solid var(--season-soft-border);
-	border-left: 3px solid var(--season-strong-border);
 	border-radius: 10px;
 	padding: 0.75rem 1rem;
 	display: flex;
@@ -196,7 +224,7 @@ body {
 // ─── Responsive ───────────────────────────────────────────────────────────────
 
 @media (max-width: 640px) {
-	.ref-header {
+	.ref-header-top {
 		padding: 0.6rem 1rem;
 		min-height: 3.2rem;
 
@@ -206,7 +234,6 @@ body {
 	}
 
 	.ref-tabs {
-		top: 3.2rem;
 		padding: 0 0.75rem;
 	}
 
