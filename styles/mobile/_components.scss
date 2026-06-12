@@ -181,12 +181,24 @@ section {
 		border-width: 2px;
 	}
 
-	&.hiver #fiche-magie-hiver { display: flex; }
-	&.printemps #fiche-magie-printemps { display: flex; }
-	&.ete #fiche-magie-ete { display: flex; }
-	&.automne #fiche-magie-automne { display: flex; }
-	&.temps #fiche-magie-temps { display: flex; }
-	&.rupture #fiche-magie-rupture { display: flex; }
+	&.hiver #fiche-magie-hiver {
+		display: flex;
+	}
+	&.printemps #fiche-magie-printemps {
+		display: flex;
+	}
+	&.ete #fiche-magie-ete {
+		display: flex;
+	}
+	&.automne #fiche-magie-automne {
+		display: flex;
+	}
+	&.temps #fiche-magie-temps {
+		display: flex;
+	}
+	&.rupture #fiche-magie-rupture {
+		display: flex;
+	}
 }
 
 .fiche-header {
@@ -245,15 +257,6 @@ section {
 	gap: 1.2rem;
 }
 
-.fiche-saisons {
-	display: grid;
-	grid-template-columns: 5fr 1fr 5fr;
-	grid-template-rows: 1fr 1fr;
-	row-gap: 2.5rem;
-	position: relative;
-	padding: 0 30px;
-}
-
 .saison-block {
 	.saison-info {
 		grid-column: 2 / span 1;
@@ -263,34 +266,44 @@ section {
 		grid-column-start: 1;
 		border-color: colors.$color-hiver;
 		background: colors.$color-hiver-lighter;
-		.saison-cercle { border-color: colors.$color-hiver; }
+		.saison-cercle {
+			border-color: colors.$color-hiver;
+		}
 	}
 
 	&.saison-printemps {
 		grid-column-start: 3;
 		border-color: colors.$color-printemps;
 		background: colors.$color-printemps-lighter;
-		.saison-cercle { border-color: colors.$color-printemps; }
+		.saison-cercle {
+			border-color: colors.$color-printemps;
+		}
 	}
 
 	&.saison-ete {
 		grid-column-start: 3;
 		border-color: colors.$color-ete;
 		background: colors.$color-ete-lighter;
-		.saison-cercle { border-color: colors.$color-ete; }
+		.saison-cercle {
+			border-color: colors.$color-ete;
+		}
 	}
 
 	&.saison-automne {
 		grid-column-start: 1;
 		border-color: colors.$color-automne;
 		background: colors.$color-automne-lighter;
-		.saison-cercle { border-color: colors.$color-automne; }
+		.saison-cercle {
+			border-color: colors.$color-automne;
+		}
 	}
 
 	&.saison-temps {
 		border-color: colors.$color-temps;
 		background: colors.$color-temps-lighter;
-		.saison-cercle { border-color: colors.$color-temps; }
+		.saison-cercle {
+			border-color: colors.$color-temps;
+		}
 	}
 }
 
@@ -328,11 +341,21 @@ section {
 	}
 }
 
-.saison-hiver .saison-score::before { content: "❄️"; }
-.saison-printemps .saison-score::before { content: "🌱"; }
-.saison-ete .saison-score::before { content: "☀️"; }
-.saison-automne .saison-score::before { content: "🍁"; }
-.saison-temps .saison-score::before { content: "⏳"; }
+.saison-hiver .saison-score::before {
+	content: "❄️";
+}
+.saison-printemps .saison-score::before {
+	content: "🌱";
+}
+.saison-ete .saison-score::before {
+	content: "☀️";
+}
+.saison-automne .saison-score::before {
+	content: "🍁";
+}
+.saison-temps .saison-score::before {
+	content: "⏳";
+}
 
 .saison-cercle {
 	width: 75px;

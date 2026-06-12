@@ -53,7 +53,11 @@
 	position: relative;
 	box-sizing: border-box;
 	background: colors.$color-white;
-	transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		box-shadow 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 
 	&:hover {
@@ -76,11 +80,21 @@
 	}
 
 	@if $includeOrder {
-		&.hiver { order: 1; }
-		&.printemps { order: 2; }
-		&.ete { order: 3; }
-		&.automne { order: 4; }
-		&.temps { order: 5; }
+		&.hiver {
+			order: 1;
+		}
+		&.printemps {
+			order: 2;
+		}
+		&.ete {
+			order: 3;
+		}
+		&.automne {
+			order: 4;
+		}
+		&.temps {
+			order: 5;
+		}
 	}
 }
 
@@ -115,52 +129,7 @@
 // ─── Header ───────────────────────────────────────────────────────────────────
 
 @mixin header-menu-content() {
-	.page-actions {
-		display: flex;
-		justify-content: flex-end;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-bottom: 0;
-
-		position: absolute;
-		right: 0;
-		top: calc(100% + 0.65rem);
-		min-width: 15rem;
-		padding: 0.75rem;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 0.55rem;
-		border: 1px solid colors.$color-border-section;
-		border-radius: 16px;
-		background: colors.$color-white;
-		box-shadow: 0 18px 34px rgba(32, 54, 84, 0.16);
-		opacity: 0;
-		transform: translateY(-0.6rem);
-		pointer-events: none;
-		transition: opacity 180ms ease, transform 180ms ease;
-		z-index: 120;
-
-		.page-action-btn {
-			width: 100%;
-		}
-	}
-
-	&[open] {
-		.desktop-header-menu-toggle,
-		.mobile-header-menu-toggle {
-			background: colors.$color-hiver;
-
-			span {
-				background: colors.$color-white;
-			}
-		}
-
-		.page-actions {
-			opacity: 1;
-			transform: translateY(0);
-			pointer-events: auto;
-		}
-	}
+	
 }
 
 @mixin desktop-header-menu-toggle() {
