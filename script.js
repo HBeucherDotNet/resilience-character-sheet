@@ -12,7 +12,7 @@ import { morphologies } from './data/morphologies.js';
 import { ameliorationSectionConfigs } from './data/ameliorationSections.js';
 import { champLexicalWordsBySaison } from './data/champLexical.js';
 import { morphologyGroupConfig, optionSectionConfigs } from './data/optionSections.js';
-import { sorts } from './data/sorts.js';
+import { spheres as sorts } from './data/sorts.js';
 
 // Couleurs par saison
 const couleurs = {
@@ -222,7 +222,7 @@ function buildMagicTalentDescription(descriptions) {
 
 	descriptions.forEach(text => {
 		const item = document.createElement('li');
-		item.textContent = text;
+		item.innerHTML = text;
 		list.appendChild(item);
 	});
 

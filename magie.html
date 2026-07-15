@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Résilience - Magie</title>
+	<link rel="stylesheet" href="./styles/magie.css">
+	<script type="module" src="magie.js"></script>
+	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+</head>
+<body>
+	<div class="magie-shell">
+
+		<header class="magie-header">
+			<div class="magie-header-top">
+				<div class="magie-header-main">
+					<img src="./assets/logo-180.png" alt="Logo Résilience" class="magie-logo">
+					<h1>Sorts</h1>
+				</div>
+				<div class="magie-saison-filter" role="group" aria-label="Filtrer par saison">
+					<button type="button" class="magie-saison-filter-btn hiver" data-saison="hiver" aria-pressed="false" title="Hiver">❄️</button>
+					<button type="button" class="magie-saison-filter-btn printemps" data-saison="printemps" aria-pressed="false" title="Printemps">🌱</button>
+					<button type="button" class="magie-saison-filter-btn ete" data-saison="ete" aria-pressed="false" title="Été">☀️</button>
+					<button type="button" class="magie-saison-filter-btn automne" data-saison="automne" aria-pressed="false" title="Automne">🍁</button>
+					<button type="button" class="magie-saison-filter-btn temps" data-saison="temps" aria-pressed="false" title="Temps">⏳</button>
+				</div>
+				<div class="magie-header-actions">
+					<a href="./index.html" class="magie-back-link" aria-label="Retour à la création">«&#x202F;👤</a>
+					<button type="button" id="magie-print-btn" class="magie-print-btn">🖨&#xFE0E;&#x202F;Imprimer</button>
+				</div>
+			</div>
+		</header>
+
+		<main id="magie-content" class="magie-content"></main>
+
+	</div>
+</body>
+</html>
