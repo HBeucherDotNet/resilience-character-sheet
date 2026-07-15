@@ -9,21 +9,21 @@ const SAISON_LABELS = {
 };
 
 const SPHERE_LABELS = {
-	eau: 'Eau',
-	chair: 'Chair',
-	vie: 'Vie',
-	air: 'Air',
-	sens: 'Sens',
-	savoir: 'Savoir',
-	feu: 'Feu',
-	alchimie: 'Alchimie',
-	passion: 'Passion',
-	terre: 'Terre',
-	force: 'Force',
-	technique: 'Technique',
-	present: 'Présent',
-	passe: 'Passé',
-	futur: 'Futur'
+	eau: 'l\'Eau',
+	chair: 'la Chair',
+	vie: 'la Vie',
+	air: 'l\'Air',
+	sens: 'les Sens',
+	savoir: 'le Savoir',
+	feu: 'le Feu',
+	alchimie: 'l\'Alchimie',
+	passion: 'la Passion',
+	terre: 'la Terre',
+	force: 'la Force',
+	technique: 'la Technique',
+	present: 'le Présent',
+	passe: 'le Passé',
+	futur: 'le Futur'
 };
 
 const TALENT_ORDER = ['connaitre', 'alterer', 'invoquer', 'modeler'];
@@ -35,13 +35,16 @@ const TALENT_LABELS = {
 	modeler: 'Modeler'
 };
 
-function createTalentBlock(talentKey, effects) {
+function createTalentBlock(talentKey, sphereKey, effects) {
 	const block = document.createElement('div');
 	block.className = 'magie-talent';
 
+	const talentLabel = TALENT_LABELS[talentKey] ?? talentKey;
+	const sphereLabel = SPHERE_LABELS[sphereKey] ?? sphereKey;
+
 	const title = document.createElement('h4');
 	title.className = 'magie-talent-name';
-	title.textContent = TALENT_LABELS[talentKey] ?? talentKey;
+	title.textContent = `${talentLabel} ${sphereLabel}`;
 	block.appendChild(title);
 
 	const list = document.createElement('ul');
@@ -60,17 +63,12 @@ function createSphereCard(saisonKey, sphereKey, talents) {
 	const card = document.createElement('article');
 	card.className = `magie-sphere-card ${saisonKey}`;
 
-	const name = document.createElement('h3');
-	name.className = 'magie-sphere-name';
-	name.textContent = SPHERE_LABELS[sphereKey] ?? sphereKey;
-	card.appendChild(name);
-
 	const talentsContainer = document.createElement('div');
 	talentsContainer.className = 'magie-talents-grid';
 	TALENT_ORDER.forEach(talentKey => {
 		const effects = talents[talentKey];
 		if (!Array.isArray(effects) || effects.length === 0) return;
-		talentsContainer.appendChild(createTalentBlock(talentKey, effects));
+		talentsContainer.appendChild(createTalentBlock(talentKey, sphereKey, effects));
 	});
 	card.appendChild(talentsContainer);
 

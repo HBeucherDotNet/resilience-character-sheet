@@ -188,14 +188,6 @@ body {
 	break-inside: avoid;
 }
 
-.magie-sphere-name {
-	margin: 0 0 0.6rem;
-	font-size: 1.1rem;
-	font-weight: 700;
-	color: colors.$color-text-label;
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-}
-
 // ─── Talents ──────────────────────────────────────────────────────────────────
 
 .magie-talents-grid {
@@ -290,6 +282,10 @@ body {
 
 	.magie-saison {
 		break-inside: avoid-page;
+
+		&-title {
+			font-size: 2rem;
+		}
 	}
 
 	.magie-sphere-card {
@@ -297,6 +293,7 @@ body {
 		border: none;
 		background: none;
 		margin: 0;
+		padding: 0;
 	}
 
 	.magie-spheres-grid {
