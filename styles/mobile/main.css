@@ -62,6 +62,8 @@ body {
   text-align: center;
   white-space: nowrap;
   width: auto;
+  font-size: 0.9rem;
+  box-sizing: border-box;
 }
 .page-action-btn:hover {
   filter: brightness(1.2);
