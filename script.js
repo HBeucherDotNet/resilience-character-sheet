@@ -255,19 +255,19 @@ function syncDesktopViewModePresentation() {
 	magicTables.forEach(table => {
 		const rows = Array.from(table.querySelectorAll('tbody tr'));
 		rows.forEach(row => {
-			row.hidden = false;
+			row.classList.remove('hidden');
 			const cells = Array.from(row.querySelectorAll('td'));
 			cells.forEach(cell => {
-				cell.hidden = false;
+				cell.classList.remove('hidden');
 			});
 
 			if (!isReadOnlyView) return;
 
 			const domainInput = row.querySelector('td:first-child input[type="checkbox"]:not(.talent)');
 			const domainKey = normalizePlaceholderToken(domainInput?.id ?? '');
+
 			if (!domainInput?.checked || !sorts[domainKey]) {
-				row.hidden = true;
-				return;
+				row.classList.add('hidden');
 			}
 
 			let hasVisibleTalent = false;
@@ -278,7 +278,7 @@ function syncDesktopViewModePresentation() {
 				const talentKey = resolveMagicTalentKey(talentInput);
 				const descriptions = Array.isArray(sorts[domainKey]?.[talentKey]) ? sorts[domainKey][talentKey] : [];
 				if (descriptions.length === 0) {
-					cell.hidden = true;
+					cell.classList.add('hidden');
 					return;
 				}
 
@@ -286,7 +286,7 @@ function syncDesktopViewModePresentation() {
 			});
 
 			if (!hasVisibleTalent) {
-				row.hidden = true;
+				row.classList.add('hidden');
 			}
 		});
 	});

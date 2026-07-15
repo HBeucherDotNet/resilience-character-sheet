@@ -346,8 +346,8 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents input
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tbody {
   display: table-row-group;
 }
-body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr[hidden] {
-  display: none !important;
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr[hidden], body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr.hidden {
+  display: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents tr {
   width: 100%;
@@ -361,7 +361,7 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td {
   border: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td:not(:has(input:checked)) .magie-talent-label {
-  background: #888 !important;
+  background: #888;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td + td {
   padding-left: 0.5rem;
@@ -370,8 +370,8 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td > 
   display: block;
   width: 100%;
 }
-body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hidden] {
-  display: none !important;
+body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td[hidden], body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td.hidden {
+  display: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magie-talent-label {
   pointer-events: auto;

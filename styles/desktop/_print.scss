@@ -3,16 +3,27 @@
 @media print {
 	@page {
 		size: A4 landscape;
-		margin: 0.2cm;
+		margin: 0.5cm;
 	}
 
 	html {
 		font-size: 70% !important;
 	}
 
+	html,
+	body {
+		height: 100% !important;
+	}
+
 	body {
 		background: colors.$color-white !important;
 		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.desktop-app-shell {
+		margin-bottom: 0 !important;
+		display: none !important;
 	}
 
 	input[type="checkbox"],
@@ -24,10 +35,6 @@
 	input[type="text"] {
 		border-width: 0px !important;
 		border-style: none !important;
-	}
-
-	.desktop-app-header {
-		display: none !important;
 	}
 
 	.logo-nom label {
@@ -44,8 +51,11 @@
 
 	#fiche-personnage {
 		padding: 0 !important;
+		margin: 0 !important;
 		box-shadow: none !important;
 		border: none !important;
+		flex: 1 !important;
+		height: 100% !important;
 	}
 
 	.page-actions {
@@ -54,6 +64,18 @@
 
 	.pictogram-btn {
 		display: none !important;
+	}
+
+	.fiche-grid {
+		flex-grow: 1 !important;
+	}
+
+	#fiche-blocs {
+		flex-grow: 1 !important;
+	}
+
+	.fiche-saisons {
+		row-gap: 3.5rem !important;
 	}
 
 	.fiche-bloc .fiche-bloc-item {
@@ -84,10 +106,22 @@
 
 		.tableau-magie-talents {
 			font-size: 0.8rem !important;
-		}
 
-		td:not(:has(input:checked)) {
-			display: none !important;
+			tr[hidden], tr.hidden { display: table-row !important; }
+			td[hidden], td.hidden { display: table-cell !important; }
+
+			td:has(input:checked) .magie-talent-label {
+				print-color-adjust: exact !important;
+				color: colors.$color-white !important;
+				background-color: var(--character-season-strong-border) !important;
+			}
+
+			td:not(:has(input:checked)) .magie-talent-label {
+				print-color-adjust: exact !important;
+				color: var(--season-strong-border) !important;
+				background-color: colors.$color-white !important;
+				border: solid 1px var(--character-season-strong-border) !important;
+			}
 		}
 	}
 

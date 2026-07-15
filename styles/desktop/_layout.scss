@@ -187,6 +187,13 @@ section {
 		width: 250px;
 		font-size: 1em;
 	}
+
+	.fiche-nom,
+	.fiche-quatuor {
+		label {
+			margin-right: 0.5rem;
+		}
+	}
 }
 
 .logo-name-saison {

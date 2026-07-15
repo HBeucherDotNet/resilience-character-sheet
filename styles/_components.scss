@@ -345,8 +345,8 @@ body.view-mode {
 					display: table-row-group;
 				}
 
-				tr[hidden] {
-					display: none !important;
+				tr[hidden], tr.hidden {
+					display: none;
 				}
 
 				tr {
@@ -362,7 +362,7 @@ body.view-mode {
 					border: none;
 
 					&:not(:has(input:checked)) .magie-talent-label {
-						background: colors.$color-border-cercle !important;
+						background: colors.$color-border-cercle;
 					}
 				}
 
@@ -375,8 +375,8 @@ body.view-mode {
 					width: 100%;
 				}
 
-				td[hidden] {
-					display: none !important;
+				td[hidden], td.hidden {
+					display: none;
 				}
 
 				.magie-talent-label {
