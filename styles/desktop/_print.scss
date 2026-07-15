@@ -3,6 +3,7 @@
 @media print {
 	@page {
 		size: A4 landscape;
+		margin: 0.2cm;
 	}
 
 	html {
@@ -23,6 +24,14 @@
 	input[type="text"] {
 		border-width: 0px !important;
 		border-style: none !important;
+	}
+
+	.desktop-app-header {
+		display: none !important;
+	}
+
+	.logo-nom label {
+		display: none !important;
 	}
 
 	.saison-desc {

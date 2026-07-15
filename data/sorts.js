@@ -255,8 +255,7 @@ export const sorts = {
 	temps: {
 		present: {
 			alterer: [
-				"Changer la Saison d’un Appel.",
-				"NB : la Puissance correspond au nombre maximum d’Appels modifiés pendant la Durée du Sort."
+				"Changer la Saison d’un Appel. La Puissance correspond au nombre maximum d’Appels modifiés pendant la Durée du Sort."
 			],
 			connaitre: [
 				"Mesurer l’écoulement du temps.",

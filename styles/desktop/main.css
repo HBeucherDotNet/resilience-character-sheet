@@ -734,6 +734,7 @@ section > div:last-child {
 .fiche-grid {
   display: grid;
   grid-template-columns: 2fr minmax(0, 30%);
+  grid-template-rows: auto 1fr;
   gap: 1.2rem;
 }
 
@@ -1590,6 +1591,7 @@ section > div:last-child {
 @media print {
   @page {
     size: A4 landscape;
+    margin: 0.2cm;
   }
   html {
     font-size: 70% !important;
@@ -1606,6 +1608,12 @@ section > div:last-child {
   input[type=text] {
     border-width: 0px !important;
     border-style: none !important;
+  }
+  .desktop-app-header {
+    display: none !important;
+  }
+  .logo-nom label {
+    display: none !important;
   }
   .saison-desc {
     font-size: 0.9rem !important;
