@@ -203,72 +203,68 @@ body {
   background: #cccccc;
 }
 
-.magie-spheres-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
+.magie-talents-flow {
+  columns: 320px 4;
+  column-gap: 1rem;
 }
 
-.magie-sphere-card {
+.magie-talent-card {
   --season-soft-bg: #fff;
   --season-soft-border: #d3d7e3;
   --season-strong-bg: #fff;
   --season-strong-border: #d3d7e3;
 }
-.magie-sphere-card.hiver {
+.magie-talent-card.hiver {
   --season-soft-bg: rgb(209.9306358382, 227.8930635838, 243.5693641618);
   --season-soft-border: rgb(67.5433526012, 142.2543352601, 207.4566473988);
   --season-strong-bg: rgb(67.5433526012, 142.2543352601, 207.4566473988);
   --season-strong-border: #235a8a;
 }
-.magie-sphere-card.printemps {
+.magie-talent-card.printemps {
   --season-soft-bg: rgb(208.3313253012, 238.1686746988, 220.1897590361);
   --season-soft-border: rgb(77.1445783133, 190.8554216867, 122.3373493976);
   --season-strong-bg: rgb(77.1445783133, 190.8554216867, 122.3373493976);
   --season-strong-border: #2c7a4b;
 }
-.magie-sphere-card.ete {
+.magie-talent-card.ete {
   --season-soft-bg: rgb(255, 249.9607329843, 216.5);
   --season-soft-border: rgb(255, 226.5968586387, 38);
   --season-strong-bg: rgb(255, 226.5968586387, 38);
   --season-strong-border: #bfa600;
 }
-.magie-sphere-card.automne {
+.magie-talent-card.automne {
   --season-soft-bg: rgb(245.4657534247, 228.5342465753, 228.5342465753);
   --season-soft-border: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.magie-sphere-card.temps {
+.magie-talent-card.temps {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
   --season-strong-border: #999;
 }
-.magie-sphere-card {
+.magie-talent-card {
   background: var(--season-soft-bg);
   border: 1px solid var(--season-soft-border);
   border-radius: 10px;
-  padding: 0.9rem 1.1rem;
-  break-inside: avoid;
-}
-
-.magie-talents-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem 1rem;
-}
-
-.magie-talent {
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 0.75rem;
   break-inside: avoid;
 }
 
 .magie-talent-name {
   margin: 0 0 0.25rem;
-  font-size: 0.8rem;
   font-weight: 700;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   color: var(--season-strong-border);
-  text-transform: uppercase;
+}
+.magie-talent-name input[type=radio] {
+  margin: 0 0.35rem 0 0;
+  height: 13px;
+  accent-color: var(--season-strong-border);
+}
+.magie-talent-name {
   letter-spacing: 0.05em;
 }
 
@@ -288,19 +284,19 @@ body {
 }
 
 .magie-saison.hiver .magie-talent-effets {
-  list-style-type: "❄️ ";
+  list-style-type: "❄️  ";
 }
 .magie-saison.printemps .magie-talent-effets {
-  list-style-type: "🌱 ";
+  list-style-type: "🌱  ";
 }
 .magie-saison.ete .magie-talent-effets {
-  list-style-type: "☀️ ";
+  list-style-type: "☀️  ";
 }
 .magie-saison.automne .magie-talent-effets {
-  list-style-type: "🍁 ";
+  list-style-type: "🍁  ";
 }
 .magie-saison.temps .magie-talent-effets {
-  list-style-type: "⏳ ";
+  list-style-type: "⏳  ";
 }
 
 @media (max-width: 640px) {
@@ -314,11 +310,8 @@ body {
   .magie-content {
     padding: 1.25rem 0.75rem;
   }
-  .magie-spheres-grid {
-    grid-template-columns: 1fr;
-  }
-  .magie-talents-grid {
-    grid-template-columns: 1fr;
+  .magie-talents-flow {
+    columns: 1;
   }
 }
 @media print {
@@ -342,18 +335,15 @@ body {
   .magie-saison-title {
     font-size: 2rem;
   }
-  .magie-sphere-card {
+  .magie-talent-card {
     box-shadow: none;
     border: none;
     background: none;
-    margin: 0;
+    margin: 0 0 0.5rem;
     padding: 0;
   }
-  .magie-spheres-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .magie-talents-grid {
-    grid-template-columns: 1fr;
+  .magie-talents-flow {
+    columns: 2;
   }
 }
 

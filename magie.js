@@ -35,17 +35,34 @@ const TALENT_LABELS = {
 	modeler: 'Modeler'
 };
 
-function createTalentBlock(talentKey, sphereKey, effects) {
-	const block = document.createElement('div');
-	block.className = 'magie-talent';
+function createTalentCard(saisonKey, sphereKey, talentKey, effects) {
+	const card = document.createElement('article');
+	card.className = `magie-talent-card ${saisonKey}`;
 
 	const talentLabel = TALENT_LABELS[talentKey] ?? talentKey;
 	const sphereLabel = SPHERE_LABELS[sphereKey] ?? sphereKey;
 
 	const title = document.createElement('h4');
 	title.className = 'magie-talent-name';
-	title.textContent = `${talentLabel} ${sphereLabel}`;
-	block.appendChild(title);
+
+	const radio = document.createElement('input');
+	radio.type = 'radio';
+	radio.name = `connait-${sphereKey}-${talentKey}`;
+	title.appendChild(radio);
+	title.appendChild(document.createTextNode(`${talentLabel} ${sphereLabel}`));
+	card.appendChild(title);
+
+	let radioWasChecked = false;
+	card.addEventListener('mousedown', () => {
+		radioWasChecked = radio.checked;
+	});
+	card.addEventListener('click', event => {
+		if (radioWasChecked) {
+			radio.checked = false;
+		} else if (event.target !== radio) {
+			radio.checked = true;
+		}
+	});
 
 	const list = document.createElement('ul');
 	list.className = 'magie-talent-effets';
@@ -54,23 +71,7 @@ function createTalentBlock(talentKey, sphereKey, effects) {
 		item.innerHTML = effect;
 		list.appendChild(item);
 	});
-	block.appendChild(list);
-
-	return block;
-}
-
-function createSphereCard(saisonKey, sphereKey, talents) {
-	const card = document.createElement('article');
-	card.className = `magie-sphere-card ${saisonKey}`;
-
-	const talentsContainer = document.createElement('div');
-	talentsContainer.className = 'magie-talents-grid';
-	TALENT_ORDER.forEach(talentKey => {
-		const effects = talents[talentKey];
-		if (!Array.isArray(effects) || effects.length === 0) return;
-		talentsContainer.appendChild(createTalentBlock(talentKey, sphereKey, effects));
-	});
-	card.appendChild(talentsContainer);
+	card.appendChild(list);
 
 	return card;
 }
@@ -85,12 +86,16 @@ function createSaisonSection(saisonKey, spheresParSaison) {
 	title.textContent = emoji ? `${label} ${emoji}` : label;
 	section.appendChild(title);
 
-	const grid = document.createElement('div');
-	grid.className = 'magie-spheres-grid';
+	const flow = document.createElement('div');
+	flow.className = 'magie-talents-flow';
 	Object.entries(spheresParSaison).forEach(([sphereKey, talents]) => {
-		grid.appendChild(createSphereCard(saisonKey, sphereKey, talents));
+		TALENT_ORDER.forEach(talentKey => {
+			const effects = talents[talentKey];
+			if (!Array.isArray(effects) || effects.length === 0) return;
+			flow.appendChild(createTalentCard(saisonKey, sphereKey, talentKey, effects));
+		});
 	});
-	section.appendChild(grid);
+	section.appendChild(flow);
 
 	return section;
 }

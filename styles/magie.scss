@@ -171,41 +171,38 @@ body {
 	&.temps .magie-saison-title { color: colors.$color-temps; &::after { background: colors.$color-temps-light; } }
 }
 
-// ─── Sphères ──────────────────────────────────────────────────────────────────
+// ─── Talents ──────────────────────────────────────────────────────────────────
+// Layout en colonnes façon "mur de briques" : chaque colonne s'empile
+// indépendamment, donc un item court et un item long peuvent cohabiter
+// sans laisser de trou (contrairement à une grille en lignes égales).
 
-.magie-spheres-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	gap: 1rem;
+.magie-talents-flow {
+	columns: 320px 4;
+	column-gap: 1rem;
 }
 
-.magie-sphere-card {
+.magie-talent-card {
 	@include mixins.option-card-saison-vars();
 	background: var(--season-soft-bg);
 	border: 1px solid var(--season-soft-border);
 	border-radius: 10px;
-	padding: 0.9rem 1.1rem;
-	break-inside: avoid;
-}
-
-// ─── Talents ──────────────────────────────────────────────────────────────────
-
-.magie-talents-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0.75rem 1rem;
-}
-
-.magie-talent {
+	padding: 0.6rem 0.9rem;
+	margin: 0 0 0.75rem;
 	break-inside: avoid;
 }
 
 .magie-talent-name {
 	margin: 0 0 0.25rem;
-	font-size: 0.8rem;
 	font-weight: 700;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 	color: var(--season-strong-border);
-	text-transform: uppercase;
+
+	input[type="radio"] {
+		margin: 0 0.35rem 0 0;
+		height: 13px;
+		accent-color: var(--season-strong-border);
+	}
+
 	letter-spacing: 0.05em;
 }
 
@@ -227,11 +224,11 @@ body {
 }
 
 .magie-saison {
-	&.hiver .magie-talent-effets { list-style-type: '❄️ '; }
-	&.printemps .magie-talent-effets { list-style-type: '🌱 '; }
-	&.ete .magie-talent-effets { list-style-type: '☀️ '; }
-	&.automne .magie-talent-effets { list-style-type: '🍁 '; }
-	&.temps .magie-talent-effets { list-style-type: '⏳ '; }
+	&.hiver .magie-talent-effets { list-style-type: '❄️  '; }
+	&.printemps .magie-talent-effets { list-style-type: '🌱  '; }
+	&.ete .magie-talent-effets { list-style-type: '☀️  '; }
+	&.automne .magie-talent-effets { list-style-type: '🍁  '; }
+	&.temps .magie-talent-effets { list-style-type: '⏳  '; }
 }
 
 // ─── Responsive ───────────────────────────────────────────────────────────────
@@ -250,12 +247,8 @@ body {
 		padding: 1.25rem 0.75rem;
 	}
 
-	.magie-spheres-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.magie-talents-grid {
-		grid-template-columns: 1fr;
+	.magie-talents-flow {
+		columns: 1;
 	}
 }
 
@@ -288,19 +281,15 @@ body {
 		}
 	}
 
-	.magie-sphere-card {
+	.magie-talent-card {
 		box-shadow: none;
 		border: none;
 		background: none;
-		margin: 0;
+		margin: 0 0 0.5rem;
 		padding: 0;
 	}
 
-	.magie-spheres-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.magie-talents-grid {
-		grid-template-columns: 1fr;
+	.magie-talents-flow {
+		columns: 2;
 	}
 }
