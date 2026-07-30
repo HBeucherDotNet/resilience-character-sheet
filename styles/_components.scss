@@ -208,6 +208,75 @@
 	}
 }
 
+// ─── Harmonie dialog ──────────────────────────────────────────────────────────
+
+.harmonie-label-btn {
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	text-decoration: underline dotted;
+	text-underline-offset: 2px;
+	cursor: pointer;
+
+	&:hover {
+		filter: brightness(1.2);
+	}
+}
+
+.harmonie-dialog-list {
+	list-style: none;
+	margin: 0 0 0.75rem;
+	padding: 0 0.6rem 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	font-size: 0.9rem;
+	color: colors.$color-text-muted;
+	max-height: 50vh;
+	overflow-y: auto;
+}
+
+.harmonie-dialog-item {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.75rem;
+
+	&:not(:last-child) {
+		border-bottom: 1px dashed colors.$color-border-section;
+		padding-bottom: 0.35rem;
+	}
+
+	.harmonie-dialog-item-cost {
+		white-space: nowrap;
+		font-weight: 600;
+		color: colors.$color-text-dark;
+	}
+}
+
+.harmonie-dialog-subitems {
+	list-style: none;
+	margin: 0.2rem 0 0;
+	padding-left: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	font-size: 0.85rem;
+}
+
+.harmonie-dialog-total {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.4rem;
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: colors.$color-hiver;
+	border-top: 1px solid colors.$color-border-section;
+	padding-top: 0.6rem;
+}
+
 // ─── Fiche personnage : CSS vars saisonnières ─────────────────────────────────
 
 #fiche-personnage {

@@ -37,7 +37,7 @@ function getLabelFromSelectedInput(input) {
 	return label ? label.textContent.trim() : '';
 }
 
-function getSaisonScore(saison, saisonName) {
+export function getSaisonScore(saison, saisonName) {
 	if (!saison) return '';
 	switch (Math.abs(saisonsEnum[saison.value] - saisonsEnum[saisonName])) {
 		case 0: return 3;

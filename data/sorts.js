@@ -1,6 +1,7 @@
 export const sorts = {
 	hiver: {
 		eau: {
+			niveau: 1,
 			alterer: [
 				"Changer l’état de l’eau, changer l’eau douce en eau salée et vice-versa, rendre hydrofuge ou hydrophile.",
 				"Modifier le type de précipitations (pluie, neige, grêle, brouillard…)."
@@ -17,6 +18,7 @@ export const sorts = {
 			]
 		},
 		chair: {
+			niveau: 2,
 			alterer: [
 				"Modifier les besoins alimentaires d’un être vivant.",
 				"Rendre une zone plus ou moins fertiles.",
@@ -40,6 +42,7 @@ export const sorts = {
 			]
 		},
 		vie: {
+			niveau: 3,
 			alterer: [
 				"Changer une ou plusieurs Morphologies en d’autres.",
 				"Modifier la Saison associée de Morphologies.",
@@ -65,6 +68,7 @@ export const sorts = {
 	},
 	printemps: {
 		air: {
+			niveau: 1,
 			alterer: [
 				"Modifier la densité, l’odeur, la pression, la couleur de l’air/d’un gaz connu.",
 				"Rendre des cibles imperméables à certains gaz, ou perméables."
@@ -83,6 +87,7 @@ export const sorts = {
 			]
 		},
 		sens: {
+			niveau: 2,
 			alterer: [
 				"Modifier le message reçu par les sens de ses cibles (ex : les cibles voient des arbres au lieu de rochers).",
 				"Modifier ce qu’un sens est capable de percevoir (ex : écouter avec les yeux)."
@@ -102,6 +107,7 @@ export const sorts = {
 			]
 		},
 		savoir: {
+			niveau: 3,
 			alterer: [
 				"Modifier la Saison associée de Compétences.",
 				"Changer une ou plusieurs Compétences en d’autres."
@@ -126,6 +132,7 @@ export const sorts = {
 	},
 	ete: {
 		feu: {
+			niveau: 1,
 			alterer: [
 				"Modifier la température d’une zone, d’un objet, d’une créature.",
 				"Modifier la couleur, l’odeur et le bruit des flammes.",
@@ -145,6 +152,7 @@ export const sorts = {
 			]
 		},
 		alchimie: {
+			niveau: 2,
 			alterer: [
 				"Changer les propriétés chimiques d’une substance."
 			],
@@ -164,6 +172,7 @@ export const sorts = {
 			]
 		},
 		passion: {
+			niveau: 3,
 			alterer: [
 				"Changer l’émotion liée à un être, un objet, une action (ex : changer un dégoût en désir, un tabou en obligation…).",
 				"Augmenter/diminuer l’émotion liée à un être, un objet, une action.",
@@ -194,6 +203,7 @@ export const sorts = {
 	},
 	automne: {
 		terre: {
+			niveau: 1,
 			alterer: [
 				"Changer les propriétés d’une roche/minerais (dureté, opacité, brillance…)."
 			],
@@ -211,6 +221,7 @@ export const sorts = {
 			]
 		},
 		force: {
+			niveau: 2,
 			alterer: [
 				"Modifier la puissance d’un courant électrique ou magnétique.",
 				"Rendre plus ou moins conducteur ou résistant au passage de l’électricité/du magnétisme."
@@ -230,6 +241,7 @@ export const sorts = {
 			]
 		},
 		technique: {
+			niveau: 3,
 			alterer: [
 				"Transformer un ou plusieurs objets ou Équipements en d’autres.",
 				"Modifier la Saison associée d' Équipements.",
@@ -254,6 +266,7 @@ export const sorts = {
 	},
 	temps: {
 		present: {
+			niveau: 1,
 			alterer: [
 				"Changer la Saison d’un Appel. La Puissance correspond au nombre maximum d’Appels modifiés pendant la Durée du Sort."
 			],
@@ -271,6 +284,7 @@ export const sorts = {
 			]
 		},
 		passe: {
+			niveau: 2,
 			alterer: [
 				"Modifier les souvenirs."
 			],
@@ -286,6 +300,7 @@ export const sorts = {
 			]
 		},
 		futur: {
+			niveau: 3,
 			alterer: [
 				"Tirez autant de Graines que la Puissance du Sort. Notez-les, puis remettez-les dans la pioche.<br />Pendant la Durée du Sort, un personnage ciblé peut, après avoir Tiré les Graines, remplacer tout ou partie des Graines Tirées par des Graines Tirées par le Sort.<br />La Voix du Temps peut également imposer à un personnage ciblé de remplacer tout ou partie de ses Graines Tirées par des Graines Tirées par le Sort. Une Graine Tirée par le Sort ne peut être utilisée qu’une seule fois."
 			],

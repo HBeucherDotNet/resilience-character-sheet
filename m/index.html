@@ -248,7 +248,7 @@
 		<div class="fiche-header">
 			<div class="fiche-valeurs saison-border">
 				<div>Essence : <span id="fiche-essence"></span></div>
-				<div>Harmonie : <input type="text" id="fiche-harmonie" class="resonnance-point"></td></div>
+				<div><button type="button" id="fiche-harmonie-label" class="harmonie-label-btn">Harmonie</button> : <input type="text" id="fiche-harmonie" class="resonnance-point"></div>
 			</div>
 			<div class="fiche-valeurs saison-border rupture">
 				<div>Anathème : <span id="fiche-anatheme"></span></div>
@@ -662,6 +662,18 @@
 							<button type="reset" class="page-action-btn page-action-btn-secondary">Réinitialiser</button>
 							<button type="submit" class="page-action-btn" value="close">Fermer</button>
 						</div>
+					</form>
+				</dialog>
+				<dialog id="harmonie-dialog" class="sort-dialog harmonie-dialog" aria-labelledby="harmonie-dialog-title">
+					<form method="dialog" class="sort-dialog-form">
+						<div class="sort-dialog-header">
+							<div>
+								<h6 id="harmonie-dialog-title">Harmonie totale</h6>
+							</div>
+							<button type="submit" class="sort-dialog-close-btn" value="close" aria-label="Fermer la modale">×</button>
+						</div>
+						<ul id="harmonie-dialog-list" class="harmonie-dialog-list"></ul>
+						<div class="harmonie-dialog-total">Total : <span id="harmonie-dialog-total">0</span></div>
 					</form>
 				</dialog>
 			</div>
