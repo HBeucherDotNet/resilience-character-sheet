@@ -41,7 +41,7 @@ const saisonSuffix = {
 	temps: 'Souffle'
 };
 
-const saisonScoreModKey = Object.fromEntries(
+const saisonScoreModKeys = Object.fromEntries(
 	Object.entries(saisonSuffix).map(([saisonValue, suffix]) => [saisonValue, `scoreMod${suffix}`])
 );
 
@@ -514,7 +514,7 @@ function computeHarmonieBreakdown() {
 	});
 
 	const maSaisonValue = state.saison?.value ?? '';
-	const saisonScoreModKey = saisonScoreModKey[maSaisonValue];
+	const saisonScoreModKey = saisonScoreModKeys[maSaisonValue];
 	if (saisonScoreModKey) {
 		const mod = Math.max(0, state[saisonScoreModKey] ?? 0);
 		items.push({
