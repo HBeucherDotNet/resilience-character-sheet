@@ -22,7 +22,7 @@ Commandes utiles:
 - Build SCSS: `npm run sass:build`
 - Watch SCSS: `npm run sass:watch`
 - Build SCSS prod: `npm run sass:build:prod`
-- Tests: `node --test hashCodec.test.mjs`
+- Tests: `npm test` (ou `node --test`)
 
 ## 3) Structure importante
 
