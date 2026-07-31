@@ -5,7 +5,7 @@
 
 .option {
 	@include mixins.option-card-seasonal(0.5rem, $includeOrder: true);
-
+	
 	&.lignee .lignee-sexe {
 		font-size: 0.9rem;
 		color: colors.$color-text-muted;
@@ -27,7 +27,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 0.5rem;
-
+	
 	.option {
 		flex: 1 1 20%;
 		min-width: 0;
@@ -37,7 +37,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-
+		
 		input[type="checkbox"] {
 			margin-bottom: 0.5rem;
 		}
@@ -52,18 +52,8 @@
 }
 
 .don {
-	color: colors.$color-text-dark;
 	font-size: 1rem;
-	display: block;
-	margin-top: 1rem;
-	background-color: rgba(256, 256, 256, 0.5);
-	padding: 0.5rem 1rem;
 	border-left: dotted 2px var(--season-strong-border);
-
-	ul {
-		margin: 0;
-		padding-left: 1.25rem;
-	}
 }
 
 // ─── Section améliorations ────────────────────────────────────────────────────
@@ -73,7 +63,7 @@
 		h2 {
 			margin-bottom: 0;
 		}
-
+		
 		& > summary {
 			list-style: none;
 			cursor: pointer;
@@ -82,11 +72,11 @@
 			justify-content: space-between;
 			gap: 1rem;
 		}
-
+		
 		& > summary::-webkit-details-marker {
 			display: none;
 		}
-
+		
 		& > summary::after {
 			content: "+";
 			flex: 0 0 auto;
@@ -101,28 +91,28 @@
 			font-size: 1.1rem;
 			font-weight: 700;
 		}
-
+		
 		&[open] > summary::after {
 			content: "−";
 		}
 	}
-
+	
 	.collapsible-section-hint {
 		font-size: 0.9rem;
 		color: colors.$color-text-muted;
 		text-align: right;
 	}
-
+	
 	.collapsible-section-content {
 		margin-top: 0.8rem;
 	}
-
+	
 	#ameliorations-group {
 		align-items: stretch;
 		flex-wrap: wrap;
 		gap: 1rem;
 	}
-
+	
 	#ameliorations-scores-row {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(150px, 1fr));
@@ -134,7 +124,7 @@
 		padding: 0.9rem;
 		box-sizing: border-box;
 	}
-
+	
 	.ameliorations-zone {
 		flex: 1 1 calc(25% - 0.75rem);
 		min-width: 220px;
@@ -143,25 +133,25 @@
 		border-radius: 10px;
 		padding: 0.9rem;
 		box-sizing: border-box;
-
+		
 		h3 {
 			margin-bottom: 0.75rem;
 			font-size: 1.05rem;
 			color: colors.$color-hiver;
 		}
 	}
-
+	
 	.ameliorations-zone-list {
 		display: flex;
 		flex-direction: column;
 		gap: 0.6rem;
 		min-height: 2rem;
 	}
-
+	
 	.ameliorations-item {
 		@include mixins.option-card-light();
 	}
-
+	
 	.ameliorations-item-header {
 		display: flex;
 		align-items: flex-start;
@@ -169,7 +159,7 @@
 		gap: 0.75rem;
 		margin-bottom: 0.4rem;
 	}
-
+	
 	.ameliorations-item-option-label {
 		display: flex;
 		align-items: flex-start;
@@ -177,17 +167,17 @@
 		font-weight: 600;
 		cursor: pointer;
 		width: 100%;
-
+		
 		strong {
 			line-height: 1.3;
 		}
 	}
-
+	
 	.ameliorations-item-checkbox {
 		margin-top: 0.15rem;
 		flex: 0 0 auto;
 	}
-
+	
 	.ameliorations-item-add-btn {
 		border: 1px solid colors.$color-hiver;
 		background: colors.$color-hiver;
@@ -200,24 +190,24 @@
 		line-height: 1;
 		cursor: pointer;
 		flex: 0 0 auto;
-
+		
 		&:disabled {
 			cursor: default;
 			opacity: 0.65;
 		}
 	}
-
+	
 	.ameliorations-item-category {
 		font-size: 0.8rem;
 		color: colors.$color-text-muted;
 		margin-bottom: 0.35rem;
 	}
-
+	
 	.ameliorations-item-description {
 		font-size: 0.85rem;
 		color: colors.$color-text-dark;
 	}
-
+	
 	.amelioration-score-row-item {
 		display: grid;
 		grid-template-columns: minmax(0, 1.5fr) auto auto auto;
@@ -228,7 +218,7 @@
 		border-radius: 10px;
 		padding: 0.55rem 0.6rem;
 	}
-
+	
 	.amelioration-score-input {
 		width: 1.5rem;
 		text-align: center;
@@ -237,7 +227,7 @@
 		border-radius: 10px;
 		background: colors.$color-white;
 	}
-
+	
 	.amelioration-score-btn {
 		width: 1.6rem;
 		height: 1.6rem;
@@ -248,7 +238,7 @@
 		font-weight: 700;
 		line-height: 1;
 		cursor: pointer;
-
+		
 		&:disabled {
 			opacity: 0.4;
 			cursor: not-allowed;
@@ -260,14 +250,139 @@
 // ─── Sort dialog (spécifique desktop) ────────────────────────────────────────
 
 .sort-dialog-row-indicator {
-	min-height: 1.6rem;
 	display: inline-grid;
 	grid-auto-flow: column;
 	grid-auto-columns: max-content;
-	align-content: center;
 	justify-content: flex-start;
 	justify-self: start;
 	gap: 0.12rem;
-	font-size: 1.1rem;
 	overflow: hidden;
+}
+
+// ─── Mode vue (spécifique desktop) ───────────────────────────────────────────
+
+body.view-mode:not(.mobile-sheet-mode) {
+	--desktop-page-padding: 1rem;
+	
+	background: colors.$color-white;
+	margin: 0;
+	padding: var(--desktop-page-padding);
+	
+	#character-builder {
+		display: none !important;
+	}
+	
+	.page-actions {
+		padding: 0.75rem 1rem;
+		margin: 0;
+		background: colors.$color-white;
+	}
+	
+	#fiche-personnage {
+		width: 100%;
+		max-width: none;
+		padding: 0;
+		margin: 0;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	
+	#fiche-magie {
+		.tableau-magie-talents {
+			width: 100%;
+			table-layout: fixed;
+			border-collapse: separate;
+			border-spacing: 0 0.7rem;
+			
+			input {
+				display: none !important;
+			}
+			
+			tbody {
+				display: table-row-group;
+			}
+			
+			tr[hidden], tr.hidden {
+				display: none;
+			}
+			
+			tr {
+				width: 100%;
+				& + tr {
+					border-top: 1px solid colors.$color-border-section;
+				}
+			}
+			
+			td {
+				width: 20%;
+				padding: 0;
+				border: none;
+				
+				// Acquis : pastille pleine (couleur de Saison). Non acquis : contour clair + texte atténué.
+				// Ne dépend pas de la teinte de la Saison (le gris du Temps est trop proche du gris "non coché").
+				&:not(:has(input:checked)) .magie-talent-label {
+					background: colors.$color-white;
+					color: colors.$color-text-muted;
+					border-color: colors.$color-border-cercle;
+					box-shadow: none;
+					opacity: 0.75;
+				}
+			}
+			
+			td + td {
+				padding-left: 0.5rem;
+			}
+			
+			td > label {
+				display: block;
+				width: 100%;
+			}
+			
+			td[hidden], td.hidden {
+				display: none;
+			}
+			
+			.magie-talent-label {
+				pointer-events: auto;
+				cursor: pointer;
+				display: block;
+				width: 100%;
+				padding: 0.5rem;
+				border-radius: 999px;
+				border: 2px solid transparent;
+				background: var(--character-season-strong-border);
+				box-shadow: var(--mobile-shadow);
+				text-align: center;
+				font-size: 0.75rem;
+				font-weight: 700;
+				line-height: 1.15;
+				white-space: normal;
+				box-sizing: border-box;
+				color: colors.$color-white;
+			}
+			
+			.magie-talent-description {
+				margin: 0;
+				padding-left: 0;
+				color: colors.$color-text-dark;
+				font-size: 0.85rem;
+				font-weight: 400;
+				line-height: 1.2;
+				list-style-type: none;
+				
+				li + li {
+					margin-top: 0.2rem;
+				}
+			}
+			
+			.magie-domaine-name {
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+				font-size: 0.98rem;
+				line-height: 1.15;
+				color: var(--character-season-strong-border);
+				font-weight: 700;
+			}
+		}
+	}
 }
