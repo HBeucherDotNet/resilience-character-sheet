@@ -205,11 +205,13 @@ function isMagicTalentDialogModeEnabled() {
 	return isMobileReadOnlyViewActive() || isDesktopReadOnlyViewActive();
 }
 
-function resolveMagicDomainDataKey(card) {
-	const labelToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-name')?.textContent ?? '');
+// Tente plusieurs pistes pour retrouver la clé de sphère dans `sorts` : le libellé affiché, l'id brut,
+// puis chaque segment de l'id séparé par "-" (au cas où l'id ne suivrait pas exactement la clé de sorts.js).
+function resolveMagicDomainDataKey(container, domainInput) {
+	const labelToken = normalizePlaceholderToken(container?.querySelector('.magie-domaine-name')?.textContent ?? '');
 	if (sorts[labelToken]) return labelToken;
 
-	const inputToken = normalizePlaceholderToken(card.querySelector('.magie-domaine-toggle input[type="checkbox"]')?.id ?? '');
+	const inputToken = normalizePlaceholderToken(domainInput?.id ?? '');
 	if (sorts[inputToken]) return inputToken;
 
 	const tokenParts = inputToken.split('-').filter(Boolean);
@@ -275,9 +277,11 @@ function syncDesktopViewModePresentation() {
 			if (!isReadOnlyView) return;
 
 			const domainInput = row.querySelector('td:first-child input[type="checkbox"]:not(.talent)');
-			const domainKey = normalizePlaceholderToken(domainInput?.id ?? '');
+			const domainKey = resolveMagicDomainDataKey(row, domainInput);
+			const hasCheckedTalent = Array.from(row.querySelectorAll('input.talent')).some(input => input.checked);
 
-			if (!domainInput?.checked || !sorts[domainKey]) {
+			// Le domaine peut être verrouillé (score insuffisant) tout en ayant des talents déjà acquis dedans : on affiche quand même la ligne.
+			if ((!domainInput?.checked && !hasCheckedTalent) || !sorts[domainKey]) {
 				row.classList.add('hidden');
 			}
 
@@ -325,7 +329,7 @@ function syncMobileViewModePresentation() {
 
 		if (!isReadOnlyView) return;
 
-		const domainKey = resolveMagicDomainDataKey(card);
+		const domainKey = resolveMagicDomainDataKey(card, card.querySelector('.magie-domaine-toggle input[type="checkbox"]'));
 		if (!domainKey || !sorts[domainKey]) {
 			card.hidden = true;
 			return;

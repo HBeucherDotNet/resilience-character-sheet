@@ -430,8 +430,14 @@ body.view-mode {
 					padding: 0;
 					border: none;
 
+					// Acquis : pastille pleine (couleur de Saison). Non acquis : contour clair + texte atténué.
+					// Ne dépend pas de la teinte de la Saison (le gris du Temps est trop proche du gris "non coché").
 					&:not(:has(input:checked)) .magie-talent-label {
-						background: colors.$color-border-cercle;
+						background: colors.$color-white;
+						color: colors.$color-text-muted;
+						border-color: colors.$color-border-cercle;
+						box-shadow: none;
+						opacity: 0.75;
 					}
 				}
 
@@ -455,6 +461,7 @@ body.view-mode {
 					width: 100%;
 					padding: 0.5rem;
 					border-radius: 999px;
+					border: 2px solid transparent;
 					background: var(--character-season-strong-border);
 					box-shadow: var(--mobile-shadow);
 					text-align: center;

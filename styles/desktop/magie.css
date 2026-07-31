@@ -388,7 +388,11 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td {
   border: none;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td:not(:has(input:checked)) .magie-talent-label {
-  background: #888;
+  background: #fff;
+  color: #555;
+  border-color: #888;
+  box-shadow: none;
+  opacity: 0.75;
 }
 body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents td + td {
   padding-left: 0.5rem;
@@ -407,6 +411,7 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magi
   width: 100%;
   padding: 0.5rem;
   border-radius: 999px;
+  border: 2px solid transparent;
   background: var(--character-season-strong-border);
   box-shadow: var(--mobile-shadow);
   text-align: center;
