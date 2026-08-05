@@ -5,6 +5,7 @@ import { createHashStateSync } from './lib/hashState.js';
 import { createOptionCard, renderOptionGroup } from './lib/optionCard.js';
 import { createSortDialogController } from './lib/sortDialog.js';
 import { createHarmonieCalculator } from './lib/harmonie.js';
+import { createHarmonieDialogController } from './lib/harmonieDialog.js';
 import { ligneeOptionConfigs } from './data/ligneeSections.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
@@ -68,6 +69,11 @@ const harmonieCalculator = createHarmonieCalculator({
 	competences,
 	dons,
 	saisonSuffix
+});
+const harmonieDialogController = createHarmonieDialogController({
+	harmonieCalculator,
+	getState: () => personnage.state,
+	getCheckedMagicTalentIds
 });
 const lastScoreButtonClickByElement = new WeakMap();
 
@@ -386,90 +392,6 @@ function bindAmeliorationScoreControls() {
 			input.dispatchEvent(new Event('input', { bubbles: true }));
 			input.dispatchEvent(new Event('change', { bubbles: true }));
 		});
-	});
-}
-
-// Les `freeCount` premiers ajouts au-delà de la sélection de base sont gratuits, puis le n-ième coûte n.
-// Les lignes de la table Résonances : nom (avec pictogramme de Saison) + niveau atteint.
-function getResonanceRows() {
-	return Array.from(document.querySelectorAll('input[id^="resonance-"]'))
-		.filter(input => /^resonance-\d+$/.test(input.id))
-		.map(nameInput => {
-			const suffix = nameInput.id.replace('resonance-', '');
-			const niveauInput = document.getElementById(`resonance-niv-${suffix}`);
-			return {
-				name: nameInput.value.trim(),
-				niveau: Number.parseInt(niveauInput?.value ?? '', 10)
-			};
-		})
-		.filter(row => row.name && Number.isFinite(row.niveau));
-}
-
-function computeHarmonieBreakdown() {
-	const harmonieActuelle = Number.parseInt(document.getElementById('fiche-harmonie')?.value ?? '0', 10) || 0;
-	return harmonieCalculator.computeHarmonieBreakdown({
-		state: personnage.state,
-		harmonieActuelle,
-		resonanceRows: getResonanceRows(),
-		checkedMagicTalentIds: getCheckedMagicTalentIds()
-	});
-}
-
-function renderHarmonieDialog() {
-	const list = document.getElementById('harmonie-dialog-list');
-	const totalEl = document.getElementById('harmonie-dialog-total');
-	if (!list || !totalEl) return;
-
-	const { items, total } = computeHarmonieBreakdown();
-
-	list.innerHTML = '';
-	items.forEach(item => {
-		const li = document.createElement('li');
-		li.className = 'harmonie-dialog-item';
-
-		const label = document.createElement('div');
-
-		label.innerHTML = `${item.label}`;
-
-		if (item.detail) {
-			label.innerHTML += `<br><span class="desc">${item.detail}</span>`;
-		}
-		
-		if (item.subitems?.length) {
-			const subList = document.createElement('ul');
-			subList.className = 'harmonie-dialog-subitems';
-			item.subitems.forEach(text => {
-				const subLi = document.createElement('li');
-				subLi.textContent = text;
-				subList.appendChild(subLi);
-			});
-			label.appendChild(subList);
-		}
-
-		const cost = document.createElement('span');
-		cost.className = 'harmonie-dialog-item-cost';
-		cost.textContent = String(item.cost);
-
-		li.appendChild(label);
-		li.appendChild(cost);
-		list.appendChild(li);
-	});
-
-	totalEl.textContent = String(total);
-}
-
-function bindHarmonieDialog() {
-	const dialog = document.getElementById('harmonie-dialog');
-	const trigger = document.getElementById('fiche-harmonie-label');
-	if (!dialog || !trigger) return;
-
-	trigger.addEventListener('click', () => {
-		renderHarmonieDialog();
-		if (typeof dialog.showModal === 'function') {
-			dialog.showModal();
-		} else {
-			dialog.setAttribute('open', 'open');
-		}
 	});
 }
 
@@ -1004,7 +926,7 @@ function initBindings() {
 
 	bindAmeliorationScoreControls();
 	bindPersistedCharacterTextSync();
-	bindHarmonieDialog();
+	harmonieDialogController.bindHarmonieDialog();
 
 	document.querySelectorAll('.lire-plus.pictogram-btn').forEach(div => {
 		div.addEventListener('click', () => toggleDesc(div));
