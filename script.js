@@ -45,6 +45,8 @@ const saisonSuffix = {
 
 const persistedCharacterTextFieldSelector = 'input[type="text"], textarea';
 
+const defaultDocumentTitle = document.title;
+
 const personnage = new Personnage();
 const ficheRenderer = createFicheRenderer({
 	couleurs,
@@ -196,6 +198,18 @@ function syncSortLaunchButtonState(state = personnage.state) {
 	launchSortButton.title = hasSelectedSeason
 		? 'Ouvrir la modale de lancement de sort'
 		: 'Choisissez d\'abord une saison';
+}
+
+function updateDocumentTitle(state = personnage.state) {
+	const isViewMode = document.body.classList.contains('view-mode');
+	if (!isViewMode) {
+		document.title = defaultDocumentTitle;
+		return;
+	}
+
+	const symbol = symbols[state?.saison?.value] || '';
+	const nom = (state?.textValues?.['fiche-nom-input'] || '').trim();
+	document.title = [symbol, nom].filter(Boolean).join(' ') || defaultDocumentTitle;
 }
 
 function isMobileReadOnlyViewActive() {
@@ -990,6 +1004,7 @@ function initBindings() {
 	document.addEventListener('viewmodechange', () => {
 		syncDesktopViewModePresentation();
 		syncMobileViewModePresentation();
+		updateDocumentTitle();
 	});
 }
 
@@ -1076,6 +1091,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	personnage.subscribe(syncMagicDomains);
 	personnage.subscribe(syncSortLaunchButtonState);
 	personnage.subscribe(hashStateSync.updateHashFromState);
+	personnage.subscribe(updateDocumentTitle);
 
 	fillAmeliorationsSections();
 
