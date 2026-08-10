@@ -10,30 +10,17 @@
 </head>
 <body>
 	<div class="desktop-app-shell">
-		<header class="desktop-app-header">
-			<div class="header-main">
-				<img src="./assets/logo-180.png" alt="Logo Résilience" class="mobile-brand-logo">
-				<h1 id="main-title">Sorts</h1>
-			</div>
-			<div class="magie-saison-filter" role="group" aria-label="Filtrer par saison">
+		<div data-include="./partials/header-desktop.html" data-title="Sorts">
+			<div class="magie-saison-filter" data-slot="extra" role="group" aria-label="Filtrer par saison">
 				<button type="button" class="magie-saison-filter-btn hiver" data-saison="hiver" aria-pressed="false" title="Hiver">❄️</button>
 				<button type="button" class="magie-saison-filter-btn printemps" data-saison="printemps" aria-pressed="false" title="Printemps">🌱</button>
 				<button type="button" class="magie-saison-filter-btn ete" data-saison="ete" aria-pressed="false" title="Été">☀️</button>
 				<button type="button" class="magie-saison-filter-btn automne" data-saison="automne" aria-pressed="false" title="Automne">🍁</button>
 				<button type="button" class="magie-saison-filter-btn temps" data-saison="temps" aria-pressed="false" title="Temps">⏳</button>
 			</div>
-			<details class="desktop-header-menu">
-				<summary class="desktop-header-menu-toggle" aria-label="Ouvrir le menu">
-					<span></span>
-					<span></span>
-					<span></span>
-				</summary>
-				<div class="page-actions" aria-label="Actions de partage">
-					<a href="reference.html" class="page-action-btn page-action-btn-secondary">Améliorations</a>
-					<a href="index.html" class="page-action-btn page-action-btn-secondary">Fiche de personnage</a>
-				</div>
-			</details>
-		</header>
+			<a href="reference.html" class="page-action-btn page-action-btn-secondary">Améliorations</a>
+			<a href="index.html" class="page-action-btn page-action-btn-secondary">Fiche de personnage</a>
+		</div>
 
 		<main id="magie-content" class="magie-content"></main>
 

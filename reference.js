@@ -2,6 +2,8 @@ import { competences } from './data/competences.js';
 import { morphologies } from './data/morphologies.js';
 import { equipements } from './data/equipements.js';
 import { dons } from './data/dons.js';
+import { includeHtmlPartials } from './lib/includeHtml.js';
+import { bindHeaderMenu } from './lib/headerMenu.js';
 
 const SAISON_ORDER = ['hiver', 'printemps', 'ete', 'automne', 'temps', 'appel', null];
 
@@ -145,3 +147,6 @@ SECTION_CONFIGS.forEach(config => renderSection(config));
 document.querySelectorAll('.ref-section').forEach((s, i) => {
 	s.hidden = i !== 0;
 });
+
+await includeHtmlPartials();
+bindHeaderMenu('.desktop-header-menu');

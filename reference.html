@@ -9,23 +9,18 @@
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
-	<div class="ref-shell">
+	<div class="desktop-app-shell">
+		<div data-include="./partials/header-desktop.html" data-title="Améliorations">
 
-		<header class="ref-header">
-			<div class="ref-header-top">
-				<div class="ref-header-main">
-					<img src="./assets/logo-180.png" alt="Logo Résilience" class="ref-logo">
-					<h1>Améliorations</h1>
-				</div>
-			</div>
-			<nav class="ref-tabs" role="tablist" aria-label="Catégories">
-				<a href="./index.html" class="ref-tab-back" aria-label="Retour à la création">«&#x202F;👤</a>
-				<button class="ref-tab active" role="tab" aria-selected="true" aria-controls="section-competences" data-section="competences">Compétences</button>
-				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-morphologies" data-section="morphologies">Morphologies</button>
-				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-equipements" data-section="equipements">Équipements</button>
+			<nav class="ref-tabs" data-slot="extra" role="tablist" aria-label="Catégories">
+				<button class="ref-tab active" role="tab" aria-selected="false" aria-controls="section-morphologies" data-section="morphologies">Morphologies</button>
+				<button class="ref-tab" role="tab" aria-selected="true" aria-controls="section-competences" data-section="competences">Compétences</button>
 				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-dons" data-section="dons">Dons</button>
+				<button class="ref-tab" role="tab" aria-selected="false" aria-controls="section-equipements" data-section="equipements">Équipements</button>
 			</nav>
-		</header>
+
+			<a href="index.html" class="page-action-btn page-action-btn-secondary">Fiche de personnage</a>
+		</div>
 
 		<main class="ref-content">
 			<section id="section-competences" class="ref-section" role="tabpanel"></section>

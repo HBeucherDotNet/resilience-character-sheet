@@ -6,6 +6,8 @@ import { createOptionCard, renderOptionGroup } from './lib/optionCard.js';
 import { createSortDialogController } from './lib/sortDialog.js';
 import { createHarmonieCalculator } from './lib/harmonie.js';
 import { createHarmonieDialogController } from './lib/harmonieDialog.js';
+import { includeHtmlPartials } from './lib/includeHtml.js';
+import { bindHeaderMenu } from './lib/headerMenu.js';
 import { ligneeOptionConfigs } from './data/ligneeSections.js';
 import { competences } from './data/competences.js';
 import { dons } from './data/dons.js';
@@ -1046,38 +1048,9 @@ function bindResponsiveCollapsibleSection() {
 	resizeObserver.observe(summary);
 }
 
-function bindDesktopHeaderMenu() {
-	const headerMenu = document.querySelector('.desktop-header-menu');
-	if (!(headerMenu instanceof HTMLDetailsElement)) return;
+window.addEventListener('DOMContentLoaded', async function() {
+	await includeHtmlPartials();
 
-	function closeHeaderMenu() {
-		headerMenu.open = false;
-	}
-
-	headerMenu.addEventListener('click', event => {
-		const button = event.target instanceof Element
-			? event.target.closest('.page-action-btn')
-			: null;
-		if (button instanceof HTMLButtonElement) {
-			closeHeaderMenu();
-		}
-	});
-
-	document.addEventListener('click', event => {
-		if (!(event.target instanceof Node)) return;
-		if (!headerMenu.open) return;
-		if (headerMenu.contains(event.target)) return;
-		closeHeaderMenu();
-	});
-
-	document.addEventListener('keydown', event => {
-		if (event.key === 'Escape') {
-			closeHeaderMenu();
-		}
-	});
-}
-
-window.addEventListener('DOMContentLoaded', function() {
 	renderConfiguredOptionSections();
 	renderMorphologyOptionGroups();
 
@@ -1103,7 +1076,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	syncPersonnageFromDom();
 	syncSortLaunchButtonState();
 	syncMobileViewModePresentation();
-	bindDesktopHeaderMenu();
+	bindHeaderMenu('.desktop-header-menu');
 	sortDialogController.bindSortDialog();
 	bindResponsiveCollapsibleSection();
 });

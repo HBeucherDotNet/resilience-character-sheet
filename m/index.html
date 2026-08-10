@@ -11,29 +11,16 @@
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
-	<header class="mobile-brand-banner" aria-label="Bandeau de marque">
-		<div class="mobile-brand-main">
-			<img src="./assets/logo.png" alt="Logo Résilience" class="mobile-brand-logo">
-			<h1 class="mobile-brand-title">Création de personnage</h1>
-		</div>
-		<details class="mobile-header-menu">
-			<summary class="mobile-header-menu-toggle" aria-label="Ouvrir le menu">
-				<span></span>
-				<span></span>
-				<span></span>
-			</summary>
-			<div class="page-actions" aria-label="Actions de partage">
-				<a href="reference.html" class="page-action-btn page-action-btn-secondary">Améliorations</a>
-				<a href="magie.html" class="page-action-btn page-action-btn-secondary">Sorts</a>
-				<button type="button" id="random-personnage-btn" class="page-action-btn page-action-btn-secondary">Personnage aléatoire</button>
-				<button type="button" id="return-to-form-btn" class="page-action-btn page-action-btn-secondary" hidden>Revenir au formulaire</button>
-				<button type="button" id="open-ameliorations-btn" class="page-action-btn page-action-btn-secondary">Ouvrir les ameliorations</button>
-				<button type="button" id="launch-sort-btn" class="page-action-btn page-action-btn-secondary" disabled>Lancer un sort</button>
-				<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
-				<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
-			</div>
-		</details>
-	</header>
+	<div data-include="./partials/header-mobile.html" data-title="Création de personnage">
+		<a href="reference.html" class="page-action-btn page-action-btn-secondary">Améliorations</a>
+		<a href="magie.html" class="page-action-btn page-action-btn-secondary">Sorts</a>
+		<button type="button" id="random-personnage-btn" class="page-action-btn page-action-btn-secondary">Personnage aléatoire</button>
+		<button type="button" id="return-to-form-btn" class="page-action-btn page-action-btn-secondary" hidden>Revenir au formulaire</button>
+		<button type="button" id="open-ameliorations-btn" class="page-action-btn page-action-btn-secondary">Ouvrir les ameliorations</button>
+		<button type="button" id="launch-sort-btn" class="page-action-btn page-action-btn-secondary" disabled>Lancer un sort</button>
+		<button type="button" id="toggle-view-mode-btn" class="page-action-btn">Ouvrir le mode vue</button>
+		<button type="button" id="share-view-link-btn" class="page-action-btn page-action-btn-secondary">Copier le lien de partage</button>
+	</div>
 	<nav id="mobile-step-nav" class="mobile-step-nav" aria-label="Navigation des etapes">
 		<button type="button" id="mobile-step-prev" class="page-action-btn page-action-btn-secondary">◄◄</button>
 		<span id="mobile-step-title" class="mobile-step-title"></span>

@@ -28,6 +28,9 @@ Commandes utiles:
 
 - `index.html`: entree desktop
 - `m/index.html`: entree mobile
+- `partials/*.html`: fragments HTML partages (headers), charges via `lib/includeHtml.js`
+- `lib/includeHtml.js`: mecanisme generique `data-include` (fetch + slots)
+- `lib/headerMenu.js`: comportement partage du menu hamburger de header
 - `script.js`: logique principale (selection, synchro fiche, hash, UI)
 - `m/mobileWizard.js`: navigation et details des etapes mobile
 - `viewMode.js`: bascule edition/vue via query param
@@ -37,7 +40,7 @@ Commandes utiles:
 ## 4) Conventions de modification
 
 - Prioriser des changements minimaux et locaux.
-- Preserver les ids HTML existants (beaucoup de selecteurs JS en dependent).
+- Preserver les ids HTML existants pour les inputs (on s'en sert pour calculer le hash).
 - Eviter toute regression desktop quand une modif cible mobile, et inversement.
 - Garder la logique de synchro centralisee dans `syncPersonnageFromDom`.
 - Utiliser uniquement des modules ES (pas de conversion vers framework).

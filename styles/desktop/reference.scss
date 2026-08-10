@@ -1,103 +1,22 @@
 @use "../variables" as colors;
 @use "../mixins";
+@use "../components";
+@use "../base";
+@use "../layout" as shared-layout;
+@use "layout";
 
 // ─── Base ─────────────────────────────────────────────────────────────────────
 
 body {
-	margin: 0;
 	background: colors.$color-bg-page;
 	font-family: system-ui, -apple-system, sans-serif;
 	color: colors.$color-text-main;
 }
 
-// ─── Shell ────────────────────────────────────────────────────────────────────
-
-.ref-shell {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
-
-// ─── Header ───────────────────────────────────────────────────────────────────
-
-.ref-header {
-	position: sticky;
-	top: 0;
-	z-index: 100;
-	display: flex;
-	flex-direction: column;
-	background: rgba(255, 255, 255, 0.94);
-	backdrop-filter: blur(10px);
-	box-shadow: 0 6px 18px colors.$color-box-shadow;
-}
-
-.ref-header-top {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1.5rem;
-	padding: 1rem 1.2rem;
-	min-height: 3.6rem;
-	box-sizing: border-box;
-
-	.ref-header-main {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.ref-logo {
-		height: 2rem;
-		width: auto;
-	}
-
-	h1 {
-		margin: 0;
-		font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-		font-size: 1.6rem;
-		color: colors.$color-hiver;
-		letter-spacing: 0.02rem;
-	}
-}
-
-.ref-back-link {
-	font-size: 0.85rem;
-	padding: 0.45rem 1rem;
-	text-decoration: none;
-	border-radius: 999px;
-	border: 1px solid colors.$color-hiver;
-	color: colors.$color-hiver;
-	background: colors.$color-white;
-	white-space: nowrap;
-	box-shadow: 0 2px 8px colors.$color-box-shadow;
-	transition: filter 0.15s;
-
-	&:hover {
-		filter: brightness(0.9);
-	}
-}
-
 // ─── Onglets ──────────────────────────────────────────────────────────────────
-
-.ref-tab-back {
-	flex: 0 0 auto;
-	display: flex;
-	align-items: center;
-	padding: 0.75rem 1.25rem;
-	text-decoration: none;
-	color: colors.$color-text-muted;
-	font-size: 1.05rem;
-	margin-right: 0.25rem;
-	transition: color 0.15s;
-
-	&:hover {
-		color: colors.$color-hiver;
-	}
-}
 
 .ref-tabs {
 	display: flex;
-	border-bottom: 2px solid colors.$color-border-section;
 	overflow-x: auto;
 	scrollbar-width: none;
 	padding: 0 1.2rem;
@@ -224,15 +143,6 @@ body {
 // ─── Responsive ───────────────────────────────────────────────────────────────
 
 @media (max-width: 640px) {
-	.ref-header-top {
-		padding: 0.6rem 1rem;
-		min-height: 3.2rem;
-
-		h1 {
-			font-size: 1.25rem;
-		}
-	}
-
 	.ref-tabs {
 		padding: 0 0.75rem;
 	}

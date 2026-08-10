@@ -499,6 +499,11 @@ body {
   border-radius: 999px;
   background: #235a8a;
 }
+.desktop-app-header .header-extra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
 section {
   border-radius: 10px;

@@ -1,4 +1,6 @@
 import { sorts } from './data/sorts.js';
+import { includeHtmlPartials } from './lib/includeHtml.js';
+import { bindHeaderMenu } from './lib/headerMenu.js';
 
 const SAISON_LABELS = {
 	hiver: { label: 'Magie de l\'Hiver', emoji: '❄️' },
@@ -132,32 +134,12 @@ function bindSaisonFilter() {
 	});
 }
 
-function bindHeaderMenu() {
-	const headerMenu = document.querySelector('.desktop-header-menu');
-	if (!(headerMenu instanceof HTMLDetailsElement)) return;
-
-	function closeHeaderMenu() {
-		headerMenu.open = false;
-	}
-
-	document.addEventListener('click', event => {
-		if (!(event.target instanceof Node)) return;
-		if (!headerMenu.open) return;
-		if (headerMenu.contains(event.target)) return;
-		closeHeaderMenu();
-	});
-
-	document.addEventListener('keydown', event => {
-		if (event.key === 'Escape') {
-			closeHeaderMenu();
-		}
-	});
-}
-
 document.getElementById('magie-print-btn')?.addEventListener('click', () => {
 	window.print();
 });
 
+await includeHtmlPartials();
+
 render();
 bindSaisonFilter();
-bindHeaderMenu();
+bindHeaderMenu('.desktop-header-menu');
