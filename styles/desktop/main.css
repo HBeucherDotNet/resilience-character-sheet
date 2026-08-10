@@ -1676,6 +1676,12 @@ body.view-mode:not(.mobile-sheet-mode) #fiche-magie .tableau-magie-talents .magi
   .fiche-bloc > div {
     gap: 0 !important;
   }
+  .resonnance-point {
+    display: none !important;
+  }
+  .harmonie-label-btn {
+    text-decoration: none !important;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
