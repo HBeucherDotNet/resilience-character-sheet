@@ -69,9 +69,9 @@ function sortBySaison(items) {
 }
 
 function createCard(item) {
-	const saison = item.saison ?? '';
+	const saison = item.saison ?? 'appel';
 	const card = document.createElement('article');
-	card.className = `ref-card${saison ? ' ' + saison : ''}`;
+	card.className = `ref-card ${saison}`;
 
 	const name = document.createElement('span');
 	name.className = 'ref-card-name';

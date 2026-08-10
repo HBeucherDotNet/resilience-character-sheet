@@ -639,7 +639,7 @@ section h2 {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.mobile-step .mobile-step-detail-content.temps {
+.mobile-step .mobile-step-detail-content.temps, .mobile-step .mobile-step-detail-content.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
@@ -747,7 +747,7 @@ section h2 {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.option.temps {
+.option.temps, .option.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
@@ -1353,7 +1353,7 @@ section h2 {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.ameliorations-item.temps {
+.ameliorations-item.temps, .ameliorations-item.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
@@ -1775,7 +1775,7 @@ body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.automne {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.temps {
+body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.temps, body.mobile-sheet-mode .fiche-bloc .atout-container .fiche-bloc-item.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;

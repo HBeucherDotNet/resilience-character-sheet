@@ -36,7 +36,7 @@
 		--season-strong-border: #{colors.$color-automne};
 	}
 
-	&.temps {
+	&.temps, &.appel {
 		--season-soft-bg: #{colors.$color-temps-lighter};
 		--season-soft-border: #{colors.$color-temps-light};
 		--season-strong-bg: #{colors.$color-temps-light};
@@ -129,7 +129,7 @@
 // ─── Header ───────────────────────────────────────────────────────────────────
 
 @mixin header-menu-content() {
-	
+
 }
 
 @mixin desktop-header-menu-toggle() {

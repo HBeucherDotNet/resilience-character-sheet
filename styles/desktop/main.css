@@ -991,7 +991,7 @@ section > div:last-child {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.fiche-bloc .fiche-bloc-item.temps {
+.fiche-bloc .fiche-bloc-item.temps, .fiche-bloc .fiche-bloc-item.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
@@ -1176,7 +1176,7 @@ section > div:last-child {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-.option.temps {
+.option.temps, .option.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
@@ -1364,7 +1364,7 @@ section > div:last-child {
   --season-strong-bg: rgb(204.9452054795, 116.0547945205, 116.0547945205);
   --season-strong-border: #a13a3a;
 }
-#ameliorations-section .ameliorations-item.temps {
+#ameliorations-section .ameliorations-item.temps, #ameliorations-section .ameliorations-item.appel {
   --season-soft-bg: rgb(242.25, 242.25, 242.25);
   --season-soft-border: #cccccc;
   --season-strong-bg: #cccccc;
